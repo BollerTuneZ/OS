@@ -13,13 +13,21 @@
 	
 	<script src="js/jquery-2.2.0.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script src="js/myjs.js"></script>
 	<script src="js/interact.js"></script>
 	<script src="js/touch-controller.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	
+	<script src="js/myjs.js"></script>
 <script>
   var socket = io();
+  
+  socket.on("disconnect", function(){
+        $('#myModal').modal('show')
+    });
+    
+  socket.on("connect", function(){
+        $('#myModal').modal('hide')
+    });
+
 </script>
 
 </head>
@@ -86,6 +94,23 @@
 			</div>
 		
 	</div>		
+	
+	<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+	      
+
+        <h1>Verbindung verloren!<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></h1>
+              </div>
+     
+    </div>
+  </div>
+</div>
+	
+	
 </body>
 	
 	<script>
