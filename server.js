@@ -1,23 +1,46 @@
-var express        = require('express') 
-,	app            = express();  
-var server = require("http").createServer(server);
-var io = require('socket.io')(server);
+// server.js
+var express        = require('express');  
+var app            = express();  
+var httpServer = require("http").createServer(app);  
 var conf = require('./config.json');
+var io = require('socket.io').listen(httpServer);
 
-server.listen(conf.port);  
-// Portnummer in die Konsole schreiben
-// console.log('Der Server läuft nun unter http://127.0.0.1:' + conf.port + '/');
-
+ 
 app.use(express.static(__dirname + '/public'));
  
 app.get('/', function(req, res) {  
         res.sendFile(__dirname + '/public/index.html');
-        console.log("Hallo");
 });
 
-// Websocket
+app.get('/', function(req, res) {  
+        res.sendFile(__dirname + '/public/index.html');
+});
+ 
+httpServer.listen(conf.port);  
+console.log('Server Läuft unter http://localhost:' + conf.port);  
+
+ 
+
+ 
+//Socket connection handler
 io.sockets.on('connection', function (socket) {
-	
-});
-
-console.log('Der Server läuft nun unter http://127.0.0.1:' + conf.port + '/');
+        console.log(socket.id);
+ 
+        socket.on('led:on', function (data) {
+           console.log('LED ON RECEIVED');
+           
+        });
+ 
+        socket.on('led:off', function (data) {
+            console.log('LED OFF RECEIVED');
+ 
+        });
+        
+        socket.on('led:trigger', function (data) {
+            console.log('LED Trigger RECEIVED');
+ 
+        });
+        
+    });
+ 
+ 

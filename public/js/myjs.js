@@ -6,10 +6,12 @@ function loadDoc(site) {
     }
   };
   
-  xhttp.open("GET", "html_modules/" + site + ".html", true);
-  xhttp.send();
+xhttp.open("GET", "html_modules/" + site + ".html", true);
+xhttp.send();
 
 }
+
+
 function toggleFullScreen() {
   if (!document.fullscreenElement &&    // alternative standard method
       !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
@@ -34,25 +36,6 @@ function toggleFullScreen() {
     }
   }
 }
-
-
-window.addEventListener('load', function(){
-    var el = document.getElementById('touchsurface2')
-    var inner = document.getElementById('inner')
-    var hidetimer = null
-    swipedetect(el, function(swipedir){
-        if (swipedir != 'none'){
-            clearTimeout(hidetimer)
-            var bgimage = swipedir + 'arrow.png' // naming convention is "leftarrow.png", "rightarrow.png" etc
-            inner.style.background = 'transparent url(' + bgimage + ') center center no-repeat'
-            hidetimer = setTimeout(function(){ // reset background image after 1 second
-                inner.style.background = ''
-            }, 1000)
-        }
-    })
-}, false)
-	
-	
 	
 window.onscroll = function() {scrolltoggle()};
 var x = 0;
@@ -76,40 +59,6 @@ function clicktoggle() {
 		    $("#wrapper").toggleClass("toggled");
 	    }
 }
-var x ;
-function cam() {
-    
-	   var x = document.getElementById("ip").value;
-		console.log(x);
-		document.getElementById("cam1").src = "x";
-}
-
-var app = angular.module('myApp', ['btford.socket-io']).
-    factory('mySocket', function (socketFactory) {
-        return socketFactory();
-    }).
-    controller('ArduController', function ($scope,mySocket) {
-
-        $scope.ledOn = function () {
-
-            mySocket.emit('led:on');
-            console.log('LED ON');
-        };
-
-
-        $scope.ledOff = function () {
-
-            mySocket.emit('led:off');
-            console.log('LED OFF');  
-        }; 
-        
-        $scope.ledtrigger = function () {
-
-            mySocket.emit('led:trigger');
-            console.log('LED OFF');  
-        };    
-});
-
 
 
 
