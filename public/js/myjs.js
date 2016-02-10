@@ -8,6 +8,7 @@ function loadDoc(site) {
   
 xhttp.open("GET", "html_modules/" + site + ".html", true);
 xhttp.send();
+console.log(site + ".html");
 
 }
 
@@ -59,6 +60,8 @@ function clicktoggle() {
 		    $("#wrapper").toggleClass("toggled");
 	    }
 }
+
+
 
 
 

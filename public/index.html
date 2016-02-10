@@ -14,21 +14,13 @@
 	<script src="js/jquery-2.2.0.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/interact.js"></script>
-	<script src="js/touch-controller.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
+<!-- 	<script src="js/touch-controller.js"></script> -->
 	<script src="js/myjs.js"></script>
-<script>
-  var socket = io();
-  
-  socket.on("disconnect", function(){
-        $('#myModal').modal('show')
-    });
-    
-  socket.on("connect", function(){
-        $('#myModal').modal('hide')
-    });
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/socket.js"></script>
+	
+	
 
-</script>
 
 </head>
 
@@ -44,11 +36,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">Dashboard</a>
+                    <a href="#" onclick="loadDoc('dash')" >Dashboard</a>
                 </li>
-                <li>
-                    <a href="#" onclick="loadDoc('cams')">Kameras</a>
-                </li>
+                
                 <li>
                     <a href="#" onclick="loadDoc('steuerung')">Steuerung</a>
                 </li>
@@ -56,6 +46,10 @@
                     <a href="#" onclick="loadDoc('sensor')">Sensoren</a>
                 </li>
                 <li>
+                    <a href="#" onclick="loadDoc('cams')">Kameras</a>
+                </li>
+                <li>
+                
                     <a href="#" onclick="loadDoc('shortcuts')">About</a>
                 </li>
               
@@ -84,14 +78,9 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-			<div id="demo"></div>
-				<div id="drag-1" class="draggable">
-					<p> You can drag one element </p>
-				</div>
-				<div id="drag-2" class="draggable">
-					<p> with each pointer </p>
-				</div>
-			</div>
+			<div class="content" id="demo"></div>
+				
+			
 		
 	</div>		
 	

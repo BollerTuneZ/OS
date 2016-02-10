@@ -78,6 +78,7 @@
 	border: 1px ridge black;
 }
 
+/*
 
 #drag-1, #drag-2 {
   width: 25%;
@@ -99,6 +100,14 @@
   content: "#" attr(id);
   font-weight: bold;
 }
+*/
+
+.content{
+	
+	margin-top: 75px;
+	
+}
+
 
 
 
