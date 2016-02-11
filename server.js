@@ -12,9 +12,6 @@ app.get('/', function(req, res) {
         res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/', function(req, res) {  
-        res.sendFile(__dirname + '/public/index.html');
-});
  
 httpServer.listen(conf.port);  
 console.log('Server Läuft unter http://localhost:' + conf.port);  

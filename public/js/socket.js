@@ -29,10 +29,7 @@ $(document).ready(function(){
 	
 	$('#siosend').click(socketiotest);
 */
-	
-	
-	
-	
+
 	
 });
 
