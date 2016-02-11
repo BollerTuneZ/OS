@@ -8,10 +8,21 @@ $(document).ready(function(){
     socket.on("connect", function(){
 		$('#myModal').modal('hide')
     });
-    
-    $( "#siosend" ).click(function() {
-  alert( "Handler for .click() called." );
-});
+
+	$(document.body).on('click', '#siosend' ,function(){
+		var name = $('#name').val();
+		var siodata = $('#siodata').val();
+
+
+
+		socket.emit(name, { siodata: siodata });
+		console.log( "socket.emit(" + name + ", { siodata: " + siodata + "});" );
+	});
+
+
+
+
+
 
 /*
     function socketiotest() {

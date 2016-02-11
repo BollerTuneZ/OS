@@ -27,7 +27,7 @@ io.sockets.on('connection', function (socket) {
            console.log('LED ON RECEIVED');
            
         });
- 
+
         socket.on('led:off', function (data) {
             console.log('LED OFF RECEIVED');
  
@@ -37,6 +37,9 @@ io.sockets.on('connection', function (socket) {
             console.log('LED Trigger RECEIVED');
  
         });
+
+
+
         
     });
  
