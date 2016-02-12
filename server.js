@@ -23,13 +23,14 @@ console.log('Server Läuft unter http://localhost:' + conf.port);
 io.sockets.on('connection', function (socket) {
         console.log(socket.id);
  
-        socket.on('led:on', function (data) {
-           console.log('LED ON RECEIVED');
-           
+        socket.on('test', function (data) {
+
+            console.log(data.siodata);
+
         });
 
-        socket.on('led:off', function (data) {
-            console.log('LED OFF RECEIVED');
+        socket.on('test2', function (data) {
+            console.log(data.siodata);
  
         });
         
