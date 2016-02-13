@@ -5,14 +5,10 @@ function loadDoc(site) {
      document.getElementById("demo").innerHTML = xhttp.responseText;
     }
   };
-  
 xhttp.open("GET", "html_modules/" + site + ".html", true);
 xhttp.send();
 console.log(site + ".html");
-
 }
-
-
 function toggleFullScreen() {
   if (!document.fullscreenElement &&    // alternative standard method
       !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
@@ -37,7 +33,6 @@ function toggleFullScreen() {
     }
   }
 }
-	
 window.onscroll = function() {scrolltoggle()};
 var x = 0;
 function scrolltoggle() {
@@ -49,24 +44,12 @@ function scrolltoggle() {
 	    }
     } 
 }
-
 window.onclick = function() {clicktoggle()};
 var x = 0;
 function clicktoggle() {
-    
 	    var elmnt = document.getElementById("sidebar-wrapper");
 	    //console.log(elmnt.clientWidth);
 	    if (elmnt.clientWidth == "250"){
 		    $("#wrapper").toggleClass("toggled");
 	    }
 }
-
-
-
-
-
-
-
-
-
-		

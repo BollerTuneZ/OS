@@ -26,12 +26,12 @@ io.sockets.on('connection', function (socket) {
         socket.on('test', function (data) {
 
             console.log(data.siodata);
-
+            io.sockets.emit('test', { siodata: data.siodata });
         });
 
         socket.on('test2', function (data) {
             console.log(data.siodata);
- 
+            io.sockets.emit('test2', { siodata: data.siodata });
         });
         
         socket.on('led:trigger', function (data) {
