@@ -15,11 +15,16 @@ $(document).ready(function(){
 		socket.on(json.socketname1, function(data){
 			$(json.rangeid).val(data.siodata);
 			//$(json.label).html(data.siodata);
+			console.log(data.siodata);
 		});
 //ON json.socketname2 ---------------------------------------------------------------------------------------------
 		socket.on(json.socketname2, function(data){
-			//$( "#checktest" ).val(data.siodata);
-			console.log(data.siodata);
+			if(data.siodata == "1"){
+				$( "#checktest" ).prop('checked', true);
+			}else{
+				$( "#checktest" ).prop('checked', false);
+			}
+			//console.log(data.siodata);
 		});
 //Click Button ----------------------------------------------------------------------------------------------------
 		$(document.body).on('click', '#siosend' ,function(){
@@ -27,18 +32,21 @@ $(document).ready(function(){
 			var siodata = $('#siodata').val();
 			socket.emit(name, { siodata: siodata });
 			console.log( "socket.emit(" + name + ", { siodata: " + siodata + "});" );
+			console.log( "JSON Data: " + json.group1.checkid );
 		});
+
 //Inputgroup   ----------------------------------------------------------------------------------------------------
+//Click Button Check ----------------------------------------------------------------------------------------------
 		$(document.body).on('click', json.checkid ,function(){
 			var chts = $(json.checkid + ':checked').val();
 			if(chts == "on"){
 				console.log('On');
 				chts = "1";
-				$( json.rangeid ).prop( "disabled", false );
+				//$( json.rangeid ).prop( "disabled", false );
 			}else{
 				console.log('Off');
 				chts = "0";
-				$( json.rangeid ).prop( "disabled", true );
+				//$( json.rangeid ).prop( "disabled", true );
 			}
 			socket.emit(json.socketname2 , { siodata: chts });
 		});
@@ -60,22 +68,35 @@ $(document).ready(function(){
 		});
 //mousedown setInterval -------------------------------------------------------------------------------------------
 		$(document.body).on('mousedown', json.rangeid ,function(){
+			var chts = $(json.checkid + ':checked').val();
+			if(chts == "on"){
+				interval = setInterval(function(){
+					$(json.label).html($(json.rangeid).val());
+					socket.emit(json.socketname1, { 'siodata': $(json.rangeid).val() });
+				},22);
+			}
 		});
 //mouseup clearInterval -------------------------------------------------------------------------------------------
 		$(document.body).on('mouseup', json.rangeid ,function(event){
+			var chts = $(json.checkid + ':checked').val();
+			if(chts == "on"){
+				clearInterval(interval);
+				$(json.label).html('Vorne');
+			}
 		});
 //touch -- Start --------------------------------------------------------------------------------------------------
 		$(document.body).on('touchstart', json.rangeid ,function(){
 			interval = setInterval(function(){
-				$(json.label).html($(json.rangeid).val())
+				$(json.label).html($(json.rangeid).val());
 				socket.emit(json.socketname1, { 'siodata': $(json.rangeid).val() });
 			},11);
 		});
 //touch -- end ----------------------------------------------------------------------------------------------------
 		$(document.body).on('touchend', json.rangeid ,function(event){
 			clearInterval(interval);
-			$(json.label).html('Vorne')
+			$(json.label).html('Vorne');
 		});
+
 	});
 });
 
