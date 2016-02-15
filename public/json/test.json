@@ -7,5 +7,37 @@
   "button1id": "#btn-on",
   "button2id": "#btn-off",
   "socketname1": "test",
-  "socketname2": "test2"
+  "socketname2": "test2",
+
+  "group1":
+  {"rangeid": "#rangetest",
+    "checkid": "#checktest",
+    "label": "#rangetestlabel",
+    "button1id": "#btn-on",
+    "button2id": "#btn-off",
+    "socketname1": "test",
+    "socketname2": "test2"
+  },
+
+  "group2":
+  {"rangeid": "#rangetest",
+    "checkid": "#checktest",
+    "label": "#rangetestlabel",
+    "button1id": "#btn-on",
+    "button2id": "#btn-off",
+    "socketname1": "test",
+    "socketname2": "test2"
+  },
+
+  "group3":
+  {"rangeid": "#rangetest",
+    "checkid": "#checktest",
+    "label": "#rangetestlabel",
+    "button1id": "#btn-on",
+    "button2id": "#btn-off",
+    "socketname1": "test",
+    "socketname2": "test2"
+  }
+
+
 }
