@@ -38,7 +38,9 @@ LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
 # Should not alter anything below this line
 ###############################################################################
 
-SRC	=	i2c.c
+SRC	=	i2c.c	\
+		i2c_bare_metal.	\
+		i2c_bare_metal_arduino.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -52,6 +54,10 @@ all:
 really-all:	$(BINS)
 
 i2c_bare_metal:	i2c_bare_metal.o
+	$Q echo [link]
+	$Q $(CC) -o $@ i2c_bare_metal.o
+	
+i2c_bare_metal_arduino: i2c_bare_metal_arduino.o
 	$Q echo [link]
 	$Q $(CC) -o $@ i2c_bare_metal.o
 	
