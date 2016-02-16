@@ -25,6 +25,20 @@ void setup()
   arry = new char[2];
   arry[0] = val1;
   arry[1] = val2;
+
+
+  void **testArray;
+  int *someInt = new int(10000);
+  char *someData = "Was geht denn ab";
+  Serial.println(someData);
+  testArray[0] = someInt;
+  testArray[1] = someData;
+  
+  int* testInt = (int*)testArray[0];
+  Serial.println(*testInt);
+  *someInt = 2000;
+  Serial.println(*testInt);
+  Serial.println((char*)testArray[1]);
   
 }
 
@@ -69,6 +83,8 @@ void requestEvent()
 {
   
   Serial.println("Bytes requested");
+  arry[0] = 0x05;
+  arry[1] = 0x15;
   
   Wire.write(arry,2); // respond with message of 6 bytes
   // as expected by master
