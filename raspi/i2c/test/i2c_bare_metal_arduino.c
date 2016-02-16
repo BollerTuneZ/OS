@@ -11,6 +11,7 @@
 
 void communicate(int);
 void write_test(int);
+void read_test(int);
 /* Suche nach I2C-Adressen */
 void scan_i2c_bus(int device)
   {
@@ -62,6 +63,7 @@ int main(void)
   //scan_i2c_bus(device);
 	//communicate(device);
 	write_test(device);
+	read_test(device);
   return 0;
   }
   
@@ -126,5 +128,17 @@ int main(void)
 			printf("Wrote buffer to slave...\n");
 		}
 		
+  }
+  
+  void read_test(int device)
+  {
+	  char buf[2];
+	  printf("Reading 2 bytes from slave\n");
+	  if(read(device,buf,2) != 2)
+	  {
+		  printf("could not read from slave\n");
+		  return;
+	  }
+	  printf("Read 1:%c, 2:%c",buf[0],buf[1]);
   }
   
