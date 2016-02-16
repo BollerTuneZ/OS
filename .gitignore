@@ -1,4 +1,4 @@
-
+*.idea/
 .idea/.name
 
 .idea/encodings.xml
@@ -16,3 +16,6 @@
 .idea/jsLibraryMappings.xml
 
 .idea/codeStyleSettings.xml
+*
+!*.c
+!Makefile

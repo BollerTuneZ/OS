@@ -71,7 +71,7 @@ int main(void)
 		perror("ioctl() I2C_SLAVE failed\n"); 
 		return;
 	}
-	unsigned int sleepTime = 1;
+	unsigned int sleepTime = 250 * 1000;
 	printf("Reading block data from slave\n");
 	int res;
 int x = 10;	
@@ -84,7 +84,10 @@ int counter =0;
 
 
 	printf("result:%i, result2:%i /count:%i\n",res,result2,counter);
-		sleep(sleepTime);
+		usleep(sleepTime);
 	}
 	
+	printf("Writing 2bytes to slave\n");
+	i2c_smbus_write_word_data(device,0x72,0x10D5);
+	usleep(sleepTime);
   }

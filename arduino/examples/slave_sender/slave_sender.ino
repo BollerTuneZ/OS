@@ -40,7 +40,7 @@ void receiveEvent(int value)
   while(Wire.available())
   {
     char c = Wire.read();
-    Serial.println((unsigned char)c);
+    Serial.println(c, HEX);
   }
   arry[0]++;
   arry[1]--;
