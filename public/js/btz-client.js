@@ -5,11 +5,16 @@ $(document).ready(function(){
 		var socket = io.connect();
 //ON Disconnect ---------------------------------------------------------------------------------------------------
 		socket.on("disconnect", function(){
-			$('#onoffline').modal('show')
+			$('#onoffline').modal('show');
 		});
 //ON Connect ------------------------------------------------------------------------------------------------------
 		socket.on("connect", function(){
-			$('#onoffline').modal('hide')
+			$('#onoffline').modal('hide');
+		});
+		socket.on('warning', function(data){
+			//$(json.label).html(data.siodata);
+			console.log(data.siodata);
+			$('#warning').modal('show');
 		});
 //ON json.socketname1 ---------------------------------------------------------------------------------------------
 		socket.on(json.socketname1, function(data){
