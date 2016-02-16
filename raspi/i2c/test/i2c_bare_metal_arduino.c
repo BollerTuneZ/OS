@@ -66,6 +66,7 @@ int main(void)
   
   void communicate(int device)
   {
+	
 	if (ioctl(device, I2C_SLAVE, SLAVE_ADDRESS) < 0)
 	{
 		perror("ioctl() I2C_SLAVE failed\n"); 
@@ -75,20 +76,31 @@ int main(void)
 	unsigned int sleepTimeLong = 1000 * 1000;
 	printf("Reading block data from slave\n");
 	int res;
-int x = 10;	
-int counter =0;
+	int x = 10;	
+	int counter =0;
 	while(x == 10){
-	res = i2c_smbus_read_byte(device);
-	counter++;
+		res = i2c_smbus_read_byte(device);
+		counter++;
+		/*
+		__s32 result2 = i2c_smbus_read_word_data(device,0x72);
 	
-	__s32 result2 = i2c_smbus_read_word_data(device,0x72);
+	
+		printf("result:%i, result2:%i /count:%i\n",res,result2,counter);
+			usleep(sleepTimeLong);
+		}
+		*/
+		printf("Writing 2bytes to slave\n");
+		if(counter >= 65000)
+		{
+			counter = 0;
+		}
 
-
-	printf("result:%i, result2:%i /count:%i\n",res,result2,counter);
-		usleep(sleepTimeLong);
+		unsigned char high = (unsigned char)(counter>>8);
+		
+		unsigned char low = counter & 0xff;
+		
+		int err = i2c_smbus_write_word_data(device,0x72,counter);
+		printf("err:%i\n",err);
+		usleep(sleepTime);
 	}
-	
-	printf("Writing 2bytes to slave\n");
-	i2c_smbus_write_word_data(device,0x72,0x10D5);
-	usleep(sleepTimeLong);
   }
