@@ -19,24 +19,26 @@
     "socketname2": "test2"
   },
 
-  "group2":
-  {"rangeid": "#rangetest",
-    "checkid": "#checktest",
-    "label": "#rangetestlabel",
-    "button1id": "#btn-on",
-    "button2id": "#btn-off",
-    "socketname1": "test",
-    "socketname2": "test2"
+  "temp":
+  {"motor": "#motor",
+    "motor1": "#motor1",
+    "ext": "#ext"
   },
 
-  "group3":
-  {"rangeid": "#rangetest",
-    "checkid": "#checktest",
-    "label": "#rangetestlabel",
-    "button1id": "#btn-on",
-    "button2id": "#btn-off",
-    "socketname1": "test",
-    "socketname2": "test2"
+  "ultra":
+  {"front-left-1": "#ufl1",
+    "front-left-2": "#ufl2",
+    "front-right-1": "#ufr1",
+    "front-right2": "#ufr2",
+    "rear-left-1": "#url1",
+    "rear-left-2": "#url2",
+    "rear-right-1": "#urr1",
+    "rear-right-2": "#urr2"
+  },
+
+  "enco":
+  {"steering": "#encos",
+    "rpm": "#rpm"
   }
 
 
