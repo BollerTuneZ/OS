@@ -60,7 +60,8 @@ int main(void)
 
   /* und Bus abscannen */
   //scan_i2c_bus(device);
-	communicate(device);
+	//communicate(device);
+	write_test(device);
   return 0;
   }
   
@@ -92,3 +93,22 @@ int counter =0;
 	i2c_smbus_write_word_data(device,0x72,0x10D5);
 	usleep(sleepTimeLong);
   }
+
+  void write_test(int device)
+  {
+	  char buf[10];
+	  
+	  buf[0] = 0xDE;
+	  buf[1] = 0xF1;
+	  buf[2] = 0xD6;
+	  
+	    if (write(device, buf, 3) != 3) {
+			prinf("Error could not write buffer to slave...\n")
+			return;
+		}else
+		{
+			printf("Wrote buffer to slave...\n");
+		}
+		
+  }
+  

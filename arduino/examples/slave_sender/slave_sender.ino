@@ -11,7 +11,7 @@
 
 
 #include <Wire.h>
-
+#include <limits.h>
 char val1,val2;
 char *arry;
 void setup()
@@ -35,13 +35,29 @@ void loop()
 
 void receiveEvent(int value)
 {
-  Serial.print("onReceive Event triggered:");
-  Serial.println(value);
+  Serial.print("Register:");
+  Serial.print(value);
+  
+  char values[2];
+  int i=0;
   while(Wire.available())
   {
     char c = Wire.read();
+    if(i < 2)
+    {
+      Serial.print("x");
+      values[i] = c;
+      i++;
+    }
     Serial.println(c, HEX);
   }
+  int sum2 =  (values[0] * 256) + values[1];
+  int sum = values[0] + (values[1] >> (CHAR_BIT - 2));
+  Serial.print("Sum1:");
+  Serial.println(sum);
+  Serial.print("Sum2:");
+  Serial.println(sum2);
+  
   arry[0]++;
   arry[1]--;
   
