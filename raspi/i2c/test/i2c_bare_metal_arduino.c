@@ -73,7 +73,7 @@ int main(void)
 	}
 	printf("Reading block data from slave\n");
 	int res[6]; 	
-	res = i2c_smbus_read_block_data(device,0x6,);
+	res = i2c_smbus_read_block_data(device,0x6,res);
 	int i;
 	for(i=0;i<6;i++)
 	{
