@@ -62,8 +62,14 @@ int main(void)
   /* und Bus abscannen */
   //scan_i2c_bus(device);
 	//communicate(device);
+for(;;)
+{
 	write_test(device);
+	usleep(500*1000);
 	read_test(device);
+}
+
+
   return 0;
   }
   
@@ -139,6 +145,6 @@ int main(void)
 		  printf("could not read from slave\n");
 		  return;
 	  }
-	  printf("Read 1:%c, 2:%c",buf[0],buf[1]);
+	  printf("Read buf[0]%p, buf[1]%p\n",buf[0],buf[1]);
   }
   
