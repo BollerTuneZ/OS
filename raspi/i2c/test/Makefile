@@ -59,7 +59,7 @@ i2c_bare_metal:	i2c_bare_metal.o
 	
 i2c_bare_metal_arduino: i2c_bare_metal_arduino.o
 	$Q echo [link]
-	$Q $(CC) -o $@ i2c_bare_metal.o
+	$Q $(CC) -o $@ i2c_bare_metal_arduino.o
 	
 i2c:	i2c.o
 	$Q echo [link]
