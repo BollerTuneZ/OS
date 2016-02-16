@@ -72,6 +72,7 @@ int main(void)
 		return;
 	}
 	unsigned int sleepTime = 250 * 1000;
+	unsigned int sleepTimeLong = 1000 * 1000;
 	printf("Reading block data from slave\n");
 	int res;
 int x = 10;	
@@ -84,10 +85,10 @@ int counter =0;
 
 
 	printf("result:%i, result2:%i /count:%i\n",res,result2,counter);
-		usleep(sleepTime);
+		usleep(sleepTimeLong);
 	}
 	
 	printf("Writing 2bytes to slave\n");
 	i2c_smbus_write_word_data(device,0x72,0x10D5);
-	usleep(sleepTime);
+	usleep(sleepTimeLong);
   }
