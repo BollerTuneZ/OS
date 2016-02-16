@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+#include <unistd.h>
 #define SLAVE_ADDRESS 0x12
 
 void communicate(int);
@@ -71,14 +71,20 @@ int main(void)
 		perror("ioctl() I2C_SLAVE failed\n"); 
 		return;
 	}
+	unsigned int sleepTime = 1;
 	printf("Reading block data from slave\n");
-	int res[6]; 	
-	res = i2c_smbus_read_block_data(device,0x6,res);
-	int i;
-	for(i=0;i<6;i++)
-	{
-		printf("Index:%i, value:%i\n",i,res[i]);
-	}
+	int res;
+int x = 10;	
+int counter =0;
+	while(x == 10){
+	res = i2c_smbus_read_byte(device);
+	counter++;
 	
+	__s32 result2 = i2c_smbus_read_word_data(device,0x72);
+
+
+	printf("result:%i, result2:%i /count:%i\n",res,result2,counter);
+		sleep(sleepTime);
+	}
 	
   }
