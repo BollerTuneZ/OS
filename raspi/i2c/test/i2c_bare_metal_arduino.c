@@ -10,7 +10,7 @@
 #define SLAVE_ADDRESS 0x12
 
 void communicate(int);
-
+void write_test(int);
 /* Suche nach I2C-Adressen */
 void scan_i2c_bus(int device)
   {
@@ -113,9 +113,13 @@ int main(void)
 	  buf[0] = 0xDE;
 	  buf[1] = 0xF1;
 	  buf[2] = 0xD6;
-	  
+	  	if (ioctl(device, I2C_SLAVE, SLAVE_ADDRESS) < 0)
+	{
+		perror("ioctl() I2C_SLAVE failed\n"); 
+		return;
+	}
 	    if (write(device, buf, 3) != 3) {
-			prinf("Error could not write buffer to slave...\n")
+			printf("Error could not write buffer to slave...\n");
 			return;
 		}else
 		{
