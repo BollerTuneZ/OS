@@ -1,0 +1,65 @@
+{
+  "port": "8080",
+  "ip": "localhost",
+  "rangeid": "#rangetest",
+  "checkid": "#checktest",
+  "label": "#rangetestlabel",
+  "button1id": "#btn-on",
+  "button2id": "#btn-off",
+  "socketname1": "test",
+  "socketname2": "test2",
+
+  "group1":
+  {"rangeid": "#rangetest",
+    "checkid": "#checktest",
+    "label": "#rangetestlabel",
+    "button1id": "#btn-on",
+    "button2id": "#btn-off",
+    "socketname1": "test",
+    "socketname2": "test2"
+  },
+
+  "temp":
+  {"motor": "#motor",
+    "motor1": "#motor1",
+    "ext": "#ext"
+  },
+
+  "ultra":
+  {"front-left-1": "#ufl1",
+    "front-left-2": "#ufl2",
+    "front-right-1": "#ufr1",
+    "front-right2": "#ufr2",
+    "rear-left-1": "#url1",
+    "rear-left-2": "#url2",
+    "rear-right-1": "#urr1",
+    "rear-right-2": "#urr2"
+  },
+  "steering":
+  {"min": "#ufl1",
+    "max": "#ufl2",
+    "socketname": "#sn",
+    "socketname1": "#sn1",
+    "speed": "#url1",
+    "tol": "#url2",
+    "idname": "#steering",
+    "rear-right-2": "#urr2"
+  },
+  "motor":
+  {"speed": "#ufl1",
+    "socketname": "#sn",
+    "socketname1": "#sn1",
+    "idname": "#motor",
+    "rear-left-1": "#url1",
+    "rear-left-2": "#url2",
+    "rear-right-1": "#urr1",
+    "rear-right-2": "#urr2"
+  },
+
+  "enco":
+  {"steering": "#encos",
+    "rpm": "#rpm"
+  }
+
+
+}

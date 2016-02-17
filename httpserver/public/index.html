@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de"> 
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<title>Juanah</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link href="css/mycss.css" rel="stylesheet">
+	<link href="css/sidebar.css" rel="stylesheet">
+	<script src="js/jquery-2.2.0.js"></script>
+	<script src="js/hammer.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/interact.js"></script>
+<!-- 	<script src="js/touch-controller.js"></script> -->
+	<script src="js/myjs.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/btz-client.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        BollerTuneZ WebOS
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="loadDoc('dash')" >Dashboard</a>
+                </li>
+                <li>
+                    <a href="#" onclick="loadDoc('steuerung')">Steuerung</a>
+                </li>
+                <li>
+                    <a href="#" onclick="loadDoc('sensor')">Sensoren</a>
+                </li>
+                <li>
+                    <a href="#" onclick="loadDoc('cams')">Kameras</a>
+                </li>
+                <li>
+                    <a href="#" onclick="loadDoc('shortcuts')">About</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="navback col-sx-12">
+					<span href="#menu-toggle" id="menu-toggle" class="navbar-btn btn glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+					<span onclick="toggleFullScreen();" class="navbar-btn btn glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+					<span class="btn dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a  class="testvib href="#">Separated link</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+			<div class="content" id="demo"></div>
+	</div>
+	<!-- Modal -->
+<div class="modal fade" id="onoffline" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		  <h1>Verbindung verloren!<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></h1>
+	  </div>
+    </div>
+  </div>
+</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h1>Verbindung verloren!<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>
+	$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        
+        var elmnt = document.getElementById("sidebar-wrapper");
+	    //console.log(elmnt.clientWidth);
+	    if (elmnt.clientWidth == "0"){
+		    $("#wrapper").toggleClass("toggled");
+	    }
+        
+        
+    });
+
+
+
+</script>
+</html>
