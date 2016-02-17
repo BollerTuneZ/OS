@@ -29,10 +29,24 @@ io.sockets.on('connection', function (socket) {
         console.log(data.siodata);
         socket.broadcast.emit(json.motor.socketname, { siodata: data.siodata });
     });
-    socket.on(json.motor.socketname1, function (data) {
-        console.log(data.siodata);
 
-        socket.broadcast.emit(json.motor.socketname1, { siodata: data.siodata });
+    socket.on(json.steering.socketname, function (data) {
+        console.log(data.siodata);
+        socket.broadcast.emit(json.steering.socketname, { siodata: data.siodata });
     });
+    socket.on(json.blinker.socketname0, function (data) {
+        console.log(data.siodata);
+       // socket.broadcast.emit(json.blinker.socketname0, { siodata: data.siodata });
+    });
+    socket.on(json.blinker.socketnamel, function (data) {
+        console.log(data.siodata);
+        // socket.broadcast.emit(json.blinker.socketnamel, { siodata: data.siodata });
+    });
+    socket.on(json.blinker.socketnamer, function (data) {
+        console.log(data.siodata);
+        // socket.broadcast.emit(json.blinker.socketnamer, { siodata: data.siodata });
+    });
+
+
 });
 
