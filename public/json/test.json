@@ -35,6 +35,26 @@
     "rear-right-1": "#urr1",
     "rear-right-2": "#urr2"
   },
+  "steering":
+  {"min": "#ufl1",
+    "max": "#ufl2",
+    "socketname": "#sn",
+    "socketname1": "#sn1",
+    "speed": "#url1",
+    "tol": "#url2",
+    "idname": "#steering",
+    "rear-right-2": "#urr2"
+  },
+  "motor":
+  {"speed": "#ufl1",
+    "socketname": "#sn",
+    "socketname1": "#sn1",
+    "idname": "#motor",
+    "rear-left-1": "#url1",
+    "rear-left-2": "#url2",
+    "rear-right-1": "#urr1",
+    "rear-right-2": "#urr2"
+  },
 
   "enco":
   {"steering": "#encos",

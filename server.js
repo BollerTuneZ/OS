@@ -25,5 +25,14 @@ io.sockets.on('connection', function (socket) {
     socket.on(json.group1.socketname2, function (data) {
         socket.broadcast.emit(json.group1.socketname2, { siodata: data.siodata });
     });
+    socket.on(json.motor.socketname, function (data) {
+        console.log(data.siodata);
+        socket.broadcast.emit(json.motor.socketname, { siodata: data.siodata });
+    });
+    socket.on(json.motor.socketname1, function (data) {
+        console.log(data.siodata);
+
+        socket.broadcast.emit(json.motor.socketname1, { siodata: data.siodata });
+    });
 });
 

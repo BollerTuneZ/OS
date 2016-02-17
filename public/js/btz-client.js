@@ -11,6 +11,7 @@ $(document).ready(function(){
 		socket.on("connect", function(){
 			$('#onoffline').modal('hide');
 		});
+
 		socket.on('warning', function(data){
 			//$(json.label).html(data.siodata);
 			console.log(data.siodata);
@@ -101,6 +102,33 @@ $(document).ready(function(){
 			clearInterval(interval);
 			$(json.label).html('Vorne');
 		});
+
+//Steuerung Motor
+        //mousedown setInterval -------------------------------------------------------------------------------------------
+        $(document.body).on('mousedown', json.motor.idname ,function(){
+           // var chts = $(json.checkid + ':checked').val();
+                interval = setInterval(function(){
+                    //$(json.label).html($(json.rangeid).val());
+                    console.log($(json.motor.idname).val());
+                    socket.emit(json.socketname, { 'siodata': $(json.motor.idname).val() });
+                },22);
+
+        });
+//mouseup clearInterval -------------------------------------------------------------------------------------------
+        $(document.body).on('mouseup', json.motor.idname ,function(event){
+                clearInterval(interval);
+        });
+//touch -- Start --------------------------------------------------------------------------------------------------
+        $(document.body).on('touchstart', json.motor.idname ,function(){
+            interval = setInterval(function(){
+                socket.emit(json.socketname, { 'siodata': $(json.motor.idname).val() });
+            },11);
+        });
+//touch -- end ----------------------------------------------------------------------------------------------------
+        $(document.body).on('touchend', json.motor.idname ,function(event){
+            clearInterval(interval);
+           // $(json.label).html('Vorne');
+        });
 
 	});
 });
