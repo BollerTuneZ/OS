@@ -29,7 +29,6 @@ io.sockets.on('connection', function (socket) {
         console.log(data.siodata);
         socket.broadcast.emit(json.motor.socketname, { siodata: data.siodata });
     });
-
     socket.on(json.steering.socketname, function (data) {
         console.log(data.siodata);
         socket.broadcast.emit(json.steering.socketname, { siodata: data.siodata });
@@ -46,7 +45,5 @@ io.sockets.on('connection', function (socket) {
         console.log(data.siodata);
         // socket.broadcast.emit(json.blinker.socketnamer, { siodata: data.siodata });
     });
-
-
 });
 
