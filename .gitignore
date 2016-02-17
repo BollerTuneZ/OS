@@ -16,6 +16,3 @@
 .idea/jsLibraryMappings.xml
 
 .idea/codeStyleSettings.xml
-*
-!*.c
-!Makefile
