@@ -69,6 +69,10 @@ void Btz_i2c::receiveEvent(int b_count)
 	}
 	else
 		return;
+	void registerPointer = _register[_registerIndex];
+	int dataBufLength = b_count - 2;
+	char dataBuf[dataBufLength];
+	
 	
 	
 	

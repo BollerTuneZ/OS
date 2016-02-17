@@ -14,6 +14,7 @@
 #include <limits.h>
 char val1,val2;
 char *arry;
+#define test_define 10
 void setup()
 {
   Serial.begin(9600);
@@ -30,10 +31,22 @@ void setup()
   void **testArray;
   int *someInt = new int(10000);
   char *someData = "Was geht denn ab";
+  void **registerStruct;
+  registerStruct[0] = new char('H');
+  registerStruct[1] = new int(test_define);
+  
+  
   Serial.println(someData);
   testArray[0] = someInt;
   testArray[1] = someData;
-  
+  testArray[2] = registerStruct;
+
+  void **arryPointer =  (void**)testArray[2];
+  char chrValue = *(char*)arryPointer[0];
+  Serial.println(chrValue);
+
+  void *testPointer = testArray[1];
+  Serial.println((char*)testPointer);
   int* testInt = (int*)testArray[0];
   Serial.println(*testInt);
   *someInt = 2000;
