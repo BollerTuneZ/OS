@@ -50,8 +50,9 @@ void loop()
 void receiveEvent(int value)
 {
   Serial.print("Register:");
-  Serial.print(value);
-  
+  Serial.println(value);
+  Serial.print("Char value:");
+  Serial.println(((char)value));
   char values[2];
   int i=0;
   while(Wire.available())
