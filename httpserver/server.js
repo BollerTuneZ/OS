@@ -48,5 +48,7 @@ io.sockets.on('connection', function (socket) {
         console.log(data.siodata);
         // socket.broadcast.emit(json.blinker.socketnamer, { siodata: data.siodata });
     });
+
+
 });
 
