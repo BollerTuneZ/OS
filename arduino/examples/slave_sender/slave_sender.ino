@@ -1,3 +1,8 @@
+#include <btz_i2c.h>
+
+
+
+
 // Wire Slave Sender
 // by Nicholas Zambetti <http://www.zambetti.com>
 
@@ -50,6 +55,7 @@ void setup()
   int* testInt = (int*)testArray[0];
   Serial.println(*testInt);
   *someInt = 2000;
+  *(int*)testArray[0] = 1000;
   Serial.println(*testInt);
   Serial.println((char*)testArray[1]);
   
