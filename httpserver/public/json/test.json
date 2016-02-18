@@ -72,7 +72,7 @@
     "ext0": "#temp2",
     "ext1": "#temp3",
     "ext2": "#temp4"
-  }
+  },
 
   "push":
   {
@@ -81,9 +81,7 @@
     "button2": "pb2",
     "button3": "pb3",
     "button4": "pb4",
-    "button5": "pb5",
-
-
+    "button5": "pb5"
   }
 
 }
