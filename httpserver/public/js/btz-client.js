@@ -40,7 +40,7 @@ function Init_GuiEvents() {
 	});
 //Click Button ---------------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.button2id, function () {
-		$(json.rangeid).prop("disabled", true);
+
 		$(json.rangeid).val('0');
 		$(json.checkid).prop("checked", false);
 		socket.emit('test', {'siodata': '0'});
