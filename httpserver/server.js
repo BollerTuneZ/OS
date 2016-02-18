@@ -19,6 +19,9 @@ console.log('Server Läuft unter http://localhost:' + conf.port);
 //Socket connection handler
 io.sockets.on('connection', function (socket) {
     console.log(socket.id);
+	
+	socket.emit('id_event',json);
+	
     socket.on(json.group1.socketname1, function (data) {
             socket.broadcast.emit(json.group1.socketname1, { siodata: data.siodata });
     });
