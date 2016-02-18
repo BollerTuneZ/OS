@@ -1,15 +1,9 @@
 var socket;
 var json;
-
+//Initialize  ------------------------------------------------------------------------------------------------------------
 function Initialize()
 {
-	//Lädt JSON File  -------------------------------------------------------------------------------------------------
-	/*$.getJSON("../json/test.json", function(json) {*/
-
 		SetupSocketIO();
-
-
-
 }
 
 function Init_GuiEvents() {
@@ -203,11 +197,135 @@ function Init_GuiEvents() {
 	});
 //Inputgroup Ende   ------------------------------------------------------------------------------------------------------
 
+//ON json.socketname1 --------------------------------------------------------------------------------------------------
+	socket.on(json.socketname1, function(data){
+		$(json.rangeid).val(data.siodata);
+		//$(json.label).html(data.siodata);
+		console.log(data.siodata);
+	});
+//ON json.socketname2 --------------------------------------------------------------------------------------------------
+	socket.on(json.socketname2, function(data){
+		if(data.siodata == "1"){
+			$( "#checktest" ).prop('checked', true);
+		}else{
+			$( "#checktest" ).prop('checked', false);
+		}
+		//console.log(data.siodata);
+	});
+	//ON json.steering.    -----------------------------------------------------------------------------------------
+	socket.on(json.steering.socketname, function(data){
+		$(json.steering.idname).val(data.siodata);
+		//$(json.label).html(data.siodata);
+		//console.log(data.siodata);
+	});
+//Steuerung Lenkung Ende -------------------------------------------------------------------------------------------------
+//ON json.socketname2 --------------------------------------------------------------------------------------------------
+	socket.on(json.socketname2, function(data){
+		if(data.siodata == "1"){
+			$( "#checktest" ).prop('checked', true);
+		}else{
+			$( "#checktest" ).prop('checked', false);
+		}
+		//console.log(data.siodata);
+	});
+
+}
+
+function Init_Sensor(){
+
+	socket.on(json.temp.motor0, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.temp.motor1, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.temp.ext0, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.temp.ext1, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.temp.ext2, function(data){
+
+		//console.log(data.siodata);
+	});
+
+	socket.on(json.ultra.front_left_1, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.ultra.front_left_2, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.ultra.front_right_1, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.ultra.front_right_2, function(data){
+
+		//console.log(data.siodata);
+	});
+
+	socket.on(json.ultra.rear_left_1, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.ultra.rear_left_2, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.ultra.rear_right_1, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.ultra.rear_right_2, function(data){
+
+		//console.log(data.siodata);
+	});
+
+	socket.on(json.enco.steering, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.enco.rpm, function(data){
+
+		//console.log(data.siodata);
+	});
+
+	socket.on(json.push.button0, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.push.button1, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.push.button2, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.push.button3, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.push.button4, function(data){
+
+		//console.log(data.siodata);
+	});
+	socket.on(json.push.button5, function(data){
+
+		//console.log(data.siodata);
+	});
+
 }
 
 function SetupSocketIO()
 {
-	
 	//SocketIO verbinden ----------------------------------------------------------------------------------------------
 		socket = io.connect();
 //ON Disconnect ---------------------------------------------------------------------------------------------------
@@ -219,52 +337,18 @@ function SetupSocketIO()
 			$('#onoffline').modal('hide');
 			
 		});
-	
 	socket.on("id_event",function(data){
-		json = data; console.log(json); 
+		json = data;
+		//console.log(json);
 		Init_GuiEvents();
-			//ON json.socketname1 --------------------------------------------------------------------------------------------------
-			socket.on(json.socketname1, function(data){
-				$(json.rangeid).val(data.siodata);
-				//$(json.label).html(data.siodata);
-				console.log(data.siodata);
-			});
-			//ON json.socketname2 --------------------------------------------------------------------------------------------------
-			socket.on(json.socketname2, function(data){
-				if(data.siodata == "1"){
-					$( "#checktest" ).prop('checked', true);
-				}else{
-					$( "#checktest" ).prop('checked', false);
-				}
-				//console.log(data.siodata);
-			});
-					//ON json.steering.    -----------------------------------------------------------------------------------------
-			socket.on(json.steering.socketname, function(data){
-				$(json.steering.idname).val(data.siodata);
-				//$(json.label).html(data.siodata);
-				//console.log(data.siodata);
-			});
-			//Steuerung Lenkung Ende -------------------------------------------------------------------------------------------------
-			//ON json.socketname2 --------------------------------------------------------------------------------------------------
-			socket.on(json.socketname2, function(data){
-				if(data.siodata == "1"){
-					$( "#checktest" ).prop('checked', true);
-				}else{
-					$( "#checktest" ).prop('checked', false);
-				}
-				//console.log(data.siodata);
-			});
+		Init_Sensor();
 		});
-		
 	socket.on('warning', function(data){
 		//$(json.label).html(data.siodata);
 		console.log(data.siodata);
 		$('#warning').modal('show');
 	});
-
 }
-
-
 
 $(document).ready(function(){
 	Initialize();
