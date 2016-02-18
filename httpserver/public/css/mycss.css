@@ -122,6 +122,12 @@ input[type=range][orient=vertical]
 	padding: 0 5px;
 }
 
+.car{
+	height: 60px;
+
+	background-color: #2aabd2;
+
+}
 
 
 
