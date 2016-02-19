@@ -122,6 +122,20 @@ input[type=range][orient=vertical]
 	padding: 0 5px;
 }
 
+.car{
+	height: 140px;
+
+	background-color: #2aabd2;
+
+}
+
+#progresstest1.transform {
+	-moz-transform: rotate(180deg); /* Firefox 3.6 Firefox 4 */
+	-webkit-transform: rotate(180deg); /* Safari */
+	-o-transform: rotate(180deg); /* Opera */
+	-ms-transform: rotate(180deg); /* IE9 */
+	transform: rotate(180deg); /* W3C */
+}
 
 
 

@@ -1,15 +1,10 @@
 #include "btz_i2c.h"
 
-#ifdef __cplusplus
 extern "C"
 {
-#endif
-
-#include "btz_util.h"
-
-#ifdef __cplusplus
+	#include "btz_util.h"
 }
-#endif
+
 
 Btz_i2c::Btz_i2c()
 {
@@ -26,16 +21,29 @@ void Btz_i2c::Initialize(char i2c_address,void **i2c_register,char registerLengt
 	_registerLength = registerLength;
 	Wire.begin(i2c_address);
 	
-	Wire.onRequest(requestEvent); // register event
-	Wire.onReceive(receiveEvent);
-	
 }
 
-void Btz_i2c::requestEvent(void)
+void Btz_i2c::OnRequest()
+{
+	requestEvent();
+}
+		
+void Btz_i2c::OnReceive(int bytes)
+{
+	receiveEvent(bytes);
+}
+
+
+void Btz_i2c::requestEvent()
 {
 	
 }
 
+/**
+    Receives Data from Master with register which can be written by payload or selected for reading.
+	
+    @param Amount of bytes transmitted
+*/
 void Btz_i2c::receiveEvent(int b_count)
 {
 	char buf[b_count];
@@ -71,7 +79,7 @@ void Btz_i2c::receiveEvent(int b_count)
 		return;
 	void **registerPointer = (void**)_register[_registerIndex];
 	int dataBufLength = b_count - 2;
-	char dataBuf[dataBufLength];
+	char *dataBuf/*[dataBufLength]*/;
 	//grap data 
 	for(int i=0;i<dataBufLength;i++)
 	{
@@ -79,13 +87,13 @@ void Btz_i2c::receiveEvent(int b_count)
 	}
 	
 	char data_type = *(char*)registerPointer[0];
-	
 	if(data_type == DT_BYTE)//Write single byte
 	{
 		*(char*)registerPointer[1] = dataBuf[0];
 	}else if(data_type == DT_CHRARY)
 	{
-		(char*)registerPointer[1] = dataBuf;
+		void *test = dataBuf;
+		registerPointer[1] = test;
 	}else if(data_type == DT_INT)
 	{
 		*(int*)registerPointer[1] = Convert4ByteToInt(dataBuf);

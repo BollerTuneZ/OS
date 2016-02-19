@@ -1,0 +1,15 @@
+
+
+for(var i=0;i<10;i++)
+{
+	onChangedValue(i + 1);
+}
+
+function onChangedValue(value)
+{
+	console.log("Value Changed:" + value);	
+}
+
+
+
+

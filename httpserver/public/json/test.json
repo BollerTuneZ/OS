@@ -19,22 +19,6 @@
     "socketname2": "test2"
   },
 
-  "temp":
-  {"motor": "#motor",
-    "motor1": "#motor1",
-    "ext": "#ext"
-  },
-
-  "ultra":
-  {"front-left-1": "#ufl1",
-    "front-left-2": "#ufl2",
-    "front-right-1": "#ufr1",
-    "front-right2": "#ufr2",
-    "rear-left-1": "#url1",
-    "rear-left-2": "#url2",
-    "rear-right-1": "#urr1",
-    "rear-right-2": "#urr2"
-  },
   "steering":
   {"min": "#ufl1",
     "max": "#ufl2",
@@ -68,7 +52,38 @@
   "enco":
   {"steering": "#encos",
     "rpm": "#rpm"
-  }
+  },
 
+  "ultra":
+  {
+    "groupname": "ultra",
+    "front_left_1": "#ufl1",
+    "front_left_2": "#ufl2",
+    "front_right_1": "#ufr1",
+    "front_right_2": "#ufr2",
+    "rear_left_1": "#url1",
+    "rear_left_2": "#url2",
+    "rear_right_1": "#urr1",
+    "rear_right_2": "#urr2"
+  },
+
+  "temp":
+  {
+    "motor0": "#temp1",
+    "motor1": "#temp5",
+    "ext0": "#temp2",
+    "ext1": "#temp3",
+    "ext2": "#temp4"
+  },
+
+  "push":
+  {
+    "button0": "pb0",
+    "button1": "pb1",
+    "button2": "pb2",
+    "button3": "pb3",
+    "button4": "pb4",
+    "button5": "pb5"
+  }
 
 }
