@@ -11,7 +11,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#DEFINE I2C_BUS "/dev/i2c-1"
+#define I2C_BUS "/dev/i2c-1"
 
 /*
  *Initializes i2c bus on Default: /dev/i2c-1
