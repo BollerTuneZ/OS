@@ -1,12 +1,6 @@
 function loadDoc(site) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-     document.getElementById("demo").innerHTML = xhttp.responseText;
-    }
-  };
-xhttp.open("GET", "html_modules/" + site + ".html", true);
-xhttp.send();
+
+    $( "#demo" ).load( "html_modules/" + site + ".html" );
 console.log(site + ".html");
 }
 function toggleFullScreen() {

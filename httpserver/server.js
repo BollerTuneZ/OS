@@ -34,6 +34,7 @@ io.sockets.on('connection', function (socket) {
     });
     socket.on(json.steering.socketname, function (data) {
         console.log(data.siodata);
+        test(val = data.siodata);
         socket.broadcast.emit(json.steering.socketname, { siodata: data.siodata });
     });
     socket.on(json.blinker.socketname0, function (data) {
@@ -47,14 +48,15 @@ io.sockets.on('connection', function (socket) {
     socket.on(json.blinker.socketnamer, function (data) {
         console.log(data.siodata);
         // socket.broadcast.emit(json.blinker.socketnamer, { siodata: data.siodata });
-        test();
+
     });
 
-    function test(){
+    function test(val){
+        io.emit(json.ultra.front_left_1,val);
+        io.emit(json.temp.motor0,val);
 
-        socket.emit(json.temp.motor1,'44');
 
-    };
+    }
 
 
 });
