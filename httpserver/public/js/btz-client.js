@@ -82,7 +82,6 @@ function Init_GuiEvents() {
 //Click Button Blinker Aus ---------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.blinker.idname0, function () {
 		socket.emit(json.blinker.socketname0, {siodata: '0'});
-		clearInterval(intervalblinker);
 	});
 //Click Button Links ---------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.blinker.idnamel, function () {
