@@ -87,16 +87,10 @@ function Init_GuiEvents() {
 //Click Button Links ---------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.blinker.idnamel, function () {
 		socket.emit(json.blinker.socketnamel, {'siodata': 'Links'});
-		intervalblinker = setInterval(function () {
-			console.log("Blinker Links");
-		}, 300);
 	});
 //Click Button Rechts---------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.blinker.idnamer, function () {
 		socket.emit(json.blinker.socketnamer, {'siodata': 'Rechts'});
-		intervalblinker = setInterval(function () {
-			console.log("Blinker Rechts");
-		}, 300);
 	});
 
 
@@ -234,11 +228,11 @@ function Init_GuiEvents() {
 function Init_Sensor(){
 
 	socket.on(json.temp.motor0, function(data){
-
+		$( "label.m0l" ).html( data );
 		//console.log(data.siodata);
 	});
 	socket.on(json.temp.motor1, function(data){
-
+		console.log(data);
 		//console.log(data.siodata);
 	});
 	socket.on(json.temp.ext0, function(data){
@@ -253,6 +247,9 @@ function Init_Sensor(){
 
 		//console.log(data.siodata);
 	});
+
+	//$(document.body).html('click', json.temp.label_id, function () {});
+
 
 	socket.on(json.ultra.front_left_1, function(data){
 
@@ -321,6 +318,7 @@ function Init_Sensor(){
 
 		//console.log(data.siodata);
 	});
+
 
 }
 

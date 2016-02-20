@@ -47,7 +47,14 @@ io.sockets.on('connection', function (socket) {
     socket.on(json.blinker.socketnamer, function (data) {
         console.log(data.siodata);
         // socket.broadcast.emit(json.blinker.socketnamer, { siodata: data.siodata });
+        test();
     });
+
+    function test(){
+
+        socket.emit(json.temp.motor1,'44');
+
+    };
 
 
 });

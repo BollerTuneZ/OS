@@ -70,6 +70,7 @@
   "temp":
   {
     "motor0": "#temp1",
+    "motor0_label_id": "#m0l",
     "motor1": "#temp5",
     "ext0": "#temp2",
     "ext1": "#temp3",
