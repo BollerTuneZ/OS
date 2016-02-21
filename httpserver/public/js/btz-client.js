@@ -1,12 +1,26 @@
 var socket;
 var json;
+var reload = 'dash';
 //Initialize  ------------------------------------------------------------------------------------------------------------
 function Initialize()
 {
 		SetupSocketIO();
+
+}
+
+function loadDoc(site) {
+	if(site == ''){
+		$( "#demo" ).load( "html_modules/" + reload + ".html" );
+		console.log(reload + ".html");
+	}else {
+		$( "#demo" ).load( "html_modules/" + site + ".html" );
+		reload = site;
+		console.log(reload + ".html");
+	}
 }
 
 function Init_GuiEvents() {
+
 	//Click Button ----------------------------------------------------------------------------------------------------
 	$(document.body).on('click', '#siosend', function () {
 		var name = $('#name').val();
@@ -133,6 +147,7 @@ function Init_GuiEvents() {
 	$(document.body).on('mousedown', json.steering.idname, function () {
 		interval = setInterval(function () {
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
+			console.log($(json.steering.idname).val());
 		}, 22);
 	});
 //mouseup clearInterval ------------------------------------------------------------------------------------------------
@@ -158,6 +173,8 @@ function Init_GuiEvents() {
 //ON json.steering.    -----------------------------------------------------------------------------------------
 	socket.on(json.steering.socketname, function (data) {
 		$(json.steering.idname).val(data.siodata);
+		$('.dial1').val(data.siodata).trigger('change');
+
 		//$(json.label).html(data.siodata);
 		//console.log(data.siodata);
 	});
@@ -183,20 +200,22 @@ function Init_GuiEvents() {
 function Init_Sensor(){
 
 	socket.on(json.temp.motor0, function(data){
-		$(json.temp.motor0_label_id).html( data );
+		$(json.temp.motor0_label_id).val(data.siodata).trigger('change');
 	});
+
 	socket.on(json.temp.motor1, function(data){
-		$(json.temp.motor1_label_id).html( data );
+		$(json.temp.motor1_label_id).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext0, function(data){
-		$(json.temp.ext0_label_id).html( data );
+		$(json.temp.ext0_label_id).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext1, function(data){
-		$(json.temp.ext1_label_id).html( data );
+		$(json.temp.ext1).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext2, function(data){
-		$(json.temp.ext2_label_id).html( data );
+		$(json.temp.ext2).val(data.siodata).trigger('change');
 	});
+
 
 	socket.on(json.ultra.front_left_1, function(data){
 		$(json.ultra.front_left_1).css('width', data+'%').attr('aria-valuenow', data);
@@ -268,6 +287,11 @@ function Init_Sensor(){
 
 }
 
+function m0l(val){
+	//socket.emit(json.temp.motor0, {siodata: val});
+}
+
+
 function SetupSocketIO()
 {
 	//SocketIO verbinden ----------------------------------------------------------------------------------------------
@@ -296,5 +320,8 @@ function SetupSocketIO()
 
 $(document).ready(function(){
 	Initialize();
+	loadDoc('');
 });
+
+
 
