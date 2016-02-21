@@ -4,6 +4,26 @@ char i2c_initialized = 0x0;
 int i2c_device;
 char *emptyPayload;
 
+
+void scan_i2c_bus(int device)
+  {
+  int port, res;
+
+  /* Adressbereich 7 Bit */
+  for (port = 0; port < 127; port++)
+    {
+    if (ioctl(device, I2C_SLAVE, port) < 0)
+      perror("ioctl() I2C_SLAVE failed\n");
+    else
+      {
+      /* kann gelesen werden? */
+      res = i2c_smbus_read_byte(device);
+      if (res >= 0)
+        printf("i2c chip found at: %x, val = %d\n", port, res);
+      }
+    }
+  }
+
 int INIT_I2C()
 {
 	unsigned long funcs;
@@ -18,7 +38,12 @@ int INIT_I2C()
 		//could not get i2c function ERROR -11
 		return -11;
     }
+	if (funcs & I2C_FUNC_I2C)
+		printf("I2C\n");
+	if (funcs & (I2C_FUNC_SMBUS_BYTE))
+		printf("I2C_FUNC_SMBUS_BYTE\n");
 	i2c_initialized = 0x1;
+	scan_i2c_bus(12);
 	return 1;
 }
 
