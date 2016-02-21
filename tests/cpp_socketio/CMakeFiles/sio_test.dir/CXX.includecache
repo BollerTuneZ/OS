@@ -6,8 +6,8 @@
 
 #IncludeRegexTransform: 
 
-/home/jonas/git/OS/tests/cpp_socketio/siotest.cpp
-/home/jonas/git/socket.io-client-cpp/src/sio_client.h
+/home/pi/Git/OS/tests/cpp_socketio/siotest.cpp
+/home/pi/Git/socket.io-client-cpp/src/sio_client.h
 -
 functional
 -
@@ -22,17 +22,17 @@ condition_variable
 string
 -
 
-/home/jonas/git/socket.io-client-cpp/src/sio_client.h
+/home/pi/Git/socket.io-client-cpp/src/sio_client.h
 string
 -
 functional
 -
 sio_message.h
-/home/jonas/git/socket.io-client-cpp/src/sio_message.h
+/home/pi/Git/socket.io-client-cpp/src/sio_message.h
 sio_socket.h
-/home/jonas/git/socket.io-client-cpp/src/sio_socket.h
+/home/pi/Git/socket.io-client-cpp/src/sio_socket.h
 
-/home/jonas/git/socket.io-client-cpp/src/sio_message.h
+/home/pi/Git/socket.io-client-cpp/src/sio_message.h
 string
 -
 memory
@@ -46,9 +46,9 @@ cassert
 type_traits
 -
 
-/home/jonas/git/socket.io-client-cpp/src/sio_socket.h
+/home/pi/Git/socket.io-client-cpp/src/sio_socket.h
 sio_message.h
-/home/jonas/git/socket.io-client-cpp/src/sio_message.h
+/home/pi/Git/socket.io-client-cpp/src/sio_message.h
 functional
 -
 

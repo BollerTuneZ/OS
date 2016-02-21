@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
-include(/home/jonas/git/socket.io-client-cpp/CMakeLists.txt)
+include(/home/pi/Git/socket.io-client-cpp/CMakeLists.txt)
 add_executable(sio_test siotest.cpp)
 set_property(TARGET sio_test PROPERTY CXX_STANDARD 11)
 set_property(TARGET sio_test PROPERTY CXX_STANDARD_REQUIRED ON)

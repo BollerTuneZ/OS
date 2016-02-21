@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/sioclient_tls.dir/home/jonas/git/socket.io-client-cpp/src/sio_socket.cpp.o"
-  "CMakeFiles/sioclient_tls.dir/home/jonas/git/socket.io-client-cpp/src/sio_client.cpp.o"
-  "CMakeFiles/sioclient_tls.dir/home/jonas/git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o"
-  "CMakeFiles/sioclient_tls.dir/home/jonas/git/socket.io-client-cpp/src/internal/sio_packet.cpp.o"
+  "CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o"
+  "CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o"
+  "CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o"
+  "CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o"
   "libsioclient_tls.pdb"
   "libsioclient_tls.a"
 )
