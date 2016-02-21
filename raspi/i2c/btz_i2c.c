@@ -13,7 +13,7 @@ int INIT_I2C()
 		return -10;
     }
 	
-	  if (ioctl(device,I2C_FUNCS,&funcs) < 0)
+	  if (ioctl(i2c_device,I2C_FUNCS,&funcs) < 0)
     {
 		//could not get i2c function ERROR -11
 		return -11;
@@ -22,7 +22,7 @@ int INIT_I2C()
 	return 1;
 }
 
-int WRITE_REGISTER(char device,char slave_address,char i2c_register,char *payload,int length)
+int WRITE_REGISTER(char slave_address,char i2c_register,char *payload,int length)
 {
 	int rLength = length + 1;
 	
@@ -34,7 +34,7 @@ int WRITE_REGISTER(char device,char slave_address,char i2c_register,char *payloa
 	{
 		return -1;
 	}
-	if (write(device, rPayload, rLength) != rLength) {
+	if (write(i2c_device, rPayload, rLength) != rLength) {
 		return -20;
 	}else
 	{
@@ -43,19 +43,19 @@ int WRITE_REGISTER(char device,char slave_address,char i2c_register,char *payloa
 }
 
 
-int READ_REGISTER(char device,char i2c_register,char *value,int length)
+int READ_REGISTER(char slave_address,char i2c_register,char *value,int length)
 {
 	//First set the register @slave 
-	int setRegisterResult = WRITE_REGISTER(device,i2c_register,emptyPayload,0);
+	int setRegisterResult = WRITE_REGISTER(i2c_device,i2c_register,emptyPayload,0);
 	if(setRegisterResult != 1)
 	{
 		return setRegisterResult;
 	}
-	if (ioctl(device, I2C_SLAVE, slave_address) < 0)
+	if (ioctl(i2c_device, I2C_SLAVE, slave_address) < 0)
 	{
 		return -1;
 	}
-	if(read(device,value,length) !=length)
+	if(read(i2c_device,value,length) !=length)
 	{
 		  return -3001
 	}
