@@ -23,28 +23,8 @@ var vdata;
 io.sockets.on('connection', function (socket) {
 
     console.log(socket.id);
-    socket.emit('event_node');
-    socket.on('error', function(data){
 
-       console.log(data);
-    });
 	socket.emit('id_event',json);
-    socket.on('test_cpp', function (data) {
-        var countertimer = setInterval(function(){
-            console.log(counter);
-            counter = 0;
-        },1000);
-
-        var probe = JSON.parse(data);
-        console.log(probe.test);
-    });
-    socket.on('test_cpp_2', function (data) {
-        counter++;
-
-        //console.log(data);
-
-        socket.emit('event_node');
-    });
 
     socket.on(json.group1.socketname1, function (data) {
             socket.broadcast.emit(json.group1.socketname1, { siodata: data.siodata });

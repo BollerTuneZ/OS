@@ -6,7 +6,7 @@
   "label": "#rangetestlabel",
   "button1id": "#btn-on",
   "button2id": "#btn-off",
-  "socketname1": "test",
+  "socketname1": "test1",
   "socketname2": "test2",
 
   "group1":
@@ -15,8 +15,8 @@
     "label": "#rangetestlabel",
     "button1id": "#btn-on",
     "button2id": "#btn-off",
-    "socketname1": "test",
-    "socketname2": "test2"
+    "socketname1": "test3",
+    "socketname2": "test4"
   },
 
   "steering":
