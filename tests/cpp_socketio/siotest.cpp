@@ -1,4 +1,4 @@
-#include "/home/jonas/git/socket.io-client-cpp/src/sio_client.h"
+#include "/home/pi/Git/socket.io-client-cpp/src/sio_client.h"
 
 #include <functional>
 #include <iostream>
@@ -53,12 +53,12 @@ int participants = -1;
 
 socket::ptr current_socket;
 
-void main()
+int main()
 {
 	h.set_open_listener(std::bind(&connection_listener::on_connected, &l));
     h.set_close_listener(std::bind(&connection_listener::on_close, &l,std::placeholders::_1));
     h.set_fail_listener(std::bind(&connection_listener::on_fail, &l));
-    h.connect("http://192.168.2.101:8080");
+    h.connect("http://127.0.0.1:1280");
 	
 	_lock.lock();
     if(!connect_finish)
@@ -86,5 +86,5 @@ void main()
 			break;
 		}
 	}
-	
+	return 1;	
 }
