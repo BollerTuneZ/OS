@@ -1,12 +1,26 @@
 var socket;
 var json;
+var reload = 'dash';
 //Initialize  ------------------------------------------------------------------------------------------------------------
 function Initialize()
 {
 		SetupSocketIO();
+
+}
+
+function loadDoc(site) {
+	if(site == ''){
+		$( "#demo" ).load( "html_modules/" + reload + ".html" );
+		console.log(reload + ".html");
+	}else {
+		$( "#demo" ).load( "html_modules/" + site + ".html" );
+		reload = site;
+		console.log(reload + ".html");
+	}
 }
 
 function Init_GuiEvents() {
+
 	//Click Button ----------------------------------------------------------------------------------------------------
 	$(document.body).on('click', '#siosend', function () {
 		var name = $('#name').val();
@@ -158,6 +172,8 @@ function Init_GuiEvents() {
 //ON json.steering.    -----------------------------------------------------------------------------------------
 	socket.on(json.steering.socketname, function (data) {
 		$(json.steering.idname).val(data.siodata);
+		$('.dial').val(data.siodata).trigger('change');
+
 		//$(json.label).html(data.siodata);
 		//console.log(data.siodata);
 	});
@@ -233,6 +249,8 @@ function Init_Sensor(){
 
 	socket.on(json.enco.steering, function(data){
 
+
+
 		//console.log(data.siodata);
 	});
 	socket.on(json.enco.rpm, function(data){
@@ -268,6 +286,17 @@ function Init_Sensor(){
 
 }
 
+$( ".dial1" ).change(function() {
+	console.log($('.dial1').val());
+});
+
+function knop(v){
+	//console.log(v);
+	$('.dial2').val(v).trigger('change');
+	$('.dial1').val(v).trigger('change');
+}
+
+
 function SetupSocketIO()
 {
 	//SocketIO verbinden ----------------------------------------------------------------------------------------------
@@ -296,5 +325,8 @@ function SetupSocketIO()
 
 $(document).ready(function(){
 	Initialize();
+	loadDoc('');
 });
+
+
 

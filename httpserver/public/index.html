@@ -15,8 +15,9 @@
 <!-- 	<script src="js/touch-controller.js"></script> -->
 	<script src="js/myjs.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="js/btz-client.js"></script>
 	<script src="/js/jquery.knob.min.js"></script>
+	<script src="js/btz-client.js"></script>
+
 
 </head>
 <body>
@@ -54,12 +55,16 @@
 					<span onclick="toggleFullScreen();" class="navbar-btn btn glyphicon glyphicon-resize-full" aria-hidden="true"></span>
 					<span class="btn dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="#">Action</a></li>
+						<li><a href="#" onclick="loadDoc('')">loadDoc()</a></li>
 						<li><a href="#">Another action</a></li>
 						<li><a href="#">Something else here</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a  class="testvib href="#">Separated link</a></li>
 					</ul>
+					<span onclick="loadDoc('');" class="navbar-btn btn glyphicon glyphicon-refresh"
+						  aria-hidden="true"></span>
+
+
 				</div>
 			</div>
 		</div>
