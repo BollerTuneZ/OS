@@ -8,13 +8,13 @@ extern "C"
 
 int main()
 {
-	printf("Testing raspberry i2c driver");
+	printf("Testing raspberry i2c driver\n");
 	
-	printf("Initializing i2c bus");
+	printf("Initializing i2c bus\n");
 	
 	INIT_I2C();
 	
-	printf("try read register 0 from slave...");
+	printf("try read register 0 from slave...\n");
 	
 	char value[4];
 	
@@ -22,10 +22,10 @@ int main()
 	
 	for(int i=0;i<4;i++)
 	{
-		printf("Value @%i:%c",i,value[i]);
+		printf("Value @%i:%c\n",i,value[i]);
 	}
 	
-	printf("Read Done.");
+	printf("Read Done.\n");
 	
 	return 1;
 	
