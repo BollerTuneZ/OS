@@ -1,8 +1,4 @@
-function loadDoc(site) {
 
-    $( "#demo" ).load( "html_modules/" + site + ".html" );
-console.log(site + ".html");
-}
 function toggleFullScreen() {
   if (!document.fullscreenElement &&    // alternative standard method
       !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods

@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/sio_test.dir/siotest.cpp.o  -o sio_test -rdynamic libsioclient.a -lpthread /home/jonas/Documents/boost_1_60_0/stage/lib/libboost_system.a /home/jonas/Documents/boost_1_60_0/stage/lib/libboost_date_time.a /home/jonas/Documents/boost_1_60_0/stage/lib/libboost_random.a 

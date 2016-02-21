@@ -1,3 +1,0 @@
-/home/jonas/git/OS/tests/cpp_socketio/CMakeFiles/sioclient_tls.dir
-/home/jonas/git/OS/tests/cpp_socketio/CMakeFiles/sio_test.dir
-/home/jonas/git/OS/tests/cpp_socketio/CMakeFiles/sioclient.dir
