@@ -17,7 +17,7 @@ void scan_i2c_bus()
     else
       {
       /* kann gelesen werden? */
-      res = i2c_smbus_read_byte(device);
+      res = i2c_smbus_read_byte(i2c_device);
       if (res >= 0)
         printf("i2c chip found at: %x, val = %d\n", port, res);
       }
