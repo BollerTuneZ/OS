@@ -1,0 +1,2 @@
+build CMakeExample:
+	cmake -DBOOST_LIBRARYDIR=/home/jonas/Documents/boost_1_60_0/libs -DBOOST_INCLUDEDIR=/home/jonas/Documents/boost_1_60_0 -DBOOST_VER:STRING=1.60.0 -DCMAKE_BUILD_TYPE=Debug ./ 
