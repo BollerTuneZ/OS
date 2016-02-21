@@ -15,10 +15,27 @@
 
 /*
  *Initializes i2c bus on Default: /dev/i2c-1
+ *errorcodes:
+ *-10 could not open device
  *@return -1 faulted, 1 OK
 */
 extern int INIT_I2C();
 
+/*
+ *Writes payload into slave register
+ *@param device i2c_bus device
+ *@param i2c_register slave i2c register
+ *@param payload byte array with data which will be written 
+ *@return 1 OK, -1device -20write 
+*/
+extern int WRITE_REGISTER(char device,char slave_address,char i2c_register,char *payload,int length);
 
+/*
+ *Reads slaves register into value pointer
+ *errorcodes:
+ * WRITE_REGISTER error
+ *-3001
+*/
+extern int READ_REGISTER(char device,char i2c_register,char *value,int length);
 
 #endif

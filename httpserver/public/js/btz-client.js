@@ -82,22 +82,16 @@ function Init_GuiEvents() {
 //Click Button Blinker Aus ---------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.blinker.idname0, function () {
 		socket.emit(json.blinker.socketname0, {siodata: '0'});
-		clearInterval(intervalblinker);
 	});
 //Click Button Links ---------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.blinker.idnamel, function () {
 		socket.emit(json.blinker.socketnamel, {'siodata': 'Links'});
-		intervalblinker = setInterval(function () {
-			console.log("Blinker Links");
-		}, 300);
 	});
 //Click Button Rechts---------------------------------------------------------------------------------------------------
 	$(document.body).on('click', json.blinker.idnamer, function () {
 		socket.emit(json.blinker.socketnamer, {'siodata': 'Rechts'});
-		intervalblinker = setInterval(function () {
-			console.log("Blinker Rechts");
-		}, 300);
 	});
+//Inputgroup Ende   ------------------------------------------------------------------------------------------------------
 
 
 //Steuerung Motor --------------------------------------------------------------------------------------------------------
@@ -137,10 +131,7 @@ function Init_GuiEvents() {
 //Steuerung Lenkung ------------------------------------------------------------------------------------------------------
 // mousedown setInterval -----------------------------------------------------------------------------------------------
 	$(document.body).on('mousedown', json.steering.idname, function () {
-		// var chts = $(json.checkid + ':checked').val();
 		interval = setInterval(function () {
-			//$(json.label).html($(json.rangeid).val());
-			console.log($(json.steering.idname).val());
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
 		}, 22);
 	});
@@ -164,21 +155,6 @@ function Init_GuiEvents() {
 		// $(json.label).html('Vorne');
 	});
 
-//ON json.socketname1 --------------------------------------------------------------------------------------------------
-	socket.on(json.socketname1, function (data) {
-		$(json.rangeid).val(data.siodata);
-		//$(json.label).html(data.siodata);
-		console.log(data.siodata);
-	});
-//ON json.socketname2 --------------------------------------------------------------------------------------------------
-	socket.on(json.socketname2, function (data) {
-		if (data.siodata == "1") {
-			$("#checktest").prop('checked', true);
-		} else {
-			$("#checktest").prop('checked', false);
-		}
-		//console.log(data.siodata);
-	});
 //ON json.steering.    -----------------------------------------------------------------------------------------
 	socket.on(json.steering.socketname, function (data) {
 		$(json.steering.idname).val(data.siodata);
@@ -186,19 +162,9 @@ function Init_GuiEvents() {
 		//console.log(data.siodata);
 	});
 //Steuerung Lenkung Ende -------------------------------------------------------------------------------------------------
-//ON json.socketname2 --------------------------------------------------------------------------------------------------
-	socket.on(json.socketname2, function (data) {
-		if (data.siodata == "1") {
-			$("#checktest").prop('checked', true);
-		} else {
-			$("#checktest").prop('checked', false);
-		}
-		//console.log(data.siodata);
-	});
-//Inputgroup Ende   ------------------------------------------------------------------------------------------------------
 
-//ON json.socketname1 --------------------------------------------------------------------------------------------------
-	socket.on(json.socketname1, function(data){
+//ON test --------------------------------------------------------------------------------------------------
+	socket.on(json.socketname1, function (data) {
 		$(json.rangeid).val(data.siodata);
 		//$(json.label).html(data.siodata);
 		console.log(data.siodata);
@@ -212,79 +178,56 @@ function Init_GuiEvents() {
 		}
 		//console.log(data.siodata);
 	});
-	//ON json.steering.    -----------------------------------------------------------------------------------------
-	socket.on(json.steering.socketname, function(data){
-		$(json.steering.idname).val(data.siodata);
-		//$(json.label).html(data.siodata);
-		//console.log(data.siodata);
-	});
-//Steuerung Lenkung Ende -------------------------------------------------------------------------------------------------
-//ON json.socketname2 --------------------------------------------------------------------------------------------------
-	socket.on(json.socketname2, function(data){
-		if(data.siodata == "1"){
-			$( "#checktest" ).prop('checked', true);
-		}else{
-			$( "#checktest" ).prop('checked', false);
-		}
-		//console.log(data.siodata);
-	});
-
 }
 
 function Init_Sensor(){
 
 	socket.on(json.temp.motor0, function(data){
-
-		//console.log(data.siodata);
+		$(json.temp.motor0_label_id).html( data );
 	});
 	socket.on(json.temp.motor1, function(data){
-
-		//console.log(data.siodata);
+		$(json.temp.motor1_label_id).html( data );
 	});
 	socket.on(json.temp.ext0, function(data){
-
-		//console.log(data.siodata);
+		$(json.temp.ext0_label_id).html( data );
 	});
 	socket.on(json.temp.ext1, function(data){
-
-		//console.log(data.siodata);
+		$(json.temp.ext1_label_id).html( data );
 	});
 	socket.on(json.temp.ext2, function(data){
-
-		//console.log(data.siodata);
+		$(json.temp.ext2_label_id).html( data );
 	});
 
 	socket.on(json.ultra.front_left_1, function(data){
-
-		//console.log(data.siodata);
+		$(json.ultra.front_left_1).css('width', data+'%').attr('aria-valuenow', data);
 	});
 	socket.on(json.ultra.front_left_2, function(data){
-
+		$(json.ultra.front_left_2).css('width', data+'%').attr('aria-valuenow', data);
 		//console.log(data.siodata);
 	});
 	socket.on(json.ultra.front_right_1, function(data){
-
+		$(json.ultra.front_right_1).css('width', data+'%').attr('aria-valuenow', data);
 		//console.log(data.siodata);
 	});
 	socket.on(json.ultra.front_right_2, function(data){
-
+		$(json.ultra.front_right_2).css('width', data+'%').attr('aria-valuenow', data);
 		//console.log(data.siodata);
 	});
 
 	socket.on(json.ultra.rear_left_1, function(data){
-
+		$(json.ultra.rear_left_1).css('width', data+'%').attr('aria-valuenow', data);
 		//console.log(data.siodata);
 	});
 	socket.on(json.ultra.rear_left_2, function(data){
-
+		$(json.ultra.rear_left_2).css('width', data+'%').attr('aria-valuenow', data);
 		//console.log(data.siodata);
 	});
 	socket.on(json.ultra.rear_right_1, function(data){
-
+		$(json.ultra.rear_right_1).css('width', data+'%').attr('aria-valuenow', data);
 		//console.log(data.siodata);
 	});
 	socket.on(json.ultra.rear_right_2, function(data){
-
+		$(json.ultra.rear_right_2).css('width', data+'%').attr('aria-valuenow', data);
 		//console.log(data.siodata);
 	});
 
@@ -321,6 +264,7 @@ function Init_Sensor(){
 
 		//console.log(data.siodata);
 	});
+
 
 }
 
