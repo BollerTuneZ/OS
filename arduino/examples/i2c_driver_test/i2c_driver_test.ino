@@ -11,8 +11,8 @@ void **register0;
 void **register1;
 
 /*I2C Bridge*/
-void i2c_onReceive(int n){i2c_driver.OnReceive(n);}
-void i2c_onRequest(){i2c_driver.OnRequest();}
+void i2c_onReceive(int n){Serial.println("OnReceive");i2c_driver.OnReceive(n);}
+void i2c_onRequest(){Serial.println("OnRequest");i2c_driver.OnRequest();}
 
 void setup() {
   // put your setup code here, to run once:

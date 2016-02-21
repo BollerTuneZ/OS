@@ -1,5 +1,5 @@
 #include "btz_i2c.h"
-
+#include <stdio.h>
 char i2c_initialized = 0x0;
 int i2c_device;
 char *emptyPayload;
@@ -30,6 +30,7 @@ int WRITE_REGISTER(char slave_address,char i2c_register,char *payload,int length
 	rPayload[0] = i2c_register;//Push register byte in first place
 	int i;
 	for(i=0;i<length;i++){rPayload[i+1] = payload[i];}
+	printf("Write register %i, to device %i with length %i\n",rPayload[0],i2c_device,rLength);
 	if (ioctl(i2c_device, I2C_SLAVE, slave_address) < 0)
 	{
 		return -1;
