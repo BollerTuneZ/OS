@@ -1,4 +1,4 @@
-extern C 
+extern "C" 
 {
 	#include "../../raspi/i2c/btz_i2c.h"
 }
@@ -16,7 +16,7 @@ int main()
 	
 	printf("try read register 0 from slave...");
 	
-	char *value[4];
+	char value[4];
 	
 	READ_REGISTER(0x12,0x0,value,4);
 	

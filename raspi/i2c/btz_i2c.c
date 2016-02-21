@@ -30,7 +30,7 @@ int WRITE_REGISTER(char slave_address,char i2c_register,char *payload,int length
 	rPayload[0] = i2c_register;//Push register byte in first place
 	int i;
 	for(i=0;i<length;i++){rPayload[i+1] = payload[i];}
-	if (ioctl(device, I2C_SLAVE, slave_address) < 0)
+	if (ioctl(i2c_device, I2C_SLAVE, slave_address) < 0)
 	{
 		return -1;
 	}
@@ -57,7 +57,7 @@ int READ_REGISTER(char slave_address,char i2c_register,char *value,int length)
 	}
 	if(read(i2c_device,value,length) !=length)
 	{
-		  return -3001
+		  return -3001;
 	}
 	return 1;
 }
