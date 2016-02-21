@@ -47,6 +47,27 @@ int INIT_I2C()
 	return 1;
 }
 
+void write_test()
+{
+		  char buf[10];
+	  
+	  buf[0] = 0xDE;
+	  buf[1] = 0xF1;
+	  buf[2] = 0xD6;
+	 if (ioctl(i2c_device, I2C_SLAVE, 12) < 0)
+	{
+		perror("ioctl() I2C_SLAVE failed\n"); 
+		return;
+	}
+	    if (write(i2c_device, buf, 3) != 3) {
+			printf("Error could not write buffer to slave...\n");
+			return;
+		}else
+		{
+			printf("Wrote buffer to slave...\n");
+		}
+}
+
 int WRITE_REGISTER(char slave_address,char i2c_register,char *payload,int length)
 {
 	int rLength = length + 1;
