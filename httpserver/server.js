@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 httpServer.listen(conf.port);  
 console.log('Server Läuft unter http://localhost:' + conf.port);  
 var counter = 0;
-
+var vdata;
 //Socket connection handler
 io.sockets.on('connection', function (socket) {
 
@@ -57,8 +57,8 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.emit(json.motor.socketname, { siodata: data.siodata });
     });
     socket.on(json.steering.socketname, function (data) {
-        console.log(data.siodata);
-        test(val = data.siodata);
+        console.log(data.siodata + "Zeile 60");
+        test(vdata = data.siodata);
         socket.broadcast.emit(json.steering.socketname, { siodata: data.siodata });
     });
     socket.on(json.blinker.socketname0, function (data) {
@@ -72,14 +72,13 @@ io.sockets.on('connection', function (socket) {
     socket.on(json.blinker.socketnamer, function (data) {
         console.log(data.siodata);
         // socket.broadcast.emit(json.blinker.socketnamer, { siodata: data.siodata });
-
     });
 
-    function test(val){
-        io.emit(json.ultra.front_left_1,val);
-        io.emit(json.temp.motor0,val);
 
-
+    function test(vdata){
+        io.emit(json.ultra.front_left_1,vdata);
+        io.emit(json.temp.motor1, { 'siodata' : vdata });
+        io.emit(json.temp.motor0, { 'siodata' : vdata });
     }
 
 

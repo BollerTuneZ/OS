@@ -1,38 +1,145 @@
 
 	<div class="col-md-6 col-sm-6 col-lg-6">		
-		<div class="panel panel-default pan">
-			<div class="col-md-3 col-xs-6 col-sm-4 col-lg-3">
-				<input class="dial2" id="m0l"
-									 value="20"
-									 data-width="80"
-									 data-height="75"
-									 data-fgColor="#ffec03"
-									 data-skin="tron"
-									 data-thickness=".3"
-									 data-displayPrevious=true
-									 data-angleOffset=-125
-									 data-angleArc=250><br>
-				<span class="label label-default" id="m1l">Motor</span>
-
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Temparaturen
 			</div>
+			<div class="panel-body">
+				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
+					<input class="m0l"
+						   value="20"
+						   data-width="100%"
+						   data-height="70px"
+						   data-fgColor="#ffec03"
+						   data-skin="tron"
+						   data-thickness=".3"
+						   data-displayPrevious=true
+						   data-angleOffset=-60
+						   data-angleArc=120
+						   data-readOnly=true
+						   ><br>
+					<span class="label label-default" id="m1l">Motor</span>
+				</div>
 
-			<div class="col-md-3 col-xs-6 col-sm-4 col-lg-3">
-				<input class="dial2" id="m0l"
-					   value="20"
-					   data-width="80"
-					   data-height="75"
-					   data-fgColor="#ffec03"
-					   data-skin="tron"
-					   data-thickness=".3"
-					   data-displayPrevious=true
-					   data-angleOffset=-125
-					   data-angleArc=250><br>
-				<span class="label label-default" id="m1l">Motor</span>
-
+				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
+					<input class="m1l"
+						   value="20"
+						   data-width="100%"
+						   data-height="70px"
+						   data-fgColor="#ffec03"
+						   data-skin="tron"
+						   data-thickness=".3"
+						   data-displayPrevious=true
+						   data-angleOffset=-125
+						   data-angleArc=250
+						   data-readOnly=true
+						   ><br>
+					<span class="label label-default" id="m1l">Motor</span>
+				</div>
+				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
+					<input class="e0l"
+						   value="20"
+						   data-width="100%"
+						   data-height="70px"
+						   data-fgColor="#ffec03"
+						   data-skin="tron"
+						   data-thickness=".3"
+						   data-displayPrevious=true
+						   data-angleOffset=-125
+						   data-angleArc=250
+						   data-readOnly=true
+						   ><br>
+					<span class="label label-default" id="m1l">Motor</span>
+				</div>
+				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
+					<input class="e1l"
+						   value="20"
+						   data-width="100%"
+						   data-height="70px"
+						   data-fgColor="#ffec03"
+						   data-skin="tron"
+						   data-thickness=".3"
+						   data-displayPrevious=true
+						   data-angleOffset=-125
+						   data-angleArc=250
+						   data-readOnly=true
+						   ><br>
+					<span class="label label-default" id="m1l">Motor</span>
+				</div>
+				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
+					<input class="e2l"
+						   value="20"
+						   data-width="100%"
+						   data-height="70px"
+						   data-fgColor="#ffec03"
+						   data-skin="tron"
+						   data-thickness=".3"
+						   data-displayPrevious=true
+						   data-angleOffset=-125
+						   data-angleArc=250
+						   data-readOnly=true
+						   ><br>
+					<span class="label label-default" id="m1l">Motor</span>
+				</div>
+				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
+					<input class="e2l"
+						   value="20"
+						   data-width="100%"
+						   data-height="70px"
+						   data-fgColor="#ffec03"
+						   data-skin="tron"
+						   data-thickness=".3"
+						   data-displayPrevious=true
+						   data-angleOffset=-125
+						   data-angleArc=250
+						   data-readOnly=true
+						   ><br>
+					<span class="label label-default" id="m1l">Motor</span>
+				</div>
 			</div>
+				<script>
+					$( document ).ready(function() {
+						$(function() {
+							$(".m0l").knob({
+								'change' : function (val) {
+									//m0l(Math.round(val));
 
-			<h3>Motortemparatur 2 <span class="label label-default" id="m1l">20</span></h3>
-			<h3>Temparatur <span class="label label-default" id="m0l">20</span></h3>
+								}
+							});
+						});
+						$(function() {
+							$(".m1l").knob({
+								'change': function () {
+									//knop(Math.round(v));
+								}
+							});
+						});
+						$(function() {
+							$(".e0l").knob({
+								'change': function () {
+									//knop(Math.round(v));
+								}
+							});
+						});
+						$(function() {
+							$(".e1l").knob({
+								'change': function () {
+									//knop(Math.round(v));
+								}
+							});
+						});
+						$(function() {
+							$(".e2l").knob({
+								'change': function () {
+									//knop(Math.round(v));
+								}
+							});
+						});
+					});
+
+				</script>
+
+
 
 
 		</div>
@@ -42,27 +149,9 @@
 	<div class="col-md-6 col-sm-6 col-lg-6">
 		<div class="panel panel-default pan">
 			<h2>Live Video</h2>
-			<input type="number" value="75" id="dial1" class="dial1">
 
-			<script>
-				$( document ).ready(function() {
-					$(function() {
-						$(".dial1").knob({
-							'change' : function (v) {
-								knop(Math.round(v));
-							}
-						});
-					});
-					$(function() {
-						$(".dial2").knob({
-							'change': function (v) {
-								knop(Math.round(v));
-							}
-						});
-					});
-				});
 
-			</script>
+
 
 
 

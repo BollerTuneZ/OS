@@ -147,6 +147,7 @@ function Init_GuiEvents() {
 	$(document.body).on('mousedown', json.steering.idname, function () {
 		interval = setInterval(function () {
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
+			console.log($(json.steering.idname).val());
 		}, 22);
 	});
 //mouseup clearInterval ------------------------------------------------------------------------------------------------
@@ -172,7 +173,7 @@ function Init_GuiEvents() {
 //ON json.steering.    -----------------------------------------------------------------------------------------
 	socket.on(json.steering.socketname, function (data) {
 		$(json.steering.idname).val(data.siodata);
-		$('.dial').val(data.siodata).trigger('change');
+		$('.dial1').val(data.siodata).trigger('change');
 
 		//$(json.label).html(data.siodata);
 		//console.log(data.siodata);
@@ -199,20 +200,22 @@ function Init_GuiEvents() {
 function Init_Sensor(){
 
 	socket.on(json.temp.motor0, function(data){
-		$(json.temp.motor0_label_id).html( data );
+		$(json.temp.motor0_label_id).val(data.siodata).trigger('change');
 	});
+
 	socket.on(json.temp.motor1, function(data){
-		$(json.temp.motor1_label_id).html( data );
+		$(json.temp.motor1_label_id).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext0, function(data){
-		$(json.temp.ext0_label_id).html( data );
+		$(json.temp.ext0_label_id).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext1, function(data){
-		$(json.temp.ext1_label_id).html( data );
+		$(json.temp.ext1).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext2, function(data){
-		$(json.temp.ext2_label_id).html( data );
+		$(json.temp.ext2).val(data.siodata).trigger('change');
 	});
+
 
 	socket.on(json.ultra.front_left_1, function(data){
 		$(json.ultra.front_left_1).css('width', data+'%').attr('aria-valuenow', data);
@@ -249,8 +252,6 @@ function Init_Sensor(){
 
 	socket.on(json.enco.steering, function(data){
 
-
-
 		//console.log(data.siodata);
 	});
 	socket.on(json.enco.rpm, function(data){
@@ -286,14 +287,8 @@ function Init_Sensor(){
 
 }
 
-$( ".dial1" ).change(function() {
-	console.log($('.dial1').val());
-});
-
-function knop(v){
-	//console.log(v);
-	$('.dial2').val(v).trigger('change');
-	$('.dial1').val(v).trigger('change');
+function m0l(val){
+	//socket.emit(json.temp.motor0, {siodata: val});
 }
 
 
