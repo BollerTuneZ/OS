@@ -5,14 +5,14 @@ int i2c_device;
 char *emptyPayload;
 
 
-void scan_i2c_bus(int device)
+void scan_i2c_bus()
   {
   int port, res;
 
   /* Adressbereich 7 Bit */
   for (port = 0; port < 127; port++)
     {
-    if (ioctl(device, I2C_SLAVE, port) < 0)
+    if (ioctl(i2c_device, I2C_SLAVE, port) < 0)
       perror("ioctl() I2C_SLAVE failed\n");
     else
       {
@@ -43,7 +43,7 @@ int INIT_I2C()
 	if (funcs & (I2C_FUNC_SMBUS_BYTE))
 		printf("I2C_FUNC_SMBUS_BYTE\n");
 	i2c_initialized = 0x1;
-	scan_i2c_bus(12);
+	scan_i2c_bus();
 	return 1;
 }
 
