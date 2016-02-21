@@ -173,8 +173,7 @@ function Init_GuiEvents() {
 //ON json.steering.    -----------------------------------------------------------------------------------------
 	socket.on(json.steering.socketname, function (data) {
 		$(json.steering.idname).val(data.siodata);
-		$('.dial1').val(data.siodata).trigger('change');
-
+	//	$('.dial1').val(data.siodata).trigger('change');
 		//$(json.label).html(data.siodata);
 		//console.log(data.siodata);
 	});
@@ -199,10 +198,10 @@ function Init_GuiEvents() {
 
 function Init_Sensor(){
 
+
 	socket.on(json.temp.motor0, function(data){
 		$(json.temp.motor0_label_id).val(data.siodata).trigger('change');
 	});
-
 	socket.on(json.temp.motor1, function(data){
 		$(json.temp.motor1_label_id).val(data.siodata).trigger('change');
 	});
@@ -210,10 +209,13 @@ function Init_Sensor(){
 		$(json.temp.ext0_label_id).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext1, function(data){
-		$(json.temp.ext1).val(data.siodata).trigger('change');
+		$(json.temp.ext1_label_id).val(data.siodata).trigger('change');
 	});
 	socket.on(json.temp.ext2, function(data){
-		$(json.temp.ext2).val(data.siodata).trigger('change');
+		$(json.temp.ext2_label_id).val(data.siodata).trigger('change');
+	});
+	socket.on(json.temp.ext3, function(data){
+		$(json.temp.ext3_label_id).val(data.siodata).trigger('change');
 	});
 
 

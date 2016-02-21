@@ -79,6 +79,10 @@ io.sockets.on('connection', function (socket) {
         io.emit(json.ultra.front_left_1,vdata);
         io.emit(json.temp.motor1, { 'siodata' : vdata });
         io.emit(json.temp.motor0, { 'siodata' : vdata });
+        io.emit(json.temp.ext0, { 'siodata' : vdata });
+        io.emit(json.temp.ext1, { 'siodata' : vdata });
+        io.emit(json.temp.ext2, { 'siodata' : vdata });
+        io.emit(json.temp.ext3, { 'siodata' : vdata });
     }
 
 

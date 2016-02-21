@@ -78,7 +78,9 @@
     "ext1": "#temp3",
     "ext1_label_id": ".e1l",
     "ext2": "#temp4",
-    "ext2_label_id": ".e2l"
+    "ext2_label_id": ".e2l",
+    "ext3": "#temp6",
+    "ext3_label_id": ".e3l"
   },
 
   "push":

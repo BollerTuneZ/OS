@@ -34,7 +34,7 @@
 						   data-angleArc=250
 						   data-readOnly=true
 						   ><br>
-					<span class="label label-default" id="m1l">Motor</span>
+					<span class="label label-default" id="m1l">Schrittmotor</span>
 				</div>
 				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
 					<input class="e0l"
@@ -49,7 +49,7 @@
 						   data-angleArc=250
 						   data-readOnly=true
 						   ><br>
-					<span class="label label-default" id="m1l">Motor</span>
+					<span class="label label-default" id="m1l">Freuquenzumrichter</span>
 				</div>
 				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
 					<input class="e1l"
@@ -64,7 +64,7 @@
 						   data-angleArc=250
 						   data-readOnly=true
 						   ><br>
-					<span class="label label-default" id="m1l">Motor</span>
+					<span class="label label-default" id="m1l">Stepper Driver</span>
 				</div>
 				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
 					<input class="e2l"
@@ -79,10 +79,10 @@
 						   data-angleArc=250
 						   data-readOnly=true
 						   ><br>
-					<span class="label label-default" id="m1l">Motor</span>
+					<span class="label label-default" id="m1l">Außentemparatur</span>
 				</div>
 				<div class="col-md-6 col-xs-6 col-sm-6 col-lg-4">
-					<input class="e2l"
+					<input class="e3l"
 						   value="20"
 						   data-width="100%"
 						   data-height="70px"
@@ -94,44 +94,45 @@
 						   data-angleArc=250
 						   data-readOnly=true
 						   ><br>
-					<span class="label label-default" id="m1l">Motor</span>
+					<span class="label label-default" id="m1l">Schaltschrank</span>
 				</div>
+
 			</div>
 				<script>
 					$( document ).ready(function() {
 						$(function() {
 							$(".m0l").knob({
-								'change' : function (val) {
-									//m0l(Math.round(val));
-
+								'change' : function () {
 								}
 							});
 						});
 						$(function() {
 							$(".m1l").knob({
 								'change': function () {
-									//knop(Math.round(v));
 								}
 							});
 						});
 						$(function() {
 							$(".e0l").knob({
 								'change': function () {
-									//knop(Math.round(v));
 								}
 							});
 						});
 						$(function() {
 							$(".e1l").knob({
 								'change': function () {
-									//knop(Math.round(v));
 								}
 							});
 						});
 						$(function() {
 							$(".e2l").knob({
 								'change': function () {
-									//knop(Math.round(v));
+								}
+							});
+						});
+						$(function() {
+							$(".e3l").knob({
+								'change': function () {
 								}
 							});
 						});
