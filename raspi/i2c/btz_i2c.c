@@ -166,6 +166,6 @@ int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 	{
 		  return -3001;
 	}
-	printf("Read register"); 
+	printf("Read register\n"); 
 	return 1;
 }
