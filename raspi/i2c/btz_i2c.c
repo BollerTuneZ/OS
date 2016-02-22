@@ -40,7 +40,7 @@ void write_test(int device)
 	  buf[0] = 0xDE;
 	  buf[1] = 0xF1;
 	  buf[2] = 0xD6;
-	 if (ioctl(device, I2C_SLAVE, 12) < 0)
+	 if (ioctl(device, I2C_SLAVE, 0x12) < 0)
 	{
 		perror("ioctl() I2C_SLAVE failed\n"); 
 		return;
