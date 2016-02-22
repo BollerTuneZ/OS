@@ -1,4 +1,4 @@
-//#include "btz_i2c.h"
+#include "btz_i2c.h"
 #include <stdio.h>
 char i2c_initialized = 0x0;
 int i2c_device;
