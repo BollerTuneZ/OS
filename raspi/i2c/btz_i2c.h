@@ -13,6 +13,9 @@
 
 #define I2C_BUS "/dev/i2c-1"
 
+
+#define I2C_READ 0x3
+#define I2C_WRITE 0x2
 /*
  *Initializes i2c bus on Default: /dev/i2c-1
  *errorcodes:
