@@ -154,7 +154,6 @@ int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 {
 	//First set the register @slave 
 	int setRegisterResult = WRITE_REGISTER(slave_address,i2c_register,emptyPayload,0);
-return -1;
 	if(setRegisterResult != 1)
 	{
 		return setRegisterResult;
@@ -167,5 +166,6 @@ return -1;
 	{
 		  return -3001;
 	}
+	printf("Read register"); 
 	return 1;
 }
