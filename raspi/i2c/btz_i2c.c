@@ -4,6 +4,15 @@ char i2c_initialized = 0x0;
 int i2c_device;
 char *emptyPayload;
 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 void scan_i2c_bus()
   {
@@ -22,7 +31,21 @@ void scan_i2c_bus()
         printf("i2c chip found at: %x, val = %d\n", port, res);
       }
     }
+	char buf[2];
+	buf[0] = 10;
+
+	buf[1] = 22;
+	if(i2c_smbus_write_block_data(i2c_device,0x0,2,buf) < 0)
+{
+printf("ERROR");
+}
+
   }
+
+void write_test()
+{
+
+}
 
 int INIT_I2C()
 {
@@ -43,33 +66,24 @@ int INIT_I2C()
 	if (funcs & (I2C_FUNC_SMBUS_BYTE))
 		printf("I2C_FUNC_SMBUS_BYTE\n");
 	i2c_initialized = 0x1;
+char value[2];
+
+if(read(i2c_device,value,2) !=2)
+	{
+		  return -3001;
+	}
+
+write_test();
 	scan_i2c_bus();
+
 	return 1;
 }
 
-void write_test()
-{
-		  char buf[10];
-	  
-	  buf[0] = 0xDE;
-	  buf[1] = 0xF1;
-	  buf[2] = 0xD6;
-	 if (ioctl(i2c_device, I2C_SLAVE, 12) < 0)
-	{
-		perror("ioctl() I2C_SLAVE failed\n"); 
-		return;
-	}
-	    if (write(i2c_device, buf, 3) != 3) {
-			printf("Error could not write buffer to slave...\n");
-			return;
-		}else
-		{
-			printf("Wrote buffer to slave...\n");
-		}
-}
+
 
 int WRITE_REGISTER(char slave_address,char i2c_register,char *payload,int length)
 {
+write_test();
 	int rLength = length + 1;
 	
 	char rPayload[rLength];
