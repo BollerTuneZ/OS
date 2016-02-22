@@ -31,24 +31,63 @@ void scan_i2c_bus()
         printf("i2c chip found at: %x, val = %d\n", port, res);
       }
     }
-	char buf[2];
-	buf[0] = 10;
-
-	buf[1] = 22;
-	if(i2c_smbus_write_block_data(i2c_device,0x0,2,buf) < 0)
-{
-printf("ERROR");
-}
-
   }
 
-void write_test()
+void write_test(int device)
 {
-
+	  char buf[10];
+	  
+	  buf[0] = 0xDE;
+	  buf[1] = 0xF1;
+	  buf[2] = 0xD6;
+	 if (ioctl(device, I2C_SLAVE, 12) < 0)
+	{
+		perror("ioctl() I2C_SLAVE failed\n"); 
+		return;
+	}
+	    if (write(device, buf, 3) != 3) {
+			printf("Error could not write buffer to slave...\n");
+			return;
+		}else
+		{
+			printf("Wrote buffer to slave...\n");
+		}
 }
 
 int INIT_I2C()
 {
+	
+	  int device;
+  unsigned long funcs;
+
+  /* Geraetedatei oeffnen */
+  printf("Opening device...");
+  if ((device = open("/dev/i2c-1", O_RDWR)) < 0)
+    {
+    perror("open() failed");
+    exit (1);
+    }
+  printf(" OK\n");
+
+  /* Abfragen, ob die I2C-Funktionen da sind */
+  if (ioctl(device,I2C_FUNCS,&funcs) < 0)
+    {
+    perror("ioctl() I2C_FUNCS failed");
+    exit (1);
+    }
+
+  /* Ergebnis untersuchen */
+  if (funcs & I2C_FUNC_I2C)
+    printf("I2C\n");
+  if (funcs & (I2C_FUNC_SMBUS_BYTE))
+    printf("I2C_FUNC_SMBUS_BYTE\n");
+
+  /* und Bus abscannen */
+  //scan_i2c_bus(device);
+	//communicate(device);
+	write_test(device);
+	
+	/*
 	unsigned long funcs;
 	if ((i2c_device = open(I2C_BUS, O_RDWR)) < 0)
     {
@@ -76,7 +115,7 @@ if(read(i2c_device,value,2) !=2)
 write_test();
 	scan_i2c_bus();
 
-	return 1;
+	return 1;*/
 }
 
 
