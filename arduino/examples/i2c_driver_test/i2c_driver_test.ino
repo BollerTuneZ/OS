@@ -10,7 +10,7 @@ Btz_i2c i2c_driver = Btz_i2c();
 void **i2c_register;
 void **register0;
 void **register1;
-
+long lastLogLength =0;
 /*I2C Bridge*/
 void i2c_onReceive(int n){Serial.println("OnReceive");i2c_driver.OnReceive(n);}
 void i2c_onRequest(){Serial.println("OnRequest");i2c_driver.OnRequest();}
@@ -39,9 +39,14 @@ void loop() {
     counter++;
     lastTimeCounterTriggered = now;
   }
-  if((now -  lastTimeLogChanged) >= 2000)
+  if((now -  lastTimeLogChanged) >= 500)
   {
-    Serial.println(i2c_driver.log);
+    
+    if(i2c_driver.log.length() != lastLogLength)
+    {
+      Serial.println(i2c_driver.log);
+      lastLogLength = i2c_driver.log.length();
+    }
     lastTimeLogChanged = now;
   }
 }
