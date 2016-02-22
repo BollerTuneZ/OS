@@ -122,7 +122,6 @@ write_test();
 
 int WRITE_REGISTER(char slave_address,char i2c_register,char *payload,int length)
 {
-write_test();
 	int rLength = length + 1;
 	
 	char rPayload[rLength];
