@@ -144,7 +144,7 @@ int WRITE_REGISTER(int slave_address,char i2c_register,char *payload,int length)
 int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 {
 	//First set the register @slave 
-	int setRegisterResult = WRITE_REGISTER(i2c_device,i2c_register,emptyPayload,0);
+	int setRegisterResult = WRITE_REGISTER(slave_address,i2c_register,emptyPayload,0);
 	if(setRegisterResult != 1)
 	{
 		return setRegisterResult;
