@@ -118,6 +118,38 @@ write_test();
 	return 1;*/
 }
 
+int main()
+{
+		  int device;
+  unsigned long funcs;
+
+  /* Geraetedatei oeffnen */
+  printf("Opening device...");
+  if ((device = open("/dev/i2c-1", O_RDWR)) < 0)
+    {
+    perror("open() failed");
+    exit (1);
+    }
+  printf(" OK\n");
+
+  /* Abfragen, ob die I2C-Funktionen da sind */
+  if (ioctl(device,I2C_FUNCS,&funcs) < 0)
+    {
+    perror("ioctl() I2C_FUNCS failed");
+    exit (1);
+    }
+
+  /* Ergebnis untersuchen */
+  if (funcs & I2C_FUNC_I2C)
+    printf("I2C\n");
+  if (funcs & (I2C_FUNC_SMBUS_BYTE))
+    printf("I2C_FUNC_SMBUS_BYTE\n");
+
+  /* und Bus abscannen */
+  //scan_i2c_bus(device);
+	//communicate(device);
+	write_test(device);
+}
 
 
 int WRITE_REGISTER(char slave_address,char i2c_register,char *payload,int length)
