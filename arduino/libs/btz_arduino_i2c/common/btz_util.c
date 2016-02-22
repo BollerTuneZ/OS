@@ -1,11 +1,11 @@
 #include "btz_util.h"
 
-extern int Convert4ByteToInt(char *byteArray)
+int Convert4ByteToInt(char *byteArray)
 {
 	return *((int *) byteArray);
 }
 
-extern char* ConvertIntTo4ByteChar(int value)
+char* ConvertIntTo4ByteChar(int value)
 {
 	char buf[4];
 	buf[0] = value & 0xff;
