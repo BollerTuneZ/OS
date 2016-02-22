@@ -125,8 +125,9 @@ int WRITE_REGISTER(int slave_address,char i2c_register,char *payload,int length)
 	int rLength = length + 1;
 	char rPayload[rLength];
 	rPayload[0] = i2c_register;//Push register byte in first place
+	rPayload[1] = (char)length;
 	int i;
-	for(i=0;i<length;i++){rPayload[i+1] = payload[i];}
+	for(i=0;i<length;i++){rPayload[i+2] = payload[i];}
 	printf("Write register %i, to device %i with length %i\n",rPayload[0],i2c_device,rLength);
 	if (ioctl(i2c_device, I2C_SLAVE, slave_address) < 0)
 	{

@@ -4,6 +4,7 @@
  
 int counter;
 long lastTimeCounterTriggered = 0;
+long lastTimeLogChanged =0;
 char mode = 'n';
 Btz_i2c i2c_driver = Btz_i2c();
 void **i2c_register;
@@ -34,7 +35,14 @@ void loop() {
   long now = millis();
   if((now - lastTimeCounterTriggered) >= 200)
   {
+    
     counter++;
+    lastTimeCounterTriggered = now;
+  }
+  if((now -  lastTimeLogChanged) >= 2000)
+  {
+    Serial.println(i2c_driver.log);
+    lastTimeLogChanged = now;
   }
 }
 
