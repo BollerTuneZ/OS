@@ -57,7 +57,7 @@ void write_test(int device)
 int INIT_I2C()
 {
 	
-		  int device;
+  int device;
   unsigned long funcs;
 
   /* Geraetedatei oeffnen */
@@ -81,12 +81,13 @@ int INIT_I2C()
     printf("I2C\n");
   if (funcs & (I2C_FUNC_SMBUS_BYTE))
     printf("I2C_FUNC_SMBUS_BYTE\n");
-
+	
+	i2c_device = device;
   /* und Bus abscannen */
   //scan_i2c_bus(device);
 	//communicate(device);
-	write_test(device);
-	
+	//write_test(device);
+	return 1;
 	/*
 	unsigned long funcs;
 	if ((i2c_device = open(I2C_BUS, O_RDWR)) < 0)
