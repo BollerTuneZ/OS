@@ -17,7 +17,7 @@ int main()
 	printf("try read register 0 from slave...\n");
 	
 	char value[4];
-	/*
+	
 	result = READ_REGISTER(0x12,0x0,value,4);
 	printf("Read result:%i\n",result);	
 
@@ -27,7 +27,7 @@ int main()
 	}
 	
 	printf("Read Done.\n");
-	*/
+	
 	return 1;
 	
 }
