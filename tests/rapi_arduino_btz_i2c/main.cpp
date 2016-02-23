@@ -23,10 +23,9 @@ int main()
 	result = READ_REGISTER(0x12,0x0,value,2);
 	printf("Read result:%i\n",result);	
 	int intVal = (value[0] | value[1] << 8);
-	for(int i=0;i<2;i++)
-	{
-		printf("Value @%i:%i\n",i,intVal);
-	}
+
+	printf("Value:%i\n",intVal);
+	
 	printf("Read Done.\n");
 	printf("Try write register\n");
 	char testData[4];
@@ -41,10 +40,9 @@ int main()
 	result = READ_REGISTER(0x12,0x0,value,2);
 	printf("Read result:%i\n",result);	
 	intVal = (value[0] | value[1] << 8);
-	for(int i=0;i<2;i++)
-	{
-		printf("Value @%i:%i\n",i,intVal);
-	}
+
+	printf("Value:%i\n",intVal);
+	
 	printf("Read Done.\n");
 	
 	
