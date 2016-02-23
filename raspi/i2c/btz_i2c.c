@@ -128,11 +128,9 @@ int WRITE_REGISTER(int slave_address,char i2c_register,char *payload,int length)
 	rPayload[0] = i2c_register;//Push register byte in first place
 	if(length == 0)
 	{
-		printf("Read");
 		rPayload[1] = I2C_READ; //Set mode to read
 	}else
 	{
-		printf("Write");
 		rPayload[1] = I2C_WRITE; //Set mode to write
 	}
 	int i;
@@ -160,11 +158,11 @@ int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 		return setRegisterResult;
 	}
 	usleep(10 *1000);
-	/*
+	
 	if (ioctl(i2c_device, I2C_SLAVE, slave_address) < 0)
 	{
 		return -1;
-	}*/
+	}
 	if(read(i2c_device,value,length) != 4)
 	{
 		  return -3001;
