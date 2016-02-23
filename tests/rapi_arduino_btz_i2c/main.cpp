@@ -15,7 +15,9 @@ int main()
 	int result = INIT_I2C();
 	printf("Init result:%i\n",result);
 	printf("try read register 0 from slave...\n");
-	
+	for(int x=0;x<50;x++)
+{
+
 	char value[4];
 	
 	result = READ_REGISTER(0x12,0x0,value,4);
@@ -23,9 +25,9 @@ int main()
 
 	for(int i=0;i<4;i++)
 	{
-		printf("Value @%i:%c\n",i,value[i]);
+		printf("Value @%i:%i\n",i,value[i]);
 	}
-	
+	}
 	printf("Read Done.\n");
 	
 	return 1;

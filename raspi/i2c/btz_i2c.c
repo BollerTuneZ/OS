@@ -159,14 +159,13 @@ int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 	{
 		return setRegisterResult;
 	}
-	sleep(2);
+	usleep(10 *1000);
 	/*
 	if (ioctl(i2c_device, I2C_SLAVE, slave_address) < 0)
 	{
 		return -1;
 	}*/
-	char testVal[4];
-	if(read(i2c_device,testVal,4) != 4)
+	if(read(i2c_device,value,length) != 4)
 	{
 		  return -3001;
 	}
