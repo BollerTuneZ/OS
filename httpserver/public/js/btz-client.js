@@ -148,7 +148,7 @@ function Init_GuiEvents(){
 		interval = setInterval(function () {
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
 			console.log($(json.steering.idname).val());
-		}, 11);
+		}, 22);
 	});
 //mouseup clearInterval ------------------------------------------------------------------------------------------------
 	$(document.body).on('mouseup', json.steering.idname, function (event) {
@@ -162,7 +162,7 @@ function Init_GuiEvents(){
 	$(document.body).on('touchstart', json.steering.idname, function () {
 		interval = setInterval(function () {
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
-		}, 11);
+		}, 22);
 	});
 //touch -- end ---------------------------------------------------------------------------------------------------------
 	$(document.body).on('touchend', json.steering.idname, function (event) {
