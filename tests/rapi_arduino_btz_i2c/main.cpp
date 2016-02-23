@@ -3,6 +3,7 @@ extern "C"
 	#include "../../raspi/i2c/btz_i2c.h"
 }
 #include <stdio.h>
+#include <unistd.h>
 
 
 
@@ -33,7 +34,7 @@ int main()
 	testData[1] = 0x0;
 	testData[2] = 0x0;
 	testData[3] = 0x0;
-	
+	usleep(10 *1000);
 	result = WRITE_REGISTER(0x12,0x0,testData,4);
 	printf("Write resulted:%i",result);
 	printf("try read register 0 from slave...\n");

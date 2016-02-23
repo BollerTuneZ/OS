@@ -39,6 +39,7 @@ void loop() {
     {
       Serial.println(i2c_driver.log);
       lastLogLength = i2c_driver.log.length();
+      counter++;
     }
     lastTimeLogChanged = now;
   }
