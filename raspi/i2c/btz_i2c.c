@@ -13,6 +13,7 @@ char *emptyPayload;
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <unistd.h>
 
 void scan_i2c_bus()
   {
@@ -158,11 +159,14 @@ int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 	{
 		return setRegisterResult;
 	}
+	sleep(2);
+	/*
 	if (ioctl(i2c_device, I2C_SLAVE, slave_address) < 0)
 	{
 		return -1;
-	}
-	if(read(i2c_device,value,length) !=length)
+	}*/
+	char testVal[4];
+	if(read(i2c_device,testVal,4) != 4)
 	{
 		  return -3001;
 	}
