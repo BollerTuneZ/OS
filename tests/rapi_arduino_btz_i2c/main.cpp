@@ -20,10 +20,10 @@ int main()
 
 	char value[2];
 	
-	result = READ_REGISTER(0x12,0x0,value,4);
+	result = READ_REGISTER(0x12,0x0,value,2);
 	printf("Read result:%i\n",result);	
 
-	for(int i=0;i<4;i++)
+	for(int i=0;i<2;i++)
 	{
 		printf("Value @%i:%i\n",i,value[i]);
 	}
