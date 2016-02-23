@@ -2,7 +2,7 @@
 #include <btz_i2c.h>
 
  
-int counter = 1000;
+int counter = 2000;
 long lastTimeCounterTriggered = 0;
 long lastTimeLogChanged =0;
 long lastLogLength =0;
@@ -32,14 +32,14 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   long now = millis();
-  if((now -  lastTimeLogChanged) >= 500)
+  if((now -  lastTimeLogChanged) >= 50)
   {
-    
+    counter++;
+    Serial.println(counter);
     if(i2c_driver.log.length() != lastLogLength)
     {
-      Serial.println(i2c_driver.log);
+      //Serial.println(i2c_driver.log);
       lastLogLength = i2c_driver.log.length();
-      counter++;
     }
     lastTimeLogChanged = now;
   }

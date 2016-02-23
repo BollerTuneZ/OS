@@ -18,7 +18,7 @@ int main()
 	printf("try read register 0 from slave...\n");
 
 
-	char value[4];
+	char value[2];
 	
 	result = READ_REGISTER(0x12,0x0,value,4);
 	printf("Read result:%i\n",result);	
@@ -38,10 +38,10 @@ int main()
 	result = WRITE_REGISTER(0x12,0x0,testData,4);
 	printf("Write resulted:%i",result);
 	printf("try read register 0 from slave...\n");
-	result = READ_REGISTER(0x12,0x0,value,4);
+	result = READ_REGISTER(0x12,0x0,value,2);
 	printf("Read result:%i\n",result);	
 
-	for(int i=0;i<4;i++)
+	for(int i=0;i<2;i++)
 	{
 		printf("Value @%i:%i\n",i,value[i]);
 	}

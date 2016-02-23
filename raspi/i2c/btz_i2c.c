@@ -163,7 +163,7 @@ int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 	{
 		return -1;
 	}
-	if(read(i2c_device,value,length) != 4)
+	if(read(i2c_device,value,length) != length)
 	{
 		  return -3001;
 	}
