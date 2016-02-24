@@ -13,18 +13,60 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
     if (err) throw err;
     connection = conn;
 
-    var test = r.db("test").table("authors").run()
-    console.log(test);
+
 /*
-    r.db('test').tableCreate('authors').run(connection, function(err, result) {
+        r.table('authors').get('114c9d3a-bfc3-4d30-9500-ac43761d371b').run(conn, function(error, result){
+            if (error) throw error;
+            console.log(JSON.stringify(result, null, 1 ));
+        });
+
+
+    r.table('authors').insert([
+        { name: "William Adama", tv_show: "Battlestar Galactica",
+            posts: [
+                {title: "Decommissioning speech", content: "The Cylon War is long over..."},
+                {title: "We are at war", content: "Moments ago, this ship received word..."},
+                {title: "The new Earth", content: "The discoveries of the past few days..."}
+            ]
+        },
+        { name: "Laura Roslin", tv_show: "Battlestar Galactica",
+            posts: [
+                {title: "The oath of office", content: "I, Laura Roslin, ..."},
+                {title: "They look like us", content: "The Cylons have the ability..."}
+            ]
+        },
+        { name: "Jean-Luc Picard", tv_show: "Star Trek TNG",
+            posts: [
+                {title: "Civil rights", content: "There are some words I've known since..."}
+            ]
+        }
+    ]).run(connection, function(err, result) {
+        if (err) throw err;
+        console.log(JSON.stringify(result, null, 2));
+    });
+*/
+    r.table('authors').run(connection, function(err, cursor) {
+        if (err) throw err;
+        cursor.toArray(function(err, result) {
+            if (err) throw err;
+            console.log(JSON.stringify(result, null, 2));
+        });
+    });
+
+
+   // console.log(test);
+
+
+
+/*
+     r.db('test').tableCreate('authors').run(connection, function(err, result) {
         if (err) throw err;
         console.log(result);
     });
+   // console.log(connection);
+
+
 */
-    console.log(connection);
-
-
-
 });
 
 
