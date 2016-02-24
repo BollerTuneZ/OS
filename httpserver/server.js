@@ -9,24 +9,20 @@ var io = require('socket.io').listen(httpServer);
 r = require('rethinkdb');
 
 var connection = null;
-r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
+r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
     if (err) throw err;
     connection = conn;
 
+    var test = r.db("test").table("authors").run()
+    console.log(test);
 /*
     r.db('test').tableCreate('authors').run(connection, function(err, result) {
         if (err) throw err;
         console.log(result);
     });
 */
+    console.log(connection);
 
-    r.table('config').run(connection, function(err, cursor) {
-        if (err) throw err;
-        cursor.toArray(function(err, result) {
-            if (err) throw err;
-            console.log(JSON.stringify(result, null, 2));
-        });
-    });
 
 
 });
