@@ -8,56 +8,47 @@ var io = require('socket.io').listen(httpServer);
 
 r = require('rethinkdb');
 
+
 var connection = null;
 r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
     if (err) throw err;
     connection = conn;
 
-
-/*
-        r.table('authors').get('114c9d3a-bfc3-4d30-9500-ac43761d371b').run(conn, function(error, result){
+    function readkey(key) {
+        r.table('user').get(key).run(conn, function (error, result) {
             if (error) throw error;
-            console.log(JSON.stringify(result, null, 1 ));
+            console.log(JSON.stringify(result, null, 1));
         });
+    }
 
-
-    r.table('authors').insert([
-        { name: "William Adama", tv_show: "Battlestar Galactica",
-            posts: [
-                {title: "Decommissioning speech", content: "The Cylon War is long over..."},
-                {title: "We are at war", content: "Moments ago, this ship received word..."},
-                {title: "The new Earth", content: "The discoveries of the past few days..."}
-            ]
-        },
-        { name: "Laura Roslin", tv_show: "Battlestar Galactica",
-            posts: [
-                {title: "The oath of office", content: "I, Laura Roslin, ..."},
-                {title: "They look like us", content: "The Cylons have the ability..."}
-            ]
-        },
-        { name: "Jean-Luc Picard", tv_show: "Star Trek TNG",
-            posts: [
-                {title: "Civil rights", content: "There are some words I've known since..."}
-            ]
-        }
-    ]).run(connection, function(err, result) {
-        if (err) throw err;
-        console.log(JSON.stringify(result, null, 2));
-    });
-*/
-    r.table('authors').run(connection, function(err, cursor) {
-        if (err) throw err;
-        cursor.toArray(function(err, result) {
+    function newacc(name, email, pw, accr) {
+        r.table('user').insert([
+            {
+                name: name,
+                email: email,
+                password: pw,
+                accrights: accr
+            }
+        ]).run(connection, function (err, result) {
             if (err) throw err;
             console.log(JSON.stringify(result, null, 2));
         });
-    });
+    }
 
+    function readdb() {
+        //Datenbank auslesen
+        r.table('authors').run(connection, function (err, cursor) {
+            if (err) throw err;
+            cursor.toArray(function (err, result) {
+                if (err) throw err;
+                console.log(JSON.stringify(result, null, 2));
+            });
+        });
+    }
 
-   // console.log(test);
+    function readuser(name) {
 
-
-
+    }
 /*
      r.db('test').tableCreate('authors').run(connection, function(err, result) {
         if (err) throw err;
@@ -67,11 +58,7 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
 
 
 */
-});
 
-
-
- 
 app.use(express.static(__dirname + '/public'));
  
 app.get('/', function(req, res) {  
@@ -116,7 +103,29 @@ io.sockets.on('connection', function (socket) {
         console.log(data.siodata);
         // socket.broadcast.emit(json.blinker.socketnamer, { siodata: data.siodata });
     });
+    socket.on( "insertdb" , function(data) {
+        console.log(data);
+        insertdb();
+    });
+    socket.on( "readtable" , function(data) {
+        console.log(data);
+        readtable();
+    });
 
+    socket.on( "readuser" , function(data) {
+        console.log(data.name);
+        readuser(data.name);
+
+    });
+
+    socket.on("newacc", function (data) {
+        console.log(data.name, data.email, data.pw, data.accr);
+        newacc(data.name, data.email, data.pw, data.accr);
+    });
+    socket.on("readkey", function (data) {
+        console.log(data.key);
+        readkey(data.key);
+    });
 
     function test(vdata){
         io.emit(json.ultra.front_left_1,vdata);
@@ -131,3 +140,4 @@ io.sockets.on('connection', function (socket) {
 
 });
 
+});

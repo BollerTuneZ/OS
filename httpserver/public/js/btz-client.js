@@ -4,6 +4,7 @@ var reload = 'dash';
 //Initialize  ------------------------------------------------------------------------------------------------------------
 function Initialize(){
 		SetupSocketIO();
+		Init_Database();
 
 }
 
@@ -25,6 +26,7 @@ function Init_GuiEvents(){
 		var name = $('#name').val();
 		var siodata = $('#siodata').val();
 		socket.emit(name, {siodata: siodata});
+
 		console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
 		console.log("JSON Data: " + json.group1.checkid);
 	});
@@ -291,6 +293,42 @@ function Init_Sensor(){
 
 }
 
+function Init_Database(){
+
+
+
+	$(document.body).on('click', '#dbsend', function () {
+		var name = $('#name').val();
+		var email = $('#email').val();
+		var pw = $('#pw').val();
+		var accr = $('#accr').val();
+		var siodata = $('#siodata').val();
+		socket.emit('newacc', {'siodata': siodata, 'name': name, 'email': email, 'pw': pw, 'accr': accr });
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+
+	$(document.body).on('click', '#dbreaduser', function () {
+		var name = $('#username').val();
+		socket.emit('readuser', {'name': name });
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+
+	$(document.body).on('click', '#keysend', function () {
+		var key = $('#key').val();
+
+		socket.emit('readkey', {'key': key});
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+
+
+}
+
 function SetupSocketIO(){
 	//SocketIO verbinden ----------------------------------------------------------------------------------------------
 		socket = io.connect();
@@ -320,7 +358,6 @@ function SetupSocketIO(){
 
 $(document).ready(function(){
 	Initialize();
-
 	loadDoc('');
 });
 
