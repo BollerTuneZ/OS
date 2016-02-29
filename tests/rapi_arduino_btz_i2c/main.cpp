@@ -47,20 +47,20 @@ int main()
 	
 	usleep(10*1000);
 	
-	/*Set Led 1 on half power and 2 seconds later off* ,led 2 will be 100% */
+	//Set Led 1 on half power and 2 seconds later off* ,led 2 will be 100% 
 	char ledData[2];
 	ledData[0] = 0x32;
 	ledData[1] = 0xFF;
 	
-	result = WRITE_REGISTER(0x12,0x3,ledData,2);
-	printf("Read result:%i\n",result);	
+	result = WRITE_REGISTER(0x12,0x2,ledData,2);
+	printf("Read result:%i\n",result);	/*
 	usleep(( 2 *1000) * 1000);
 	
 	ledData[0] = 0x00;
 	ledData[1] = 0xFF;
 	
-	result = WRITE_REGISTER(0x12,0x3,ledData,2);
-	printf("Read result:%i\n",result);	
+	result = WRITE_REGISTER(0x12,0x2,ledData,2);
+	printf("Read result:%i\n",result);	*/
 	return 1;
 	
 }
