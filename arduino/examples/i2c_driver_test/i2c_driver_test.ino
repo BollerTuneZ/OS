@@ -2,7 +2,7 @@
 #include <btz_i2c.h>
 
 int led1 = 5,led2 = 6;
-int counter = 2000;
+int counter = 0;
 long lastTimeCounterTriggered = 0;
 long lastTimeLogChanged =0;
 long lastLogLength =0;
@@ -17,7 +17,7 @@ void i2c_onRequest(){i2c_driver.OnRequest();}
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(250000);
   Serial.println("setup register...");
   GenRegister();
   Serial.println("init i2c_driver");
@@ -35,13 +35,15 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   long now = millis();
-  if((now -  lastTimeLogChanged) >= 50)
+  if((now -  lastTimeLogChanged) >= 150)
   {
     counter++;
     if(i2c_driver.log.length() != lastLogLength)
     {
-      //Serial.println(i2c_driver.log);
-      lastLogLength = i2c_driver.log.length();
+      String tempvar = i2c_driver.log;
+      i2c_driver.log = "";
+      Serial.println(tempvar);
+      lastLogLength = tempvar.length();
     }
     lastTimeLogChanged = now;
   }
@@ -58,8 +60,8 @@ void GenRegister()
   _reg2.dataType = DT_BYTE;
   _reg2.valuePointer = &mode;
   
-  _reg2.dataType = DT_CHRARY;
-  _reg2.valuePointer = ledStates;
+  _reg3.dataType = DT_CHRARY;
+  _reg3.valuePointer = ledStates;
 
   _register[0] = _reg1;
   _register[1] = _reg2;
