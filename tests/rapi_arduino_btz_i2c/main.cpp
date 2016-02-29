@@ -17,7 +17,7 @@ int main()
 	printf("Init result:%i\n",result);
 	printf("try read register 0 from slave...\n");
 
-
+	/*
 	char value[2];
 	
 	result = READ_REGISTER(0x12,0x0,value,2);
@@ -42,25 +42,25 @@ int main()
 	intVal = (value[0] | value[1] << 8);
 
 	printf("Value:%i\n",intVal);
-	
+	*/
 	printf("Read Done.\n");
 	
 	usleep(10*1000);
 	
 	//Set Led 1 on half power and 2 seconds later off* ,led 2 will be 100% 
 	char ledData[2];
-	ledData[0] = 0x32;
-	ledData[1] = 0xFF;
+	ledData[0] = 0x1;
+	ledData[1] = 0x1;
 	
 	result = WRITE_REGISTER(0x12,0x2,ledData,2);
-	printf("Read result:%i\n",result);	/*
+	printf("Read result:%i\n",result);	
 	usleep(( 2 *1000) * 1000);
 	
 	ledData[0] = 0x00;
 	ledData[1] = 0xFF;
 	
 	result = WRITE_REGISTER(0x12,0x2,ledData,2);
-	printf("Read result:%i\n",result);	*/
+	printf("Read result:%i\n",result);	
 	return 1;
 	
 }
