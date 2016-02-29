@@ -12,7 +12,8 @@ void DimLight(char led, char brightness)
 {
 	ledData[led] = brightness;
 	usleep(10 *1000);
-	result = WRITE_REGISTER(slaveAdreess,lightRegister,ledData,2);
+	int result = WRITE_REGISTER(slaveAdreess,lightRegister,ledData,2);
+	printf("Init result:%i\n",result);
 }
 
 int main()
