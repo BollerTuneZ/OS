@@ -45,7 +45,7 @@ int main()
 	
 	printf("Read Done.\n");
 	
-	usleep(10*1000);
+	usleep(50*1000);
 	
 	//Set Led 1 on half power and 2 seconds later off* ,led 2 will be 100% 
 	char ledData[2];

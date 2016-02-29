@@ -27,8 +27,8 @@ void setup() {
   Wire.onRequest(i2c_onRequest);
   Wire.onReceive(i2c_onReceive);
   Serial.println("Driver Initialized");
-  ledStates[0] = 0x32;
-  ledStates[1] = 0xFF;
+  ledStates[0] = 0x00;
+  ledStates[1] = 0x00;
   
 }
 
@@ -44,6 +44,8 @@ void loop() {
       i2c_driver.log = "";
       Serial.println(tempvar);
       lastLogLength = tempvar.length();
+      String text = "Led1:" + String(ledStates[0],HEX) + " Led2:" + String(ledStates[1],HEX);
+      Serial.println(text);
     }
     lastTimeLogChanged = now;
   }
