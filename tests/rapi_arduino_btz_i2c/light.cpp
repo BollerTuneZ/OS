@@ -28,7 +28,7 @@ int main()
 	
 	char ledValue =0;
 	char led = 0;
-	for(int i=0;i < 255;;)
+	for(int i=0;i < 255;)
 	{
 		if(led == 0)
 		{
