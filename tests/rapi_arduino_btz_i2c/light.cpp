@@ -30,7 +30,7 @@ int main()
 	char led = 0;
 	for(int i=0;i < 255;)
 	{
-		usleep(200 *1000);
+		usleep(20 *1000);
 		if(led == 0)
 		{
 			DimLight(led,ledValue);
@@ -50,7 +50,8 @@ int main()
 			ledValue += 42;
 		}
 	}
-	
+	DimLight(0,0);
+	DimLight(1,0);
 	return 1;
 	
 }

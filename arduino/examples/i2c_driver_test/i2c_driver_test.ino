@@ -31,21 +31,23 @@ void setup() {
   ledStates[1] = 0x00;
   
 }
-
+String text;
 void loop() {
   // put your main code here, to run repeatedly:
   long now = millis();
-  if((now -  lastTimeLogChanged) >= 150)
+  if((now -  lastTimeLogChanged) >= 200)
   {
     counter++;
+    text = "Led1:" + String(ledStates[0],HEX) + " Led2:" + String(ledStates[1],HEX);
+     Serial.println(text);
     if(i2c_driver.log.length() != lastLogLength)
     {
+      /*
       String tempvar = i2c_driver.log;
       i2c_driver.log = "";
       Serial.println(tempvar);
       lastLogLength = tempvar.length();
-      String text = "Led1:" + String(ledStates[0],HEX) + " Led2:" + String(ledStates[1],HEX);
-      Serial.println(text);
+      */
     }
     lastTimeLogChanged = now;
   }
