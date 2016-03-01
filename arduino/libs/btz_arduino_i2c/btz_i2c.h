@@ -19,6 +19,7 @@
 
 
 #include <Wire.h>
+#include <Arduino.h>
 
 
 class Btz_i2c
@@ -33,6 +34,8 @@ class Btz_i2c
 		
 		void OnReceive(int bytes);
 		
+		String log;
+		
 	private:
 		char _i2c_address;
 		void **_register;
@@ -41,5 +44,6 @@ class Btz_i2c
 		char _registerMode;
 		void requestEvent();
 		void receiveEvent(int b_count);
+		HardwareSerial * printer;
 };
 #endif

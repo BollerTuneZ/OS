@@ -13,6 +13,9 @@
 
 #define I2C_BUS "/dev/i2c-1"
 
+
+#define I2C_READ 0x3
+#define I2C_WRITE 0x2
 /*
  *Initializes i2c bus on Default: /dev/i2c-1
  *errorcodes:
@@ -28,7 +31,7 @@ extern int INIT_I2C();
  *@param payload byte array with data which will be written 
  *@return 1 OK, -1device -20write 
 */
-extern int WRITE_REGISTER(char device,char slave_address,char i2c_register,char *payload,int length);
+extern int WRITE_REGISTER(int slave_address,char i2c_register,char *payload,int length);
 
 /*
  *Reads slaves register into value pointer
@@ -36,6 +39,6 @@ extern int WRITE_REGISTER(char device,char slave_address,char i2c_register,char 
  * WRITE_REGISTER error
  *-3001
 */
-extern int READ_REGISTER(char device,char i2c_register,char *value,int length);
+extern int READ_REGISTER(int slave_address,char i2c_register,char *value,int length);
 
 #endif
