@@ -1,6 +1,9 @@
 var socket;
 var json;
 var reload = 'dash';
+var cookie = document.cookie;
+
+
 //Initialize  ------------------------------------------------------------------------------------------------------------
 function Initialize(){
 		SetupSocketIO();
@@ -8,15 +11,49 @@ function Initialize(){
 
 }
 
+
+
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+d.toUTCString();
+	document.cookie = cname + "=" + cvalue + " ; " + expires;
+}
+
 function loadDoc(site){
-	if(site == ''){
-		$( "#demo" ).load( "html_modules/" + reload + ".html" );
-		console.log(reload + ".html");
-	}else {
-		$( "#demo" ).load( "html_modules/" + site + ".html" );
-		reload = site;
-		console.log(reload + ".html");
+
+	if(cookie == "user=guest"){
+		$( "#demo" ).load( "html_modules/guest.html" );
+		//console.log(cookie);
 	}
+	if(cookie == "user=user"){
+		//console.log(cookie);
+		if(site == ''){
+			$( "#demo" ).load( "html_modules/dbdash.html" );
+			console.log(reload + ".html");
+		}else {
+			$( "#demo" ).load( "html_modules/" + site + ".html" );
+			reload = site;
+			console.log(reload + ".html");
+		}
+	}
+	if(cookie == "user=admin"){
+		//console.log(cookie);
+		if(site == ''){
+			$( "#demo" ).load( "html_modules/" + reload + ".html" );
+			console.log(reload + ".html");
+		}else {
+			$( "#demo" ).load( "html_modules/" + site + ".html" );
+			reload = site;
+			console.log(reload + ".html");
+		}
+	}
+
+
+
+
+
+
 }
 
 function Init_GuiEvents(){
@@ -295,8 +332,6 @@ function Init_Sensor(){
 
 function Init_Database(){
 
-
-
 	$(document.body).on('click', '#dbsend', function () {
 		var name = $('#name').val();
 		var email = $('#email').val();
@@ -311,7 +346,8 @@ function Init_Database(){
 
 	$(document.body).on('click', '#dbreaduser', function () {
 		var name = $('#username').val();
-		socket.emit('readuser', {'name': name });
+		var pw = $('#password').val();
+		socket.emit('readuser', {'name': name, 'pw': pw });
 
 		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
 		//console.log("JSON Data: " + json.group1.checkid);
@@ -325,6 +361,15 @@ function Init_Database(){
 		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
 		//console.log("JSON Data: " + json.group1.checkid);
 	});
+	$(document.body).on('click', '#login', function () {
+		var name = $('#username').val();
+		var pw = $('#password').val();
+		socket.emit('login', {'name': name, 'pw': pw });
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+
 
 
 }
@@ -354,11 +399,26 @@ function SetupSocketIO(){
 		console.log(data.siodata);
 		$('#warning').modal('show');
 	});
+	socket.on("login", function(data){
+		console.log(data.accr);
+		setCookie('user', data.accr, 10);
+		window.location.reload();
+	});
 }
 
 $(document).ready(function(){
+
+	if(cookie == ''){
+		setCookie('user', 'guest', 10);
+
+	}
+
+
+	loadDoc('dash');
+
+	//console.log(cookie);
 	Initialize();
-	loadDoc('');
+
 });
 
 

@@ -18,6 +18,7 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
         r.table('user').get(key).run(conn, function (error, result) {
             if (error) throw error;
             console.log(JSON.stringify(result, null, 1));
+            console.log(result.name);
         });
     }
 
@@ -35,20 +36,37 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
         });
     }
 
-    function readdb() {
-        //Datenbank auslesen
-        r.table('authors').run(connection, function (err, cursor) {
+    function login(namein, pwin) {
+        r.table('user').filter({name: namein}).run(conn, function(err, cursor){
             if (err) throw err;
-            cursor.toArray(function (err, result) {
+            cursor.each(function (err, result) {
                 if (err) throw err;
-                console.log(JSON.stringify(result, null, 2));
+                if (namein === result.name && pwin === result.password){
+
+                    io.emit('login', {'name': result.name, 'pw': result.password, 'accr': result.accrights });
+                    console.log(result.name);
+                    console.log(namein + " = " + result.name);
+                    console.log(pwin + " = " + result.password);
+                    console.log(result.accrights);
+
+                }
             });
         });
     }
 
     function readuser(name) {
 
+        r.table('user').filter({name: name}).run(connection, function(err, cursor){
+            if (err) throw err;
+            cursor.toArray(function (err, result) {
+                if (err) throw err;
+               // console.log(JSON.stringify(result, null, 2));
+                io.emit(json.temp.ext3, { 'siodata' : vdata });
+            });
+        });
     }
+
+
 /*
      r.db('test').tableCreate('authors').run(connection, function(err, result) {
         if (err) throw err;
@@ -112,10 +130,10 @@ io.sockets.on('connection', function (socket) {
         readtable();
     });
 
-    socket.on( "readuser" , function(data) {
-        console.log(data.name);
-        readuser(data.name);
-
+    socket.on( "login" , function(data) {
+        //console.log(data.name);
+        //readuser(data.name);
+        login(data.name, data.pw);
     });
 
     socket.on("newacc", function (data) {
@@ -136,6 +154,7 @@ io.sockets.on('connection', function (socket) {
         io.emit(json.temp.ext2, { 'siodata' : vdata });
         io.emit(json.temp.ext3, { 'siodata' : vdata });
     }
+
 
 
 });
