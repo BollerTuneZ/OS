@@ -5,14 +5,12 @@ var httpServer = require("http").createServer(app);
 var conf = require('./config.json');
 var json = require('./public/json/test.json');
 var io = require('socket.io').listen(httpServer);
-
-r = require('rethinkdb');
-
-
+var r = require('rethinkdb');
 var connection = null;
+
+
 r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
     if (err) throw err;
-    connection = conn;
 
     function readkey(key) {
         r.table('user').get(key).run(conn, function (error, result) {
@@ -30,7 +28,7 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
                 password: pw,
                 accrights: accr
             }
-        ]).run(connection, function (err, result) {
+        ]).run(conn, function (err, result) {
             if (err) throw err;
             console.log(JSON.stringify(result, null, 2));
         });
@@ -54,6 +52,7 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
         });
     }
 
+    /*
     function readuser(name) {
 
         r.table('user').filter({name: name}).run(connection, function(err, cursor){
@@ -65,16 +64,11 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
             });
         });
     }
-
-
-/*
      r.db('test').tableCreate('authors').run(connection, function(err, result) {
         if (err) throw err;
         console.log(result);
     });
    // console.log(connection);
-
-
 */
 
 app.use(express.static(__dirname + '/public'));

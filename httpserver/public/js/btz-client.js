@@ -1,6 +1,6 @@
 var socket;
 var json;
-var reload = 'dash';
+var reload = '';
 var cookie = document.cookie;
 
 
@@ -10,9 +10,6 @@ function Initialize(){
 		Init_Database();
 
 }
-
-
-
 function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -20,24 +17,21 @@ function setCookie(cname, cvalue, exdays) {
 	document.cookie = cname + "=" + cvalue + " ; " + expires;
 }
 
-function loadDoc(site){
+function deleteCookie() {
+	document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+	window.location.reload();
+}
 
+function loadDoc(site){
+	if(cookie == ''){
+		$( "#demo" ).load( "html_modules/guest.html" );
+		console.log(reload + ".html");
+	}
 	if(cookie == "user=guest"){
 		$( "#demo" ).load( "html_modules/guest.html" );
 		//console.log(cookie);
 	}
 	if(cookie == "user=user"){
-		//console.log(cookie);
-		if(site == ''){
-			$( "#demo" ).load( "html_modules/dbdash.html" );
-			console.log(reload + ".html");
-		}else {
-			$( "#demo" ).load( "html_modules/" + site + ".html" );
-			reload = site;
-			console.log(reload + ".html");
-		}
-	}
-	if(cookie == "user=admin"){
 		//console.log(cookie);
 		if(site == ''){
 			$( "#demo" ).load( "html_modules/" + reload + ".html" );
@@ -48,12 +42,18 @@ function loadDoc(site){
 			console.log(reload + ".html");
 		}
 	}
+	if(cookie == "user=admin"){
+		//console.log(cookie);
 
-
-
-
-
-
+		if(site == ''){
+			$( "#demo" ).load( "html_modules/" + reload + ".html" );
+			console.log(reload + ".html");
+		}else {
+			$( "#demo" ).load( "html_modules/" + site + ".html" );
+			reload = site;
+			console.log(reload + ".html");
+		}
+	}
 }
 
 function Init_GuiEvents(){
@@ -407,19 +407,13 @@ function SetupSocketIO(){
 }
 
 $(document).ready(function(){
-
 	if(cookie == ''){
 		setCookie('user', 'guest', 10);
-
 	}
-
-
 	loadDoc('dash');
-
-	//console.log(cookie);
 	Initialize();
-
 });
+
 
 
 
