@@ -21,7 +21,7 @@
 *.ko
 *.obj
 *.elf
-
+*.cpp.d
 # Precompiled Headers
 *.gch
 *.pch
