@@ -1,6 +1,7 @@
 var socket;
 var json;
 var reload = '';
+var user = 0;
 var cookie = document.cookie;
 
 
@@ -10,6 +11,7 @@ function Initialize(){
 		Init_Database();
 
 }
+
 function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -23,11 +25,13 @@ function deleteCookie() {
 }
 
 function loadDoc(site){
+	console.log("jo");
 	if(cookie == ''){
 		$( "#demo" ).load( "html_modules/guest.html" );
 		console.log(reload + ".html");
 	}
 	if(cookie == "user=guest"){
+		user = 1;
 		$( "#demo" ).load( "html_modules/guest.html" );
 		//console.log(cookie);
 	}
@@ -407,11 +411,14 @@ function SetupSocketIO(){
 }
 
 $(document).ready(function(){
+
 	if(cookie == ''){
 		setCookie('user', 'guest', 10);
 	}
+	$("userlabel").text(cookie);
 	loadDoc('dash');
 	Initialize();
+
 });
 
 

@@ -6,6 +6,8 @@ var conf = require('./config.json');
 var json = require('./public/json/test.json');
 var io = require('socket.io').listen(httpServer);
 var r = require('rethinkdb');
+var md5 = require('js-md5');
+
 var connection = null;
 
 
@@ -21,11 +23,18 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
     }
 
     function newacc(name, email, pw, accr) {
+
+        md5(pw);
+        var hash = md5.create();
+        hash.update(pw);
+        hash.hex();
+        console.log(hash.hex());
+
         r.table('user').insert([
             {
                 name: name,
                 email: email,
-                password: pw,
+                password: hash,
                 accrights: accr
             }
         ]).run(conn, function (err, result) {
@@ -35,17 +44,30 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
     }
 
     function login(namein, pwin) {
+
+        md5(pwin);
+        var hash = md5.create();
+        hash.update(pwin);
+        hash.hex();
+        console.log(hash.hex());
+
         r.table('user').filter({name: namein}).run(conn, function(err, cursor){
             if (err) throw err;
             cursor.each(function (err, result) {
                 if (err) throw err;
-                if (namein === result.name && pwin === result.password){
+
+                if (namein === result.name && hash === result.password){
 
                     io.emit('login', {'name': result.name, 'pw': result.password, 'accr': result.accrights });
                     console.log(result.name);
                     console.log(namein + " = " + result.name);
                     console.log(pwin + " = " + result.password);
                     console.log(result.accrights);
+
+                }else{
+
+                    console.log(result.password);
+                    console.log(hash);
 
                 }
             });
