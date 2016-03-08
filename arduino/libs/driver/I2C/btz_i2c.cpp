@@ -13,7 +13,6 @@ extern "C"
 	#include "btz_util.h"
 }
 
-
 Btz_i2c::Btz_i2c()
 {
 
@@ -29,7 +28,6 @@ void Btz_i2c::Initialize(char i2c_address,i2c_reg *i2c_register,char registerLen
 	_register = i2c_register;
 	_registerLength = registerLength;
 	Wire.begin(i2c_address);
-
 }
 
 void Btz_i2c::OnRequest()
