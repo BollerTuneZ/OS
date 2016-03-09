@@ -408,6 +408,13 @@ function SetupSocketIO(){
 		setCookie('user', data.accr, 10);
 		window.location.reload();
 	});
+	socket.on('loginfail', function (data) {
+
+		var label = document.getElementById('login_label');
+		label.value = data.siodata;
+		//$(document.body).('#login_label').innerHTML = data.siodata;
+		console.log(data.siodata);
+	});
 }
 
 $(document).ready(function(){

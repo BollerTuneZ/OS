@@ -169,11 +169,16 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
                             console.log(namein + " = " + result.name);
                             console.log(pwin + " = " + result.password);
                             console.log(result.accrights);
-                            console.log(socketid);
+                            //console.log(socketid);
                         }else {
                             console.log("Login Versuch Fehlgeschlagen!");
+                            socket.emit('loginfail', {'siodata': "Fail"});
+
                         }
                     });
+
+
+
                 });
             }
         });
