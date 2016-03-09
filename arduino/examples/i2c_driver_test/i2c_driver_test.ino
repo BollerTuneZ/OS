@@ -48,6 +48,7 @@ void GenRegister()
   _reg_int.valuePointer = &int_reg_val;
 
   _reg_chrarry.dataType = DT_CHRARY;
+  Serial.println(_reg_chrarry.dataType,HEX);
   _reg_chrarry.valuePointer = chrarry_reg_val;
   
   _register[0] = _reg_int;
