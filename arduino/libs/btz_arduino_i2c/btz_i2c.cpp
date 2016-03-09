@@ -16,7 +16,7 @@ Btz_i2c::~Btz_i2c()
 	
 }
 
-void Btz_i2c::Initialize(char i2c_address,void **i2c_register,char registerLength)
+void Btz_i2c::Initialize(char i2c_address,i2c_reg *i2c_register,char registerLength)
 {
 	_register = i2c_register;
 	_registerLength = registerLength;
@@ -37,6 +37,39 @@ void Btz_i2c::OnReceive(int bytes)
 
 void Btz_i2c::requestEvent()
 {
+	i2c_reg reg = _register[_registerIndex];
+#ifdef DEBUG
+	log += "Index:" + String(_registerIndex,HEX) + "\n";
+#endif
+	if(reg.dataType == DT_BYTE)//Write single byte
+	{
+		char payload = *(char*)reg.valuePointer;
+		Wire.write(payload);
+	}else if(reg.dataType == DT_CHRARY)
+	{
+#ifdef DEBUG
+		log += "DataType Char array\n";
+#endif
+		int size = strlen((char*)reg.valuePointer);
+#ifdef DEBUG
+		log += "Size:" + String(size);
+#endif
+		Wire.write((char*)reg.valuePointer,size);
+	}else if(reg.dataType == DT_INT)
+	{
+#ifdef DEBUG
+		log += "DataType Int\n";
+#endif
+		char intVal[2];
+		intVal[0] = *(int*)reg.valuePointer;
+		intVal[1] = *(int*)reg.valuePointer >> 8; 
+		
+		Wire.write(intVal,2);
+	}else
+#ifdef DEBUG
+		log += "DT Unkown:" + String(reg.dataType,HEX) + "\n";
+#endif
+		return;//Unkown dataType
 	
 }
 
@@ -56,28 +89,30 @@ void Btz_i2c::receiveEvent(int b_count)
 		char readByte = Wire.read();
 		if(counter >=b_count)
 		{
+#ifdef DEBUG
 			log += "bcount to big\n";
+#endif
 			//TODO err handling
 			return;
 		}
-		log += "Read:" + String(readByte,HEX) + "\n";
+#ifdef DEBUG
+		log += "Read:" + String(readByte,HEX) + "	";
+#endif
 		buf[counter] = readByte;
 		counter++;
 	}
-	
+#ifdef DEBUG
+	log += "\n";
 	log += "Received message register:"+ String(buf[0],HEX) + " r/w byte:" + String(buf[1],HEX) + "\n";
+#endif
 	//assume register at index 0, validate 
-	/*
-	if(buf[0] >= _registerLength || buf[0] < REGISTER_MIN)
-		log += "Register length wrong:" + String(buf[0],HEX) +"\n";
-		return;
-	*/
 	//set register
-	log += "check register rw byte...\n";
 	_registerIndex = buf[0];
 	if(buf[1] == REGISTER_READ)
 	{
-		log += "Register set\n";
+#ifdef DEBUG
+		log += "reg set\n";
+#endif
 		_registerMode = REGISTER_READ;
 		
 		//Nothing to do..
@@ -85,37 +120,64 @@ void Btz_i2c::receiveEvent(int b_count)
 	}
 	else if(buf[1] == REGISTER_WRITE)
 	{
-		log +="Register write\n";
+#ifdef DEBUG
+		log +="reg write\n";
+#endif
 		_registerMode = REGISTER_WRITE;
 	}
 	else
 	{
+#ifdef DEBUG
 		log +="Command Unkown\n";
+#endif
 		return;
 	}
 	
-	log +="writing register\n";
-	
-	void **registerPointer = (void**)_register[_registerIndex];
+	i2c_reg reg = _register[_registerIndex];
+	char data_type = reg.dataType;
 	int dataBufLength = b_count - 2;
-	char *dataBuf/*[dataBufLength]*/;
+#ifdef DEBUG
+	log += "dataBufLength:" + String(sizeof(buf)) + "\n";
+#endif
+	char dataBuf[dataBufLength];
+	
 	//grap data 
+	
 	for(int i=0;i<dataBufLength;i++)
 	{
 		dataBuf[i] = buf[i + 2];
+#ifdef DEBUG
+		log += String(dataBuf[i],HEX) + ";";
+#endif
+	}
+#ifdef DEBUG
+	log +="writing register\n";
+#endif
+	
+	if(reg.writeProtect == 1)
+	{
+#ifdef DEBUG
+		log +="protected\n";
+#endif
+		return;
 	}
 	
-	char data_type = *(char*)registerPointer[0];
 	if(data_type == DT_BYTE)//Write single byte
 	{
-		*(char*)registerPointer[1] = dataBuf[0];
+		*(char*)reg.valuePointer = dataBuf[0];
 	}else if(data_type == DT_CHRARY)
 	{
-		void *test = dataBuf;
-		registerPointer[1] = test;
+		char *pointer = (char*)reg.valuePointer;
+		for(int i=0;i < dataBufLength;i++)
+		{
+			pointer[i] = dataBuf[i];
+		}
+#ifdef DEBUG
+		log +="writing chararry\n";
+#endif
 	}else if(data_type == DT_INT)
 	{
-		*(int*)registerPointer[1] = Convert4ByteToInt(dataBuf);
+		*(int*)reg.valuePointer = Convert4ByteToInt(dataBuf);
 	}else
 		return;//Unkown dataType
 	

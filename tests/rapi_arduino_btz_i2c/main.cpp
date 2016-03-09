@@ -138,18 +138,18 @@ int test_write_array()
 	usleep(50*1000);
 	result = WRITE_REGISTER(SLAVE_ADDR,REGISTER_CHRARRY,testData,6);
 	print_result(&result);
-	if(result != 1){return -1; printf("EXIT");}
+	if(result != 1){return -1;}
 	
 	char readVal[6];
-	usleep(100*1000);
+	usleep(50*1000);
 	result = READ_REGISTER(SLAVE_ADDR,REGISTER_CHRARRY,readVal,6);
 	print_result(&result);
-	if(result != 1){return -1; printf("EXIT");}
+	if(result != 1){return -1;}
 	
 	for(int i=0;i<6;i++)
 	{
 		if(readVal[i] != testData[i]){
-			printf("Index[%i] : Value: %i",i,readVal[i]); return -1; }
+			return;
 	}
 	return 1;
 }
