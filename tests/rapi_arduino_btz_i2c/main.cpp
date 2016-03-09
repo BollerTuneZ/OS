@@ -8,7 +8,7 @@ extern "C"
 #define SLAVE_ADDR 0x12
 #define REGISTER_INT 0x0
 #define REGISTER_CHAR 0x1
-#define REGISTER_CHRARRY 0x2
+#define REGISTER_CHRARRY 0x1
 
 void print_result(int *val);
 int test_read_register();
