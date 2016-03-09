@@ -10,6 +10,7 @@ extern "C"
 #define REGISTER_CHAR 0x1
 #define REGISTER_CHRARRY 0x2
 
+void print_result(int *val);
 int test_read_register();
 int test_write_register();
 int test_write_array();
@@ -90,12 +91,12 @@ int test_read_register()
 	char rawValue[2];
 	
 	result = READ_REGISTER(SLAVE_ADDR,REGISTER_INT,rawValue,2);
-	print_result(result);
+	print_result(&result);
 	if(result != 1){return -1;}
 	
 	int intVal = (rawValue[0] | rawValue[1] << 8);
 	if(intVal == 999){return 1;}
-	return -1
+	return -1;
 }
 
 /*
@@ -106,18 +107,18 @@ int test_write_register()
 	int result;
 	char intWriteVal[2] = {0x0,0x0};
 	result = WRITE_REGISTER(SLAVE_ADDR,REGISTER_INT,intWriteVal,4);
-	print_result(result);
+	print_result(&result);
 	if(result != 1){return -1;}
 	
 	char rawValue[2];
 	
 	result = READ_REGISTER(SLAVE_ADDR,REGISTER_INT,rawValue,2);
-	print_result(result);
+	print_result(&result);
 	if(result != 1){return -1;}
 	
 	int intVal = (rawValue[0] | rawValue[1] << 8);
 	if(intVal == 0){return 1;}
-	return -1
+	return -1;
 }
 
 /*
@@ -135,13 +136,13 @@ int test_write_array()
 	testData[5] = 0x6;
 	
 	result = WRITE_REGISTER(SLAVE_ADDR,REGISTER_CHRARRY,testData,6);
-	print_result(result);
+	print_result(&result);
 	if(result != 1){return -1;}
 	
 	char readVal[6];
 	
 	result = READ_REGISTER(SLAVE_ADDR,REGISTER_CHRARRY,readVal,6);
-	print_result(result);
+	print_result(&result);
 	if(result != 1){return -1;}
 	
 	for(int i=0;i<6;i++)
@@ -149,7 +150,7 @@ int test_write_array()
 		if(readVal[i] != testData[i])
 			return -1;
 	}
-	return -1
+	return -1;
 }
 void print_result(int *val)
 {
