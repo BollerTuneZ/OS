@@ -148,14 +148,16 @@ function Init_GuiEvents(){
 		interval = setInterval(function () {
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
 			console.log($(json.steering.idname).val());
-		}, 22);
+		}, 11);
 	});
 //mouseup clearInterval ------------------------------------------------------------------------------------------------
 	$(document.body).on('mouseup', json.steering.idname, function (event) {
 		clearInterval(interval);
+		console.log("clear");
 		$(json.steering.idname).val("50");
 		socket.emit(json.steering.socketname, {'siodata': "50"});
 	});
+
 //touch -- Start -------------------------------------------------------------------------------------------------------
 	$(document.body).on('touchstart', json.steering.idname, function () {
 		interval = setInterval(function () {
@@ -295,6 +297,7 @@ function SetupSocketIO(){
 //ON Disconnect ---------------------------------------------------------------------------------------------------
 		socket.on("disconnect", function(){
 			$('#onoffline').modal('show');
+			window.location.reload();
 		});
 //ON Connect ------------------------------------------------------------------------------------------------------
 		socket.on("connect", function(){
