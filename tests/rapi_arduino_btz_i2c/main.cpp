@@ -104,6 +104,7 @@ int test_read_register()
 */
 int test_write_register()
 {
+	usleep(50*1000);
 	int result;
 	char intWriteVal[2] = {0x0,0x0};
 	result = WRITE_REGISTER(SLAVE_ADDR,REGISTER_INT,intWriteVal,4);
@@ -111,7 +112,7 @@ int test_write_register()
 	if(result != 1){return -1;}
 	
 	char rawValue[2];
-	
+	usleep(50*1000);
 	result = READ_REGISTER(SLAVE_ADDR,REGISTER_INT,rawValue,2);
 	print_result(&result);
 	if(result != 1){return -1;}
@@ -134,13 +135,13 @@ int test_write_array()
 	testData[3] = 0x4;
 	testData[4] = 0x5;
 	testData[5] = 0x6;
-	
+	usleep(50*1000);
 	result = WRITE_REGISTER(SLAVE_ADDR,REGISTER_CHRARRY,testData,6);
 	print_result(&result);
 	if(result != 1){return -1;}
 	
 	char readVal[6];
-	
+	usleep(50*1000);
 	result = READ_REGISTER(SLAVE_ADDR,REGISTER_CHRARRY,readVal,6);
 	print_result(&result);
 	if(result != 1){return -1;}
