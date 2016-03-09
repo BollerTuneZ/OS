@@ -157,9 +157,9 @@ void print_result(int *val)
 {
 	if(*val != 1)
 	{
-	  printf("ERROR :%i\n",val);
+	  printf("ERROR :%i\n",*val);
 	  return;
 	}
-	printf("Result is:%i\n",val);
+	printf("Result is:%i\n",*val);
 	
 }
