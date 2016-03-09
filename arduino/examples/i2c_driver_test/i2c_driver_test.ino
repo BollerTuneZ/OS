@@ -2,21 +2,20 @@
 #include <btz_i2c.h>
 
  
-int counter = 2000;
-long lastTimeCounterTriggered = 0;
-long lastTimeLogChanged =0;
-long lastLogLength =0;
-char mode = 'n';
 Btz_i2c i2c_driver = Btz_i2c();
 i2c_reg _register[2];
-i2c_reg _reg1, _reg2;
+i2c_reg _reg_int, _reg_chrarry;
+long lastLog = 0;
+long lastLogLength = 0;
+int int_reg_val = 999;
+char chrarry_reg_val[6] = {0x1,0x2,0x3,0x4,0x5,0x6};
 /*I2C Bridge*/
 void i2c_onReceive(int n){i2c_driver.OnReceive(n);}
 void i2c_onRequest(){i2c_driver.OnRequest();}
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("setup register...");
   GenRegister();
   Serial.println("init i2c_driver");
@@ -32,29 +31,27 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   long now = millis();
-  if((now -  lastTimeLogChanged) >= 50)
+  if((now -  lastLog) >= 200)
   {
-    counter++;
-    Serial.println(counter);
     if(i2c_driver.log.length() != lastLogLength)
     {
-      //Serial.println(i2c_driver.log);
+      Serial.println(i2c_driver.log);
       lastLogLength = i2c_driver.log.length();
     }
-    lastTimeLogChanged = now;
+    lastLog = now;
   }
 }
-void **testArray;
+
 void GenRegister()
 {
-  _reg1.dataType = DT_INT;
-  _reg1.valuePointer = &counter;
+  _reg_int.dataType = DT_INT;
+  _reg_int.valuePointer = &int_reg_val;
 
-  _reg2.dataType = DT_BYTE;
-  _reg2.valuePointer = &mode;
+  _reg_chrarry.dataType = DT_CHRARY;
+  _reg_chrarry.valuePointer = chrarry_reg_val;
 
-  _register[0] = _reg1;
-  _register[1] = _reg2;
+  _register[0] = _reg_int;
+  _register[1] = _reg_chrarry;
   
 }
 
