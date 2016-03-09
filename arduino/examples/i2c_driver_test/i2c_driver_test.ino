@@ -49,7 +49,7 @@ void GenRegister()
 
   _reg_chrarry.dataType = DT_CHRARY;
   _reg_chrarry.valuePointer = chrarry_reg_val;
-
+  
   _register[0] = _reg_int;
   _register[1] = _reg_chrarry;
   
