@@ -1,2 +1,2 @@
-prog: btz_i2c.o
-	gcc -c -o btz_i2c.o btz_i2c.c
+prog: driver_i2c_base.o
+	gcc -c -o driver_i2c_base.o i2c_base.c
