@@ -16,7 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-
+#include <stdint.h>
 #define I2C_BUS "/dev/i2c-1"
 
 
