@@ -47,6 +47,8 @@ extern int WRITE_REGISTER(int slave_address,char i2c_register,char *payload,int 
 */
 extern int READ_REGISTER(int slave_address,char i2c_register,char *value,int length);
 
+extern int SET_LIGHT(int addr);
+
 extern int WRITE(int slave_address,char* payload,int size);
 extern int READ(int slave_address,char* buf,int length);
 

@@ -193,3 +193,15 @@ int READ_REGISTER(int slave_address,char i2c_register,char *value,int length)
 	}
 	return 1;
 }
+int SET_LIGHT(int addr)
+{
+	char servoNum = 0x6+4*0;
+	uint16_t on = 0;
+	uint16_t off = 600;
+
+	char payload[] = {servoNum,on,on>>8,off,off>>8};
+
+	WRITE(addr,payload,5);
+
+	return 1;
+}
