@@ -1,0 +1,6 @@
+
+function sayHello()
+{
+	socket.emit('hello');
+}
+

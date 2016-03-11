@@ -1,0 +1,14 @@
+
+function init()
+{
+	socket.on('welt',function()
+{
+	console.log("Welt");
+}
+}
+
+function sayHello()
+{
+	socket.emit('hello');
+}
+
