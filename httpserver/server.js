@@ -57,6 +57,10 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
 //Socket connection handler
     io.sockets.on('connection', function (socket) {
 
+        var address = socket.handshake.address;
+
+        console.log(address);
+
         function readkey(key) {
             r.table('user').get(key).run(conn, function (error, result) {
                 if (error) throw error;
