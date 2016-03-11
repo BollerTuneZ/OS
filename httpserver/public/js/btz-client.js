@@ -27,7 +27,10 @@ function deleteCookie() {
 function loadDoc(site){
 	console.log("jo");
 	if(cookie == ''){
-		$( "#demo" ).load( "html_modules/guest.html" );
+		$( "#demo" ).load( "html_modules/guest.html" ,function()
+		{
+			$('#btnOk').on('click',function(){ console.log("Hello World!");});
+		});
 		console.log(reload + ".html");
 	}
 	if(cookie == "user=guest"){

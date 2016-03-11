@@ -7,6 +7,7 @@ var json = require('./public/json/test.json');
 var io = require('socket.io').listen(httpServer);
 var r = require('rethinkdb');
 var md5 = require('js-md5');
+var util = require("intern_modules/util.js");
 var connection = null;
 var ip = "";
 
@@ -14,6 +15,10 @@ var ip = "";
 
 var os = require('os');
 var ifaces = os.networkInterfaces();
+
+//Data Buffer
+var statusMaxBuffer = 500;
+var statusBuf = [];
 
 Object.keys(ifaces).forEach(function (ifname) {
     var alias = 0;
@@ -35,6 +40,9 @@ Object.keys(ifaces).forEach(function (ifname) {
     });
 });
 
+
+
+
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
@@ -49,6 +57,23 @@ var counter = 0;
 var vdata;
 
 
+// Core Server Events
+io.sockets.on('status',function(statusPacket)
+{
+	statusBuf.push(statusPacket);
+	var statusBufLength = statusBuf.length;
+	if(statusBufLength > statusMaxBuffer)
+	{
+		statusBuf = util.ShrinkArray(statusBuf,1);
+	}
+	io.sockets.emit('c_status',statusBuf[statusBufLength -1]);
+};
+
+function clientFirstStart(socket)
+{
+	socket.emit('status',{statusPackets:statusBuf});
+}
+
 r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
     if (err) throw err;
 
@@ -56,7 +81,9 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
 
 //Socket connection handler
     io.sockets.on('connection', function (socket) {
-
+		
+		clientFirstStart(socket);
+		
         var address = socket.handshake.address;
 
         console.log(address);

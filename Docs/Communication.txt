@@ -1,0 +1,5 @@
+Core <----> node 
+
+
+
+node <----> client
