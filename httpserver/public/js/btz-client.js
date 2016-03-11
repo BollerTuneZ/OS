@@ -1,20 +1,62 @@
 var socket;
 var json;
-var reload = 'dash';
+var reload = '';
+var user = 0;
+var cookie = document.cookie;
+
+
 //Initialize  ------------------------------------------------------------------------------------------------------------
 function Initialize(){
 		SetupSocketIO();
+		Init_Database();
 
 }
 
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+d.toUTCString();
+	document.cookie = cname + "=" + cvalue + " ; " + expires;
+}
+
+function deleteCookie() {
+	document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+	window.location.reload();
+}
+
 function loadDoc(site){
-	if(site == ''){
-		$( "#demo" ).load( "html_modules/" + reload + ".html" );
+	console.log("jo");
+	if(cookie == ''){
+		$( "#demo" ).load( "html_modules/guest.html" );
 		console.log(reload + ".html");
-	}else {
-		$( "#demo" ).load( "html_modules/" + site + ".html" );
-		reload = site;
-		console.log(reload + ".html");
+	}
+	if(cookie == "user=guest"){
+		user = 1;
+		$( "#demo" ).load( "html_modules/guest.html" );
+		//console.log(cookie);
+	}
+	if(cookie == "user=user"){
+		//console.log(cookie);
+		if(site == ''){
+			$( "#demo" ).load( "html_modules/" + reload + ".html" );
+			console.log(reload + ".html");
+		}else {
+			$( "#demo" ).load( "html_modules/" + site + ".html" );
+			reload = site;
+			console.log(reload + ".html");
+		}
+	}
+	if(cookie == "user=admin"){
+		//console.log(cookie);
+
+		if(site == ''){
+			$( "#demo" ).load( "html_modules/" + reload + ".html" );
+			console.log(reload + ".html");
+		}else {
+			$( "#demo" ).load( "html_modules/" + site + ".html" );
+			reload = site;
+			console.log(reload + ".html");
+		}
 	}
 }
 
@@ -25,6 +67,7 @@ function Init_GuiEvents(){
 		var name = $('#name').val();
 		var siodata = $('#siodata').val();
 		socket.emit(name, {siodata: siodata});
+
 		console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
 		console.log("JSON Data: " + json.group1.checkid);
 	});
@@ -148,7 +191,7 @@ function Init_GuiEvents(){
 		interval = setInterval(function () {
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
 			console.log($(json.steering.idname).val());
-		}, 11);
+		}, 22);
 	});
 //mouseup clearInterval ------------------------------------------------------------------------------------------------
 	$(document.body).on('mouseup', json.steering.idname, function (event) {
@@ -162,7 +205,7 @@ function Init_GuiEvents(){
 	$(document.body).on('touchstart', json.steering.idname, function () {
 		interval = setInterval(function () {
 			socket.emit(json.steering.socketname, {'siodata': $(json.steering.idname).val()});
-		}, 11);
+		}, 22);
 	});
 //touch -- end ---------------------------------------------------------------------------------------------------------
 	$(document.body).on('touchend', json.steering.idname, function (event) {
@@ -291,6 +334,50 @@ function Init_Sensor(){
 
 }
 
+function Init_Database(){
+
+	$(document.body).on('click', '#dbsend', function () {
+		var name = $('#name').val();
+		var email = $('#email').val();
+		var pw = $('#pw').val();
+		var accr = $('#accr').val();
+		var siodata = $('#siodata').val();
+		socket.emit('newacc', {'siodata': siodata, 'name': name, 'email': email, 'pw': pw, 'accr': accr });
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+
+	$(document.body).on('click', '#dbreaduser', function () {
+		var name = $('#username').val();
+		var pw = $('#password').val();
+		socket.emit('readuser', {'name': name, 'pw': pw });
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+
+	$(document.body).on('click', '#keysend', function () {
+		var key = $('#key').val();
+
+		socket.emit('readkey', {'key': key});
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+	$(document.body).on('click', '#login', function () {
+		var name = $('#username').val();
+		var pw = $('#password').val();
+		socket.emit('login', {'name': name, 'pw': pw });
+
+		//console.log("socket.emit(" + name + ", { siodata: " + siodata + "});");
+		//console.log("JSON Data: " + json.group1.checkid);
+	});
+
+
+
+}
+
 function SetupSocketIO(){
 	//SocketIO verbinden ----------------------------------------------------------------------------------------------
 		socket = io.connect();
@@ -316,13 +403,31 @@ function SetupSocketIO(){
 		console.log(data.siodata);
 		$('#warning').modal('show');
 	});
+	socket.on("login", function(data){
+		console.log(data.accr);
+		setCookie('user', data.accr, 10);
+		window.location.reload();
+	});
+	socket.on('loginfail', function (data) {
+
+		var label = document.getElementById('login_label');
+		label.value = data.siodata;
+		//$(document.body).('#login_label').innerHTML = data.siodata;
+		console.log(data.siodata);
+	});
 }
 
 $(document).ready(function(){
+
+	if(cookie == ''){
+		setCookie('user', 'guest', 10);
+	}
+	$("userlabel").text(cookie);
+	loadDoc('dash');
 	Initialize();
 
-	loadDoc('');
 });
+
 
 
 

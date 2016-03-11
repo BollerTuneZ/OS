@@ -8,6 +8,10 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link href="css/mycss.css" rel="stylesheet">
 	<link href="css/sidebar.css" rel="stylesheet">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+
 	<script src="js/jquery-2.2.0.js"></script>
 	<script src="js/hammer.min.js"></script>
 	<script src="js/bootstrap.js"></script>
@@ -45,6 +49,9 @@
                 <li>
                     <a href="#" onclick="loadDoc('shortcuts')">About</a>
                 </li>
+				<li>
+					<a href="#" onclick="loadDoc('dbdash')">DB</a>
+				</li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -55,14 +62,15 @@
 					<span onclick="toggleFullScreen();" class="navbar-btn btn glyphicon glyphicon-resize-full" aria-hidden="true"></span>
 					<span class="btn dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="#" onclick="loadDoc('')">loadDoc()</a></li>
-						<li><a href="#">Another action</a></li>
+						<li><a href="#" onclick="loadDoc('')">Reload</a></li>
+						<li><a href="#" >Something</a></li>
 						<li><a href="#">Something else here</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a  class="testvib href="#">Separated link</a></li>
+						<li><a href="#" onclick="deleteCookie()">Logout</a></li>
 					</ul>
 					<span onclick="loadDoc('');" class="navbar-btn btn glyphicon glyphicon-refresh"
 						  aria-hidden="true"></span>
+					<span class="navbar-btn btn" id="userlabel" aria-hidden="true"></span>
 
 
 				</div>
@@ -73,20 +81,12 @@
 			<div class="content" id="demo"></div>
 
 
+
+
 	</div>
-	<!-- Modal -->
-<div class="modal fade" id="onoffline" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-		  <div class="col-lg-12">
-			  <span style="font-size:5em;" class="glyphicon glyphicon-alert"></span>
-			  <h1>Verbindung verloren!<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></h1>
-		  </div>
-	  </div>
-    </div>
-  </div>
-</div>
+
+
+
 	<!-- Modal -->
 	<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
