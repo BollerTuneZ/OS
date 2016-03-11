@@ -223,6 +223,10 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
             readkey(data.key);
         });
 
+        socket.on("hello", function (data) {
+            console.log(data);
+        });
+
         function test(vdata){
             io.emit(json.ultra.front_left_1,vdata);
             io.emit(json.temp.motor1, { 'siodata' : vdata });
@@ -233,6 +237,8 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
             io.emit(json.temp.ext3, { 'siodata' : vdata });
 
         }
+
+
 
 
 
