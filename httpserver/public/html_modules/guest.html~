@@ -1,6 +1,7 @@
 
 <script src="../guest.js"></script>
 <script>init();sayHello();</script>
+
 <div class="col-md-6 col-sm-6 col-lg-6">
     <div class="panel panel-default pan">
         <h2>Hallo Gast</h2>

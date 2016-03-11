@@ -7,7 +7,7 @@ var json = require('./public/json/test.json');
 var io = require('socket.io').listen(httpServer);
 var r = require('rethinkdb');
 var md5 = require('js-md5');
-var util = require("intern_modules/util.js");
+var util = require("./intern_modules/util.js");
 var connection = null;
 var ip = "";
 
@@ -48,6 +48,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
+console.log(util.StrF("Hallo {0}!","Welt"));
 
 httpServer.listen(conf.port);
 console.log('Server Läuft unter http://localhost:' + conf.port);
@@ -67,7 +68,7 @@ io.sockets.on('status',function(statusPacket)
 		statusBuf = util.ShrinkArray(statusBuf,1);
 	}
 	io.sockets.emit('c_status',statusBuf[statusBufLength -1]);
-};
+});
 
 function clientFirstStart(socket)
 {
@@ -224,7 +225,8 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
         });
 
         socket.on("hello", function (data) {
-            console.log(data);
+            console.log("Hello");
+	socket.emit('welt');
         });
 
         function test(vdata){

@@ -1,10 +1,14 @@
 
+$(document).ready(function(){
+	init();
+});
+
 function init()
 {
 	socket.on('welt',function()
-{
-	console.log("Welt");
-}
+	{
+		console.log("Welt");
+	});
 }
 
 function sayHello()

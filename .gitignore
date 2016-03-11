@@ -57,6 +57,7 @@ install_manifest.txt
 .metadata
 bin/
 tmp/
+httpserver/rethinkdb_data/
 *.tmp
 *.bak
 *.swp
