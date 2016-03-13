@@ -99,7 +99,7 @@ int test_write_array()
 	
 	for(int i=0;i<6;i++)
 	{
-		if(readVal[i] != testData[i]){
+		if(readVal[i] != testData[i])
 			return -1;
 	}
 	return 1;
