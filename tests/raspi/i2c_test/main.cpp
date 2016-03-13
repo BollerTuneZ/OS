@@ -58,7 +58,7 @@ int test_write_register()
 	usleep(50*1000);
 	int result;
 	char intWriteVal[2] = {0x0,0x0};
-	result = (SLAVE_ADDR,REGISTER_INT,intWriteVal,4);
+	result = baseDriver.WriteRegister(SLAVE_ADDR,REGISTER_INT,intWriteVal,4);
 	print_result(&result);
 	if(result != 1){return -1;}
 	
