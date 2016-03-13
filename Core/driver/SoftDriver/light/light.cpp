@@ -6,28 +6,28 @@
  */
 #include "light.h"
 
-const long Light::PWMData[]= {
-    //MSB        LSB
-    0b010000000000,    // Channel 0
-    0b101000000000,    // Channel 1
-    0b000011000000,    // Channel 2
-    0b000001100000,    // Channel 3
-    0b000001011010,    // Channel 4
-    0b000000000000,    // Channel 5
-    0b000000000000,    // Channel 6
-    0b000000000000,    // Channel 7
-    0b000000000000,    // Channel 8
-    0b000000000000,    // Channel 9
-    0b000000000000,    // Channel 10
-    0b000000000000,    // Channel 11
-    0b000000000000,    // Channel 12
-    0b000000000000,    // Channel 13
-    0b000000000000,    // Channel 14
-    0b000000000000     // Channel 15
-};
 
 Light::Light(i2c_base *baseDriver) {
 	_baseDriver = baseDriver;
+	PWMData[0] = 0b010000000000;
+	PWMData[1] = 0b101000000000;
+	PWMData[2] = 0b000011000000;
+	PWMData[3] = 0b000001100000;
+	PWMData[4] = 0b000001011010;
+	PWMData[5] = 0b000000000000;
+	PWMData[6] = 0b000000000000;
+	PWMData[7] = 0b000000000000;
+	PWMData[8] = 0b000000000000;
+	PWMData[9] = 0b000000000000;
+	PWMData[10] = 0b000000000000;
+	PWMData[11] = 0b000000000000;
+	PWMData[12] = 0b000000000000;
+	PWMData[13] = 0b000000000000;
+	PWMData[14] = 0b000000000000;
+	PWMData[15] = 0b000000000000;
+
+
+
 }
 Light::~Light() {
 
