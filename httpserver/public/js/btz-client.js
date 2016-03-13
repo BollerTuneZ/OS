@@ -400,6 +400,8 @@ function SetupSocketIO(){
 			$('#onoffline').modal('hide');
 			
 		});
+
+	
 	socket.on("id_event",function(data){
 		json = data;
 		//console.log(json);
