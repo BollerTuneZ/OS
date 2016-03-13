@@ -57,15 +57,15 @@ void Light::pca9685_send(btz_i2c_device *device, long value, int led)
     if(led > 15)                // if LED larger than 15 than on other chip
             led = 15;           //***** need to implement to selecet next pcs9685
 
-    char sendBuf[6];//TODO addresse muss most likly nicht mit geschickt werden mal sehen
-    sendBuf[0] = device->addr;
-    sendBuf[1] = LED0 + 4 * led;
+    char sendBuf[5];//TODO addresse muss most likly nicht mit geschickt werden mal sehen
+    //sendBuf[0] = device->addr;
+    sendBuf[0] = LED0 + 4 * led;
+    sendBuf[1] = 0x0;
     sendBuf[2] = 0x0;
-    sendBuf[3] = 0x0;
-    sendBuf[4] = value;
-    sendBuf[5] = value>>8;
+    sendBuf[3] = value;
+    sendBuf[4] = value>>8;
 
-    _baseDriver->WRITE(device->addr,sendBuf,6);
+    _baseDriver->WRITE(device->addr,sendBuf,5);
     /*
     i2c_start();                // Start
     i2c_write(address);         // Address of selected pca9685
@@ -113,11 +113,10 @@ void Light::pca9685_brightness(btz_i2c_device *device, int percent, int led)
 void Light::pca9685_AllLedOff(btz_i2c_device *device)
 {
 	//TODO gleiches wie oben gilt auch hier
-	char sendBuf[4] =
+	char sendBuf[3] =
 	{
-			device->addr,
 			0xfc,0b00000000,0b00010000
 	};
-	_baseDriver->WRITE(device->addr,sendBuf,4);
+	_baseDriver->WRITE(device->addr,sendBuf,3);
 }
 
