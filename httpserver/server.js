@@ -20,43 +20,17 @@ var ifaces = os.networkInterfaces();
 var statusMaxBuffer = 500;
 var statusBuf = [];
 
-Object.keys(ifaces).forEach(function (ifname) {
-    var alias = 0;
-
-    ifaces[ifname].forEach(function (iface) {
-        if ('IPv4' !== iface.family || iface.internal !== false) {
-            // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
-            return;
-        }
-        if (alias >= 1) {
-            // this single interface has multiple ipv4 addresses
-           // console.log(ifname + ':' + alias, iface.address);
-        } else {
-            // this interface has only one ipv4 adress
-           // console.log(ifname, iface.address);
-            ip = iface.address;
-        }
-        ++alias;
-    });
-});
-
-
-
-
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
-console.log(util.StrF("Hallo {0}!","Welt"));
 
 httpServer.listen(conf.port);
 console.log('Server Läuft unter http://localhost:' + conf.port);
-console.log('Server IP Adresse http://' + ip + ':' +conf.port);
 
 var counter = 0;
 var vdata;
-
 
 // Core Server Events
 io.sockets.on('status',function(statusPacket)
@@ -155,7 +129,7 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
             socket.broadcast.emit(json.motor.socketname, { siodata: data.siodata });
         });
         socket.on(json.steering.socketname, function (data) {
-            console.log(data.siodata + "Zeile 60");
+            console.log(data.siodata);
             test(vdata = data.siodata);
             socket.broadcast.emit(json.steering.socketname, { siodata: data.siodata });
         });
