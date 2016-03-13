@@ -8,6 +8,25 @@
 
 Light::Light(i2c_base *baseDriver) {
 	_baseDriver = baseDriver;
+	PWMData ={
+		    //MSB        LSB
+		    0b010000000000,    // Channel 0
+		    0b101000000000,    // Channel 1
+		    0b000011000000,    // Channel 2
+		    0b000001100000,    // Channel 3
+		    0b000001011010,    // Channel 4
+		    0b000000000000,    // Channel 5
+		    0b000000000000,    // Channel 6
+		    0b000000000000,    // Channel 7
+		    0b000000000000,    // Channel 8
+		    0b000000000000,    // Channel 9
+		    0b000000000000,    // Channel 10
+		    0b000000000000,    // Channel 11
+		    0b000000000000,    // Channel 12
+		    0b000000000000,    // Channel 13
+		    0b000000000000,    // Channel 14
+		    0b000000000000     // Channel 15
+		};
 }
 Light::~Light() {
 

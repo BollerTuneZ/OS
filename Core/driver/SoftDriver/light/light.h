@@ -78,7 +78,7 @@ private:
 	void pca9685_brightness(btz_i2c_device *device, int percent, int led);
 	void pca9685_AllLedOff(btz_i2c_device *device);
 	i2c_base *_baseDriver;
-
+	long *PWMData;
 };
 
 
