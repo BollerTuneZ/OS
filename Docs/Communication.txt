@@ -1,5 +1,7 @@
 Core <----> node 
-
+	Sensoren:
+	
+	
 
 
 node <----> client
