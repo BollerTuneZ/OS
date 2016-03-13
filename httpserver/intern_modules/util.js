@@ -5,7 +5,44 @@ module.exports =
 	StrF:FormatStr
 };
 
+var indexes = [];
 
+function GetLastIndex(name)
+{
+	for(var i=0,j=indexes.length;i++)
+	{
+		var currentIndex = indexes[i];
+		if(currentIndex.name == name)
+		{
+			return currentIndex.val;
+		}
+	}
+	return null;
+}
+
+function AddLastIndex(name,val)
+{
+	var newIndex = 
+	{
+		"name": name,
+		"val":val
+	};
+	indexes.push(newIndex);
+}
+
+function SetLastIndex(name)
+{
+	for(var i=0,j=indexes.length;i++)
+	{
+		var currentIndex = indexes[i];
+		if(currentIndex.name == name)
+		{
+			currentIndex.val++;
+			return 1;
+		}
+	}
+	return -1;
+}
 
 function shrinkArray(array,size)
 {

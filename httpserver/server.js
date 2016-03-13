@@ -67,12 +67,11 @@ io.sockets.on('status',function(statusPacket)
 	{
 		statusBuf = util.ShrinkArray(statusBuf,1);
 	}
-	io.sockets.emit('c_status',statusBuf[statusBufLength -1]);
 });
 
 function clientFirstStart(socket)
 {
-	socket.emit('status',{statusPackets:statusBuf});
+	socket.emit('c_fStatus',{statusPackets:statusBuf});
 }
 
 r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {

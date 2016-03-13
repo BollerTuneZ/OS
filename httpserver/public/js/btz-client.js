@@ -244,9 +244,15 @@ function Init_GuiEvents(){
 	});
 }
 
+function onStatus(data)
+{
+	
+}
+
 function Init_Sensor(){
 
-
+	socket.on('c_status',onStatus);
+	
 	socket.on(json.temp.motor0, function(data){
 		$(json.temp.motor0_label_id).val(data.siodata).trigger('change');
 	});
