@@ -12,7 +12,7 @@
 #include "../driver/i2c_base_cpp/i2c_base.h"
 #include "../driver/SoftDriver/light/light.h"
 #include "testing/driver_test.h"
-
+#include <unistd.h>
 i2c_base _i2cBaseDriver;
 Light *_lightDriver;
 
@@ -47,7 +47,13 @@ void test_light()
 	control.device = &lightDevice;
 	control.ledNum = 5;
 	control.frequenzy = &frequenzy;
-	_lightDriver->SetLight(&control);
+	for(int i=0;i <=4095;i++ )
+	{
+		control.frequenzy = &i;
+		usleep(10 *1000);
+		_lightDriver->SetLight(&control);
+	}
+
 }
 
 int INIT()
