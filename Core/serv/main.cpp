@@ -11,10 +11,12 @@
 #include "../driver/driver_common.h"
 #include "../driver/i2c_base_cpp/i2c_base.h"
 #include "../driver/SoftDriver/light/light.h"
-
+#include "testing/driver_test.h"
 
 i2c_base _i2cBaseDriver;
 Light *_lightDriver;
+
+TEST_Driver *driverTest;
 
 int INIT();
 
@@ -38,7 +40,8 @@ int main(int argc, char **argv) {
 	control.frequenzy = &frequenzy;
 	_lightDriver->SetLight(&control);
 
-
+	driverTest = new TEST_Driver(&_i2cBaseDriver);
+	driverTest->SimpleTest();
 
 }
 

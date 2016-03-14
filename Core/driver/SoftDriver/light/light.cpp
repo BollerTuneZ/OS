@@ -26,9 +26,8 @@ Light::Light(i2c_base *baseDriver) {
 	PWMData[14] = 0b000000000000;
 	PWMData[15] = 0b000000000000;
 
-
-
 }
+
 Light::~Light() {
 
 }
