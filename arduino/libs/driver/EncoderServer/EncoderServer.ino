@@ -1,4 +1,5 @@
 #include<Wire.h>
+
 #include <btz_i2c.h>
 /*
 author Jonas Ahlf
@@ -33,7 +34,9 @@ void i2c_onRequest(){i2c_driver.OnRequest();}
 
 Encoder _encoder = Encoder(ENCODER_PIN_GREEN, ENCODER_PIN_WHITE);
 
+long lastLog =0;
 void setup() {
+  Serial.begin(115200);
   // put your setup code here, to run once:
   GenRegister();
   i2c_driver.Initialize(I2C_ADDR,_register,0x4); 
@@ -43,7 +46,17 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Position = _encoder.read();
+  Position = 1000;//(int)_encoder.read();
+  int sd =25;
+  int test = (sd | sd >> 8 );
+  
+  long diff = i2c_driver.log.length() - lastLog;
+  if( diff != lastLog)
+  {
+    Serial.println(Position);
+    Serial.println(i2c_driver.log);
+    lastLog = i2c_driver.log.length();
+  }
   if(Position > MaxPosition)
   {
     Position = MaxPosition;
