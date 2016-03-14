@@ -50,8 +50,9 @@ int EncoderClient::ReadPosition() {
 		//TODO Error Handling
 		return -9999;
 	}
+	short test = (((int)rawVal[0]) << 8) | (int)rawVal[1];
 	_lastPosition = (((int)rawVal[0]) << 8) | (int)rawVal[1];
 	//_lastPosition = (rawVal[0] | rawVal[1] << 8);
 	//(((int)char_1) << 8) | (int)char_2;
-	return _lastPosition;
+	return test;
 }
