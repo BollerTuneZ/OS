@@ -28,6 +28,8 @@ class connection_listener
     sio::client &handler;
 private:
     std::mutex _lock;
+    std::condition_variable_any _cond;
+    bool connect_finish = false;
 public:
 
     connection_listener(sio::client& h):
