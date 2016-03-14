@@ -1,4 +1,5 @@
 #include "encoder_client.h"
+#include <stdio.h>
 EncoderClient::EncoderClient(i2c_base* baseDriver,
 		btz_i2c_device* device) {
 	_baseDriver = baseDriver;
@@ -43,6 +44,7 @@ int EncoderClient::GetPosition() {
 
 int EncoderClient::ReadPosition() {
 	char rawVal[2];
+	printf("Device:%i, reg:%i\n",_device->addr,ENC_POSITION);
 	if(_baseDriver->ReadRegister(_device->addr,ENC_POSITION,rawVal,2) != 1)
 	{
 		//TODO Error Handling

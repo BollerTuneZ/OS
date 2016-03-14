@@ -13,8 +13,8 @@ I2C Encoder Server
 #define ENCODER_PIN_GREEN 2 
 #define ENCODER_PIN_WHITE 3
 #define DEFAULT_START_POSITION 0
-#define DEFAULT_MAX_POSITION 4095
-#define DEFAULT_MIN_POSITION -4094
+#define DEFAULT_MAX_POSITION 200
+#define DEFAULT_MIN_POSITION -200
 
 #define ENCODER_OPTIMIZE_INTERRUPTS
 #include <Encoder.h>
@@ -34,7 +34,9 @@ void i2c_onRequest(){i2c_driver.OnRequest();}
 
 Encoder _encoder = Encoder(ENCODER_PIN_GREEN, ENCODER_PIN_WHITE);
 
-long lastLog =0;
+long lastLog = 0;
+long lastLogLength = 0;
+
 void setup() {
   Serial.begin(115200);
   // put your setup code here, to run once:
@@ -49,13 +51,17 @@ void loop() {
   Position = 1000;//(int)_encoder.read();
   int sd =25;
   int test = (sd | sd >> 8 );
-  
-  long diff = i2c_driver.log.length() - lastLog;
-  if( diff != lastLog)
+
+
+  long now = millis();
+  if((now -  lastLog) >= 200)
   {
-    Serial.println(Position);
-    Serial.println(i2c_driver.log);
-    lastLog = i2c_driver.log.length();
+    if(i2c_driver.log.length() != lastLogLength)
+    {
+      Serial.println(i2c_driver.log);
+      lastLogLength = i2c_driver.log.length();
+    }
+    lastLog = now;
   }
   if(Position > MaxPosition)
   {
