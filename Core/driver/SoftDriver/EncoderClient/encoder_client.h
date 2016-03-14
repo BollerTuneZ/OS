@@ -46,6 +46,8 @@ private:
 	i2c_base *_baseDriver;
 	btz_i2c_device *_device;
 	int _lastPosition;
+	signed short ByteToShort(char* bytes);
+	void ShortToByte(signed short num, char* bytes);
 };
 
 

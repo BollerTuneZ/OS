@@ -42,6 +42,20 @@ int EncoderClient::GetPosition() {
 	return _lastPosition;
 }
 
+signed short EncoderClient::ByteToShort(char* bytes){
+
+    signed short result = 0;
+    result = (result<<8) + bytes[1]; // heigh byte
+    result = (result<<8) + bytes[0]; // low byte
+    return result;
+}
+
+void EncoderClient::ShortToByte(signed short num, char* bytes){
+
+    bytes[1] = num & 0xFF00; // heigh byte
+    bytes[0] = num & 0x00FF; // low byte
+}
+
 int EncoderClient::ReadPosition() {
 	char rawVal[2];
 	printf("Device:%i, reg:%i\n",_device->addr,ENC_POSITION);
@@ -54,6 +68,6 @@ int EncoderClient::ReadPosition() {
 	_lastPosition = (((int)rawVal[0]) << 8) | (int)rawVal[1];
 	//_lastPosition = (rawVal[0] | rawVal[1] << 8);
 	//(((int)char_1) << 8) | (int)char_2;
-	printf("Test:%i",test);
+	printf("Test:%i",ByteToShort(rawVal));
 	return test;
 }
