@@ -48,7 +48,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Position = 1000;//(int)_encoder.read();
+  Position = (int)_encoder.read();
   int sd =25;
   int test = (sd | sd >> 8 );
 
@@ -77,13 +77,13 @@ void GenRegister()
   _regRunMode.dataType = DT_BYTE;
   _regRunMode.valuePointer = &RunMode;
   
-  _regPosition.dataType = DT_BYTE;
+  _regPosition.dataType = DT_INT;
   _regPosition.valuePointer = &Position;
 
-  _regMaxPosition.dataType = DT_BYTE;
+  _regMaxPosition.dataType = DT_INT;
   _regMaxPosition.valuePointer = &MaxPosition;
 
-  _regMinPosition.dataType = DT_BYTE;
+  _regMinPosition.dataType = DT_INT;
   _regMinPosition.valuePointer = &MinPosition;
 
   _register[0] = _regRunMode;

@@ -23,7 +23,7 @@ TEST_Driver::~TEST_Driver() {
 void TEST_Driver::SimpleTest() {
 	printf("Testing EncoderClient Driver\nRead for 30sec encoder...\n");
 
-	for(int i=0;i<1;i++)
+	for(int i=0;i<120;i++)
 	{
 		int result2 = _encoderClient->ReadPosition();
 		if(result2 > 6000){printf("ERROR");}
