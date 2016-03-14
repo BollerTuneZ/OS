@@ -29,8 +29,16 @@ int main(int argc, char **argv) {
 		return initResult;
 	}
 	printf("Testing Light driver\n");
-	int frequenzy = 2500;
 
+
+	driverTest = new TEST_Driver(&_i2cBaseDriver);
+	//driverTest->SimpleTest();
+	test_light();
+}
+
+void test_light()
+{
+	int frequenzy = 2500;
 	btz_i2c_device lightDevice;
 	lightDevice.addr = 0x40;
 	lightDevice.name = "light1";
@@ -39,10 +47,6 @@ int main(int argc, char **argv) {
 	control.ledNum = 5;
 	control.frequenzy = &frequenzy;
 	_lightDriver->SetLight(&control);
-
-	driverTest = new TEST_Driver(&_i2cBaseDriver);
-	driverTest->SimpleTest();
-
 }
 
 int INIT()
