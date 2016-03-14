@@ -13,7 +13,7 @@ I2C Encoder Server
 #define ENCODER_PIN_GREEN 2 
 #define ENCODER_PIN_WHITE 3
 #define DEFAULT_START_POSITION 0
-#define DEFAULT_MAX_POSITION 200
+#define DEFAULT_MAX_POSITION 4095
 #define DEFAULT_MIN_POSITION -200
 
 #define ENCODER_OPTIMIZE_INTERRUPTS
@@ -25,7 +25,7 @@ char RunMode = 0x2;
 int Position = DEFAULT_START_POSITION;
 int MaxPosition = DEFAULT_MAX_POSITION;
 int MinPosition = DEFAULT_MIN_POSITION;
-
+int encoderTestVal = 0;
 Btz_i2c i2c_driver = Btz_i2c();
 
 /*I2C Bridge*/
@@ -48,9 +48,18 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Position = (int)_encoder.read();
-  int sd =25;
-  int test = (sd | sd >> 8 );
+  long next = _encoder.read();
+
+  if(next > MaxPosition)
+  {
+    Position = MaxPosition;
+  }else if(next < MinPosition)
+  {
+    Position = MinPosition;
+  }else
+  {
+    Position = next;
+  }
 
 
   long now = millis();
@@ -58,9 +67,10 @@ void loop() {
   {
     if(i2c_driver.log.length() != lastLogLength)
     {
-      Serial.println(i2c_driver.log);
+      //Serial.println(i2c_driver.log);
       lastLogLength = i2c_driver.log.length();
     }
+    Serial.println(Position);
     lastLog = now;
   }
   if(Position > MaxPosition)
