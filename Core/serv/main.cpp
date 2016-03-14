@@ -19,7 +19,7 @@ Light *_lightDriver;
 TEST_Driver *driverTest;
 
 int INIT();
-
+void test_light();
 int main(int argc, char **argv) {
 	printf("BollerTuneZ Core Server %s\n",VERSION);
 	printf("Initializing Hardware Driver:\ni2c_base ,Light\n");
