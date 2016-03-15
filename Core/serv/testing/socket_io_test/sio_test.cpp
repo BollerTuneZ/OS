@@ -1,6 +1,6 @@
 #include "sio_test.h"
 
-void OnMessage(sio::event &event)
+void OnMessage(sio::event *event)
 {
 
 }
@@ -16,7 +16,10 @@ void SIO_Test::SimpleTest() {
 		h.socket()->emit("hello",string_message::create(test_var), [&](message::list const& msg){});
 		usleep(100*1000);
 	}
-	h.socket()->on("response_node",&OnMessage);
+	h.socket()->on("response_node",[&](sio::event& ev){
+
+
+	});
 }
 /*
  * sio_test.cpp
