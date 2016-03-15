@@ -9,7 +9,7 @@ httpServer.listen(3000);
 io.sockets.on("connection",function(socket)
 {
 	console.log("Client connected with id:" + socket.handshake.address);
-	socket.on("hello",function(data){console.log("Hello");});
+	socket.on("hello",function(data){console.log(JSON.parse(data).val);});
 });
 
 io.sockets.on("hello",function(d)
