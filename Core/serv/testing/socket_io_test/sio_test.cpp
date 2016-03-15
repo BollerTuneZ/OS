@@ -16,10 +16,9 @@ void SIO_Test::SimpleTest() {
 		h.socket()->emit("hello",string_message::create(test_var), [&](message::list const& msg){});
 		usleep(100*1000);
 	}
-	h.socket()->on("response_node",[&](sio::event& ev){
+	h.socket()->on("response_node", sio::socket::event_listener_aux([&](string const& name, message::ptr const& data, bool isAck,message::list &ack_resp){
 
-
-	});
+    }));
 }
 /*
  * sio_test.cpp
