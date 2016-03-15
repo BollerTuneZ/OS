@@ -8,7 +8,7 @@ void SIO_Test::SimpleTest() {
 
 	for(int i=0;i<100;i++)
 	{
-		h.socket->emit("hello");
+		h.socket()->emit("hello");
 		usleep(100*1000);
 	}
 
