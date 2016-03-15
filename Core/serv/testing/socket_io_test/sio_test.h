@@ -15,6 +15,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <string>
+#include <unistd.h>
 
 using namespace sio;
 using namespace std;

@@ -13,13 +13,18 @@
 #include "../driver/SoftDriver/light/light.h"
 #include "testing/driver_test.h"
 #include <unistd.h>
+#include "testing/socket_io_test/sio_test.h"
+
 i2c_base _i2cBaseDriver;
 Light *_lightDriver;
 
 TEST_Driver *driverTest;
 
+SIO_Test _sioTest;
+
 int INIT();
 void test_light();
+void test_sio();
 int main(int argc, char **argv) {
 	printf("BollerTuneZ Core Server %s\n",VERSION);
 	printf("Initializing Hardware Driver:\ni2c_base ,Light\n");
@@ -28,12 +33,16 @@ int main(int argc, char **argv) {
 	{
 		return initResult;
 	}
-
-
-
 	driverTest = new TEST_Driver(&_i2cBaseDriver);
+	test_sio();
 	//driverTest->SimpleTest();
-	test_light();
+	//test_light();
+}
+
+void test_sio()
+{
+	printf("Starting Socket_IO test...\n");
+	_sioTest.SimpleTest();
 }
 
 void test_light()
