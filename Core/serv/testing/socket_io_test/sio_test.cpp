@@ -7,10 +7,10 @@ void SIO_Test::SimpleTest() {
 	h.connect("http://127.0.0.1:3000");
 
 	usleep(500*1000);
-
+	string test_var = "{\"val\":\"hallo welt!\"}";
 	for(int i=0;i<100;i++)
 	{
-		h.socket()->emit("hello","{\"val\":\"hallo welt!\"}");
+		h.socket()->emit("hello",test_var);
 		usleep(100*1000);
 	}
 
