@@ -7,16 +7,24 @@
 
 #ifndef SOCKET_IO_TEST_SIO_TEST_H_
 #define SOCKET_IO_TEST_SIO_TEST_H_
+#include "/home/pi/Git/socket.io-client-cpp/src/sio_client.h"
 
-#include "sio_test_con_listener.h"
+#include <functional>
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <string>
 
+using namespace sio;
+using namespace std;
 
 class SIO_Test {
 public:
 	void SimpleTest();
 
 private:
-	connection_listener *listener;
+	sio::client h;
 };
 
 
