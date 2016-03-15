@@ -1,5 +1,5 @@
 #include "sio_test.h"
-
+#include <stdio.h>
 void OnMessage(sio::event *event)
 {
 
@@ -18,9 +18,10 @@ void SIO_Test::SimpleTest() {
 	}
 	h.socket()->on("response_node", sio::socket::event_listener_aux([&](string const& name, message::ptr const& data, bool isAck,message::list &ack_resp){
 		string xo = "{\"val\":\"Ficken!\"}";
+		printf("Triggered\n");
 		h.socket()->emit("hello",string_message::create(test_var), [&](message::list const& msg){});
     }));
-	while(1){}
+	while(true){}
 }
 /*
  * sio_test.cpp
