@@ -8,6 +8,19 @@
 #ifndef SOCKET_IO_TEST_SIO_TEST_CON_LISTENER_H_
 #define SOCKET_IO_TEST_SIO_TEST_CON_LISTENER_H_
 
+#ifndef NOT_RASPI
+#include "/home/pi/Git/socket.io-client-cpp/src/sio_client.h"
+#endif
+
+#include <functional>
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <string>
+
+using namespace sio;
+using namespace std;
 
 class connection_listener
 {
