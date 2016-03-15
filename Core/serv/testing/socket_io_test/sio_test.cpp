@@ -10,7 +10,7 @@ void SIO_Test::SimpleTest() {
 	string test_var = "{\"val\":\"hallo welt!\"}";
 	for(int i=0;i<100;i++)
 	{
-		h.socket()->emit("hello",string_message::create(test_var), [&](message::list const& msg);
+		h.socket()->emit("hello",string_message::create(test_var), [&](message::list const& msg){});
 		usleep(100*1000);
 	}
 
