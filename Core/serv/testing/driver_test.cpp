@@ -7,6 +7,7 @@
 
 #include "driver_test.h"
 #include <unistd.h>
+using namespace std;
 
 
 TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
@@ -15,6 +16,7 @@ TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_device.name = "Encoder";
 
 	_encoderClient = new EncoderClient(_baseDriver,&_device);
+	this->_testGpio = new gpio("5");
 }
 
 TEST_Driver::~TEST_Driver() {
@@ -30,4 +32,27 @@ void TEST_Driver::SimpleTest() {
 		printf("position:%i\n",result2);
 		usleep(250*1000);
 	}
+}
+
+void TEST_Driver::GPIOTest() {
+	printf("Testing GPIO hardware driver.\n");
+
+	printf("Export gpio[%i] pin.\n",);
+
+	this->_testGpio->export_gpio();
+
+	printf("Set direction of gpio to output");
+
+	this->_testGpio->setdir_gpio("out");
+
+	printf("Set On\n");
+
+	this->_testGpio->setval_gpio("1");
+
+	usleep(1000*1000);
+
+	printf("Set Off\n");
+
+	this->_testGpio->setval_gpio("0");
+
 }

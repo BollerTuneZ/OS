@@ -1,3 +1,9 @@
+/*
+ * sio_test.cpp
+ *
+ *  Created on: 14.03.2016
+ *      Author: Jonas
+ */
 #include "sio_test.h"
 #include <stdio.h>
 #include <iostream>
@@ -26,12 +32,7 @@ void SIO_Test::SimpleTest() {
 
 	while(true){}
 }
-/*
- * sio_test.cpp
- *
- *  Created on: 14.03.2016
- *      Author: Jonas
- */
+
 
 
 
