@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include "../driver/driver_common.h"
+#include "../driver/gpio_driver/gpio.h"
 #include "../driver/i2c_base_cpp/i2c_base.h"
 #include "../driver/SoftDriver/light/light.h"
 #include "testing/driver_test.h"
@@ -35,8 +36,8 @@ int main(int argc, char **argv) {
 	}
 	driverTest = new TEST_Driver(&_i2cBaseDriver);
 	//test_sio();
-	//driverTest->SimpleTest();
-	driverTest->GPIOTest();
+	driverTest->SimpleTest();
+	//driverTest->GPIOTest();
 	//test_light();
 }
 
