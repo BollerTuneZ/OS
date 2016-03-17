@@ -2,14 +2,39 @@
   "port": "8081",
 
   "ip": "localhost",
-  "rangeid": "#rangetest",
-  "checkid": "#checktest",
-  "label": "#rangetestlabel",
-  "button1id": "#btn-on",
-  "button2id": "#btn-off",
-  "socketname1": "test1",
-  "socketname2": "test2",
-
+  
+  
+  
+  "front": {
+	  "rangeid": "#range_in_front",
+	  "checkid": "#check_front",
+	  "label": "#range_label_front",
+	  "buttonid1": "#btn_on_front",
+	  "buttonid2": "#btn_off_front",
+	  "socketname1": "fsion",
+	  "socketname2": "test2"
+  },
+  
+  "rear": {
+	  "rangeid": "#range_in_rear",
+	  "checkid": "#check_rear",
+	  "label": "#range_label_rear",
+	  "buttonid1": "#btn_on_rear",
+	  "buttonid2": "#btn_off_rear",
+	  "socketname1": "rsion",
+	  "socketname2": "test2"
+  },
+  
+ "all": {
+	  "rangeid": "#range_in_all",
+	  "checkid": "#check_all",
+	  "label": "#range_label_all",
+	  "buttonid1": "#btn_on_all",
+	  "buttonid2": "#btn_off_all",
+	  "socketname1": "asion",
+	  "socketname2": "test2"
+  },
+  
   "group1": {
     "rangeid": "#rangetest",
     "checkid": "#checktest",

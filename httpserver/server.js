@@ -7,7 +7,7 @@ var json = require('./public/json/test.json');
 var io = require('socket.io').listen(httpServer);
 var r = require('rethinkdb');
 var md5 = require('js-md5');
-var util = require("./intern_modules/util.js");
+//var util = require("./intern_modules/util.js");
 var connection = null;
 var ip = "";
 
@@ -120,6 +120,18 @@ r.connect( {host: 'localhost', port: 28015, db: 'test'}, function(err, conn) {
 
         socket.on(json.group1.socketname1, function (data) {
                 socket.broadcast.emit(json.group1.socketname1, { siodata: data.siodata });
+        });
+        socket.on(json.front.socketname1, function (data) {
+                socket.broadcast.emit(json.front.socketname1, { siodata: data.siodata });
+                console.log(data);
+        });
+        socket.on(json.rear.socketname1, function (data) {
+                socket.broadcast.emit(json.rear.socketname1, { siodata: data.siodata });
+                console.log(data);
+        });
+        socket.on(json.all.socketname1, function (data) {
+                socket.broadcast.emit(json.all.socketname1, { siodata: data.siodata });
+                console.log(data);
         });
         socket.on(json.group1.socketname2, function (data) {
             socket.broadcast.emit(json.group1.socketname2, { siodata: data.siodata });
