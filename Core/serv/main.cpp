@@ -36,8 +36,8 @@ int main(int argc, char **argv) {
 	}
 	driverTest = new TEST_Driver(&_i2cBaseDriver);
 	//test_sio();
-	driverTest->SimpleTest();
-	//driverTest->GPIOTest();
+	//driverTest->SimpleTest();
+	driverTest->GPIOTest();
 	//test_light();
 }
 

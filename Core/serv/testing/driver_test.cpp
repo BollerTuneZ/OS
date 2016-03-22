@@ -24,21 +24,21 @@ TEST_Driver::~TEST_Driver() {
 
 void TEST_Driver::SimpleTest() {
 	printf("Testing EncoderClient Driver\nRead for 30sec encoder...\n");
-	/*
+	
 	for(int i=0;i<120;i++)
 	{
 		int result2 = _encoderClient->ReadPosition();
 		if(result2 > 6000){printf("ERROR");}
 		printf("position:%i\n",result2);
 		usleep(250*1000);
-	}*/
-	GPIOTest();
+	}
+	
 }
 
 void TEST_Driver::GPIOTest() {
 	printf("Testing GPIO hardware driver.\n");
 
-	printf("Export gpio[%i] pin.\n",);
+	printf("Export gpio[%i] pin.\n",5);
 
 	this->_testGpio->export_gpio();
 
@@ -50,7 +50,7 @@ void TEST_Driver::GPIOTest() {
 
 	this->_testGpio->setval_gpio("1");
 
-	usleep(1000*1000);
+	usleep((1000*1000)*2);
 
 	printf("Set Off\n");
 
