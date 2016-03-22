@@ -12,8 +12,7 @@
 #include "../../driver/i2c_base_cpp/i2c_base.h"
 #include "../../driver/SoftDriver/EncoderClient/encoder_client.h"
 #include "../../driver/gpio_driver/gpio.h"
-#include <string>
-using namespace std;
+
 class TEST_Driver {
 public:
 	TEST_Driver(i2c_base *baseDriver);

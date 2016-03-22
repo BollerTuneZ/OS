@@ -7,7 +7,6 @@
 
 #include "driver_test.h"
 #include <unistd.h>
-using namespace std;
 
 
 TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
@@ -16,7 +15,7 @@ TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_device.name = "Encoder";
 
 	_encoderClient = new EncoderClient(_baseDriver,&_device);
-	this->_testGpio = new gpio("0");
+	this->_testGpio = new gpio();
 }
 
 TEST_Driver::~TEST_Driver() {
@@ -37,23 +36,14 @@ void TEST_Driver::SimpleTest() {
 
 void TEST_Driver::GPIOTest() {
 	printf("Testing GPIO hardware driver.\n");
+	int oneSecond = (1000*1000)*2;
+	this->_testGpio->DigitalWrite(0,0x0);
+	usleep(oneSecond);
+	this->_testGpio->DigitalWrite(0,0x1);
+	usleep(oneSecond);
+	this->_testGpio->DigitalWrite(0,0x0);
+	usleep(oneSecond);
 
-	printf("Export gpio[%i] pin.\n",4);
-	int result =0;
-	result = this->_testGpio->export_gpio();
-	printf("Export result %i\n",result);
-	printf("Set direction of gpio to output");
 
-	result = this->_testGpio->setdir_gpio("out");
-	printf("Dir result %i\n",result);
-	printf("Set On\n");
 
-	result = this->_testGpio->setval_gpio("1");
-	printf("SetVal1 result %i\n",result);
-	usleep((1000*1000)*2);
-
-	printf("Set Off\n");
-
-	result = this->_testGpio->setval_gpio("0");
-	printf("SetVal2 result %i\n",result);
 }
