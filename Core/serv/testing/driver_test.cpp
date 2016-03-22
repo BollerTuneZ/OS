@@ -39,21 +39,21 @@ void TEST_Driver::GPIOTest() {
 	printf("Testing GPIO hardware driver.\n");
 
 	printf("Export gpio[%i] pin.\n",5);
-
-	this->_testGpio->export_gpio();
-
+	int result =0;
+	result = this->_testGpio->export_gpio();
+	printf("Export result %i",result);
 	printf("Set direction of gpio to output");
 
-	this->_testGpio->setdir_gpio("out");
-
+	result this->_testGpio->setdir_gpio("out");
+	printf("Dir result %i",result);
 	printf("Set On\n");
 
-	this->_testGpio->setval_gpio("1");
-
+	result this->_testGpio->setval_gpio("1");
+	printf("SetVal1 result %i",result);
 	usleep((1000*1000)*2);
 
 	printf("Set Off\n");
 
-	this->_testGpio->setval_gpio("0");
-
+	result this->_testGpio->setval_gpio("0");
+	printf("SetVal2 result %i",result);
 }
