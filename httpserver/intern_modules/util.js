@@ -9,7 +9,7 @@ var indexes = [];
 
 function GetLastIndex(name)
 {
-	for(var i=0,j=indexes.length;i++)
+	for(var i=0,j=indexes.length;i++ )
 	{
 		var currentIndex = indexes[i];
 		if(currentIndex.name == name)

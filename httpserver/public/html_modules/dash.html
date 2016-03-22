@@ -1,3 +1,4 @@
+<script src="../js/dash.js"></script>
 <div class="col-md-6 col-sm-6 col-lg-6">
 	<div class="panel panel-default pan">
 			<h2>Socket IO Test</h2>
@@ -22,28 +23,93 @@
 
 	<div class="col-md-6 col-sm-6 col-lg-6">
 		<div class="panel panel-default pan">
-			<h2>Led On/Off, Range & Action</h2>
-
-			<div class="input-group">
+			<h2>Licht</h2>
+			
+				<div class="col-sx-12">
+					<div class="col-sx-2 col-sm-4 col-md-4 col-lg-4">
+						<button type="button" id="blil" class="btn btn-warning btn-block">
+						<span class="glyphicon glyphicon-arrow-left"></span>
+						</button>
+					</div>	
+					<div class="col-sx-2 col-sm-4 col-md-4 col-lg-4">	
+						<button type="button" id="bli0" class="btn btn-default btn-block">
+						<span class="glyphicon glyphicon-remove-sign"></span>
+						</button>
+					</div>
+					<div class="col-sx-2 col-sm-4 col-md-4 col-lg-4">	
+						<button type="button" id="blir" class="btn btn-warning btn-block">
+						<span class="glyphicon glyphicon-arrow-right"></span> 
+						</button>
+					</div>
+				</div>			
+			
+			    <div class="input-group">
 				<span class="input-group-addon">
-        			<input type="checkbox" id="checktest">
+        			<input type="checkbox" id="check_front">
       			</span>
-
 				<span class="input-group-addon">
-        			<label id="rangetestlabel" class="test">Vorne</label>
+        			<label id="range_label_front" class="test">Vorne</label>
       			</span>
-				<input type="range" class="form-control " id="rangetest">
+				<input type="range" class="form-control" id="range_in_front">
 				<div class="input-group-btn">
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Mehr <span class="caret"></span></button>
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li id="btn-on"><a href="#">100% On</a></li>
-						<li id="btn-off"><a href="#">0% Off</a></li>
+						<li id="btn_on_front"><a href="#">100% On</a></li>
+						<li id="btn_off_front"><a href="#">0% Off</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#" class="disabled">Licht</a></li>
 					</ul>
 				</div><!-- /btn-group -->
 			</div><!-- /input-group -->
+			
+			
+			
+			
+				<div class="input-group">
+				<span class="input-group-addon">
+        			<input type="checkbox" id="check_rear">
+      			</span>
+				<span class="input-group-addon">
+        			<label id="range_label_rear" class="test">Hinten</label>
+      			</span>
+				<input type="range" class="form-control " id="range_in_rear">
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Mehr <span class="caret"></span></button>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li id="btn_on_rear"><a href="#">100% On</a></li>
+						<li id="btn_off_rear"><a href="#">0% Off</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#" class="disabled">Licht</a></li>
+					</ul>
+				</div><!-- /btn-group -->
+			</div><!-- /input-group -->
+			
+			
+				<div class="input-group">
+				<span class="input-group-addon">
+        			<input type="checkbox" id="check_all">
+      			</span>
+				<span class="input-group-addon">
+        			<label id="range_label_all" class="test">Alle</label>
+      			</span>
+				<input type="range" class="form-control " id="range_in_all">
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Mehr <span class="caret"></span></button>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li id="btn_on_all"><a href="#">100% On</a></li>
+						<li id="btn_off_all"><a href="#">0% Off</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#" class="disabled">Licht</a></li>
+					</ul>
+				</div><!-- /btn-group -->
+			</div><!-- /input-group -->
+				
+				
+				
+		</div>
 
 
 	</div>
