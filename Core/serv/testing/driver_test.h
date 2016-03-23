@@ -26,7 +26,7 @@ private:
 	i2c_base *_baseDriver;
 	EncoderClient *_encoderClient;
 	btz_i2c_device _device;
-	gpio *_testGpio;
+	gpio_btz *_testGpio;
 
 };
 
