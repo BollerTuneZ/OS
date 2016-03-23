@@ -7,16 +7,16 @@
  *      Author: Jonas
  */
 
-#ifndef GPIO_H_
-#define GPIO_H_
+#ifndef GPIO_BTZ_H_
+#define GPIO_BTZ_H_
 
 
 
 
-class gpio {
+class gpio_btz {
 public:
-	gpio();
-	~gpio();
+	gpio_btz();
+	~gpio_btz();
 
 	void DigitalWrite(int pin,char state);
 
@@ -26,4 +26,4 @@ public:
 
 
 
-#endif /* GPIO_H_ */
+#endif /* GPIO_BTZ_H_ */

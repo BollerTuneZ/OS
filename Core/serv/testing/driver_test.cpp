@@ -7,7 +7,8 @@
 
 #include "driver_test.h"
 #include <unistd.h>
-#include "../../driver/gpio_driver/gpio.h"
+
+#include "../../driver/gpio_driver/gpio_btz.h"
 
 TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_baseDriver = baseDriver;
