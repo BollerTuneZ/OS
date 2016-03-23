@@ -9,10 +9,7 @@
 
 #ifndef GPIO_BTZ_H_
 #define GPIO_BTZ_H_
-extern "C"
-{
-#include <wiringPi.h>
-}
+
 
 
 
