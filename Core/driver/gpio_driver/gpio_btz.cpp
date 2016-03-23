@@ -1,8 +1,5 @@
 #include "gpio_btz.h"
-extern "C"
-{
-#include <wiringPi.h>
-}
+
 
 void gpio_btz::DigitalWrite(int pin, char state) {
 
