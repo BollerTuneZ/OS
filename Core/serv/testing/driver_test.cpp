@@ -16,7 +16,7 @@ TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_device.name = "Encoder";
 
 	_encoderClient = new EncoderClient(_baseDriver,&_device);
-	this->_testGpio = new gpio;
+	this->_testGpio = new gpio_btz;
 }
 
 TEST_Driver::~TEST_Driver() {
