@@ -7,7 +7,7 @@
 
 #include "driver_test.h"
 #include <unistd.h>
-
+#include "../../driver/gpio_driver/gpio.h"
 
 TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_baseDriver = baseDriver;
@@ -15,7 +15,7 @@ TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_device.name = "Encoder";
 
 	_encoderClient = new EncoderClient(_baseDriver,&_device);
-	this->_testGpio = new gpio();
+	this->_testGpio = new gpio;
 }
 
 TEST_Driver::~TEST_Driver() {
