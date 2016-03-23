@@ -193,6 +193,33 @@ sioclient_tls/fast:
 	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/build
 .PHONY : sioclient_tls/fast
 
+home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.o: home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o
+
+.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.o
+
+# target to build an object file
+home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o:
+	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o
+.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o
+
+home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.i: home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i
+
+.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.i
+
+# target to preprocess a source file
+home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i:
+	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i
+.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i
+
+home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.s: home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s
+
+.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.s
+
+# target to generate assembly for a file
+home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s:
+	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s
+.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s
+
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o: home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
 
 .PHONY : home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o
@@ -340,6 +367,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+testing/driver_test.o: testing/driver_test.cpp.o
+
+.PHONY : testing/driver_test.o
+
+# target to build an object file
+testing/driver_test.cpp.o:
+	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/driver_test.cpp.o
+.PHONY : testing/driver_test.cpp.o
+
+testing/driver_test.i: testing/driver_test.cpp.i
+
+.PHONY : testing/driver_test.i
+
+# target to preprocess a source file
+testing/driver_test.cpp.i:
+	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/driver_test.cpp.i
+.PHONY : testing/driver_test.cpp.i
+
+testing/driver_test.s: testing/driver_test.cpp.s
+
+.PHONY : testing/driver_test.s
+
+# target to generate assembly for a file
+testing/driver_test.cpp.s:
+	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/driver_test.cpp.s
+.PHONY : testing/driver_test.cpp.s
+
 testing/socket_io_test/sio_test.o: testing/socket_io_test/sio_test.cpp.o
 
 .PHONY : testing/socket_io_test/sio_test.o
@@ -382,6 +436,9 @@ help:
 	@echo "... install/local"
 	@echo "... rebuild_cache"
 	@echo "... sioclient_tls"
+	@echo "... home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.o"
+	@echo "... home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.i"
+	@echo "... home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.s"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.i"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.s"
@@ -397,6 +454,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... testing/driver_test.o"
+	@echo "... testing/driver_test.i"
+	@echo "... testing/driver_test.s"
 	@echo "... testing/socket_io_test/sio_test.o"
 	@echo "... testing/socket_io_test/sio_test.i"
 	@echo "... testing/socket_io_test/sio_test.s"
