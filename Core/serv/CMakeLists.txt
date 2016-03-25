@@ -10,8 +10,5 @@ target_link_libraries(main.app /home/pi/Git/OS/Core/driver/SoftDriver/EncoderCli
 target_link_libraries(main.app /home/pi/Git/OS/Core/driver/SoftDriver/light/light.o)
 target_link_libraries(main.app sioclient)
 target_link_libraries(main.app pthread )
-target_link_libraries(main.app wiringPi )
-target_link_libraries(main.app wiringPiDev )
-target_link_libraries(main.app m )
 message(STATUS ${Boost_INCLUDE_DIRS} )
 #target_include_directories(sio_test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../src" ${Boost_INCLUDE_DIRS} )
