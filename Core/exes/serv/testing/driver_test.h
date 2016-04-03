@@ -8,10 +8,10 @@
 #ifndef DRIVER_TEST_H_
 #define DRIVER_TEST_H_
 #include <stdio.h>
-#include "../../driver/driver_common.h"
-#include "../../driver/gpio_driver/gpio_btz.h"
-#include "../../driver/i2c_base_cpp/i2c_base.h"
-#include "../../driver/SoftDriver/EncoderClient/encoder_client.h"
+#include "../../../include/driver_common.h"
+#include "../../../libssrc/gpio_driver/gpio_btz.h"
+#include "../../../libssrc//i2c_base_cpp/i2c_base.h"
+#include "../../../libssrc//EncoderClient/encoder_client.h"
 
 class TEST_Driver {
 public:

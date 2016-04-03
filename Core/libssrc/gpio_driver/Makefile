@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/i2c_base_cpp/CMakeFiles/progress.marks
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/all
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/gpio_driver/CMakeFiles/progress.marks
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/gpio_driver/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/clean
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/gpio_driver/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,12 +141,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/gpio_driver/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/gpio_driver/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -155,46 +155,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
-.PHONY : libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
+libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/rule
+.PHONY : libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/rule
 
 # Convenience name for target.
-i2c_base_cpp: libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
+gpio_driver: libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/rule
 
-.PHONY : i2c_base_cpp
+.PHONY : gpio_driver
 
 # fast build rule for target.
-i2c_base_cpp/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build
-.PHONY : i2c_base_cpp/fast
+gpio_driver/fast:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build.make libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build
+.PHONY : gpio_driver/fast
 
-i2c_base.o: i2c_base.cpp.o
+gpio_btz.o: gpio_btz.cpp.o
 
-.PHONY : i2c_base.o
+.PHONY : gpio_btz.o
 
 # target to build an object file
-i2c_base.cpp.o:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.o
-.PHONY : i2c_base.cpp.o
+gpio_btz.cpp.o:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build.make libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/gpio_btz.cpp.o
+.PHONY : gpio_btz.cpp.o
 
-i2c_base.i: i2c_base.cpp.i
+gpio_btz.i: gpio_btz.cpp.i
 
-.PHONY : i2c_base.i
+.PHONY : gpio_btz.i
 
 # target to preprocess a source file
-i2c_base.cpp.i:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.i
-.PHONY : i2c_base.cpp.i
+gpio_btz.cpp.i:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build.make libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/gpio_btz.cpp.i
+.PHONY : gpio_btz.cpp.i
 
-i2c_base.s: i2c_base.cpp.s
+gpio_btz.s: gpio_btz.cpp.s
 
-.PHONY : i2c_base.s
+.PHONY : gpio_btz.s
 
 # target to generate assembly for a file
-i2c_base.cpp.s:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.s
-.PHONY : i2c_base.cpp.s
+gpio_btz.cpp.s:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build.make libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/gpio_btz.cpp.s
+.PHONY : gpio_btz.cpp.s
 
 # Help Target
 help:
@@ -206,12 +206,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
-	@echo "... i2c_base_cpp"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... i2c_base.o"
-	@echo "... i2c_base.i"
-	@echo "... i2c_base.s"
+	@echo "... gpio_driver"
+	@echo "... gpio_btz.o"
+	@echo "... gpio_btz.i"
+	@echo "... gpio_btz.s"
 .PHONY : help
 
 

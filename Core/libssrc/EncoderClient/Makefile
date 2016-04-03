@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/i2c_base_cpp/CMakeFiles/progress.marks
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/all
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/EncoderClient/CMakeFiles/progress.marks
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/EncoderClient/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/clean
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/EncoderClient/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,12 +141,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/EncoderClient/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/EncoderClient/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -155,46 +155,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
-.PHONY : libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
+libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/rule
+.PHONY : libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/rule
 
 # Convenience name for target.
-i2c_base_cpp: libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
+EncoderClient: libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/rule
 
-.PHONY : i2c_base_cpp
+.PHONY : EncoderClient
 
 # fast build rule for target.
-i2c_base_cpp/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build
-.PHONY : i2c_base_cpp/fast
+EncoderClient/fast:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build.make libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build
+.PHONY : EncoderClient/fast
 
-i2c_base.o: i2c_base.cpp.o
+encoder_client.o: encoder_client.cpp.o
 
-.PHONY : i2c_base.o
+.PHONY : encoder_client.o
 
 # target to build an object file
-i2c_base.cpp.o:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.o
-.PHONY : i2c_base.cpp.o
+encoder_client.cpp.o:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build.make libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/encoder_client.cpp.o
+.PHONY : encoder_client.cpp.o
 
-i2c_base.i: i2c_base.cpp.i
+encoder_client.i: encoder_client.cpp.i
 
-.PHONY : i2c_base.i
+.PHONY : encoder_client.i
 
 # target to preprocess a source file
-i2c_base.cpp.i:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.i
-.PHONY : i2c_base.cpp.i
+encoder_client.cpp.i:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build.make libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/encoder_client.cpp.i
+.PHONY : encoder_client.cpp.i
 
-i2c_base.s: i2c_base.cpp.s
+encoder_client.s: encoder_client.cpp.s
 
-.PHONY : i2c_base.s
+.PHONY : encoder_client.s
 
 # target to generate assembly for a file
-i2c_base.cpp.s:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.s
-.PHONY : i2c_base.cpp.s
+encoder_client.cpp.s:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build.make libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/encoder_client.cpp.s
+.PHONY : encoder_client.cpp.s
 
 # Help Target
 help:
@@ -203,15 +203,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... list_install_components"
+	@echo "... EncoderClient"
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
-	@echo "... i2c_base_cpp"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... i2c_base.o"
-	@echo "... i2c_base.i"
-	@echo "... i2c_base.s"
+	@echo "... encoder_client.o"
+	@echo "... encoder_client.i"
+	@echo "... encoder_client.s"
 .PHONY : help
 
 

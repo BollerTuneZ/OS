@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Git/OS/Core/serv
+CMAKE_SOURCE_DIR = /home/pi/Git/OS/Core
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Git/OS/Core/serv
+CMAKE_BINARY_DIR = /home/pi/Git/OS/Core
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/serv/CMakeFiles /home/pi/Git/OS/Core/serv/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/serv/CMakeFiles 0
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/exes/serv/CMakeFiles/progress.marks
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,84 +141,63 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named main.app
+# Convenience name for target.
+exes/serv/CMakeFiles/serv.app.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/CMakeFiles/serv.app.dir/rule
+.PHONY : exes/serv/CMakeFiles/serv.app.dir/rule
 
-# Build rule for target.
-main.app: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 main.app
-.PHONY : main.app
+# Convenience name for target.
+serv.app: exes/serv/CMakeFiles/serv.app.dir/rule
+
+.PHONY : serv.app
 
 # fast build rule for target.
-main.app/fast:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/build
-.PHONY : main.app/fast
+serv.app/fast:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/build
+.PHONY : serv.app/fast
 
-#=============================================================================
-# Target rules for targets named sioclient
+# Convenience name for target.
+exes/serv/CMakeFiles/sioclient.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/CMakeFiles/sioclient.dir/rule
+.PHONY : exes/serv/CMakeFiles/sioclient.dir/rule
 
-# Build rule for target.
-sioclient: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sioclient
+# Convenience name for target.
+sioclient: exes/serv/CMakeFiles/sioclient.dir/rule
+
 .PHONY : sioclient
 
 # fast build rule for target.
 sioclient/fast:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/build
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/build
 .PHONY : sioclient/fast
 
-#=============================================================================
-# Target rules for targets named sioclient_tls
+# Convenience name for target.
+exes/serv/CMakeFiles/sioclient_tls.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/CMakeFiles/sioclient_tls.dir/rule
+.PHONY : exes/serv/CMakeFiles/sioclient_tls.dir/rule
 
-# Build rule for target.
-sioclient_tls: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sioclient_tls
+# Convenience name for target.
+sioclient_tls: exes/serv/CMakeFiles/sioclient_tls.dir/rule
+
 .PHONY : sioclient_tls
 
 # fast build rule for target.
 sioclient_tls/fast:
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/build
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/build
 .PHONY : sioclient_tls/fast
-
-home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.o: home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o
-
-.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.o
-
-# target to build an object file
-home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o
-.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.o
-
-home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.i: home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i
-
-.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.i
-
-# target to preprocess a source file
-home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i
-.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.i
-
-home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.s: home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s
-
-.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.s
-
-# target to generate assembly for a file
-home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s
-.PHONY : home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.cpp.s
 
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o: home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
 
@@ -226,8 +205,8 @@ home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o: home/pi/Git/soc
 
 # target to build an object file
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
 .PHONY : home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
 
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.i: home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.i
@@ -236,8 +215,8 @@ home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.i: home/pi/Git/soc
 
 # target to preprocess a source file
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.i:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.i
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.i
 .PHONY : home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.i
 
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.s: home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.s
@@ -246,8 +225,8 @@ home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.s: home/pi/Git/soc
 
 # target to generate assembly for a file
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.s:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.s
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.s
 .PHONY : home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.s
 
 home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.o: home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o
@@ -256,8 +235,8 @@ home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.o: home/pi/Git/socket.i
 
 # target to build an object file
 home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o
 .PHONY : home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.o
 
 home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.i: home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.i
@@ -266,8 +245,8 @@ home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.i: home/pi/Git/socket.i
 
 # target to preprocess a source file
 home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.i:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.i
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.i
 .PHONY : home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.i
 
 home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.s: home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.s
@@ -276,8 +255,8 @@ home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.s: home/pi/Git/socket.i
 
 # target to generate assembly for a file
 home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.s:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.s
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.s
 .PHONY : home/pi/Git/socket.io-client-cpp/src/internal/sio_packet.cpp.s
 
 home/pi/Git/socket.io-client-cpp/src/sio_client.o: home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o
@@ -286,8 +265,8 @@ home/pi/Git/socket.io-client-cpp/src/sio_client.o: home/pi/Git/socket.io-client-
 
 # target to build an object file
 home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o
 .PHONY : home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.o
 
 home/pi/Git/socket.io-client-cpp/src/sio_client.i: home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.i
@@ -296,8 +275,8 @@ home/pi/Git/socket.io-client-cpp/src/sio_client.i: home/pi/Git/socket.io-client-
 
 # target to preprocess a source file
 home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.i:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.i
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.i
 .PHONY : home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.i
 
 home/pi/Git/socket.io-client-cpp/src/sio_client.s: home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.s
@@ -306,8 +285,8 @@ home/pi/Git/socket.io-client-cpp/src/sio_client.s: home/pi/Git/socket.io-client-
 
 # target to generate assembly for a file
 home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.s:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.s
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.s
 .PHONY : home/pi/Git/socket.io-client-cpp/src/sio_client.cpp.s
 
 home/pi/Git/socket.io-client-cpp/src/sio_socket.o: home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o
@@ -316,8 +295,8 @@ home/pi/Git/socket.io-client-cpp/src/sio_socket.o: home/pi/Git/socket.io-client-
 
 # target to build an object file
 home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o
 .PHONY : home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.o
 
 home/pi/Git/socket.io-client-cpp/src/sio_socket.i: home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.i
@@ -326,8 +305,8 @@ home/pi/Git/socket.io-client-cpp/src/sio_socket.i: home/pi/Git/socket.io-client-
 
 # target to preprocess a source file
 home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.i:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.i
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.i
 .PHONY : home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.i
 
 home/pi/Git/socket.io-client-cpp/src/sio_socket.s: home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.s
@@ -336,8 +315,8 @@ home/pi/Git/socket.io-client-cpp/src/sio_socket.s: home/pi/Git/socket.io-client-
 
 # target to generate assembly for a file
 home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.s:
-	$(MAKE) -f CMakeFiles/sioclient.dir/build.make CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.s
-	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.s
 .PHONY : home/pi/Git/socket.io-client-cpp/src/sio_socket.cpp.s
 
 main.o: main.cpp.o
@@ -346,7 +325,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/main.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -355,7 +334,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/main.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -364,62 +343,8 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/main.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-testing/driver_test.o: testing/driver_test.cpp.o
-
-.PHONY : testing/driver_test.o
-
-# target to build an object file
-testing/driver_test.cpp.o:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/driver_test.cpp.o
-.PHONY : testing/driver_test.cpp.o
-
-testing/driver_test.i: testing/driver_test.cpp.i
-
-.PHONY : testing/driver_test.i
-
-# target to preprocess a source file
-testing/driver_test.cpp.i:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/driver_test.cpp.i
-.PHONY : testing/driver_test.cpp.i
-
-testing/driver_test.s: testing/driver_test.cpp.s
-
-.PHONY : testing/driver_test.s
-
-# target to generate assembly for a file
-testing/driver_test.cpp.s:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/driver_test.cpp.s
-.PHONY : testing/driver_test.cpp.s
-
-testing/socket_io_test/sio_test.o: testing/socket_io_test/sio_test.cpp.o
-
-.PHONY : testing/socket_io_test/sio_test.o
-
-# target to build an object file
-testing/socket_io_test/sio_test.cpp.o:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/socket_io_test/sio_test.cpp.o
-.PHONY : testing/socket_io_test/sio_test.cpp.o
-
-testing/socket_io_test/sio_test.i: testing/socket_io_test/sio_test.cpp.i
-
-.PHONY : testing/socket_io_test/sio_test.i
-
-# target to preprocess a source file
-testing/socket_io_test/sio_test.cpp.i:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/socket_io_test/sio_test.cpp.i
-.PHONY : testing/socket_io_test/sio_test.cpp.i
-
-testing/socket_io_test/sio_test.s: testing/socket_io_test/sio_test.cpp.s
-
-.PHONY : testing/socket_io_test/sio_test.s
-
-# target to generate assembly for a file
-testing/socket_io_test/sio_test.cpp.s:
-	$(MAKE) -f CMakeFiles/main.app.dir/build.make CMakeFiles/main.app.dir/testing/socket_io_test/sio_test.cpp.s
-.PHONY : testing/socket_io_test/sio_test.cpp.s
 
 # Help Target
 help:
@@ -428,17 +353,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... list_install_components"
+	@echo "... serv.app"
 	@echo "... sioclient"
-	@echo "... main.app"
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
 	@echo "... sioclient_tls"
-	@echo "... home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.o"
-	@echo "... home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.i"
-	@echo "... home/pi/Git/OS/Core/driver/gpio_driver/gpio_btz.s"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.i"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.s"
@@ -454,12 +376,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... testing/driver_test.o"
-	@echo "... testing/driver_test.i"
-	@echo "... testing/driver_test.s"
-	@echo "... testing/socket_io_test/sio_test.o"
-	@echo "... testing/socket_io_test/sio_test.i"
-	@echo "... testing/socket_io_test/sio_test.s"
 .PHONY : help
 
 
@@ -471,6 +387,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

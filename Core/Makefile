@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/i2c_base_cpp/CMakeFiles/progress.marks
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/CMakeFiles/progress.marks
+	$(MAKE) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/clean
+	$(MAKE) -f CMakeFiles/Makefile2 clean
 .PHONY : clean
 
 # The main clean target
@@ -141,60 +141,109 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
-.PHONY : libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
+#=============================================================================
+# Target rules for targets named i2c_base_cpp
 
-# Convenience name for target.
-i2c_base_cpp: libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
-
+# Build rule for target.
+i2c_base_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 i2c_base_cpp
 .PHONY : i2c_base_cpp
 
 # fast build rule for target.
 i2c_base_cpp/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build
+	$(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build
 .PHONY : i2c_base_cpp/fast
 
-i2c_base.o: i2c_base.cpp.o
+#=============================================================================
+# Target rules for targets named EncoderClient
 
-.PHONY : i2c_base.o
+# Build rule for target.
+EncoderClient: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 EncoderClient
+.PHONY : EncoderClient
 
-# target to build an object file
-i2c_base.cpp.o:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.o
-.PHONY : i2c_base.cpp.o
+# fast build rule for target.
+EncoderClient/fast:
+	$(MAKE) -f libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build.make libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build
+.PHONY : EncoderClient/fast
 
-i2c_base.i: i2c_base.cpp.i
+#=============================================================================
+# Target rules for targets named gpio_driver
 
-.PHONY : i2c_base.i
+# Build rule for target.
+gpio_driver: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gpio_driver
+.PHONY : gpio_driver
 
-# target to preprocess a source file
-i2c_base.cpp.i:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.i
-.PHONY : i2c_base.cpp.i
+# fast build rule for target.
+gpio_driver/fast:
+	$(MAKE) -f libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build.make libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build
+.PHONY : gpio_driver/fast
 
-i2c_base.s: i2c_base.cpp.s
+#=============================================================================
+# Target rules for targets named light
 
-.PHONY : i2c_base.s
+# Build rule for target.
+light: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 light
+.PHONY : light
 
-# target to generate assembly for a file
-i2c_base.cpp.s:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.s
-.PHONY : i2c_base.cpp.s
+# fast build rule for target.
+light/fast:
+	$(MAKE) -f libssrc/light/CMakeFiles/light.dir/build.make libssrc/light/CMakeFiles/light.dir/build
+.PHONY : light/fast
+
+#=============================================================================
+# Target rules for targets named serv.app
+
+# Build rule for target.
+serv.app: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 serv.app
+.PHONY : serv.app
+
+# fast build rule for target.
+serv.app/fast:
+	$(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/build
+.PHONY : serv.app/fast
+
+#=============================================================================
+# Target rules for targets named sioclient
+
+# Build rule for target.
+sioclient: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sioclient
+.PHONY : sioclient
+
+# fast build rule for target.
+sioclient/fast:
+	$(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/build
+.PHONY : sioclient/fast
+
+#=============================================================================
+# Target rules for targets named sioclient_tls
+
+# Build rule for target.
+sioclient_tls: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sioclient_tls
+.PHONY : sioclient_tls
+
+# fast build rule for target.
+sioclient_tls/fast:
+	$(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/build
+.PHONY : sioclient_tls/fast
 
 # Help Target
 help:
@@ -206,12 +255,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
-	@echo "... i2c_base_cpp"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... i2c_base.o"
-	@echo "... i2c_base.i"
-	@echo "... i2c_base.s"
+	@echo "... i2c_base_cpp"
+	@echo "... EncoderClient"
+	@echo "... gpio_driver"
+	@echo "... light"
+	@echo "... serv.app"
+	@echo "... sioclient"
+	@echo "... sioclient_tls"
 .PHONY : help
 
 
@@ -223,6 +275,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -10,8 +10,8 @@
 #ifndef ENCODER_CLIENT_H_
 #define ENCODER_CLIENT_H_
 
-#include "../../driver_common.h"
-#include "../../i2c_base_cpp/i2c_base.h"
+#include "../../include/driver_common.h"
+#include "../i2c_base_cpp/i2c_base.h"
 
 #define ENC_RUN_MODE 0x0
 #define ENC_POSITION 0x1

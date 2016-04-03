@@ -8,10 +8,10 @@
 #define VERSION "0.1.0"
 
 #include <stdio.h>
-#include "../driver/driver_common.h"
-#include "../driver/gpio_driver/gpio_btz.h"
-#include "../driver/i2c_base_cpp/i2c_base.h"
-#include "../driver/SoftDriver/light/light.h"
+#include "../../include/driver_common.h"
+#include "../../libssrc/gpio_driver/gpio_btz.h"
+#include "../../libssrc/i2c_base_cpp/i2c_base.h"
+#include "../../libssrc/light/light.h"
 #include "testing/driver_test.h"
 #include <unistd.h>
 #include "testing/socket_io_test/sio_test.h"

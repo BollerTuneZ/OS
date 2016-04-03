@@ -8,8 +8,8 @@
 #ifndef LIGHT_H_
 #define LIGHT_H_
 
-#include "../../driver_common.h"
-#include "../../i2c_base_cpp/i2c_base.h"
+#include "../../include/driver_common.h"
+#include "../i2c_base_cpp/i2c_base.h"
 
 typedef struct
 {

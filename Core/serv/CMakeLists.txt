@@ -23,3 +23,4 @@ install(TARGETS ${PROJECT_NAME}
 				LIBRARY DESTINATION lib
 				ARCHIVE DESTINATION lib/static)
 #target_include_directories(sio_test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../src" ${Boost_INCLUDE_DIRS} )
+

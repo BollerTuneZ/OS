@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/i2c_base_cpp/CMakeFiles/progress.marks
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/all
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/light/CMakeFiles/progress.marks
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/light/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/clean
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/light/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,12 +141,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/light/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/light/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -155,46 +155,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
-.PHONY : libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
+libssrc/light/CMakeFiles/light.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/light/CMakeFiles/light.dir/rule
+.PHONY : libssrc/light/CMakeFiles/light.dir/rule
 
 # Convenience name for target.
-i2c_base_cpp: libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/rule
+light: libssrc/light/CMakeFiles/light.dir/rule
 
-.PHONY : i2c_base_cpp
+.PHONY : light
 
 # fast build rule for target.
-i2c_base_cpp/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build
-.PHONY : i2c_base_cpp/fast
+light/fast:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/light/CMakeFiles/light.dir/build.make libssrc/light/CMakeFiles/light.dir/build
+.PHONY : light/fast
 
-i2c_base.o: i2c_base.cpp.o
+light.o: light.cpp.o
 
-.PHONY : i2c_base.o
+.PHONY : light.o
 
 # target to build an object file
-i2c_base.cpp.o:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.o
-.PHONY : i2c_base.cpp.o
+light.cpp.o:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/light/CMakeFiles/light.dir/build.make libssrc/light/CMakeFiles/light.dir/light.cpp.o
+.PHONY : light.cpp.o
 
-i2c_base.i: i2c_base.cpp.i
+light.i: light.cpp.i
 
-.PHONY : i2c_base.i
+.PHONY : light.i
 
 # target to preprocess a source file
-i2c_base.cpp.i:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.i
-.PHONY : i2c_base.cpp.i
+light.cpp.i:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/light/CMakeFiles/light.dir/build.make libssrc/light/CMakeFiles/light.dir/light.cpp.i
+.PHONY : light.cpp.i
 
-i2c_base.s: i2c_base.cpp.s
+light.s: light.cpp.s
 
-.PHONY : i2c_base.s
+.PHONY : light.s
 
 # target to generate assembly for a file
-i2c_base.cpp.s:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/i2c_base.cpp.s
-.PHONY : i2c_base.cpp.s
+light.cpp.s:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/light/CMakeFiles/light.dir/build.make libssrc/light/CMakeFiles/light.dir/light.cpp.s
+.PHONY : light.cpp.s
 
 # Help Target
 help:
@@ -203,15 +203,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... list_install_components"
+	@echo "... light"
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
-	@echo "... i2c_base_cpp"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... i2c_base.o"
-	@echo "... i2c_base.i"
-	@echo "... i2c_base.s"
+	@echo "... light.o"
+	@echo "... light.i"
+	@echo "... light.s"
 .PHONY : help
 
 
