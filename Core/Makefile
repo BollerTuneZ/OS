@@ -229,7 +229,7 @@ sioclient: cmake_check_build_system
 
 # fast build rule for target.
 sioclient/fast:
-	$(MAKE) -f exes/serv/CMakeFiles/sioclient.dir/build.make exes/serv/CMakeFiles/sioclient.dir/build
+	$(MAKE) -f exes/serv/testing/socket_io_test/CMakeFiles/sioclient.dir/build.make exes/serv/testing/socket_io_test/CMakeFiles/sioclient.dir/build
 .PHONY : sioclient/fast
 
 #=============================================================================
@@ -242,8 +242,21 @@ sioclient_tls: cmake_check_build_system
 
 # fast build rule for target.
 sioclient_tls/fast:
-	$(MAKE) -f exes/serv/CMakeFiles/sioclient_tls.dir/build.make exes/serv/CMakeFiles/sioclient_tls.dir/build
+	$(MAKE) -f exes/serv/testing/socket_io_test/CMakeFiles/sioclient_tls.dir/build.make exes/serv/testing/socket_io_test/CMakeFiles/sioclient_tls.dir/build
 .PHONY : sioclient_tls/fast
+
+#=============================================================================
+# Target rules for targets named socket_io_test
+
+# Build rule for target.
+socket_io_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 socket_io_test
+.PHONY : socket_io_test
+
+# fast build rule for target.
+socket_io_test/fast:
+	$(MAKE) -f exes/serv/testing/socket_io_test/CMakeFiles/socket_io_test.dir/build.make exes/serv/testing/socket_io_test/CMakeFiles/socket_io_test.dir/build
+.PHONY : socket_io_test/fast
 
 # Help Target
 help:
@@ -263,6 +276,7 @@ help:
 	@echo "... light"
 	@echo "... serv.app"
 	@echo "... sioclient"
+	@echo "... socket_io_test"
 	@echo "... sioclient_tls"
 .PHONY : help
 

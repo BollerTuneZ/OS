@@ -8,8 +8,6 @@ set(${PROJECT_NAME}_sources main.cpp)
 
 include_directories(/usr/local/lib)
 add_executable(serv.app main.cpp)
-target_link_libraries(serv.app sioclient)
-target_link_libraries(serv.app pthread )
 target_link_libraries(serv.app light)
 target_link_libraries(serv.app EncoderClient)
 target_link_libraries(serv.app i2c_base_cpp)

@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/exes/serv/CMakeFiles/progress.marks
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/all
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/exes/serv/testing/CMakeFiles/progress.marks
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/testing/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/clean
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/testing/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,60 +141,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/testing/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/testing/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
 	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-exes/serv/CMakeFiles/serv.app.dir/rule:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/CMakeFiles/serv.app.dir/rule
-.PHONY : exes/serv/CMakeFiles/serv.app.dir/rule
-
-# Convenience name for target.
-serv.app: exes/serv/CMakeFiles/serv.app.dir/rule
-
-.PHONY : serv.app
-
-# fast build rule for target.
-serv.app/fast:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/build
-.PHONY : serv.app/fast
-
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.s
-.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -203,15 +161,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... list_install_components"
-	@echo "... serv.app"
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 
