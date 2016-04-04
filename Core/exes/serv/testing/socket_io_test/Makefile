@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Git/OS/Core/serv/testing/socket_io_test
+CMAKE_SOURCE_DIR = /home/pi/Git/OS/Core/exes/serv/testing/socket_io_test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Git/OS/Core/serv/testing/socket_io_test
+CMAKE_BINARY_DIR = /home/pi/Git/OS/Core/exes/serv/testing/socket_io_test
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,9 +124,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/serv/testing/socket_io_test/CMakeFiles /home/pi/Git/OS/Core/serv/testing/socket_io_test/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/exes/serv/testing/socket_io_test/CMakeFiles /home/pi/Git/OS/Core/exes/serv/testing/socket_io_test/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/serv/testing/socket_io_test/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/exes/serv/testing/socket_io_test/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -155,19 +155,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sio_test
-
-# Build rule for target.
-sio_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sio_test
-.PHONY : sio_test
-
-# fast build rule for target.
-sio_test/fast:
-	$(MAKE) -f CMakeFiles/sio_test.dir/build.make CMakeFiles/sio_test.dir/build
-.PHONY : sio_test/fast
-
-#=============================================================================
 # Target rules for targets named sioclient
 
 # Build rule for target.
@@ -192,6 +179,19 @@ sioclient_tls: cmake_check_build_system
 sioclient_tls/fast:
 	$(MAKE) -f CMakeFiles/sioclient_tls.dir/build.make CMakeFiles/sioclient_tls.dir/build
 .PHONY : sioclient_tls/fast
+
+#=============================================================================
+# Target rules for targets named socket_io_test
+
+# Build rule for target.
+socket_io_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 socket_io_test
+.PHONY : socket_io_test
+
+# fast build rule for target.
+socket_io_test/fast:
+	$(MAKE) -f CMakeFiles/socket_io_test.dir/build.make CMakeFiles/socket_io_test.dir/build
+.PHONY : socket_io_test/fast
 
 home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o: home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.cpp.o
 
@@ -319,7 +319,7 @@ sio_test.o: sio_test.cpp.o
 
 # target to build an object file
 sio_test.cpp.o:
-	$(MAKE) -f CMakeFiles/sio_test.dir/build.make CMakeFiles/sio_test.dir/sio_test.cpp.o
+	$(MAKE) -f CMakeFiles/socket_io_test.dir/build.make CMakeFiles/socket_io_test.dir/sio_test.cpp.o
 .PHONY : sio_test.cpp.o
 
 sio_test.i: sio_test.cpp.i
@@ -328,7 +328,7 @@ sio_test.i: sio_test.cpp.i
 
 # target to preprocess a source file
 sio_test.cpp.i:
-	$(MAKE) -f CMakeFiles/sio_test.dir/build.make CMakeFiles/sio_test.dir/sio_test.cpp.i
+	$(MAKE) -f CMakeFiles/socket_io_test.dir/build.make CMakeFiles/socket_io_test.dir/sio_test.cpp.i
 .PHONY : sio_test.cpp.i
 
 sio_test.s: sio_test.cpp.s
@@ -337,7 +337,7 @@ sio_test.s: sio_test.cpp.s
 
 # target to generate assembly for a file
 sio_test.cpp.s:
-	$(MAKE) -f CMakeFiles/sio_test.dir/build.make CMakeFiles/sio_test.dir/sio_test.cpp.s
+	$(MAKE) -f CMakeFiles/socket_io_test.dir/build.make CMakeFiles/socket_io_test.dir/sio_test.cpp.s
 .PHONY : sio_test.cpp.s
 
 # Help Target
@@ -348,12 +348,12 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... sioclient"
-	@echo "... sio_test"
 	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
+	@echo "... socket_io_test"
 	@echo "... sioclient_tls"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.o"
 	@echo "... home/pi/Git/socket.io-client-cpp/src/internal/sio_client_impl.i"
