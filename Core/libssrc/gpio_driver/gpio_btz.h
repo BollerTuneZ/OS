@@ -25,9 +25,14 @@ public:
 
 	int Initialize();
 
+	void SetPin(int pin,char dir);
+
 	void DigitalWrite(int pin,char state);
 
+	char IsInitialized();
 
+private:
+	char _initialized;
 
 };
 

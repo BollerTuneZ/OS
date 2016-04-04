@@ -46,16 +46,18 @@ void TEST_Driver::GPIOTest() {
 	}else
 	{
 		printf("Error.\n");
+		return;
 	}
 
+	int testPin = 17;
+	this->_testGpio->SetPin(testPin,'O');
+
 	int oneSecond = (1000*1000)*2;
-	//this->_testGpio->DigitalWrite(0,0x0);
+	this->_testGpio->DigitalWrite(testPin,0x0);
 	usleep(oneSecond);
-	//this->_testGpio->DigitalWrite(0,0x1);
+	this->_testGpio->DigitalWrite(testPin,0x1);
 	usleep(oneSecond);
-	//this->_testGpio->DigitalWrite(0,0x0);
+	this->_testGpio->DigitalWrite(testPin,0x0);
 	usleep(oneSecond);
-
-
 
 }
