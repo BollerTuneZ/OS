@@ -10,13 +10,20 @@
 #ifndef GPIO_BTZ_H_
 #define GPIO_BTZ_H_
 
-
+extern "C"
+{
+	#include <stdio.h>
+	#include <unistd.h>
+	#include <pigpio.h>
+}
 
 
 class gpio_btz {
 public:
 	gpio_btz();
 	~gpio_btz();
+
+	int Initialize();
 
 	void DigitalWrite(int pin,char state);
 

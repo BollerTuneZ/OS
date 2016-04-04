@@ -3,12 +3,20 @@
 
 void gpio_btz::DigitalWrite(int pin, char state) {
 
-	/*
-	if(state == 0x0)
+
+}
+
+int gpio_btz::Initialize() {
+
+	if(gpioInitialise() < 0)
 	{
-		digitalWrite(pin,LOW);
-	}else
-	{
-		digitalWrite(pin,HIGH);
-	}*/
+		return -1;
+	}
+	return 1;
+}
+
+gpio_btz::gpio_btz() {
+}
+
+gpio_btz::~gpio_btz() {
 }
