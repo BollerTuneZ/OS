@@ -1,19 +1,20 @@
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 project(socket_io_test)
+
 include(/home/pi/Git/socket.io-client-cpp/CMakeLists.txt)
 
 #Header and sources
-set(${PROJECT_NAME}_headers ./sio_test.h)
-set(${PROJECT_NAME}_sources sio_test.cpp)
+set(socket_io_test_headers ./sio_test.h)
+set(socket_io_test_sources sio_test.cpp)
 
-add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_headers} ${${PROJECT_NAME}_sources})
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
-target_link_libraries(${PROJECT_NAME} i2c_base_cpp)
-target_link_libraries(${PROJECT_NAME} sioclient)
-target_link_libraries(${PROJECT_NAME} pthread )
+add_library(sio_io_test STATIC ${socket_io_test_headers} ${socket_io_test_sources})
+set_property(TARGET socket_io_test PROPERTY CXX_STANDARD 11)
+set_property(TARGET socket_io_test PROPERTY CXX_STANDARD_REQUIRED ON)
+target_link_libraries(socket_io_test i2c_base_cpp)
+target_link_libraries(socket_io_test sioclient)
+target_link_libraries(socket_io_test pthread )
 message(STATUS ${Boost_INCLUDE_DIRS} )
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS socket_io_test
 				RUNTIME DESTINATION bin
 				LIBRARY DESTINATION lib
 				ARCHIVE DESTINATION lib/static)
