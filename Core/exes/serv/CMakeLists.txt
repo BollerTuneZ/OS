@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 project(serv)
 
 add_subdirectory(testing)
-set(${PROJECT_NAME}_headers "")
-set(${PROJECT_NAME}_sources main.cpp)
+set(${PROJECT_NAME}_headers testing/driver_test.h)
+set(${PROJECT_NAME}_sources main.cpp testing/driver_test.cpp)
 
 include_directories(/usr/local/lib)
 add_executable(serv.app main.cpp)
