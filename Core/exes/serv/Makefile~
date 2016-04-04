@@ -1,4 +1,0 @@
-prog: main.o
-	g++ -c -o main.o main.cpp
-	g++ -o main.app   main.o
-
