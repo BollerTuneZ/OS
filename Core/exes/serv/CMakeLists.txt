@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 
 project(serv)
 
+add_subdirectory(testing)
 set(${PROJECT_NAME}_headers "")
 set(${PROJECT_NAME}_sources main.cpp)
 
@@ -16,6 +17,7 @@ target_link_libraries(serv.app light)
 target_link_libraries(serv.app EncoderClient)
 target_link_libraries(serv.app i2c_base_cpp)
 target_link_libraries(serv.app gpio_driver)
+target_link_libraries(serv.app socket_io_test)
 
 message(STATUS ${Boost_INCLUDE_DIRS} )
 install(TARGETS serv.app
