@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include "../../../include/driver_common.h"
 #include "../../../libssrc/gpio_driver/gpio_btz.h"
-#include "../../../libssrc//i2c_base_cpp/i2c_base.h"
-#include "../../../libssrc//EncoderClient/encoder_client.h"
+#include "../../../libssrc/i2c_base_cpp/i2c_base.h"
+#include "../../../libssrc/EncoderClient/encoder_client.h"
 
 class TEST_Driver {
 public:
