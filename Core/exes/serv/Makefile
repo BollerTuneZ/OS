@@ -196,6 +196,33 @@ main.cpp.s:
 	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+testing/driver_test.o: testing/driver_test.cpp.o
+
+.PHONY : testing/driver_test.o
+
+# target to build an object file
+testing/driver_test.cpp.o:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/testing/driver_test.cpp.o
+.PHONY : testing/driver_test.cpp.o
+
+testing/driver_test.i: testing/driver_test.cpp.i
+
+.PHONY : testing/driver_test.i
+
+# target to preprocess a source file
+testing/driver_test.cpp.i:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/testing/driver_test.cpp.i
+.PHONY : testing/driver_test.cpp.i
+
+testing/driver_test.s: testing/driver_test.cpp.s
+
+.PHONY : testing/driver_test.s
+
+# target to generate assembly for a file
+testing/driver_test.cpp.s:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/testing/driver_test.cpp.s
+.PHONY : testing/driver_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -212,6 +239,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... testing/driver_test.o"
+	@echo "... testing/driver_test.i"
+	@echo "... testing/driver_test.s"
 .PHONY : help
 
 

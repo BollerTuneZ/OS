@@ -8,7 +8,7 @@
 #include "driver_test.h"
 #include <unistd.h>
 
-#include "../../driver/gpio_driver/gpio_btz.h"
+
 
 TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_baseDriver = baseDriver;
@@ -16,7 +16,7 @@ TEST_Driver::TEST_Driver(i2c_base* baseDriver) {
 	_device.name = "Encoder";
 
 	_encoderClient = new EncoderClient(_baseDriver,&_device);
-	this->_testGpio = new gpio_btz;
+	//this->_testGpio = new gpio_btz;
 }
 
 TEST_Driver::~TEST_Driver() {
@@ -36,13 +36,14 @@ void TEST_Driver::SimpleTest() {
 }
 
 void TEST_Driver::GPIOTest() {
+
 	printf("Testing GPIO hardware driver.\n");
 	int oneSecond = (1000*1000)*2;
-	this->_testGpio->DigitalWrite(0,0x0);
+	//this->_testGpio->DigitalWrite(0,0x0);
 	usleep(oneSecond);
-	this->_testGpio->DigitalWrite(0,0x1);
+	//this->_testGpio->DigitalWrite(0,0x1);
 	usleep(oneSecond);
-	this->_testGpio->DigitalWrite(0,0x0);
+	//this->_testGpio->DigitalWrite(0,0x0);
 	usleep(oneSecond);
 
 
