@@ -16,7 +16,7 @@ extern "C"
 	#include <unistd.h>
 	#include <pigpio.h>
 }
-
+#include <mutex>
 
 class gpio_btz {
 public:
@@ -25,15 +25,19 @@ public:
 
 	int Initialize();
 
-	void SetPin(int pin,char dir);
+	int SetPin(int pin,char dir);
 
-	void DigitalWrite(int pin,char state);
+	int DigitalWrite(int pin,char state);
+
+	int WritePwm(int pin,int dutycyle);
+
+	int ReadDigital(int pin);
 
 	char IsInitialized();
 
 private:
 	char _initialized;
-
+	std::mutex _gpioLck;
 };
 
 
