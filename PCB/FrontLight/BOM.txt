@@ -1,0 +1,12 @@
+1x IC0 PWM Treiber 
+1x IC1 Spannungsregler 12V -> 5V
+2x IC2-3 Mosfet SMD 5V Ringe
+1x IC4 Mosfet 12V IRLXX
+1x CPU Atmega 328p AU
+1x O0 RJ45 I2C
+2x OUT0-1 10polstecker LEDS
+1x SERVO 3 pin wago
+3x led0-2 Status leds Rot Grün Orange
+1x R0 150Ohm
+1x R1 91Ohm
+1x R2 160Ohm
