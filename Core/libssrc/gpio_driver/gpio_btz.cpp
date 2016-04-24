@@ -29,7 +29,7 @@ int gpio_btz::SetPin(int pin, char dir) {
 	int ret;
 	if(dir == 'I')
 	{
-		__gpioLck.lock();
+		_gpioLck.lock();
 		ret = gpioSetMode(pin,PI_INPUT);
 		_gpioLck.unlock();
 		return ret;
@@ -65,12 +65,13 @@ int gpio_btz::WritePwm(int pin, int dutycyle) {
 	_gpioLck.lock();
 	int ret = gpioPWM(pin,dutycyle);
 	_gpioLck.unlock();
+	return ret;
 }
 
 int gpio_btz::ReadDigital(int pin) {
 
 	_gpioLck.lock();
-	int val gpioRead(pin);
+	int val = gpioRead(pin);
 	_gpioLck.unlock();
 	return val;
 }
