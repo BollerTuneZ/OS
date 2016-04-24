@@ -64,8 +64,14 @@ void TEST_Driver::GPIOTest() {
 
 void TEST_Driver::StepperTest() {
 
+	Btz_step_pins pins;
+	pins.dir = 5;
+	pins.enable = 6;
+	pins.step = 13;
+
+
 	printf("Stepper Driver Test, initializing driver");
-	this->_stepperDriver = new BtzStepper(_testGpio);
+	this->_stepperDriver = new BtzStepper(_testGpio,pins);
 	if(!_stepperDriver->Initialize())
 	{
 
