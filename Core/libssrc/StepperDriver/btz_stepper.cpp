@@ -23,7 +23,11 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 	_driveLck.lock();
 	if(_isDriving)
 	{
-
+		_stepItem tmpItem;
+		tmpItem.dir = dir;
+		tmpItem.steps = steps;
+		tmpItem.feedrate = feedrate;
+		_addDriveTask(tmpItem);
 	}else
 	{
 
@@ -32,15 +36,32 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 }
 
 void BtzStepper::StopDrive() {
+	_driveLck.lock();
+	_isDriving = false;
+	_driveLck.unlock();
 }
 
 long long BtzStepper::GetStepPosition() {
+	long long buf;
+	_posLck.lock();
+	buf =  _stepPosition;
+	_posLck.lock();
+	return buf;
 }
 
 void BtzStepper::SetStepPosition(long long position) {
+
+	_posLck.lock();
+	_stepPosition = position;
+	_posLck.unlock();
 }
 
 char BtzStepper::GetDriveState() {
+	bool buf;
+	_driveLck.lock();
+	buf = _isDriving;
+	_driveLck.unlock();
+	return buf;
 }
 
 int BtzStepper::_calculateFeedrate(int feedrate) {
@@ -136,8 +157,16 @@ void BtzStepper::_drive(_stepItem* item) {
 			_posLck.unlock();
 		}
 	}
+	_removeDriveTask(item->index);
 }
 
 void* BtzStepper::_driveControl(_stepItem* item) {
 
+	_drive(item);
+	_removeDriveTask(item->index);
+	_stepItem *stepItem = _getNextItem(item->index + 1);
+	if(*stepItem != 0)
+	{
+		_driveControl(stepItem);
+	}
 }
