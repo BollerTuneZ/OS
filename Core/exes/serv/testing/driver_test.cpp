@@ -65,7 +65,7 @@ void TEST_Driver::GPIOTest() {
 void TEST_Driver::StepperTest() {
 
 	printf("Stepper Driver Test, initializing driver");
-	this->_stepperDriver = new BtzStepper(this->_testGpio);
+	this->_stepperDriver = new BtzStepper(_testGpio);
 	if(!_stepperDriver->Initialize())
 	{
 
