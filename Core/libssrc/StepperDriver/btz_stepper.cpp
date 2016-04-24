@@ -5,6 +5,8 @@
  *      Author: Jonas
  */
 
+#include "btz_stepper.h"
+
 BtzStepper::BtzStepper(gpio_btz* gpio_driver,Btz_step_pins pining) {
 	this->_gpio = gpio_driver;
 	_pining = pining;
