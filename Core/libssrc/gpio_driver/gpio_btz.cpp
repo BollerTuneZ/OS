@@ -29,15 +29,15 @@ int gpio_btz::SetPin(int pin, char dir) {
 	int ret;
 	if(dir == 'I')
 	{
-		gpioLck.lock();
+		__gpioLck.lock();
 		ret = gpioSetMode(pin,PI_INPUT);
-		gpioLck.unlock();
+		_gpioLck.unlock();
 		return ret;
 	}else if(dir == 'O')
 	{
-		gpioLck.lock();
+		_gpioLck.lock();
 		ret = gpioSetMode(pin,PI_OUTPUT);
-		gpioLck.unlock();
+		_gpioLck.unlock();
 		return ret;
 	}
 	return -2;
@@ -49,29 +49,29 @@ int gpio_btz::DigitalWrite(int pin, char state) {
 	int ret;
 	if(state)
 	{
-		gpioLck.lock();
+		_gpioLck.lock();
 		ret = gpioWrite(pin,1);
-		gpioLck.unlock();
+		_gpioLck.unlock();
 	}else
 	{
-		gpioLck.lock();
+		_gpioLck.lock();
 		ret = gpioWrite(pin,0);
-		gpioLck.unlock();
+		_gpioLck.unlock();
 	}
 	return ret;
 }
 
 int gpio_btz::WritePwm(int pin, int dutycyle) {
-	gpioLck.lock();
+	_gpioLck.lock();
 	int ret = gpioPWM(pin,dutycyle);
-	gpioLck.unlock();
+	_gpioLck.unlock();
 }
 
 int gpio_btz::ReadDigital(int pin) {
 
-	gpioLck.lock();
+	_gpioLck.lock();
 	int val gpioRead(pin);
-	gpioLck.unlock();
+	_gpioLck.unlock();
 	return val;
 }
 
