@@ -15,6 +15,7 @@ target_link_libraries(serv.app EncoderClient)
 target_link_libraries(serv.app i2c_base_cpp)
 target_link_libraries(serv.app gpio_driver)
 target_link_libraries(serv.app socket_io_test)
+target_link_libraries(serv.app StepperDriver)
 
 install(TARGETS serv.app
 				RUNTIME DESTINATION bin
