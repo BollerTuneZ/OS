@@ -12,6 +12,7 @@
 #include "../../libssrc/gpio_driver/gpio_btz.h"
 #include "../../libssrc/i2c_base_cpp/i2c_base.h"
 #include "../../libssrc/light/light.h"
+
 #include "testing/driver_test.h"
 #include <unistd.h>
 #include "testing/socket_io_test/sio_test.h"
@@ -22,6 +23,7 @@ Light *_lightDriver;
 TEST_Driver *driverTest;
 
 SIO_Test _sioTest;
+
 
 int INIT();
 void test_light();

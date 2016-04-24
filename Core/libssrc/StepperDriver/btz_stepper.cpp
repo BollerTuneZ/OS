@@ -5,8 +5,43 @@
  *      Author: Jonas
  */
 
-BtzStepper::BtzStepper(gpio_btz* gpio_driver) {
+BtzStepper::BtzStepper(gpio_btz* gpio_driver,Btz_step_pins pining) {
 	this->_gpio = gpio_driver;
+	_pining = pining;
+}
+
+int BtzStepper::Initialize() {
+#ifdef DEBUG
+	printf("Initializing Stepper Driver");
+#endif
+	//Check Gpio driver
+	if(!this->_gpio->IsInitialized())
+	{
+#ifdef DEBUG
+	printf("Gpio Driver was not initialized");
+#endif
+		//Try to init gpio driver
+		if(!this->_gpio->Initialize())
+		{
+#ifdef DEBUG
+	printf("Could not initialize gpio driver, from steper driver");
+#endif
+			return -1;
+		}
+	}
+
+	//Set pin directions
+#ifdef DEBUG
+	printf("Setting up stepper pin directions");
+#endif
+
+	_gpio->SetPin(_pining.dir,'O');
+	_gpio->SetPin(_pining.dir,'O');
+	_gpio->SetPin(_pining.dir,'O');
+#ifdef DEBUG
+	printf("Stepper driver initialized");
+#endif
+	return 1;
 }
 
 BtzStepper::~BtzStepper() {
@@ -30,9 +65,20 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 		_addDriveTask(tmpItem);
 	}else
 	{
-
+		_stepItem tmpItem;
+		tmpItem.dir = dir;
+		tmpItem.steps = steps;
+		tmpItem.feedrate = feedrate;
+		int rc = pthread_create(_driveThread,NULL,
+				_driveControl,_driveControl,tmpItem);
+		if(rc)
+		{
+#ifdef DEBUG
+			printf("Could not create Stepp thread");
+#endif
+		}
 	}
-	_driveLck.lock();
+	_driveLck.unlock();
 }
 
 void BtzStepper::StopDrive() {
@@ -93,12 +139,18 @@ int BtzStepper::_addDriveTask(_stepItem item) {
 }
 
 void BtzStepper::_removeDriveTask(int index) {
+#ifdef DEBUG
+	printf("Remove Steptask with index %i",index);
+#endif
 	_cacheLck.lock();
 	_stepItems[index] = 0;
 	_cacheLck.unlock();
 }
 
 void BtzStepper::_cleanCache() {
+#ifdef DEBUG
+	printf("Clean Cache");
+#endif
 	for(int i=0;i<MAX_CACHE;i++)
 	{
 		_removeDriveTask(i);
@@ -116,6 +168,9 @@ _stepItem* BtzStepper::_getNextItem(int index) {
 
 void BtzStepper::_drive(_stepItem* item) {
 
+#ifdef DEBUG
+	printf("Working on task: %i, stepping :%u",item->index,item->steps);
+#endif
 	//Step delay counter, moves x steps until checking for stop
 	int checkDelay = 5;
 	int delay = (_calculateFeedrate(item->feedrate) / 2);
@@ -162,11 +217,20 @@ void BtzStepper::_drive(_stepItem* item) {
 
 void* BtzStepper::_driveControl(_stepItem* item) {
 
+#ifdef DEBUG
+	printf("Step Thread started");
+#endif
 	_drive(item);
 	_removeDriveTask(item->index);
 	_stepItem *stepItem = _getNextItem(item->index + 1);
 	if(*stepItem != 0)
 	{
+#ifdef DEBUG
+		printf("Continue with task out of buffer");
+#endif
 		_driveControl(stepItem);
 	}
+	pthread_exit(NULL);
 }
+
+

@@ -12,6 +12,9 @@
 #include <mutex>
 #include <pthread.h>
 #include <unistd.h>
+#ifdef DEBUG
+#include <stdio.h>
+#endif
 
 
 typedef struct
@@ -43,8 +46,10 @@ public:
 	/***
 	 * Hardware gpio driver
 	 */
-	BtzStepper(gpio_btz *gpio_driver);
+	BtzStepper(gpio_btz *gpio_driver,Btz_step_pins pining);
 	~BtzStepper();
+
+	int Initialize();
 
 	/**
 	 * Drives given steps in dir('L'=left;'R'=right) with feedrate(steps/s)
@@ -91,7 +96,7 @@ private:
 	//Thread which executes step driving
 	void *_driveControl(_stepItem *item);
 	void _drive(_stepItem *item);
-	pthread _driveThread;
+	pthread_t *_driveThread;
 	gpio_btz *_gpio;
 	//Stepper thread is open or not
 	char _isDriving;
