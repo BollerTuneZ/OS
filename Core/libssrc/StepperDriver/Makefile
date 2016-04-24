@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/libssrc/StepperDriver/CMakeFiles/progress.marks
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/StepperDriver/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/StepperDriver/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,135 +141,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/StepperDriver/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/StepperDriver/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named i2c_base_cpp
+# Convenience name for target.
+libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/rule
+.PHONY : libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/rule
 
-# Build rule for target.
-i2c_base_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 i2c_base_cpp
-.PHONY : i2c_base_cpp
+# Convenience name for target.
+StepperDriver: libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/rule
 
-# fast build rule for target.
-i2c_base_cpp/fast:
-	$(MAKE) -f libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build.make libssrc/i2c_base_cpp/CMakeFiles/i2c_base_cpp.dir/build
-.PHONY : i2c_base_cpp/fast
-
-#=============================================================================
-# Target rules for targets named EncoderClient
-
-# Build rule for target.
-EncoderClient: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 EncoderClient
-.PHONY : EncoderClient
-
-# fast build rule for target.
-EncoderClient/fast:
-	$(MAKE) -f libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build.make libssrc/EncoderClient/CMakeFiles/EncoderClient.dir/build
-.PHONY : EncoderClient/fast
-
-#=============================================================================
-# Target rules for targets named gpio_driver
-
-# Build rule for target.
-gpio_driver: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gpio_driver
-.PHONY : gpio_driver
-
-# fast build rule for target.
-gpio_driver/fast:
-	$(MAKE) -f libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build.make libssrc/gpio_driver/CMakeFiles/gpio_driver.dir/build
-.PHONY : gpio_driver/fast
-
-#=============================================================================
-# Target rules for targets named light
-
-# Build rule for target.
-light: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 light
-.PHONY : light
-
-# fast build rule for target.
-light/fast:
-	$(MAKE) -f libssrc/light/CMakeFiles/light.dir/build.make libssrc/light/CMakeFiles/light.dir/build
-.PHONY : light/fast
-
-#=============================================================================
-# Target rules for targets named StepperDriver
-
-# Build rule for target.
-StepperDriver: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 StepperDriver
 .PHONY : StepperDriver
 
 # fast build rule for target.
 StepperDriver/fast:
-	$(MAKE) -f libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/build.make libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/build
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/build.make libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/build
 .PHONY : StepperDriver/fast
 
-#=============================================================================
-# Target rules for targets named serv.app
+btz_stepper.o: btz_stepper.cpp.o
 
-# Build rule for target.
-serv.app: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 serv.app
-.PHONY : serv.app
+.PHONY : btz_stepper.o
 
-# fast build rule for target.
-serv.app/fast:
-	$(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/build
-.PHONY : serv.app/fast
+# target to build an object file
+btz_stepper.cpp.o:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/build.make libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/btz_stepper.cpp.o
+.PHONY : btz_stepper.cpp.o
 
-#=============================================================================
-# Target rules for targets named sioclient
+btz_stepper.i: btz_stepper.cpp.i
 
-# Build rule for target.
-sioclient: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sioclient
-.PHONY : sioclient
+.PHONY : btz_stepper.i
 
-# fast build rule for target.
-sioclient/fast:
-	$(MAKE) -f exes/serv/testing/socket_io_test/CMakeFiles/sioclient.dir/build.make exes/serv/testing/socket_io_test/CMakeFiles/sioclient.dir/build
-.PHONY : sioclient/fast
+# target to preprocess a source file
+btz_stepper.cpp.i:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/build.make libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/btz_stepper.cpp.i
+.PHONY : btz_stepper.cpp.i
 
-#=============================================================================
-# Target rules for targets named sioclient_tls
+btz_stepper.s: btz_stepper.cpp.s
 
-# Build rule for target.
-sioclient_tls: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sioclient_tls
-.PHONY : sioclient_tls
+.PHONY : btz_stepper.s
 
-# fast build rule for target.
-sioclient_tls/fast:
-	$(MAKE) -f exes/serv/testing/socket_io_test/CMakeFiles/sioclient_tls.dir/build.make exes/serv/testing/socket_io_test/CMakeFiles/sioclient_tls.dir/build
-.PHONY : sioclient_tls/fast
-
-#=============================================================================
-# Target rules for targets named socket_io_test
-
-# Build rule for target.
-socket_io_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 socket_io_test
-.PHONY : socket_io_test
-
-# fast build rule for target.
-socket_io_test/fast:
-	$(MAKE) -f exes/serv/testing/socket_io_test/CMakeFiles/socket_io_test.dir/build.make exes/serv/testing/socket_io_test/CMakeFiles/socket_io_test.dir/build
-.PHONY : socket_io_test/fast
+# target to generate assembly for a file
+btz_stepper.cpp.s:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/build.make libssrc/StepperDriver/CMakeFiles/StepperDriver.dir/btz_stepper.cpp.s
+.PHONY : btz_stepper.cpp.s
 
 # Help Target
 help:
@@ -283,15 +208,10 @@ help:
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... i2c_base_cpp"
-	@echo "... EncoderClient"
-	@echo "... gpio_driver"
-	@echo "... light"
 	@echo "... StepperDriver"
-	@echo "... serv.app"
-	@echo "... sioclient"
-	@echo "... socket_io_test"
-	@echo "... sioclient_tls"
+	@echo "... btz_stepper.o"
+	@echo "... btz_stepper.i"
+	@echo "... btz_stepper.s"
 .PHONY : help
 
 
@@ -303,6 +223,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

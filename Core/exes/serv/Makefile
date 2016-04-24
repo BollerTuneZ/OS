@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Git/OS/Core/exes/serv
+CMAKE_SOURCE_DIR = /home/pi/Git/OS/Core
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Git/OS/Core/exes/serv
+CMAKE_BINARY_DIR = /home/pi/Git/OS/Core
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,14 +124,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/exes/serv/CMakeFiles /home/pi/Git/OS/Core/exes/serv/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/exes/serv/CMakeFiles 0
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles /home/pi/Git/OS/Core/exes/serv/CMakeFiles/progress.marks
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Git/OS/Core/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,70 +141,33 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named serv.app
+# Convenience name for target.
+exes/serv/CMakeFiles/serv.app.dir/rule:
+	cd /home/pi/Git/OS/Core && $(MAKE) -f CMakeFiles/Makefile2 exes/serv/CMakeFiles/serv.app.dir/rule
+.PHONY : exes/serv/CMakeFiles/serv.app.dir/rule
 
-# Build rule for target.
-serv.app: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 serv.app
+# Convenience name for target.
+serv.app: exes/serv/CMakeFiles/serv.app.dir/rule
+
 .PHONY : serv.app
 
 # fast build rule for target.
 serv.app/fast:
-	$(MAKE) -f CMakeFiles/serv.app.dir/build.make CMakeFiles/serv.app.dir/build
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/build
 .PHONY : serv.app/fast
-
-#=============================================================================
-# Target rules for targets named sioclient
-
-# Build rule for target.
-sioclient: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sioclient
-.PHONY : sioclient
-
-# fast build rule for target.
-sioclient/fast:
-	$(MAKE) -f testing/socket_io_test/CMakeFiles/sioclient.dir/build.make testing/socket_io_test/CMakeFiles/sioclient.dir/build
-.PHONY : sioclient/fast
-
-#=============================================================================
-# Target rules for targets named sioclient_tls
-
-# Build rule for target.
-sioclient_tls: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sioclient_tls
-.PHONY : sioclient_tls
-
-# fast build rule for target.
-sioclient_tls/fast:
-	$(MAKE) -f testing/socket_io_test/CMakeFiles/sioclient_tls.dir/build.make testing/socket_io_test/CMakeFiles/sioclient_tls.dir/build
-.PHONY : sioclient_tls/fast
-
-#=============================================================================
-# Target rules for targets named socket_io_test
-
-# Build rule for target.
-socket_io_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 socket_io_test
-.PHONY : socket_io_test
-
-# fast build rule for target.
-socket_io_test/fast:
-	$(MAKE) -f testing/socket_io_test/CMakeFiles/socket_io_test.dir/build.make testing/socket_io_test/CMakeFiles/socket_io_test.dir/build
-.PHONY : socket_io_test/fast
 
 main.o: main.cpp.o
 
@@ -212,7 +175,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/serv.app.dir/build.make CMakeFiles/serv.app.dir/main.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -221,7 +184,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/serv.app.dir/build.make CMakeFiles/serv.app.dir/main.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -230,7 +193,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/serv.app.dir/build.make CMakeFiles/serv.app.dir/main.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 testing/driver_test.o: testing/driver_test.cpp.o
@@ -239,7 +202,7 @@ testing/driver_test.o: testing/driver_test.cpp.o
 
 # target to build an object file
 testing/driver_test.cpp.o:
-	$(MAKE) -f CMakeFiles/serv.app.dir/build.make CMakeFiles/serv.app.dir/testing/driver_test.cpp.o
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/testing/driver_test.cpp.o
 .PHONY : testing/driver_test.cpp.o
 
 testing/driver_test.i: testing/driver_test.cpp.i
@@ -248,7 +211,7 @@ testing/driver_test.i: testing/driver_test.cpp.i
 
 # target to preprocess a source file
 testing/driver_test.cpp.i:
-	$(MAKE) -f CMakeFiles/serv.app.dir/build.make CMakeFiles/serv.app.dir/testing/driver_test.cpp.i
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/testing/driver_test.cpp.i
 .PHONY : testing/driver_test.cpp.i
 
 testing/driver_test.s: testing/driver_test.cpp.s
@@ -257,7 +220,7 @@ testing/driver_test.s: testing/driver_test.cpp.s
 
 # target to generate assembly for a file
 testing/driver_test.cpp.s:
-	$(MAKE) -f CMakeFiles/serv.app.dir/build.make CMakeFiles/serv.app.dir/testing/driver_test.cpp.s
+	cd /home/pi/Git/OS/Core && $(MAKE) -f exes/serv/CMakeFiles/serv.app.dir/build.make exes/serv/CMakeFiles/serv.app.dir/testing/driver_test.cpp.s
 .PHONY : testing/driver_test.cpp.s
 
 # Help Target
@@ -273,9 +236,6 @@ help:
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... sioclient"
-	@echo "... socket_io_test"
-	@echo "... sioclient_tls"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -293,6 +253,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Git/OS/Core && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

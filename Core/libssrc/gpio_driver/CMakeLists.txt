@@ -7,6 +7,7 @@ set(${PROJECT_NAME}_headers ./gpio_btz.h)
 set(${PROJECT_NAME}_sources gpio_btz.cpp)
 
 #create binary
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXXFLAGS} -Wall -std=gnu++0x")
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers} ${${PROJECT_NAME}_sources})
 target_link_libraries(${PROJECT_NAME} pigpio)
 target_link_libraries(${PROJECT_NAME} rt)
