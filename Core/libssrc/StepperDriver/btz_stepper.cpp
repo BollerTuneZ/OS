@@ -72,15 +72,18 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 		tmpItem.steps = steps;
 		tmpItem.feedrate = feedrate;
 		int rc = pthread_create(_driveThread,NULL,
-				_driveControl,_driveControl,tmpItem);
+				_driveControl,_driveControl,&tmpItem);
 		if(rc)
 		{
 #ifdef DEBUG
 			printf("Could not create Stepp thread");
 #endif
+			_driveLck.unlock();
+			return -1;
 		}
 	}
 	_driveLck.unlock();
+	return 1;
 }
 
 void BtzStepper::StopDrive() {
