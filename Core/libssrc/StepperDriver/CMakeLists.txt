@@ -5,7 +5,7 @@ project(StepperDriver)
 #Header and sources
 set(${PROJECT_NAME}_headers ./btz_stepper.h)
 set(${PROJECT_NAME}_sources btz_stepper.cpp)
-
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXXFLAGS} -Wall -std=gnu++0x")
 #create binary
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers} ${${PROJECT_NAME}_sources})
 install(TARGETS ${PROJECT_NAME}
