@@ -71,8 +71,8 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 		tmpItem.dir = dir;
 		tmpItem.steps = steps;
 		tmpItem.feedrate = feedrate;
-		int rc = pthread_create(_driveThread,NULL,
-				_driveControl,_driveControl,&tmpItem);
+		int rc = pthread_create(&_driveThread,NULL,
+				&_driveControl,(void*)tmpItem);
 		if(rc)
 		{
 #ifdef DEBUG
@@ -220,8 +220,9 @@ void BtzStepper::_drive(_stepItem* item) {
 	_removeDriveTask(item->index);
 }
 
-void* BtzStepper::_driveControl(_stepItem* item) {
+void* BtzStepper::_driveControl(void *item) {
 
+	item = (_stepItem)item;
 #ifdef DEBUG
 	printf("Step Thread started");
 #endif
