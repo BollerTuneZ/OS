@@ -214,7 +214,7 @@ void BtzStepper::_drive(_stepItem* item) {
 	_removeDriveTask(item->index);
 }
 
-void* BtzStepper::_driveControl(void *args) {
+void* BtzStepper::_driveControl(void*) {
 
 	_stepItem item = _stepItems[0];
 #ifdef DEBUG
