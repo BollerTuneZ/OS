@@ -20,7 +20,7 @@ int gpio_btz::Initialize() {
 }
 
 int gpio_btz::SetPin(int pin, char dir) {
-
+	return 1;
 	if(!_initialized)
 	{
 		//TODO Errorhandling
@@ -45,6 +45,7 @@ int gpio_btz::SetPin(int pin, char dir) {
 
 int gpio_btz::DigitalWrite(int pin, char state) {
 
+	return 1;
 	//TODO Handling on not allowed gpio pins
 	int ret;
 	if(state)
