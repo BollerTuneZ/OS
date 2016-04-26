@@ -110,22 +110,19 @@ int BtzStepper::_calculateFeedrate(int feedrate) {
 
 int BtzStepper::_addDriveTask(_stepItem item) {
 
-	int newIndex = _cacheIndex + 1;
-	if(newIndex > (MAX_CACHE -1))
-	{
-		//start again at index 0
-		newIndex = 0;
-	}
 	_cacheLck.lock();
-	if(_stepItems[newIndex].isValid == VALID_STP)
+	for(int i=0;i<MAX_CACHE;i++)
 	{
-		_cacheLck.unlock();
-		return -1;
+		if(_stepItems[i].isValid == INVALID_STP)
+		{
+			_stepItems[i] = item;
+			_stepItems[i].index = _cacheIndex++;
+			_cacheLck.unlock();
+			return 1;
+		}
 	}
-	item.index = newIndex;
-	_stepItems[newIndex] = item;
-	_cacheIndex = newIndex;
 	_cacheLck.unlock();
+	return -1;
 }
 
 void BtzStepper::_removeDriveTask(int index) {
@@ -202,27 +199,56 @@ void BtzStepper::_drive(_stepItem* item) {
 			_posLck.unlock();
 		}
 	}
-	_removeDriveTask(item->index);
 }
 
 void BtzStepper::_driveControl() {
 
-	_stepItem *item = &_stepItems[0];
+	_stepItem *item;
+	int lowestIndex = -10;
+	int lowestI =0;
+	_cacheLck.lock();
+	for(int i=0;i<MAX_CACHE;i++)
+	{
+		if(_stepItems[i].isValid == VALID_STP)
+		{
+			if(lowestIndex == -10)
+			{
+				lowestIndex = _stepItems[i].index;
+				lowestI = i;
+				continue;
+			}
+			if(_stepItems[i].index < lowestIndex)
+			{
+				lowestIndex = _stepItems[i].index;
+				lowestI = i;
+			}
+		}
+	}
+	if(lowestIndex == -10)
+	{
+		return;
+	}
+	item = _stepItems[lowestI];
+	_cacheLck.unlock();
+
 #ifdef DEBUG
 	printf("Step Thread started");
 #endif
 	_drive(item);
-	_removeDriveTask(item->index);
+	item->isValid = INVALID_STP;
 	_cacheLck.lock();
-	stepItem = &_stepItems[index];
-	_cacheLck.unlock();
-	if(*stepItem != 0)
+	for(int i=0;i<MAX_CACHE;i++)
 	{
+		if(_stepItems[i].isValid == VALID_STP && _stepItems[i].index == (item->index + 1))
+		{
+			_driveControl(&_stepItems[i]);
 #ifdef DEBUG
 		printf("Continue with task out of buffer");
 #endif
-		_driveControl(stepItem);
+			_cacheLck.lock();
+		}
 	}
+	_cacheLck.unlock();
 }
 
 
