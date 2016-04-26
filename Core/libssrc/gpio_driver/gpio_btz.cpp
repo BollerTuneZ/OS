@@ -9,7 +9,7 @@ gpio_btz::~gpio_btz() {
 }
 
 int gpio_btz::Initialize() {
-
+	return 1;
 	if(gpioInitialise() < 0)
 	{
 		_initialized = 0x0;
@@ -63,6 +63,7 @@ int gpio_btz::DigitalWrite(int pin, char state) {
 }
 
 int gpio_btz::WritePwm(int pin, int dutycyle) {
+	return 1;
 	_gpioLck.lock();
 	int ret = gpioPWM(pin,dutycyle);
 	_gpioLck.unlock();
@@ -70,7 +71,7 @@ int gpio_btz::WritePwm(int pin, int dutycyle) {
 }
 
 int gpio_btz::ReadDigital(int pin) {
-
+	return 1;
 	_gpioLck.lock();
 	int val = gpioRead(pin);
 	_gpioLck.unlock();

@@ -36,10 +36,10 @@ int BtzStepper::Initialize() {
 #ifdef DEBUG
 	printf("Setting up stepper pin directions\n");
 #endif
-
+/*
 	_gpio->SetPin(_pining.dir,'O');
 	_gpio->SetPin(_pining.dir,'O');
-	_gpio->SetPin(_pining.dir,'O');
+	_gpio->SetPin(_pining.dir,'O');*/
 #ifdef DEBUG
 	printf("Stepper driver initialized\n");
 #endif
