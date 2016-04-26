@@ -58,21 +58,15 @@ void BtzStepper::DisableMotor() {
 int BtzStepper::Drive(long steps, char dir, int feedrate) {
 
 	_driveLck.lock();
-	if(_isDriving)
+	_stepItem tmpItem;
+	tmpItem.dir = dir;
+	tmpItem.steps = steps;
+	tmpItem.feedrate = feedrate;
+	_addDriveTask(tmpItem);
+	if(!_isDriving)
 	{
-		_stepItem tmpItem;
-		tmpItem.dir = dir;
-		tmpItem.steps = steps;
-		tmpItem.feedrate = feedrate;
-		_addDriveTask(tmpItem);
-	}else
-	{
-		_stepItem tmpItem;
-		tmpItem.dir = dir;
-		tmpItem.steps = steps;
-		tmpItem.feedrate = feedrate;
 		int rc = pthread_create(&_driveThread,NULL,
-				_driveControl,(void*)tmpItem);
+				_driveControl,NULL);
 		if(rc)
 		{
 #ifdef DEBUG
@@ -220,9 +214,9 @@ void BtzStepper::_drive(_stepItem* item) {
 	_removeDriveTask(item->index);
 }
 
-void* BtzStepper::_driveControl(void *data_struct) {
+void* BtzStepper::_driveControl(void *args) {
 
-	_stepItem item = static_cast<_stepItem*>(data_struct);
+	_stepItem item = _stepItems[0];
 #ifdef DEBUG
 	printf("Step Thread started");
 #endif
