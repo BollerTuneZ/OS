@@ -24,7 +24,7 @@ TEST_Driver *driverTest;
 
 SIO_Test _sioTest;
 
-#define DEBUG
+
 int INIT();
 void test_light();
 void test_sio();

@@ -12,7 +12,7 @@
 #include <mutex>
 #include <thread>
 #include <unistd.h>
-
+#define DEBUG
 #ifdef DEBUG
 #include <stdio.h>
 #endif
