@@ -65,16 +65,7 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 	_addDriveTask(tmpItem);
 	if(!_isDriving)
 	{
-		int rc = pthread_create(&_driveThread,NULL,
-				_driveControl,NULL);
-		if(rc)
-		{
-#ifdef DEBUG
-			printf("Could not create Stepp thread");
-#endif
-			_driveLck.unlock();
-			return -1;
-		}
+		this->_driveThread = new std::thread(_driveControl);
 	}
 	_driveLck.unlock();
 	return 1;
@@ -214,7 +205,7 @@ void BtzStepper::_drive(_stepItem* item) {
 	_removeDriveTask(item->index);
 }
 
-void* BtzStepper::_driveControl(void*) {
+void BtzStepper::_driveControl() {
 
 	_stepItem item = _stepItems[0];
 #ifdef DEBUG
@@ -230,7 +221,6 @@ void* BtzStepper::_driveControl(void*) {
 #endif
 		_driveControl(stepItem);
 	}
-	pthread_exit(NULL);
 }
 
 

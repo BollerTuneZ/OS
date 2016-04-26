@@ -10,7 +10,7 @@
 
 #include "../gpio_driver/gpio_btz.h"
 #include <mutex>
-#include <pthread.h>
+#include <thread>
 #include <unistd.h>
 
 #ifdef DEBUG
@@ -95,9 +95,9 @@ private:
 	//Returns steps in seconds to microsecond delay time
 	int _calculateFeedrate(int feedrate);
 	//Thread which executes step driving
-	void* _driveControl(void*);
+	void _driveControl();
 	void _drive(_stepItem *item);
-	pthread_t _driveThread;
+	std::thread *_driveThread;
 	gpio_btz *_gpio;
 	//Stepper thread is open or not
 	char _isDriving;
