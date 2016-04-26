@@ -97,7 +97,7 @@ private:
 	//Thread which executes step driving
 	void *_driveControl(_stepItem *item);
 	void _drive(_stepItem *item);
-	pthread_t *_driveThread;
+	pthread_t _driveThread;
 	gpio_btz *_gpio;
 	//Stepper thread is open or not
 	char _isDriving;
