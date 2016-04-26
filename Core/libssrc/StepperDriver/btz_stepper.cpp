@@ -218,6 +218,9 @@ void BtzStepper::_driveControl() {
 	_cacheLck.lock();
 	for(int i=0;i<MAX_CACHE;i++)
 	{
+#ifdef DEBUG
+	printf("In Loop\n");
+#endif
 		if(_stepItems[i].isValid == VALID_STP)
 		{
 			if(lowestIndex == -10)
