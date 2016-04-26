@@ -95,7 +95,7 @@ private:
 	//Returns steps in seconds to microsecond delay time
 	int _calculateFeedrate(int feedrate);
 	//Thread which executes step driving
-	void *_driveControl(void*);
+	void* _driveControl(void*);
 	void _drive(_stepItem *item);
 	pthread_t _driveThread;
 	gpio_btz *_gpio;
