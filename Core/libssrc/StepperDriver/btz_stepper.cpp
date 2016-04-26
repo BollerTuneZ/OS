@@ -72,7 +72,7 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 		tmpItem.steps = steps;
 		tmpItem.feedrate = feedrate;
 		int rc = pthread_create(&_driveThread,NULL,
-				&_driveControl,(void*)&tmpItem);
+				_driveControl,(void*)&tmpItem);
 		if(rc)
 		{
 #ifdef DEBUG
