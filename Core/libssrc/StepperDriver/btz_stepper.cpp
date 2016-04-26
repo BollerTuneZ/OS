@@ -228,7 +228,7 @@ void BtzStepper::_driveControl() {
 	{
 		return;
 	}
-	item = _stepItems[lowestI];
+	item = &_stepItems[lowestI];
 	_cacheLck.unlock();
 
 #ifdef DEBUG
@@ -241,7 +241,7 @@ void BtzStepper::_driveControl() {
 	{
 		if(_stepItems[i].isValid == VALID_STP && _stepItems[i].index == (item->index + 1))
 		{
-			_driveControl(&_stepItems[i]);
+			_driveControl();
 #ifdef DEBUG
 		printf("Continue with task out of buffer");
 #endif
