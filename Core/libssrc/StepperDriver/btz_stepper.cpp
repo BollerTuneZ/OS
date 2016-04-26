@@ -207,7 +207,7 @@ void BtzStepper::_drive(_stepItem* item) {
 
 void BtzStepper::_driveControl() {
 
-	_stepItem item = _stepItems[0];
+	_stepItem *item = &_stepItems[0];
 #ifdef DEBUG
 	printf("Step Thread started");
 #endif
