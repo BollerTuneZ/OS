@@ -117,7 +117,7 @@ int BtzStepper::_addDriveTask(_stepItem item) {
 		newIndex = 0;
 	}
 	_cacheLck.lock();
-	if(_stepItems[newIndex] != 0)
+	if(_stepItems[newIndex].isValid == VALID_STP)
 	{
 		_cacheLck.unlock();
 		return -1;
@@ -133,7 +133,7 @@ void BtzStepper::_removeDriveTask(int index) {
 	printf("Remove Steptask with index %i",index);
 #endif
 	_cacheLck.lock();
-	_stepItems[index] = 0;
+	_stepItems[index].isValid = INVALID_STP;
 	_cacheLck.unlock();
 }
 
@@ -146,7 +146,7 @@ void BtzStepper::_cleanCache() {
 		_removeDriveTask(i);
 	}
 }
-
+/*
 _stepItem* BtzStepper::_getNextItem(int index) {
 
 	_stepItem *itemPtr;
@@ -154,7 +154,7 @@ _stepItem* BtzStepper::_getNextItem(int index) {
 	itemPtr = &_stepItems[index];
 	_cacheLck.unlock();
 	return itemPtr;
-}
+}*/
 
 void BtzStepper::_drive(_stepItem* item) {
 
@@ -213,7 +213,9 @@ void BtzStepper::_driveControl() {
 #endif
 	_drive(item);
 	_removeDriveTask(item->index);
-	_stepItem *stepItem = _getNextItem(item->index + 1);
+	_cacheLck.lock();
+	stepItem = &_stepItems[index];
+	_cacheLck.unlock();
 	if(*stepItem != 0)
 	{
 #ifdef DEBUG

@@ -34,6 +34,8 @@ class BtzStepper {
 #define MIN_FEEDRATE 0
 #define MAX_FEEDRATE 5000
 #define MAX_CACHE 10
+#define VALID_STP 0x1
+#define INVALID_STP 0x1
 
 	typedef struct
 	{
@@ -41,6 +43,7 @@ class BtzStepper {
 		long steps;
 		char dir;
 		int feedrate;
+		char isValid;
 	}_stepItem;
 
 public:
@@ -90,7 +93,6 @@ public:
 private:
 	int _addDriveTask(_stepItem item);
 	void _removeDriveTask(int index);
-	_stepItem* _getNextItem(int index);
 	void _cleanCache();
 	//Returns steps in seconds to microsecond delay time
 	int _calculateFeedrate(int feedrate);
