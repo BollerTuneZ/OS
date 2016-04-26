@@ -14,19 +14,19 @@ BtzStepper::BtzStepper(gpio_btz* gpio_driver,Btz_step_pins pining) {
 
 int BtzStepper::Initialize() {
 #ifdef DEBUG
-	printf("Initializing Stepper Driver");
+	printf("Initializing Stepper Driver\n");
 #endif
 	//Check Gpio driver
 	if(!this->_gpio->IsInitialized())
 	{
 #ifdef DEBUG
-	printf("Gpio Driver was not initialized");
+	printf("Gpio Driver was not initialized\n");
 #endif
 		//Try to init gpio driver
 		if(!this->_gpio->Initialize())
 		{
 #ifdef DEBUG
-	printf("Could not initialize gpio driver, from steper driver");
+	printf("Could not initialize gpio driver, from steper driver\n");
 #endif
 			return -1;
 		}
@@ -34,14 +34,14 @@ int BtzStepper::Initialize() {
 
 	//Set pin directions
 #ifdef DEBUG
-	printf("Setting up stepper pin directions");
+	printf("Setting up stepper pin directions\n");
 #endif
 
 	_gpio->SetPin(_pining.dir,'O');
 	_gpio->SetPin(_pining.dir,'O');
 	_gpio->SetPin(_pining.dir,'O');
 #ifdef DEBUG
-	printf("Stepper driver initialized");
+	printf("Stepper driver initialized\n");
 #endif
 	return 1;
 }
@@ -65,6 +65,9 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 	_addDriveTask(tmpItem);
 	if(!_isDriving)
 	{
+#ifdef DEBUG
+	printf("Create new Thread\n");
+#endif
 		std::thread t1(&BtzStepper::_driveControl,this);
 	}
 	_driveLck.unlock();
@@ -110,6 +113,9 @@ int BtzStepper::_calculateFeedrate(int feedrate) {
 
 int BtzStepper::_addDriveTask(_stepItem item) {
 
+#ifdef DEBUG
+	printf("Add new Drive Task\n");
+#endif
 	_cacheLck.lock();
 	for(int i=0;i<MAX_CACHE;i++)
 	{
@@ -203,6 +209,9 @@ void BtzStepper::_drive(_stepItem* item) {
 
 void BtzStepper::_driveControl() {
 
+#ifdef DEBUG
+	printf("Enter drive control\n");
+#endif
 	_stepItem *item;
 	int lowestIndex = -10;
 	int lowestI =0;
