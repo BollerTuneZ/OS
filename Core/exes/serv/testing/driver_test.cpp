@@ -81,8 +81,8 @@ void TEST_Driver::StepperTest() {
 		int result = _stepperDriver->Drive(200,STEP_FORWARD,10);
 
 		printf("Result of driving is: %i", result);
-	} catch (Exception e) {
-		printf(e);
+	} catch (... ) {
+		printf("EXCEPTION");
 	}
 
 
