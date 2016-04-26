@@ -220,9 +220,9 @@ void BtzStepper::_drive(_stepItem* item) {
 	_removeDriveTask(item->index);
 }
 
-void *BtzStepper::_driveControl(void *arg) {
+void *BtzStepper::_driveControl(void *data_struct) {
 
-	_stepItem item = (_stepItem)arg;
+	_stepItem item = static_cast<_stepItem*>(data_struct);
 #ifdef DEBUG
 	printf("Step Thread started");
 #endif
