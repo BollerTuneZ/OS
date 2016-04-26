@@ -65,7 +65,7 @@ int BtzStepper::Drive(long steps, char dir, int feedrate) {
 	_addDriveTask(tmpItem);
 	if(!_isDriving)
 	{
-		std::thread t1(_driveControl);
+		std::thread t1(&BtzStepper::_driveControl,this);
 	}
 	_driveLck.unlock();
 	return 1;
