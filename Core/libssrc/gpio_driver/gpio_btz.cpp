@@ -81,3 +81,11 @@ int gpio_btz::ReadDigital(int pin) {
 char gpio_btz::IsInitialized() {
 	return _initialized;
 }
+
+void *
+
+void gpio_btz::DigitalWriteThreadSafe(int pin, char dir) {
+
+
+
+}

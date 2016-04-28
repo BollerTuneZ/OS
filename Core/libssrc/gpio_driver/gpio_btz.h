@@ -29,6 +29,8 @@ public:
 
 	int DigitalWrite(int pin,char state);
 
+	void DigitalWriteThreadSafe(int pin,char dir);
+
 	int WritePwm(int pin,int dutycyle);
 
 	int ReadDigital(int pin);
@@ -37,6 +39,7 @@ public:
 
 private:
 	char _initialized;
+	pthread_t *_workerThread;
 	std::mutex _gpioLck;
 };
 
