@@ -1,4 +1,4 @@
-var stpDriver =  require(../int_modules/StepperDriver.js);
+var stpDriver =  require('../int_modules/StepperDriver.js');
 
 module.export =
 {
