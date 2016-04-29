@@ -40,12 +40,12 @@ function Initialize(pinning)
     pinsInitialized[0] = true;
     console.log("Pin Enable directions set");
   });
-  gpio.setup(_pinning.step, gpio.DIR_OUT,function()
+  gpio.setup(18, gpio.DIR_OUT,function()
   {
     pinsInitialized[1] = true;
     console.log("Pin Step directions set");
   });
-  gpio.setup(_pinning.dir, gpio.DIR_OUT,function()
+  gpio.setup(7, gpio.DIR_OUT,function()
   {
     pinsInitialized[2] = true;
     console.log("Pin Direction directions set");
@@ -92,19 +92,20 @@ function Drive(moveObj,callback)
   if(moveObj.dir == "left")
   {
     console.log("Set Direction to left");
-    gpio.write(_pinning.dir, false, function(err) {
+    gpio.write(7, false, function(err) {
        if (err) throw err;
        //console.log('Written to pin');
     });
 
   }else if (moveObj.dir == "right") {
     console.log("Set Direction to right");
-    gpio.write(_pinning.dir, true, function(err) {
+    gpio.write(7, true, function(err) {
        if (err) throw err;
        //console.log('Written to pin');
    });
   }
-  var intervalStr = (_calculateFeedrateToDelay(moveObj.feedrate) / 2).toString() + "u";
+  var intervalStr = ("10000u");
+console.log(intervalStr);
   stepTimer.setInterval(_step,'',intervalStr);
 
 }
@@ -123,20 +124,20 @@ function _step()
 {
   if(pinMode)
   {
-    gpio.write(_pinning.step, false, function(err) {
+    gpio.write(18, false, function(err) {
        if (err) throw err;
-       //console.log('Written to pin');
+       console.log('Written to pin on');
    });
    pinMode = false;
    stepsLeft--;
  }else {
-   gpio.write(_pinning.step, true, function(err) {
+   gpio.write(18, true, function(err) {
       if (err) throw err;
-      //console.log('Written to pin');
+      console.log('Written to pin off');
   });
   pinMode = true;
  }
-
+	//console.log("Stepping");
  if(stepsLeft == 0)
  {
    stepTimer.clearInterval();
@@ -151,5 +152,5 @@ function _step()
 /*Utilities*/
 function _calculateFeedrateToDelay(feedrate)
 {
-  return (feedrate/10000);
+  return (10000/feedrate);
 }
