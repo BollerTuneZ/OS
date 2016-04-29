@@ -34,7 +34,7 @@ function MultiTest()
   {
     vSmall:25,
     small:150,
-    mid:
+    mid:200
   };
   console.log("Referenz drive right, low feedrate");
   stpDriver.Drive({
