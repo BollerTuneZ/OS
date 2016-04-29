@@ -1,0 +1,15 @@
+{
+  "name": "node_core",
+  "version": "1.0.0",
+  "description": "Node Btz server",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "x",
+    "start": "node server.js"
+  },
+  "author": "jonas ahlf",
+  "license": "ISC"
+}
