@@ -13,6 +13,9 @@
   "devDependencies" : {
     "nanotimer": "^0.3.14",
     "rpi-gpio": "^0.7.0"
+  },"devDependencies" : {
+    "nanotimer": "^0.3.14",
+    "wpi-gpio": "^0.5.0"
   },
   "author": "jonas ahlf",
   "license": "ISC"

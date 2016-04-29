@@ -1,4 +1,4 @@
-var gpio = require('rpi-gpio');
+var gpio = require('wpi-gpio');//require('rpi-gpio');
 var NanoTimer = require('nanotimer');
 var pinsInitialized = [false,false,false];
 module.exports =
@@ -11,10 +11,6 @@ module.exports =
   Position:Position
 };
 
-/*Events*/
-gpio.on('export', function(channel) {
-    console.log('Channel set: ' + channel);
-});
 
 //Default
 var _pinning =
@@ -35,21 +31,17 @@ function Initialize(pinning)
     _pinning = pinning;
   }
   stepTimer = new NanoTimer();
-  gpio.setup(_pinning.enable, gpio.DIR_OUT,function()
-  {
-    pinsInitialized[0] = true;
-    console.log("Pin Enable directions set");
+
+  gpio.mode(18, 'out', function(err) {
+console.log("Pin Step directions set");
   });
-  gpio.setup(18, gpio.DIR_OUT,function()
-  {
-    pinsInitialized[1] = true;
-    console.log("Pin Step directions set");
-  });
-  gpio.setup(7, gpio.DIR_OUT,function()
-  {
-    pinsInitialized[2] = true;
+  gpio.mode(7, 'out', function(err) {
     console.log("Pin Direction directions set");
   });
+  gpio.mode(_pinning.enable, 'out', function(err) {
+console.log("Pin Enable directions set");
+  });
+
 
 }
 
@@ -92,17 +84,16 @@ function Drive(moveObj,callback)
   if(moveObj.dir == "left")
   {
     console.log("Set Direction to left");
-    gpio.write(7, false, function(err) {
-       if (err) throw err;
-       //console.log('Written to pin');
+    gpio.write(7, 0, function(err) {
+  // GPIO pin 2 set to high
     });
+
 
   }else if (moveObj.dir == "right") {
     console.log("Set Direction to right");
-    gpio.write(7, true, function(err) {
-       if (err) throw err;
-       //console.log('Written to pin');
-   });
+    gpio.write(7, 1, function(err) {
+  // GPIO pin 2 set to high
+    });
   }
   var intervalStr = ("10000u");
 console.log(intervalStr);
@@ -124,17 +115,15 @@ function _step()
 {
   if(pinMode)
   {
-    gpio.write(18, false, function(err) {
-       if (err) throw err;
-       console.log('Written to pin on');
-   });
+    gpio.write(18, 0, function(err) {
+  // GPIO pin 2 set to high
+    });
    pinMode = false;
    stepsLeft--;
  }else {
-   gpio.write(18, true, function(err) {
-      if (err) throw err;
-      console.log('Written to pin off');
-  });
+   gpio.write(18, 1, function(err) {
+ // GPIO pin 2 set to high
+   });
   pinMode = true;
  }
 	//console.log("Stepping");
