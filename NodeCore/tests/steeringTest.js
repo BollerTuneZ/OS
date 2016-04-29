@@ -15,7 +15,7 @@ function Initialize()
   var pinning = {
     enable:17,
     step:27,
-    dir:22
+    dir:7
   };
   stpDriver.Initialize(pinning);
   console.log("StepperDriver Initialized");
