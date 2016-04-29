@@ -10,6 +10,10 @@
     "test": "x",
     "start": "node server.js"
   },
+  "devDependencies" : {
+    "nanotimer": "^0.3.14",
+    "rpi-gpio": "^0.7.0"
+  }
   "author": "jonas ahlf",
   "license": "ISC"
 }
