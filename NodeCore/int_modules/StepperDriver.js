@@ -58,11 +58,13 @@ function Drive(moveObj,callback)
   stepsLeft = moveObj.steps;
   if(moveObj.dir == "left")
   {
+    console.log("Set Direction to left");
     gpio.write(_pinning.dir, false, function(err) {
        if (err) throw err;
        //console.log('Written to pin');
    });
   }else if (moveObj.dir == "right") {
+    console.log("Set Direction to right");
     gpio.write(_pinning.dir, true, function(err) {
        if (err) throw err;
        //console.log('Written to pin');
