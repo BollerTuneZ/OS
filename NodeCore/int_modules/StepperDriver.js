@@ -11,12 +11,7 @@ module.exports =
 };
 
 //Default
-var _pinning =
-{
-  enable:10,
-  step:11,
-  dir:12
-};
+var _pinning;
 
 var NanoTimer = require('nanotimer');
 var Position = 0;
@@ -27,6 +22,13 @@ function Initialize(pinning)
   if(pinning != undefined)
   {
     _pinning = pinning;
+  }else {
+   _pinning  =
+   {
+     enable:10,
+     step:11,
+     dir:12
+   };
   }
   gpio.setup(_pinning.enable, gpio.DIR_OUT);
   gpio.setup(_pinning.step, gpio.DIR_OUT);
