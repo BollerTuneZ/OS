@@ -1,6 +1,6 @@
 var stpDriver =  require('../int_modules/StepperDriver.js');
 
-module.export =
+module.exports =
 {
   Initialize:Initialize,
   MultiTest:MultiTest

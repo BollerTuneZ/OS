@@ -1,6 +1,6 @@
 var gpio = require('rpi-gpio');
 
-module.export =
+module.exports =
 {
   Position:Position,
   Initialize:Initialize,
