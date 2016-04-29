@@ -28,7 +28,6 @@ function Initialize(pinning)
   {
     _pinning = pinning;
   }
-
   gpio.setup(_pinning.enable, gpio.DIR_OUT);
   gpio.setup(_pinning.step, gpio.DIR_OUT);
   gpio.setup(_pinning.dir, gpio.DIR_OUT);
@@ -40,6 +39,13 @@ function StopDrive()
   isStepping = false;
 }
 
+/*
+moveObj{
+dir,
+steps,
+feedrate
+}
+*/
 function Drive(moveObj,callback)
 {
   if(isStepping)
@@ -49,7 +55,7 @@ function Drive(moveObj,callback)
     isStepping = false;
   }
 
-  stepsLeft = moveObj.stepsLeft;
+  stepsLeft = moveObj.steps;
   if(moveObj.dir == "left")
   {
     gpio.write(_pinning.dir, false, function(err) {
@@ -72,7 +78,7 @@ function GetStatus()
   var statusObj =
   {
     StepsLeft:stepsLeft,
-    IsStepping:sStepping
+    IsStepping:isStepping
   };
   return statusObj;
 }
