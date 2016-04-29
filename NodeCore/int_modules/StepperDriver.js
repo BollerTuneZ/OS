@@ -1,4 +1,5 @@
 var gpio = require('rpi-gpio');
+var NanoTimer = require('nanotimer');
 var pinsInitialized = [false,false,false];
 module.exports =
 {
@@ -18,7 +19,7 @@ var _pinning =
   dir:12
 };
 
-var NanoTimer = require('nanotimer');
+
 var Position = 0;
 var stepTimer, stepsLeft, isStepping,pinMode = false;
 
@@ -28,6 +29,7 @@ function Initialize(pinning)
   {
     _pinning = pinning;
   }
+  stepTimer = new NanoTimer();
   gpio.setup(_pinning.enable, gpio.DIR_OUT,function()
   {
     pinsInitialized[0] = true;
