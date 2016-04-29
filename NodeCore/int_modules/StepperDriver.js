@@ -11,6 +11,11 @@ module.exports =
   Position:Position
 };
 
+/*Events*/
+gpio.on('export', function(channel) {
+    console.log('Channel set: ' + channel);
+});
+
 //Default
 var _pinning =
 {
@@ -90,7 +95,7 @@ function Drive(moveObj,callback)
     gpio.write(_pinning.dir, false, function(err) {
        if (err) throw err;
        //console.log('Written to pin');
-   });
+    });
 
   }else if (moveObj.dir == "right") {
     console.log("Set Direction to right");
@@ -141,10 +146,7 @@ function _step()
  }
 }
 
-/*Events*/
-gpio.on('export', function(channel) {
-    console.log('Channel set: ' + channel);
-});
+
 
 /*Utilities*/
 function _calculateFeedrateToDelay(feedrate)
