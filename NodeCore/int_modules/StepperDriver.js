@@ -5,7 +5,9 @@ module.export =
   Position:Position,
   Initialize:Initialize,
   StopDrive:StopDrive,
-  Drive:Drive
+  Drive:Drive,
+  GetStatus:GetStatus,
+  Position:Position
 };
 
 //Default
@@ -60,10 +62,19 @@ function Drive(moveObj,callback)
        //console.log('Written to pin');
    });
   }
-
   var intervalStr = (_calculateFeedrateToDelay(moveObj.feedrate) / 2).toString() + "u";
   stepTimer.setInterval(_step,'',intervalStr);
 
+}
+
+function GetStatus()
+{
+  var statusObj =
+  {
+    StepsLeft:stepsLeft,
+    IsStepping:sStepping
+  };
+  return statusObj;
 }
 
 function _step()
