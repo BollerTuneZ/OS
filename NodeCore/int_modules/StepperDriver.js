@@ -48,6 +48,7 @@ feedrate
 */
 function Drive(moveObj,callback)
 {
+  console.log(moveObj);
   if(isStepping)
   {
     //Need to stopTimer
@@ -63,7 +64,7 @@ function Drive(moveObj,callback)
        if (err) throw err;
        //console.log('Written to pin');
    });
-   console.log(moveObj);
+
   }else if (moveObj.dir == "right") {
     console.log("Set Direction to right");
     gpio.write(_pinning.dir, true, function(err) {
