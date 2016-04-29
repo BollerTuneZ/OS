@@ -31,6 +31,7 @@ function Initialize(pinning)
   gpio.setup(_pinning.enable, gpio.DIR_OUT);
   gpio.setup(_pinning.step, gpio.DIR_OUT);
   gpio.setup(_pinning.dir, gpio.DIR_OUT);
+  console.log("Pin directions set");
 }
 
 function StopDrive()
