@@ -13,9 +13,9 @@ module.exports =
 //Default
 var _pinning =
 {
-  enable:17,
-  step:27,
-  dir:22
+  enable:10,
+  step:11,
+  dir:12
 };
 
 var NanoTimer = require('nanotimer');
