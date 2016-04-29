@@ -48,7 +48,7 @@ feedrate
 */
 function Drive(moveObj,callback)
 {
-  console.log(moveObj);
+  console.log(_pinning);
   if(isStepping)
   {
     //Need to stopTimer
