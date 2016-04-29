@@ -1,4 +1,4 @@
-var test = require('tests/steeringTest.js');
+var test = require('./tests/steeringTest');
 
 console.log("MultiTest test");
 test.MultiTest();
