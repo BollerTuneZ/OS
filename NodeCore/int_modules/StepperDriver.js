@@ -1,5 +1,5 @@
 var gpio = require('rpi-gpio');
-
+var pinsInitialized = [false,false,false];
 module.exports =
 {
   Position:Position,
@@ -28,10 +28,22 @@ function Initialize(pinning)
   {
     _pinning = pinning;
   }
-  gpio.setup(_pinning.enable, gpio.DIR_OUT);
-  gpio.setup(_pinning.step, gpio.DIR_OUT);
-  gpio.setup(_pinning.dir, gpio.DIR_OUT);
-  console.log("Pin directions set");
+  gpio.setup(_pinning.enable, gpio.DIR_OUT,function()
+  {
+    pinsInitialized[0] = true;
+    console.log("Pin Enable directions set");
+  });
+  gpio.setup(_pinning.step, gpio.DIR_OUT,function()
+  {
+    pinsInitialized[1] = true;
+    console.log("Pin Step directions set");
+  });
+  gpio.setup(_pinning.dir, gpio.DIR_OUT,function()
+  {
+    pinsInitialized[2] = true;
+    console.log("Pin Direction directions set");
+  });
+
 }
 
 function StopDrive()
@@ -49,6 +61,18 @@ feedrate
 */
 function Drive(moveObj,callback)
 {
+  while(true)
+  {
+    for(var i=0;i<3;i++)
+    {
+      if(!pinsInitialized[i])
+      {
+        continue;
+      }
+    }
+    break;
+  }
+
   console.log(_pinning);
   if(isStepping)
   {
