@@ -1,5 +1,4 @@
 var SerialPort = require("serialport").SerialPort;
-var port;
 var initCommand = 'RUN';
 var initialized = false;
 
@@ -25,6 +24,9 @@ var gc_status =
 	buf_overflow:0x21
 };
 
+var port = new SerialPort("/dev/ttyUSB1", {
+	baudrate: 9600
+});
 port.on('data',function(data)
 {
 	console.log('Data' + data);
@@ -33,9 +35,7 @@ port.on('data',function(data)
 function Initialize(baudRate,callback)
 {
 	console.log("Initializing")
-	port = new SerialPort("/dev/ttyUSB1", {
-	  baudrate: baudRate
-	});
+
 	port.on('open',function()
 	{
 		console.log("Port opend");
