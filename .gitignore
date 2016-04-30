@@ -55,6 +55,7 @@ CMakeScripts
 cmake_install.cmake
 install_manifest.txt
 .metadata
+node_modules/
 bin/
 tmp/
 httpserver/rethinkdb_data/
