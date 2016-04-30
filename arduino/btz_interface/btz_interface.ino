@@ -98,6 +98,10 @@ int getNextBuffer(char *buffer,int bufSize)
      if(Serial.available() > 0)
      {
       buffer[iByte] = Serial.read(); 
+      if(buffer[iByte] = 'E')
+      {
+       return 1; 
+      }
       iByte++;
       startTimer(&comTimer);
      }
