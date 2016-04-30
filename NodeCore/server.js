@@ -1,8 +1,5 @@
-var test = require('./tests/steeringTest');
+var test = require('./tests/softStepperTest');
 
 console.log("MultiTest test");
 test.Initialize();
-setTimeout(function()
-{
-  test.MultiTest();
-},5000);
+setTimeout(test.TestOne,5000);
