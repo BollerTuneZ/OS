@@ -39,13 +39,16 @@ function Initialize(baudRate,callback)
 	port.on('open',function()
 	{
 		console.log("Port opend");
-
+			setTimeout(function()
+		{
 			port.write(initCommand,function(e,b){
 				if (e) {
 					console.log('Error: ', e.message);
 				}
 				console.log("Bytes written:" + b);
 			});
+		},1000);
+
 
 	})
 }
