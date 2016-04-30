@@ -25,6 +25,10 @@ var gc_status =
 	buf_overflow:0x21
 };
 
+port.on('data',function(data)
+{
+	console.log('Data' + data);
+});
 
 function Initialize(baudRate,callback)
 {
@@ -34,19 +38,6 @@ function Initialize(baudRate,callback)
 	});
 	port.on('open',function()
 	{
-
-		port.on('data',function(data)
-		{
-			console.log('Data' + data);
-			if(data == states.gc_ok)
-			{
-				initialized = true;
-				callback(true);
-			}else {
-				callback(false);
-			}
-		});
-
 		console.log("Port opend");
 
 			port.write(initCommand,function(e,b){
