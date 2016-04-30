@@ -107,35 +107,3 @@ function Drive(steps,dir,feedrate,callback)
 	port.write(buffer);
 
 }
-
-
-
-serialPort.on('data', function (data) {
-	if(data == states.gc_ok)
-	{
-		console.log("State is OK");
-	}else if(data == states.gc_fault)
-	{
-		console.log("State is FAULT");
-	}else if(data == states.gc_buff_overflow)
-	{
-		console.log("State is Overflow");
-	}else
-	{
-		console.log('Data: ' + data);
-	}
-});
-
-serialPort.on('open', function () {
-	setInterval(writeToSlave,1000);
-});
-
-function writeToSlave()
-{
-  serialPort.write(initCommand, function(err, bytesWritten) {
-    if (err) {
-      return console.log('Error: ', err.message);
-    }
-    console.log(bytesWritten, 'bytes written');
-  });
-}
