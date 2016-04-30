@@ -34,8 +34,8 @@ function Initialize(baudRate,callback)
 	port.on('open',function()
 	{
 		port.write(initCommand,function(e,b){
-			if (err) {
-				console.log('Error: ', err.message);
+			if (e) {
+				console.log('Error: ', e.message);
 			}
 		});
 		port.on('data',function(data)
