@@ -32,10 +32,10 @@ function Initialize(pinning)
   }
   stepTimer = new NanoTimer();
 
-  gpio.mode(18, 'out', function(err) {
+  gpio.mode(_pinning.step, 'out', function(err) {
 console.log("Pin Step directions set");
   });
-  gpio.mode(7, 'out', function(err) {
+  gpio.mode(_pinning.dir, 'out', function(err) {
     console.log("Pin Direction directions set");
   });
   gpio.mode(_pinning.enable, 'out', function(err) {
@@ -84,18 +84,18 @@ function Drive(moveObj,callback)
   if(moveObj.dir == "left")
   {
     console.log("Set Direction to left");
-    gpio.write(7, 0, function(err) {
+    gpio.write(_pinning.dir, 0, function(err) {
   // GPIO pin 2 set to high
     });
 
 
   }else if (moveObj.dir == "right") {
     console.log("Set Direction to right");
-    gpio.write(7, 1, function(err) {
+    gpio.write(_pinning.dir, 1, function(err) {
   // GPIO pin 2 set to high
     });
   }
-  var intervalStr = ("10000u");
+  var intervalStr = ("50n");
 console.log(intervalStr);
   stepTimer.setInterval(_step,'',intervalStr);
 
@@ -115,14 +115,15 @@ function _step()
 {
   if(pinMode)
   {
-    gpio.write(18, 0, function(err) {
-  // GPIO pin 2 set to high
+    gpio.write(_pinning.step, 0, function(err) {
+  //console.log("low");
     });
    pinMode = false;
    stepsLeft--;
  }else {
-   gpio.write(18, 1, function(err) {
+   gpio.write(_pinning.step, 1, function(err) {
  // GPIO pin 2 set to high
+//console.log("High");
    });
   pinMode = true;
  }

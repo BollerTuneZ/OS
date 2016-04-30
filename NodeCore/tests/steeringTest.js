@@ -14,8 +14,8 @@ function Initialize()
   console.log("Init StepperDriver");
   var pinning = {
     enable:17,
-    step:27,
-    dir:7
+    step:4,
+    dir:5
   };
   stpDriver.Initialize(pinning);
   console.log("StepperDriver Initialized");
@@ -34,12 +34,12 @@ function MultiTest()
   {
     vSmall:25,
     small:150,
-    mid:200
+    mid:5000
   };
   console.log("Referenz drive right, low feedrate");
   stpDriver.Drive({
     dir:"right",
-    steps:refSteps.vSmall,
+    steps:refSteps.mid,
     feedrate:feedRates.low
   });
   setTimeout(function()
@@ -47,7 +47,7 @@ function MultiTest()
   console.log("Drive left")
   stpDriver.Drive({
     dir:"left",
-    steps:refSteps.vSmall,
+    steps:refSteps.mid,
     feedrate:feedRates.low
   });
 },10*1000);
