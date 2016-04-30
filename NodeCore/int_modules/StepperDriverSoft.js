@@ -28,6 +28,7 @@ var gc_status =
 
 function Initialize(baudRate,callback)
 {
+	console.log("Initializing")
 	port = new SerialPort("/dev/ttyUSB0", {
 	  baudrate: baudRate
 	});

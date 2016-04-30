@@ -21,6 +21,7 @@ function Initialize()
 
 function TestOne()
 {
+  console.log("Step Testing");
   stpDriver.Drive(500,'L',600,function(success)
   {
     console.log("Drive ended with:" + success);
