@@ -39,7 +39,7 @@ function Initialize(baudRate,callback)
 	port.on('open',function()
 	{
 		console.log("Port opend");
-			setTimeout(function()
+			setInterval(function()
 		{
 			port.write(initCommand,function(e,b){
 				if (e) {
