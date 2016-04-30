@@ -48,23 +48,13 @@ function Initialize(baudRate,callback)
 		});
 
 		console.log("Port opend");
-		setTimeout(function()
-		{
-			port.write(initCommand,function(e,b){
-				if (e) {
-					console.log('Error: ', e.message);
-				}
-			},1000);
-		});
-		setTimeout(function()
-		{
-			port.write(initCommand,function(e,b){
-				if (e) {
-					console.log('Error: ', e.message);
-				}
-			},1000);
-		});
 
+			port.write(initCommand,function(e,b){
+				if (e) {
+					console.log('Error: ', e.message);
+				}
+				console.log("Bytes written:" + b);
+			});
 
 	})
 }
