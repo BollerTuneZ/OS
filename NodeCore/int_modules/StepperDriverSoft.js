@@ -34,6 +34,7 @@ function Initialize(baudRate,callback)
 	});
 	port.on('open',function()
 	{
+		console.log("Port opend");
 		port.write(initCommand,function(e,b){
 			if (e) {
 				console.log('Error: ', e.message);
@@ -41,6 +42,7 @@ function Initialize(baudRate,callback)
 		});
 		port.on('data',function(data)
 		{
+			console.log('Data' + data);
 			if(data == states.gc_ok)
 			{
 				initialized = true;
