@@ -1,4 +1,6 @@
-var SerialPort = require("serialport").SerialPort;
+var serialport = require('serialport');
+
+var SerialPort = serialport.SerialPort;
 var initCommand = 'RUN';
 var initialized = false;
 
@@ -38,7 +40,7 @@ function Initialize(connectionInfo,callback)
 
 	port = new SerialPort(connectionInfo.port, {
 		baudrate: connectionInfo.baudrate,
-		parser: port.parsers.readline('\n')
+		parser: serialport.parsers.readline('\n')
 	});
 
 	port.on('data',function(data)
