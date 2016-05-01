@@ -25,13 +25,13 @@ var gc_status =
 	fault:0x20,
 	buf_overflow:0x21
 };
-
+var port;
 
 function Initialize(connectionInfo,callback)
 {
 	console.log("Initializing")
 
-	var port = new SerialPort(connectionInfo.port, {
+	port = new SerialPort(connectionInfo.port, {
 		baudrate: connectionInfo.baudrate
 	});
 

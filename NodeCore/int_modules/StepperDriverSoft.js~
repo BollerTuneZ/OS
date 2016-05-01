@@ -26,23 +26,23 @@ var gc_status =
 	buf_overflow:0x21
 };
 
-var port = new SerialPort("/dev/ttyUSB0", {
-	baudrate: 9600
-});
 
-port.on('data',function(data)
-{
-	console.log('Data' + data);
-	if(listenerCallback != undefined)
-	{
-		listenerCallback(data);
-	}
-});
-
-
-function Initialize(callback)
+function Initialize(connectionInfo,callback)
 {
 	console.log("Initializing")
+
+	var port = new SerialPort(connectionInfo.port, {
+		baudrate: connectionInfo.baudrate
+	});
+
+	port.on('data',function(data)
+	{
+		console.log('Data' + data);
+		if(listenerCallback != undefined)
+		{
+			listenerCallback(data);
+		}
+	});
 
 	port.on('open',function()
 	{
@@ -71,7 +71,7 @@ function connectDevice(callback)
 			initialized = true;
 			callback(true);
 		}else{
-			console.log('Error' + data.toString(16));			
+			console.log('Error' + data);
 		}
 	}
 	writeInit();
