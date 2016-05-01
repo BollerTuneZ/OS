@@ -74,6 +74,7 @@ function connectDevice(callback)
 		{
 			console.log("Here ok!");
 			initialized = true;
+			listenerCallback = GenReceive;
 			callback(true);
 		}else{
 			console.log('Error' + data);
@@ -86,10 +87,6 @@ function connectDevice(callback)
 		{
 			writeInit();
 			setTimeout(repeat,500);
-		}else {
-			{
-				listenerCallback = GenReceive;
-			}
 		}
 	}
 	setTimeout(function()
