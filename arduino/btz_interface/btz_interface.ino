@@ -13,9 +13,9 @@
 #define GC_FAULT 0x20
 #define GC_BUFF_OVERFLOW 0x21
 
-char GC_MOVE = 'M';
-char GC_DIR = 'D';
-char GC_FEEDRATE = 'F';
+const char GC_MOVE = 'M';
+const char GC_DIR = 'D';
+const char GC_FEEDRATE = 'F';
 
 long comTimer;
 int feedrate = 1;
