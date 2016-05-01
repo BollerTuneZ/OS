@@ -71,13 +71,18 @@ function connectDevice(callback)
 		}
 	}
 	writeInit();
-	setTimeout(function()
+	function repeat()
 	{
 		if(!initialized)
 		{
 			writeInit();
-			setTimeout(this,500);
+			setTimeout(repeat,500);
 		}
+	}
+
+	setTimeout(function()
+	{
+		repeat();
 	},500);
 
 }
