@@ -35,7 +35,6 @@ function Initialize(baudRate,callback)
 
 	port.on('open',function()
 	{
-		var init = false;
 		var timer;
 		port.on('data',function(data)
 		{
@@ -43,7 +42,7 @@ function Initialize(baudRate,callback)
 			if(data == gc_status.ok)
 			{
 				console.log("Initialized");
-				init = true;
+				initialized = true;
 				clearInterval(timer);
 			}
 		});
