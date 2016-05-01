@@ -3,7 +3,7 @@ var stpDriver = require('./../int_modules/StepperDriverSoft');
 module.exports =
 {
   Initialize:Initialize,
-  TestOne:TestOne
+  TestOne:TestOne,
 };
 
 function Initialize(callback)
@@ -39,7 +39,7 @@ function TestOne()
 function TestTwo(resultCallback)
 {
   var i = 0;
-  var steps = [10,100,1000];
+  var steps = [50,100,1000];
   var feedrates = [50,150,300];
   var dir = 'L';
   function nextStep(callback)
@@ -50,7 +50,7 @@ function TestTwo(resultCallback)
     {
       if(!success)
       {
-        console.log("Error");
+        console.log("Errorresult");
         resultCallback(false);
       }
     });
@@ -61,6 +61,7 @@ function TestTwo(resultCallback)
   {
     if(state)
     {
+      console.log("Next...");
       setTimeout(nextStep(function(){console.log("Done");}),1000);
     }
   }
