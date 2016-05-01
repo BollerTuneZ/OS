@@ -105,37 +105,36 @@ function GenReceive(data)
 	function isArray(ar) {
 	  return Array.isArray(ar);
 	}
-	console.log('Length:' + data.length);
-	for(var i=0,j=data.length;i<j;i++)
-	{
-		if(data[i] == gc_status.ready)
-		{
-			if(onBusyChanged != undefined)
-			{
-				console.log("Ready");
-				onBusyChanged(true);
-			}
-		}else if(data[i] == gc_status.busy)
-		{
-			if(onBusyChanged != undefined)
-			{
-				console.log("Busy");
-				onBusyChanged(false);
-			}
-		}else if(data[i] == gc_status.ok)
-		{
-			console.log("OK");
-		}else if(data[i] == gc_status.fault)
-		{
-			console.log("FAULT");
-		}else if(data[i] == gc_status.buf_overflow)
-		{
-			console.log("buf_overflow");
-		}else {
-			console.log('Raw:' + data[i]);
-		}
-	}
 
+
+	console.log('Length:' + data.length);
+
+	if(data == gc_status.ready)
+	{
+		if(onBusyChanged != undefined)
+		{
+			console.log("Ready");
+			onBusyChanged(true);
+		}
+	}else if(data == gc_status.busy)
+	{
+		if(onBusyChanged != undefined)
+		{
+			console.log("Busy");
+			onBusyChanged(false);
+		}
+	}else if(data == gc_status.ok)
+	{
+		console.log("OK");
+	}else if(data == gc_status.fault)
+	{
+		console.log("FAULT");
+	}else if(data == gc_status.buf_overflow)
+	{
+		console.log("buf_overflow");
+	}else {
+		console.log('Raw:' + data);
+	}
 }
 
 /* Dir : 'L' || 'R'
