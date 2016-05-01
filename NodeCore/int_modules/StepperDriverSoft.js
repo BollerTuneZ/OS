@@ -22,9 +22,9 @@ var lastFeedrate = 0;
 
 var gc_status =
 {
-	ok:0x10,
-	fault:0x20,
-	buf_overflow:0x21,
+	ok:16,
+	fault:32,
+	buf_overflow:33,
 	ready : 'R',
 	busy : 'B'
 };
@@ -42,7 +42,7 @@ function Initialize(connectionInfo,callback)
 
 	port.on('data',function(data)
 	{
-		console.log('Data' + data);
+		//console.log('Data' + data);
 		if(listenerCallback != undefined)
 		{
 			listenerCallback(data);

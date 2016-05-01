@@ -61,7 +61,7 @@ function TestTwo(resultCallback)
   {
     if(state)
     {
-      nextStep(function(){console.log("Done");});
+      setTimeout(nextStep(function(){console.log("Done");}),1000);
     }
   }
 
