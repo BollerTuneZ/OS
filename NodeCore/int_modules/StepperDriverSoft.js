@@ -71,10 +71,15 @@ function connectDevice(callback)
 		}
 	}
 	writeInit();
-	if(!initialized)
+	setTimeout(function()
 	{
-		setTimeout(connectDevice,1000,callback);
-	}
+		if(!initialized)
+		{
+			writeInit();
+			setTimeout(this,500);
+		}
+	},500);
+
 }
 
 /* Dir : 'L' || 'R'
