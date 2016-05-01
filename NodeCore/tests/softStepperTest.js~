@@ -3,7 +3,8 @@ var stpDriver = require('./../int_modules/StepperDriverSoft');
 module.exports =
 {
   Initialize:Initialize,
-  TestOne:TestOne
+  TestOne:TestOne,
+ TestTwo:TestTwo
 };
 
 function Initialize(callback)
@@ -26,6 +27,7 @@ function Initialize(callback)
   });
 }
 
+
 function TestOne()
 {
   console.log("Step Testing");
@@ -47,24 +49,24 @@ function TestTwo(resultCallback)
     console.log("Drive "+dir+" Steps:" + steps[i] + "at feedRate:" + feedrates[i]);
     stpDriver.Drive(steps[i],dir,feedrates[i],function(success)
     {
-      if(success)
+      if(!success)
       {
-        setTimeout(nextStep(callback)2000);
-      }else {
-        {
-          console.log("Error");
-          resultCallback(false);
-        }
+        console.log("Error");
+        resultCallback(false);
       }
     });
     i++;
   }
+
+  test.onBusyChanged = function(state)
+  {
+    if(state)
+    {
+      setTimeout(nextStep(function(){console.log("Done");}),1000);
+    }
+  }
+
   nextStep(function()
   {
-    dir = 'R';
-    nextStep(function()
-    {
-      resultCallback(true);
-    });
   });
 }

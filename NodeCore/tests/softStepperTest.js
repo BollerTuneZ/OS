@@ -3,7 +3,8 @@ var stpDriver = require('./../int_modules/StepperDriverSoft');
 module.exports =
 {
   Initialize:Initialize,
-  TestOne:TestOne
+  TestOne:TestOne,
+ TestTwo:TestTwo
 };
 
 function Initialize(callback)
@@ -57,7 +58,7 @@ function TestTwo(resultCallback)
     i++;
   }
 
-  test.onBusyChanged = function(state)
+  stpDriver.onBusyChanged = function(state)
   {
     if(state)
     {

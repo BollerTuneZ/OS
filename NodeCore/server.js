@@ -11,7 +11,7 @@ function startTesting(success)
     console.log("Start testing");
     //test.TestOne();
     secondTest();
-  }
+  
   }else {
     console.log("Cant start testing error apeard");
   }
