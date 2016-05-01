@@ -39,6 +39,7 @@ function Initialize(baudRate,callback)
 		var timer;
 		port.on('data',function(data)
 		{
+			console.log('Data' + data);
 			if(data == gc_status.ok)
 			{
 				console.log("Initialized");

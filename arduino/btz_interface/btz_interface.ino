@@ -108,11 +108,11 @@ int getNextBuffer(char *buffer,int bufSize)
       startTimer(&comTimer);
      }
  }
-  
+  /*
  for(int i=0;i<bufSize;i++)
  {
   Serial.println(buffer[i]);
- }
+ }*/
  return 1;
 }
 
