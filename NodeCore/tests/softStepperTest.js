@@ -49,7 +49,7 @@ function TestTwo(resultCallback)
     {
       if(success)
       {
-        nextStep(callback);
+        setTimeout(nextStep(callback)2000);
       }else {
         {
           console.log("Error");
