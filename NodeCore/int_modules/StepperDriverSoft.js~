@@ -7,7 +7,8 @@ var listenerCallback;
 module.exports =
 {
 	Initialize:Initialize,
-	Drive:Drive
+	Drive:Drive,
+	onBusyChanged:onBusyChanged
 };
 
 var gc =
@@ -23,15 +24,19 @@ var gc_status =
 {
 	ok:0x10,
 	fault:0x20,
-	buf_overflow:0x21
+	buf_overflow:0x21,
+	ready = 'R',
+	busy = 'B'
 };
+var port;
 
+var onBusyChanged;
 
 function Initialize(connectionInfo,callback)
 {
 	console.log("Initializing")
 
-	var port = new SerialPort(connectionInfo.port, {
+	port = new SerialPort(connectionInfo.port, {
 		baudrate: connectionInfo.baudrate
 	});
 
@@ -81,14 +86,43 @@ function connectDevice(callback)
 		{
 			writeInit();
 			setTimeout(repeat,500);
+		}else {
+			{
+				listenerCallback = GenReceive;
+			}
 		}
 	}
-
 	setTimeout(function()
 	{
 		repeat();
 	},500);
 
+}
+
+function GenReceive(data)
+{
+	if(data == gc_status.ready)
+	{
+		if(onBusyChanged != undefined)
+		{
+			onBusyChanged(true);
+		}
+	}else if(data == gc_status.busy)
+	{
+		if(onBusyChanged != undefined)
+		{
+			onBusyChanged(false);
+		}
+	}else if(data == gc_status.ok)
+	{
+		console.log("OK");
+	}else if(data == gc_status.fault)
+	{
+		console.log("FAULT");
+	}else if(data == gc_status.buf_overflow)
+	{
+		console.log("buf_overflow");
+	}
 }
 
 /* Dir : 'L' || 'R'
@@ -98,53 +132,32 @@ function Drive(steps,dir,feedrate,callback)
 {
 	if(!initialized){callback("not init");}
 	var buffer = "";
-	var dirState = false,feedrateState=false;
 	if(dir != lastDirection)
 	{
 		console.dir("ajust direction");
 		buffer += gc.dir + dir + "E";
-		port.on('data',function(data)
-		{
-			console.log('Data' + data);
-			lastDirection = dir;
-			if(data == gc_status.gc_ok)
-			{
-				dirState = true;
-			}
-		});
+
 		port.write(buffer,function(e,b){
 			if (e) {
 				console.log('Error: ', e.message);
 			}
 			console.log("Bytes written:" + b);
 		});
-	}else {
-		dirState = true;
+		lastDirection = dir;
 	}
-
 
 	buffer = "";
 	if(feedrate != lastFeedrate)
 	{
 		console.dir("ajust feedrate");
 		buffer += gc.feedrate + feedrate + "E";
-
-		port.on('data',function(data)
-		{
-			console.log('Data' + data);
-			if(data == gc_status.gc_ok)
-			{
-				feedrateState = true;
-				lastFeedrate = feedrate;
-			}
-		});
-
 		port.write(buffer,function(e,b){
 			if (e) {
 				console.log('Error: ', e.message);
 			}
 			console.log("Bytes written:" + b);
 		});
+		lastFeedrate = feedrate;
 	}
 
 	buffer = "";

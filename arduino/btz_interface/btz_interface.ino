@@ -137,9 +137,9 @@ void ExecuteCommand(char *buffer,int bufSize)
     Serial.println(steps);
     Serial.println(currentDir);
     Serial.println(feedrate);*/
-    Serial.println(GC_READY);
-    _stepper->Step(currentDir,steps,feedrate);  
     Serial.println(GC_BUSY);
+    _stepper->Step(currentDir,steps,feedrate);  
+    Serial.println(GC_READY);
   }else if(buffer[0] == GC_DIR)
   {
     if(buffer[1] == DIR_LEFT)

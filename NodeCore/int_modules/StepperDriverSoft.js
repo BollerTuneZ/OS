@@ -24,9 +24,9 @@ var gc_status =
 {
 	ok:0x10,
 	fault:0x20,
-	buf_overflow:0x21
-	ready = 'R',
-	busy = 'B'
+	buf_overflow:0x21,
+	ready : 'R',
+	busy : 'B'
 };
 var port;
 
