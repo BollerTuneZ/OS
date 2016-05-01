@@ -59,7 +59,10 @@ function TestTwo(resultCallback)
 
   test.onBusyChanged = function(state)
   {
-    setTimeout(nextStep(function(){console.log("Done");}),1000);
+    if(state)
+    {
+      nextStep(function(){console.log("Done");});
+    }
   }
 
   nextStep(function()
