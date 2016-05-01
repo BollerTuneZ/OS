@@ -107,7 +107,7 @@ function GenReceive(data)
 	if(isArray(data))
 	{
 		console.log("Array");
-	})
+	}
 
 	if(data == gc_status.ready)
 	{
