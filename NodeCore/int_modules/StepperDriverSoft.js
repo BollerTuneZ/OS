@@ -98,14 +98,6 @@ function Drive(steps,dir,feedrate,callback)
 	{
 		console.dir("ajust feedrate");
 		buffer += gc.feedrate + feedrate + "E";
-		port.on('data',function(data)
-		{
-			console.log('Data' + data);
-			if(data == gc_status.gc_ok)
-			{
-				feedrateState = true;
-			}
-		});
 		port.write(buffer,function(e,b){
 			if (e) {
 				console.log('Error: ', e.message);
@@ -115,20 +107,8 @@ function Drive(steps,dir,feedrate,callback)
 	}
 
 	buffer = "";
-	buffer += gc.feedrate + feedrate + "E";
-	port.on('data',function(data)
-	{
-		console.log('Data' + data);
-		if(data == gc_status.gc_ok)
-		{
-			if(callback != undefined)
-			{
-				callback(true);
-			}else {
-				callback(false);
-			}
-		}
-	});
+	buffer += gc.move + steps + "E";
+	console.log(buffer);
 	port.write(buffer,function(e,b){
 		if (e) {
 			console.log('Error: ', e.message);
