@@ -99,6 +99,16 @@ function connectDevice(callback)
 function GenReceive(data)
 {
 
+	function isArray(ar) {
+	  return Array.isArray(ar) ||
+	         (typeof ar === 'object' && objectToString(ar) === '[object Array]');
+	}
+
+	if(isArray(data)
+	{
+		console.log("Array");
+	})
+
 	if(data == gc_status.ready)
 	{
 		if(onBusyChanged != undefined)
@@ -106,7 +116,7 @@ function GenReceive(data)
 			console.log("Ready");
 			onBusyChanged(true);
 		}
-	}else if((data.toString().trim()) == gc_status.busy)
+	}else if(data == gc_status.busy)
 	{
 		if(onBusyChanged != undefined)
 		{
