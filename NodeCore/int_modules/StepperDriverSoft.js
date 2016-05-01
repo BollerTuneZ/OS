@@ -109,27 +109,27 @@ function GenReceive(data)
 
 	console.log('Length:' + data.length);
 
-	if(data == gc_status.ready)
+	if(data[0] == gc_status.ready)
 	{
 		if(onBusyChanged != undefined)
 		{
 			console.log("Ready");
 			onBusyChanged(true);
 		}
-	}else if(data == gc_status.busy)
+	}else if(data[0] == gc_status.busy)
 	{
 		if(onBusyChanged != undefined)
 		{
 			console.log("Busy");
 			onBusyChanged(false);
 		}
-	}else if(data == gc_status.ok)
+	}else if(data[0] == gc_status.ok)
 	{
 		console.log("OK");
-	}else if(data == gc_status.fault)
+	}else if(data[0] == gc_status.fault)
 	{
 		console.log("FAULT");
-	}else if(data == gc_status.buf_overflow)
+	}else if(data[0] == gc_status.buf_overflow)
 	{
 		console.log("buf_overflow");
 	}else {
