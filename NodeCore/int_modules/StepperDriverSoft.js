@@ -104,7 +104,7 @@ function GenReceive(data)
 	         (typeof ar === 'object' && objectToString(ar) === '[object Array]');
 	}
 
-	if(isArray(data)
+	if(isArray(data))
 	{
 		console.log("Array");
 	})
