@@ -106,7 +106,7 @@ function GenReceive(data)
 			console.log("Ready");
 			onBusyChanged(true);
 		}
-	}else if(data.trim() == gc_status.busy)
+	}else if((data.toString().trim()) == gc_status.busy)
 	{
 		if(onBusyChanged != undefined)
 		{
