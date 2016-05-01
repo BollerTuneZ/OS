@@ -66,7 +66,7 @@ function Initialize(baudRate,callback)
 */
 function Drive(steps,dir,feedrate,callback)
 {
-	if(!initialized){return -1;}
+	if(!initialized){callback("not init");}
 	var buffer = "";
 	var dirState = false,feedrateState=false;
 	if(dir != lastDirection)
@@ -81,7 +81,12 @@ function Drive(steps,dir,feedrate,callback)
 				dirState = true;
 			}
 		});
-		port.write(buffer);
+		port.write(buffer,function(e,b){
+			if (e) {
+				console.log('Error: ', e.message);
+			}
+			console.log("Bytes written:" + b);
+		});
 	}else {
 		dirState = true;
 	}
@@ -99,7 +104,12 @@ function Drive(steps,dir,feedrate,callback)
 				feedrateState = true;
 			}
 		});
-		port.write(buffer);
+		port.write(buffer,function(e,b){
+			if (e) {
+				console.log('Error: ', e.message);
+			}
+			console.log("Bytes written:" + b);
+		});
 	}
 	while(!feedrateState){}
 	buffer = "";
@@ -117,6 +127,11 @@ function Drive(steps,dir,feedrate,callback)
 			}
 		}
 	});
-	port.write(buffer);
+	port.write(buffer,function(e,b){
+		if (e) {
+			console.log('Error: ', e.message);
+		}
+		console.log("Bytes written:" + b);
+	});
 
 }
