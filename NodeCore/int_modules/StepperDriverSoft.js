@@ -71,6 +71,7 @@ function Drive(steps,dir,feedrate,callback)
 	var dirState = false,feedrateState=false;
 	if(dir != lastDirection)
 	{
+		console.dir("ajust direction");
 		buffer += gc.dir + dir + "E";
 		port.on('data',function(data)
 		{
@@ -91,10 +92,11 @@ function Drive(steps,dir,feedrate,callback)
 		dirState = true;
 	}
 
-	while(!dirState){}
+
 	buffer = "";
 	if(feedrate != lastFeedrate)
 	{
+		console.dir("ajust feedrate");
 		buffer += gc.feedrate + feedrate + "E";
 		port.on('data',function(data)
 		{
@@ -111,7 +113,7 @@ function Drive(steps,dir,feedrate,callback)
 			console.log("Bytes written:" + b);
 		});
 	}
-	while(!feedrateState){}
+
 	buffer = "";
 	buffer += gc.feedrate + feedrate + "E";
 	port.on('data',function(data)
