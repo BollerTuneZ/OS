@@ -77,7 +77,7 @@ function Drive(steps,dir,feedrate,callback)
 		{
 			console.log('Data' + data);
 			lastDirection = dir;
-			if(data == states.gc_ok)
+			if(data == gc_status.gc_ok)
 			{
 				dirState = true;
 			}
@@ -101,7 +101,7 @@ function Drive(steps,dir,feedrate,callback)
 		port.on('data',function(data)
 		{
 			console.log('Data' + data);
-			if(data == states.gc_ok)
+			if(data == gc_status.gc_ok)
 			{
 				feedrateState = true;
 			}
@@ -119,7 +119,7 @@ function Drive(steps,dir,feedrate,callback)
 	port.on('data',function(data)
 	{
 		console.log('Data' + data);
-		if(data == states.gc_ok)
+		if(data == gc_status.gc_ok)
 		{
 			if(callback != undefined)
 			{
