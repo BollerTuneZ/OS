@@ -102,12 +102,14 @@ function GenReceive(data)
 	{
 		if(onBusyChanged != undefined)
 		{
+			console.log("Ready");
 			onBusyChanged(true);
 		}
 	}else if(data == gc_status.busy)
 	{
 		if(onBusyChanged != undefined)
 		{
+			console.log("Busy");
 			onBusyChanged(false);
 		}
 	}else if(data == gc_status.ok)
