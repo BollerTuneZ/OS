@@ -9,8 +9,9 @@ function startTesting(success)
   if(success)
   {
     console.log("Start testing");
-    test.TestOne();
-    setTimeout()
+    //test.TestOne();
+    secondTest();
+  }
   }else {
     console.log("Cant start testing error apeard");
   }
