@@ -75,6 +75,7 @@ function Drive(steps,dir,feedrate,callback)
 		buffer += gc.dir + dir + "E";
 		port.on('data',function(data)
 		{
+			console.log('Data' + data);
 			lastDirection = dir;
 			if(data == states.gc_ok)
 			{
@@ -93,6 +94,7 @@ function Drive(steps,dir,feedrate,callback)
 		buffer += gc.feedrate + feedrate + "E";
 		port.on('data',function(data)
 		{
+			console.log('Data' + data);
 			if(data == states.gc_ok)
 			{
 				feedrateState = true;
@@ -105,6 +107,7 @@ function Drive(steps,dir,feedrate,callback)
 	buffer += gc.feedrate + feedrate + "E";
 	port.on('data',function(data)
 	{
+		console.log('Data' + data);
 		if(data == states.gc_ok)
 		{
 			if(callback != undefined)
