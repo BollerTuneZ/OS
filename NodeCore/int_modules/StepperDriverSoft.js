@@ -70,6 +70,7 @@ function connectDevice(callback)
 			callback(true);
 		}
 	}
+	writeInit();
 	if(!initialized)
 	{
 		setTimeout(connectDevice,1000,callback);
