@@ -98,6 +98,7 @@ function connectDevice(callback)
 
 function GenReceive(data)
 {
+	console.log('Raw:' + data);
 	if(data == gc_status.ready)
 	{
 		if(onBusyChanged != undefined)
