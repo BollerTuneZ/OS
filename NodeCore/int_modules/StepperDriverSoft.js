@@ -36,22 +36,25 @@ function Initialize(baudRate,callback)
 	port.on('open',function()
 	{
 		var init = false;
+		var timer;
 		port.on('data',function(data)
 		{
 			if(data == gc_status.ok)
 			{
 				console.log("Initialized");
 				init = true;
+				clearInterval(timer);
 			}
 		});
 		console.log("Port opend");
-		while(!init){
+		timer = setInterval(function()
+		{
 			port.write(initCommand,function(e,b){
 				if (e) {
 					console.log('Error: ', e.message);
 				}
 				console.log("Bytes written:" + b);
-			});}
+		},1000);
 	});
 }
 
