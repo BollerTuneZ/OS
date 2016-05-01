@@ -54,6 +54,7 @@ void waitForInitialization()
          //Serial.println(String(init));
        }
      }
+     Serial.println("Wait for connection");
   }
   pinMode(DIR_PIN,OUTPUT);
   pinMode(STP_PIN,OUTPUT);
