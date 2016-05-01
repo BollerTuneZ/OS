@@ -37,7 +37,8 @@ function Initialize(connectionInfo,callback)
 	console.log("Initializing")
 
 	port = new SerialPort(connectionInfo.port, {
-		baudrate: connectionInfo.baudrate
+		baudrate: connectionInfo.baudrate,
+		parser: serialport.parsers.readline('\n')
 	});
 
 	port.on('data',function(data)
@@ -103,10 +104,7 @@ function GenReceive(data)
 	  return Array.isArray(ar);
 	}
 
-	if(isArray(data))
-	{
-		console.log("Array");
-	}
+	console.log('Length:' + data.length);
 
 	if(data == gc_status.ready)
 	{
