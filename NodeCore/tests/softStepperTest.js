@@ -8,7 +8,12 @@ module.exports =
 
 function Initialize(callback)
 {
-  stpDriver.Initialize(function(success)
+  stpDriver.Initialize(
+    {
+      baudrate:9600,
+      port:"/dev/ttyUSB0"
+    }
+  ,function(success)
   {
     if(success)
     {
