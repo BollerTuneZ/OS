@@ -64,10 +64,14 @@ function connectDevice(callback)
 	}
   listenerCallback = function(data)
 	{
-		if(data == gc_status.gc_ok)
+		console.log("Here");
+		if(data == 16)
 		{
+			console.log("Here ok!");
 			initialized = true;
 			callback(true);
+		}else{
+			console.log('Error' + data);			
 		}
 	}
 	writeInit();

@@ -13,9 +13,9 @@
 #define GC_FAULT 0x20
 #define GC_BUFF_OVERFLOW 0x21
 
-const char GC_MOVE = 'M';
-const char GC_DIR = 'D';
-const char GC_FEEDRATE = 'F';
+char GC_MOVE = 'M';
+char GC_DIR = 'D';
+char GC_FEEDRATE = 'F';
 
 long comTimer;
 int feedrate = 1;
@@ -130,10 +130,11 @@ void ExecuteCommand(char *buffer,int bufSize)
     }
     String sBuf = String(buffer);
     String subString = sBuf.substring(1,i);
-    int steps = subString.toInt();  
+    int steps = subString.toInt();
+    /*  
     Serial.println(steps);
     Serial.println(currentDir);
-    Serial.println(feedrate);
+    Serial.println(feedrate);*/
     _stepper->Step(currentDir,steps,feedrate);  
     
   }else if(buffer[0] == GC_DIR)

@@ -8,7 +8,7 @@ module.exports =
 
 function Initialize()
 {
-  stpDriver.Initialize(9600,function(success)
+  stpDriver.Initialize(function(success)
   {
     if(success)
     {
