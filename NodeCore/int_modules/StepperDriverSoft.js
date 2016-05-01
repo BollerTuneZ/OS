@@ -38,7 +38,7 @@ function Initialize(connectionInfo,callback)
 
 	port = new SerialPort(connectionInfo.port, {
 		baudrate: connectionInfo.baudrate,
-		parser: SerialPort.parsers.readline('\n')
+		parser: port.parsers.readline('\n')
 	});
 
 	port.on('data',function(data)
