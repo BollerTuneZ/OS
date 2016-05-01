@@ -57,6 +57,7 @@ function Initialize(baudRate,callback)
 		},1000);
 	});
 }
+}
 
 /* Dir : 'L' || 'R'
 *
