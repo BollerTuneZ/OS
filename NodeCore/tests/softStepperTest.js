@@ -40,7 +40,7 @@ function TestOne()
 function TestTwo(resultCallback)
 {
   var i = 0;
-  var steps = [50,100,1000];
+  var steps = [500,100,1000];
   var feedrates = [50,150,300];
   var dir = 'L';
   function nextStep(callback)
