@@ -37,7 +37,7 @@ function TestOne()
 
 function TestTwo(resultCallback)
 {
-  int i = 0;
+  var i = 0;
   var steps = [10,100,1000];
   var feedrates = [50,150,300];
   var dir = 'L';
