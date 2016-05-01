@@ -98,7 +98,7 @@ function connectDevice(callback)
 
 function GenReceive(data)
 {
-	console.log('Raw:' + data);
+
 	if(data == gc_status.ready)
 	{
 		if(onBusyChanged != undefined)
@@ -122,6 +122,8 @@ function GenReceive(data)
 	}else if(data == gc_status.buf_overflow)
 	{
 		console.log("buf_overflow");
+	}else {
+		console.log('Raw:' + data);
 	}
 }
 
