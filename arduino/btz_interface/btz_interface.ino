@@ -54,7 +54,7 @@ void waitForInitialization()
          //Serial.println(String(init));
        }
      }
-     Serial.println("Wait for connection");
+     
   }
   pinMode(DIR_PIN,OUTPUT);
   pinMode(STP_PIN,OUTPUT);
@@ -99,7 +99,8 @@ int getNextBuffer(char *buffer,int bufSize)
      if(Serial.available() > 0)
      {
       buffer[iByte] = Serial.read(); 
-      if(buffer[iByte] = 'E')
+      //Serial.println(buffer[iByte]);
+      if(buffer[iByte] == 'E')
       {
        return 1; 
       }
@@ -107,11 +108,11 @@ int getNextBuffer(char *buffer,int bufSize)
       startTimer(&comTimer);
      }
  }
-  /* 
+  
  for(int i=0;i<bufSize;i++)
  {
-  Serial.println("RAW:" + String( buffer[i],HEX));
- }*/
+  Serial.println(buffer[i]);
+ }
  return 1;
 }
 
@@ -159,6 +160,9 @@ void ExecuteCommand(char *buffer,int bufSize)
     String subString = sBuf.substring(1,i);
     feedrate = subString.toInt();
     Serial.println(GC_OK);
+  }else
+  {
+   Serial.println(GC_FAULT);
   }
 }
 
@@ -173,7 +177,7 @@ void GetCommands()
      {
        continue;
      }
-     
+     ExecuteCommand(commandBuf,COMMAND_BUF_SIZE);
   }
 }
 
