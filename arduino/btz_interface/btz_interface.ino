@@ -131,6 +131,9 @@ void ExecuteCommand(char *buffer,int bufSize)
     String sBuf = String(buffer);
     String subString = sBuf.substring(1,i);
     int steps = subString.toInt();  
+    Serial.println(steps);
+    Serial.println(currentDir);
+    Serial.println(feedrate);
     _stepper->Step(currentDir,steps,feedrate);  
     
   }else if(buffer[0] == GC_DIR)
