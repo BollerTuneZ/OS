@@ -26,7 +26,7 @@ var gc_status =
 	buf_overflow:0x21
 };
 
-var port = new SerialPort("/dev/ttyUSB1", {
+var port = new SerialPort("/dev/ttyUSB0", {
 	baudrate: 9600
 });
 
