@@ -54,10 +54,12 @@ function Initialize(baudRate,callback)
 					console.log('Error: ', e.message);
 				}
 				console.log("Bytes written:" + b);
+			});
 		},1000);
+
 	});
 }
-}
+
 
 /* Dir : 'L' || 'R'
 *
