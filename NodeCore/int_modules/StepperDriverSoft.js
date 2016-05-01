@@ -27,10 +27,7 @@ var gc_status =
 var port = new SerialPort("/dev/ttyUSB1", {
 	baudrate: 9600
 });
-port.on('data',function(data)
-{
-	console.log('Data' + data);
-});
+
 
 function Initialize(baudRate,callback)
 {
@@ -38,19 +35,24 @@ function Initialize(baudRate,callback)
 
 	port.on('open',function()
 	{
-		console.log("Port opend");
-			setInterval(function()
+		var init = false;
+		port.on('data',function(data)
 		{
+			if(data == gc_status.ok)
+			{
+				console.log("Initialized");
+				init = true;
+			}
+		});
+		console.log("Port opend");
+		while(!init){
 			port.write(initCommand,function(e,b){
 				if (e) {
 					console.log('Error: ', e.message);
 				}
 				console.log("Bytes written:" + b);
-			});
-		},1000);
-
-
-	})
+			});}
+	});
 }
 
 /* Dir : 'L' || 'R'
