@@ -105,35 +105,37 @@ function GenReceive(data)
 	function isArray(ar) {
 	  return Array.isArray(ar);
 	}
-
 	console.log('Length:' + data.length);
-
-	if(data == gc_status.ready)
+	for(var i=0,j=data.length;i<j;i++)
 	{
-		if(onBusyChanged != undefined)
+		if(data[i] == gc_status.ready)
 		{
-			console.log("Ready");
-			onBusyChanged(true);
-		}
-	}else if(data == gc_status.busy)
-	{
-		if(onBusyChanged != undefined)
+			if(onBusyChanged != undefined)
+			{
+				console.log("Ready");
+				onBusyChanged(true);
+			}
+		}else if(data[i] == gc_status.busy)
 		{
-			console.log("Busy");
-			onBusyChanged(false);
+			if(onBusyChanged != undefined)
+			{
+				console.log("Busy");
+				onBusyChanged(false);
+			}
+		}else if(data[i] == gc_status.ok)
+		{
+			console.log("OK");
+		}else if(data[i] == gc_status.fault)
+		{
+			console.log("FAULT");
+		}else if(data[i] == gc_status.buf_overflow)
+		{
+			console.log("buf_overflow");
+		}else {
+			console.log('Raw:' + data[i]);
 		}
-	}else if(data == gc_status.ok)
-	{
-		console.log("OK");
-	}else if(data == gc_status.fault)
-	{
-		console.log("FAULT");
-	}else if(data == gc_status.buf_overflow)
-	{
-		console.log("buf_overflow");
-	}else {
-		console.log('Raw:' + data);
 	}
+
 }
 
 /* Dir : 'L' || 'R'
