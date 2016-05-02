@@ -11,7 +11,8 @@ function startTesting(success)
     console.log("Start testing");
     //test.TestOne();
     //secondTest();
-    test.EmergencyStopTest();
+    //test.EmergencyStopTest();
+    test.DirectionTest();
   }else {
     console.log("Cant start testing error apeard");
   }

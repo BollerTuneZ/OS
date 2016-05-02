@@ -5,7 +5,8 @@ module.exports =
   Initialize:Initialize,
   TestOne:TestOne,
  TestTwo:TestTwo,
- EmergencyStopTest:EmergencyStopTest
+ EmergencyStopTest:EmergencyStopTest,
+ DirectionTest:DirectionTest
 };
 
 var defaultBusyCallback = function(val)
@@ -48,6 +49,24 @@ function TestOne()
   {
     console.log("Drive ended with:" + success);
   });
+}
+
+function DirectionTest()
+{
+  stpDriver.Drive(1000,'L',200,function(success)
+  {
+    if(!success){console.log("Errorresult");}
+  });
+  defaultBusyCallback = function(state)
+  {
+    if(state)
+    {
+      stpDriver.Drive(1000,'R',200,function(success)
+      {
+        if(!success){console.log("Errorresult");}
+      });
+    }
+  }
 }
 
 function TestTwo(resultCallback)
