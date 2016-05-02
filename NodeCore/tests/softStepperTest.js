@@ -119,12 +119,6 @@ function EmergencyStopTest()
         stpDriver.EmergencyStop();
         testDone = true;
       },2000);
-    }else {
-      if(testDone)
-      {
-        console.log("Turn on again");
-        stpDriver.Drive(100,'R',20,function(success){});
-      }
     }
   }
 }
