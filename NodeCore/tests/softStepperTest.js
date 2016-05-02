@@ -115,6 +115,11 @@ function EmergencyStopTest()
       setTimeout(function()
       {
         stpDriver.EmergencyStop();
+        setTimeout(function()
+        {
+          console.log("Turn on again");
+          stpDriver.Drive(100,'R',20,function(success){});
+        },2000);
       },2000);
     }
   }
