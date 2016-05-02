@@ -20,7 +20,7 @@ const char GC_READY = 'R';
 const char GC_BUSY = 'B';
 
 long comTimer;
-int feedrate = 1;
+int feedrate = 50;
 char currentDir = DIR_LEFT;
 
 
@@ -133,13 +133,14 @@ void ExecuteCommand(char *buffer,int bufSize)
     String sBuf = String(buffer);
     String subString = sBuf.substring(1,i);
     int steps = subString.toInt();
-    /*  
+    /*
     Serial.println(steps);
     Serial.println(currentDir);
     Serial.println(feedrate);*/
     Serial.println(GC_BUSY);
     _stepper->Step(currentDir,steps,feedrate);  
     Serial.println(GC_READY);
+    //Serial.print(GC_READY);
   }else if(buffer[0] == GC_DIR)
   {
     if(buffer[1] == DIR_LEFT)
