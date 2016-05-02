@@ -5,13 +5,7 @@ var initCommand = 'RUN';
 var initialized = false;
 
 var listenerCallback;
-
-module.exports =
-{
-	Initialize:Initialize,
-	Drive:Drive,
-	onBusyChanged:onBusyChanged
-};
+var onBusyChanged;
 
 var gc =
 {
@@ -32,7 +26,6 @@ var gc_status =
 };
 var port;
 
-var onBusyChanged;
 
 function Initialize(connectionInfo,callback)
 {
@@ -182,5 +175,9 @@ function Drive(steps,dir,feedrate,callback)
 		}
 		console.log("Bytes written:" + b);
 	});
-
 }
+
+var exports = module.exports;
+exports.Initialize = Initialize;
+exports.Drive = Drive;
+exports.onBusyChanged = onBusyChanged;
