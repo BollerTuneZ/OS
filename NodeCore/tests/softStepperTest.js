@@ -16,7 +16,10 @@ var defaultBusyCallback = function(val)
 
 var busyCallback = function (val)
 {
-  defaultBusyCallback(val);
+  if(defaultBusyCallback != undefined)
+  {
+    defaultBusyCallback(val);
+  }
 };
 
 function Initialize(callback)
@@ -61,6 +64,7 @@ function DirectionTest()
   {
     if(state)
     {
+      defaultBusyCallback = undefined;
       stpDriver.Drive(1000,'R',200,function(success)
       {
         if(!success){console.log("Errorresult");}
