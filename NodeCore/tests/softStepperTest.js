@@ -54,9 +54,14 @@ function TestTwo(resultCallback)
   var steps = [10,100,1000];
   var feedrates = [50,150,300];
   var dir = 'L';
+  var done = false;
   function nextStep(callback)
   {
-    if(i >= 3){callback();}
+    if(i >= 3){
+      callback();
+      done = true;
+      return;
+    }
     console.log("Drive "+dir+" Steps:" + steps[i] + "at feedRate:" + feedrates[i]);
     stpDriver.Drive(steps[i],dir,feedrates[i],function(success)
     {
@@ -71,14 +76,15 @@ function TestTwo(resultCallback)
   console.log("Set callback");
   defaultBusyCallback = function(state)
   {
-    if(state)
+    if(state && !done)
     {
       console.log("Next...");
-      setTimeout(nextStep(function(){console.log("Done");}),1000);
+      setTimeout(nextStep(function(){console.log("Done 1");}),1000);
     }
   }
 
   nextStep(function()
   {
+    console.log("Done 2");
   });
 }
