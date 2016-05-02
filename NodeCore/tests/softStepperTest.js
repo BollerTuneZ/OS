@@ -116,8 +116,20 @@ function EmergencyStopTest()
       console.log("Driver is busy... we gonna shut him done. 2sec");
       setTimeout(function()
       {
+        defaultBusyCallback = function(state){console.log("Done test int.");};
         stpDriver.EmergencyStop();
         testDone = true;
+        setTimeout(function()
+        {
+          stpDriver.Drive(200,dir,20,function(success)
+          {
+            if(!success)
+            {
+              console.log("Errorresult");
+            }
+          });
+        }2500);
+
       },2000);
     }
   }
