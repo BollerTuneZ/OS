@@ -111,11 +111,11 @@ function EmergencyStopTest()
   {
     if(!state)
     {
-      console.log("Driver is busy... we gonna shut him done. 1.5sec");
+      console.log("Driver is busy... we gonna shut him done. 2sec");
       setTimeout(function()
       {
-        //stpDriver.EmergencyStop();
-      },1500);
+        stpDriver.EmergencyStop();
+      },2000);
     }
   }
 }
