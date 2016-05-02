@@ -99,7 +99,14 @@ function EmergencyStopTest()
   var steps = 4000;
   var feedrate = 2;
   var dir = 'L';
-
+  console.log("EmergencyStopTest");
+  stpDriver.Drive(steps,dir,feedrate,function(success)
+  {
+    if(!success)
+    {
+      console.log("Errorresult");
+    }
+  });
   defaultBusyCallback = function(state)
   {
     if(!state)
