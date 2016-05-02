@@ -9,7 +9,7 @@ module.exports =
 
 var defaultBusyCallback = function(val)
 {
-  console.log("Busy state:" + );
+  console.log("Busy state:" + val);
 }
 
 var busyCallback = function (val)
