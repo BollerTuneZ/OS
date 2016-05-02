@@ -100,7 +100,7 @@ function GenReceive(data)
 	}
 
 
-	console.log('Length:' + data.length);
+	//console.log('Length:' + data.length);
 
 	if(data[0] == gc_status.ready)
 	{
@@ -126,7 +126,7 @@ function GenReceive(data)
 	{
 		console.log("buf_overflow");
 	}else {
-		console.log('Raw:' + data);
+		//console.log('Raw:' + data);
 	}
 }
 
