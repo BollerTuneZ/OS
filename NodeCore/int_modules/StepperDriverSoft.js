@@ -27,10 +27,10 @@ var gc_status =
 var port;
 
 
-function Initialize(connectionInfo,callback)
+function Initialize(connectionInfo,callback,onBusyCallback)
 {
 	console.log("Initializing")
-
+	onBusyChanged = onBusyCallback;
 	port = new SerialPort(connectionInfo.port, {
 		baudrate: connectionInfo.baudrate,
 		parser: serialport.parsers.readline('\n')
@@ -114,7 +114,6 @@ function GenReceive(data)
 		console.log("Busy");
 		if(onBusyChanged != undefined)
 		{
-
 			onBusyChanged(false);
 		}
 	}else if(data[0] == gc_status.ok)
@@ -130,6 +129,7 @@ function GenReceive(data)
 		console.log('Raw:' + data);
 	}
 }
+
 
 /* Dir : 'L' || 'R'
 *
@@ -180,4 +180,3 @@ function Drive(steps,dir,feedrate,callback)
 var exports = module.exports;
 exports.Initialize = Initialize;
 exports.Drive = Drive;
-exports.onBusyChanged = onBusyChanged;

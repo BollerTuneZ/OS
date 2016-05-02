@@ -7,6 +7,11 @@ module.exports =
  TestTwo:TestTwo
 };
 
+var busyCallback = function (val)
+{
+  console.log("Busy state:" + val);
+};
+
 function Initialize(callback)
 {
   stpDriver.Initialize(
@@ -24,8 +29,9 @@ function Initialize(callback)
       console.log("Driver couldnt be initialized");
       callback(false);
     }
-  });
+  },busyCallback);
 }
+
 
 
 function TestOne()
@@ -58,7 +64,7 @@ function TestTwo(resultCallback)
     i++;
   }
 
-  stpDriver.onBusyChanged = function(state)
+  busyCallback = function(state)
   {
     if(state)
     {
