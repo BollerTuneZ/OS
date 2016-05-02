@@ -7,9 +7,14 @@ module.exports =
  TestTwo:TestTwo
 };
 
+var defaultBusyCallback = function(val)
+{
+  console.log("Busy state:" + );
+}
+
 var busyCallback = function (val)
 {
-  console.log("Busy state:" + val);
+  defaultBusyCallback(val);
 };
 
 function Initialize(callback)
@@ -63,8 +68,8 @@ function TestTwo(resultCallback)
     });
     i++;
   }
-
-  busyCallback = function(state)
+  console.log("Set callback");
+  defaultBusyCallback = function(state)
   {
     if(state)
     {
