@@ -52,7 +52,7 @@ function TestTwo(resultCallback)
 {
   var i = 0;
   var steps = [10,100,1000];
-  var feedrates = [50,150,800];
+  var feedrates = [50,150,2000];
   var dir = 'L';
   var done = false;
   function nextStep(callback)
@@ -82,7 +82,7 @@ function TestTwo(resultCallback)
       setTimeout(function()
       {
         nextStep(function(){console.log("Done 1");});
-      },8000);
+      },3000);
     }
   }
 
