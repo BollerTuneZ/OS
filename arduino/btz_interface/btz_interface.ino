@@ -27,23 +27,16 @@ int feedrate = 50;
 char currentDir = DIR_LEFT;
 
 //Stop byte, if it gets HIGH the stepping task get canceled
-volatile char eStop = LOW;
+
 
 BtzStepper *_stepper;
 
 void setup()
 {
    Serial.begin(BAUDRATE);
-   pinMode(INT_PIN, INPUT_PULLUP);
-   attachInterrupt(digitalPinToInterrupt(INT_PIN), EmergengyStop, CHANGE);
    waitForInitialization();
 }
 
-void EmergengyStop()
-{
-  //Set Stop byte high
-  eStop = HIGH;
-}
 
 /*Wait for host to be connected
 * requires 3 byte long message containing 'RUN'
@@ -74,7 +67,8 @@ void waitForInitialization()
   pinMode(DIR_PIN,OUTPUT);
   pinMode(STP_PIN,OUTPUT);
   pinMode(ENABLE_PIN,OUTPUT);
-  _stepper = new BtzStepper(DIR_PIN,STP_PIN,ENABLE_PIN,(char*)&eStop);
+  pinMode(INT_PIN,INPUT);
+  _stepper = new BtzStepper(DIR_PIN,STP_PIN,ENABLE_PIN,INT_PIN);
 }
 
 char checkTimer(long *timer,int ms)
