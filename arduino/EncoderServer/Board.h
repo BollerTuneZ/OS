@@ -1,0 +1,9 @@
+#ifndef BOARD_h
+#define BOARD_h
+
+#define PIN_ENCODER_MOTOR_GREEN 3 
+#define PIN_ENCODER_MOTOR_WHITE 7
+#define PIN_ENCODER_STEERING_GREEN 2
+#define PIN_ENCODER_STEERING_WHITE 4
+
+#endif

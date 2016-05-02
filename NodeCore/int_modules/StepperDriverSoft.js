@@ -89,10 +89,8 @@ function connectDevice(callback)
 	}
   listenerCallback = function(data)
 	{
-		console.log("Here");
 		if(data == 16)
 		{
-			console.log("Here ok!");
 			initialized = true;
 			listenerCallback = GenReceive;
 			callback(true);
