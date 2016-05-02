@@ -107,20 +107,24 @@ function EmergencyStopTest()
       console.log("Errorresult");
     }
   });
+  var testDone = false;
   defaultBusyCallback = function(state)
   {
     if(!state)
     {
+      if(testDone){return;}
       console.log("Driver is busy... we gonna shut him done. 2sec");
       setTimeout(function()
       {
         stpDriver.EmergencyStop();
-        setTimeout(function()
-        {
-          console.log("Turn on again");
-          stpDriver.Drive(100,'R',20,function(success){});
-        },2000);
+        testDone = true;
       },2000);
+    }else {
+      if(testDone)
+      {
+        console.log("Turn on again");
+        stpDriver.Drive(100,'R',20,function(success){});
+      }
     }
   }
 }
