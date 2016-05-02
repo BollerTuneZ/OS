@@ -10,7 +10,7 @@ class BtzStepper
 {
   
   public:
-    BtzStepper(int dir,int stp,int enable);
+    BtzStepper(int dir,int stp,int enable,char *eStop);
     
     void Step(char dir,int steps,int feedrate);
     
@@ -18,7 +18,7 @@ class BtzStepper
   
     int _dir,_stp,_enable;
     int calculateFeedrate(int feedrate);
-    
+    char *_eStop;
     
   
 };

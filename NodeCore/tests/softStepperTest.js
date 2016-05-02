@@ -4,7 +4,8 @@ module.exports =
 {
   Initialize:Initialize,
   TestOne:TestOne,
- TestTwo:TestTwo
+ TestTwo:TestTwo,
+ EmergencyStopTest:EmergencyStopTest
 };
 
 var defaultBusyCallback = function(val)
@@ -22,7 +23,8 @@ function Initialize(callback)
   stpDriver.Initialize(
     {
       baudrate:9600,
-      port:"/dev/ttyUSB1"
+      port:"/dev/ttyUSB1",
+      eStopPin:5
     }
   ,function(success)
   {
@@ -90,4 +92,23 @@ function TestTwo(resultCallback)
   {
     console.log("Done 2");
   });
+}
+
+function EmergencyStopTest()
+{
+  var steps = 4000;
+  var feedrate = 2;
+  var dir = 'L';
+
+  defaultBusyCallback = function(state)
+  {
+    if(!state)
+    {
+      console.log("Driver is busy... we gonna shut him done.");
+      setTimeout(function()
+      {
+        stpDriver.EmergencyStop();
+      },500);
+    }
+  }
 }

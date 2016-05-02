@@ -1,4 +1,5 @@
 var serialport = require('serialport');
+var gpio = require('wpi-gpio');
 
 var SerialPort = serialport.SerialPort;
 var initCommand = 'RUN';
@@ -6,6 +7,9 @@ var initialized = false;
 
 var listenerCallback;
 var onBusyChanged;
+
+//GPIO pin to trigger emergencystop at the arduino
+var eStopPin = -1;
 
 var gc =
 {
@@ -22,14 +26,23 @@ var gc_status =
 	fault:32,
 	buf_overflow:33,
 	ready : 'R',
-	busy : 'B'
+	busy : 'B',
+	eStop:'S'
 };
 var port;
 
-
+/*
+*connectionInfo{
+ baudrate:INT,
+ port:STRING,
+ eStopPin:INT
+}
+*/
 function Initialize(connectionInfo,callback,onBusyCallback)
 {
 	console.log("Initializing")
+	eStopPin = connectionInfo.eStopPin;
+	InitializeIntPin();
 	onBusyChanged = onBusyCallback;
 	port = new SerialPort(connectionInfo.port, {
 		baudrate: connectionInfo.baudrate,
@@ -50,6 +63,17 @@ function Initialize(connectionInfo,callback,onBusyCallback)
 		connectDevice(callback);
 	});
 }
+
+function InitializeIntPin()
+{
+	gpio.mode(eStopPin,'out', function(err) {
+		if(err)
+		{
+			console.log(err);
+		}
+  });
+}
+
 
 function connectDevice(callback)
 {
@@ -95,13 +119,6 @@ function connectDevice(callback)
 function GenReceive(data)
 {
 
-	function isArray(ar) {
-	  return Array.isArray(ar);
-	}
-
-
-	//console.log('Length:' + data.length);
-
 	if(data[0] == gc_status.ready)
 	{
 		console.log("Ready");
@@ -125,11 +142,25 @@ function GenReceive(data)
 	}else if(data[0] == gc_status.buf_overflow)
 	{
 		console.log("buf_overflow");
+	}else if(data[0] == gc_status.eStop)
+	{
+		console.log("Interrupt has been triggered");
 	}else {
 		//console.log('Raw:' + data);
 	}
 }
 
+function triggerEStop()
+{
+	gpio.write(eStopPin, 1, function(err) {
+				gpio.write(eStopPin, 0);
+		});
+}
+
+function EmergencyStop()
+{
+	triggerEStop();
+}
 
 /* Dir : 'L' || 'R'
 *
@@ -180,3 +211,4 @@ function Drive(steps,dir,feedrate,callback)
 var exports = module.exports;
 exports.Initialize = Initialize;
 exports.Drive = Drive;
+exports.EmergencyStop = EmergencyStop;

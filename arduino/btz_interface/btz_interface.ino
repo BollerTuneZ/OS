@@ -7,6 +7,7 @@
 #define DIR_PIN 4
 #define STP_PIN 5
 #define ENABLE_PIN 6
+#define INT_PIN 2
 
 /*GenicCommands*/
 #define GC_OK 0x10
@@ -18,18 +19,30 @@ const char GC_DIR = 'D';
 const char GC_FEEDRATE = 'F';
 const char GC_READY = 'R';
 const char GC_BUSY = 'B';
+const char GC_E_STOP = 'S';
+
 
 long comTimer;
 int feedrate = 50;
 char currentDir = DIR_LEFT;
 
+//Stop byte, if it gets HIGH the stepping task get canceled
+volatile char eStop = LOW;
 
 BtzStepper *_stepper;
 
 void setup()
 {
    Serial.begin(BAUDRATE);
+   pinMode(INT_PIN, INPUT_PULLUP);
+   attachInterrupt(digitalPinToInterrupt(INT_PIN), EmergengyStop, CHANGE);
    waitForInitialization();
+}
+
+void EmergengyStop()
+{
+  //Set Stop byte high
+  eStop = HIGH;
 }
 
 /*Wait for host to be connected
@@ -61,7 +74,7 @@ void waitForInitialization()
   pinMode(DIR_PIN,OUTPUT);
   pinMode(STP_PIN,OUTPUT);
   pinMode(ENABLE_PIN,OUTPUT);
-  _stepper = new BtzStepper(DIR_PIN,STP_PIN,ENABLE_PIN);
+  _stepper = new BtzStepper(DIR_PIN,STP_PIN,ENABLE_PIN,(char*)&eStop);
 }
 
 char checkTimer(long *timer,int ms)

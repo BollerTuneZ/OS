@@ -1,10 +1,11 @@
 #include "stepper.h"
 
-BtzStepper::BtzStepper(int dir,int stp,int enable)
+BtzStepper::BtzStepper(int dir,int stp,int enable,char *eStop)
 {
   _dir = dir;
   _stp = stp;
   _enable = enable;
+  _eStop = eStop;
 }
 
 void BtzStepper::Step(char dir,int steps,int feedrate)
@@ -23,6 +24,11 @@ void BtzStepper::Step(char dir,int steps,int feedrate)
   }
   for(int i=0;i<steps;i++)
   {
+    if(*_eStop == HIGH)
+    {
+      //Exit here emergency stop has been triggered
+      return;
+    }
    digitalWrite(_stp,HIGH);
    delayMicroseconds(delayU);
    digitalWrite(_stp,LOW);
