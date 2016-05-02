@@ -79,7 +79,10 @@ function TestTwo(resultCallback)
     if(state && !done)
     {
       console.log("Next...");
-      setTimeout(nextStep(function(){console.log("Done 1");}),8000);
+      setTimeout(function()
+      {
+        nextStep(function(){console.log("Done 1");});
+      },8000);
     }
   }
 
