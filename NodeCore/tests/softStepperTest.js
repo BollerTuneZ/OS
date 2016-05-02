@@ -128,7 +128,7 @@ function EmergencyStopTest()
               console.log("Errorresult");
             }
           });
-        }2500);
+        },2500);
 
       },2000);
     }
