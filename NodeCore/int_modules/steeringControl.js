@@ -2,6 +2,7 @@
 @author Jonas ahlf
 Controler for steering operrations
 Position left should going decrease right increase
+the whole calculation is based on the absolut position of the encoder
 */
 var stepper =  require("./StepperDriverSoft");
 var encoderServer = require("./encoderServer");
@@ -9,23 +10,10 @@ var ramp = ("./steeringRamps/defaultRamp.js");
 /*Buffer*/
 var stepBuffer = [];
 
-
 /*config_parameter*/
 //SteeringMode (Controller||Manual)
 var _config;
 var _configMotorRange =
-{
-  leftEnd:0,
-  middle:50,
-  rightEnd:100
-};
-var _configSteeringRange =
-{
-  leftEnd:0,
-  middle:50,
-  rightEnd:100
-};
-var _configControllerRange =
 {
   leftEnd:0,
   middle:50,
@@ -48,7 +36,9 @@ var busyState = true;
 var Positions ={Steering:0,Motor:0};
 var onPositionEvents = {};
 var onBusy,onReady;
-var EncoderServerInitialized = false;
+var EncoderServerInitialized = false,
+    StepperDriverInitialized = false,
+    AutoDriveInitialized = false;
 var currentState = states.free;
 var tasksBuffer = [],taskIndex,taskBufSize;
 
@@ -63,6 +53,9 @@ encServer:{ip:IP,port:PORT}
 function Initialize(config)
 {
   _config = config;
+  console.log("Initializing Encoder");
+  initializeEncoder();
+  initializeStepperDriver();
 }
 
 function initializeEncoder()
@@ -70,6 +63,7 @@ function initializeEncoder()
   if(_config.encServer == undefined)
   {
     console.log("No Encoderserver defined");
+    EncoderServerInitialized= false;
     return;
   }
   encoderServer.connect(_config.encServer.ip,
@@ -80,6 +74,19 @@ function initializeEncoder()
     });
 }
 
+function initializeStepperDriver()
+{
+  stepper.Initialize(_config.connectionInfo,function(result)
+  {
+    if(result)
+    {
+      console.log("Stepper Driver initalized");
+    }else {
+      console.log("Could not Initialize Stepper driver");
+    }
+    StepperDriverInitialized = result;
+  }onStepperBusy);
+}
 
 /*Drive tasks
 * Steps:INT
@@ -87,9 +94,12 @@ function initializeEncoder()
 * Feedrate:INT
 
 *force = forces to do task
+-1 StepperDriver not initialized
+-2 Busy state
 */
 function Drive(task,force)
 {
+  if(!StepperDriverInitialized){return -1;}
   function _drive(s,d,f)
   {
     stepper.Drive(s,d,f,onStepperFault);
@@ -103,11 +113,12 @@ function Drive(task,force)
       stepper.EmergencyStop();
     }else {
       {
-        return -1;
+        return -2;
       }
     }
   }
   _drive(task.Steps,task.Dir,Task.Feedrate);
+  return 1;
 }
 
 /*
@@ -116,6 +127,7 @@ function Drive(task,force)
 */
 function AutoDrivePosition(position)
 {
+  if(!EncoderServerInitialized){return -1;}
   taskIndex = taskBufSize;
   var stpInfo = calculateSteps(position);
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
@@ -128,7 +140,11 @@ function AutoDrivePosition(position)
     {
       return;
     }
-    Drive(result.task,true);
+    var result = Drive(result.task,true);
+    if(result != 1)
+    {
+      console.log("Drive Error" + result);
+    }
   };
 }
 
@@ -151,6 +167,27 @@ function getNextTask()
   }
   rt0.end = false;
   return rtO;
+}
+
+/*Auto drive*/
+function initializeAutoDrive()
+{
+
+  onPositionEvents["motorIdle"] =
+
+  AutoDriveInitialized = true;
+}
+
+/*
+Executed when
+*/
+function autoMotorIdle(value)
+{
+
+}
+function autoMotorDrive(value)
+{
+
 }
 
 /*Algorythomen*/
@@ -181,11 +218,6 @@ function calculateSteps(position)
     Dir:dir
   };
   return rtO;
-}
-
-function mapVal(x, in_min, in_max, out_min, out_max)
-{
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
 /*Public Events*/
