@@ -7,7 +7,7 @@ var lastValues = {motor:0,steering:0};
 /*
 * Ip: Ip of encoder arduino server
 * port: ''
-* callbacks:array of two callbacks (steering,motor)
+* callbacks:array of two callbacks (steering,motor,)
 *   parameter: value
 */
 function Connect(ip,port,callbacks,connectedCallback)
