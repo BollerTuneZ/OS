@@ -1,7 +1,7 @@
 var encLib = require("./encoderClient");
 
 
-var ip = '192.168.1.170';
+var ip = '192.168.2.170';
 var port = 1010;
 
 function onSteering(value)

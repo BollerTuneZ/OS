@@ -14,7 +14,7 @@ function Connect(ip,port,callbacks,connectedCallback)
 {
   _callbacks = callbacks;
   client = new net.Socket();
-  client.connect(1010, '192.168.1.170', function() {
+  client.connect(port, ip, function() {
     console.log('Connected');
     client.write('{"Command":"SHOW_IDENTITY"}');
     if(connectedCallback != undefined)
@@ -53,6 +53,7 @@ function onData(data)
 {
   var tmpObj;
   try {
+    //console.log(data.toString());
     tmpObj = JSON.parse(data);
   } catch (e) {
     console.log(e);
@@ -64,16 +65,16 @@ function onData(data)
     console.log("Identity of Encoder is:" + EncoderIdentity);
     return;
   }
-  if(tmpObj.EncoderSteering != undefined)
+  if(tmpObj.steering != undefined)
   {
-    if(tmpObj.EncoderSteering != lastValues.steering)
+    if(tmpObj.steering != lastValues.steering)
     {
-      lastValues.steering = tmpObj.EncoderSteering;
+      lastValues.steering = tmpObj.steering;
       _callbacks[0](lastValues.steering);
     }
-    if(tmpObj.EncoderMotor != lastValues.motor)
+    if(tmpObj.motor != lastValues.motor)
     {
-      lastValues.motor = tmpObj.EncoderMotor;
+      lastValues.motor = tmpObj.motor;
       _callbacks[1](lastValues.motor);
     }
   }

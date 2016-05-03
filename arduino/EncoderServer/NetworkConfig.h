@@ -3,11 +3,11 @@
 
 #include "Ethernet.h"
 
-#define LOCAL_IP IPAddress(192,168,1,170)
+#define LOCAL_IP IPAddress(192,168,2,170)
 
 #define LOCAL_PORT 1010
 
-#define GATEWAY IPAddress(192, 168, 1, 1)
+#define GATEWAY IPAddress(192, 168, 2, 1)
 #define SUBNET IPAddress(255, 255, 255, 0)
 
 #define IDENTITY "STEERING"
