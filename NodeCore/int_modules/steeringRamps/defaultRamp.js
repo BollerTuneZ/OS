@@ -50,7 +50,7 @@ function Render(steps,dir)
 
 }
 
-module.Render = Render;
+module.exports.Render = Render;
 
 function firstRamp(steps,dir)
 {
