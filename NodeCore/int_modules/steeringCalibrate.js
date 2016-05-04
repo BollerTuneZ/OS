@@ -1,7 +1,7 @@
 var stpDriver = require('./StepperDriverSoft');
 var encClient = require('./encoderClient');
 var btzMath = require('./BTZ_Math');
-var refPos = 500;
+var refPos = 250;
 
 var encoderConnected = false,autoCalibrate=false;
 var steeringPos = 0,motorPos=0;

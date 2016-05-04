@@ -58,7 +58,7 @@ stdin.addListener("data", function(d) {
       strCali.Initialize(initCalObj);
     }else if(input == "-drive cali")
     {
-      strCali.RefDrive(5,'L');
+      strCali.RefDrive(1,'L');
     }else if(input == "-drive autocali")
     {
       strCali.AutoCalibrate(5);
