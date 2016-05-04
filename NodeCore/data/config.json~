@@ -1,6 +1,6 @@
 {
   "steering":{
-    "defaultSteps":10,
+    "defaultSteps":100,
     "defaultFeedrate":1000
   },
     "conInfoStepper": {
