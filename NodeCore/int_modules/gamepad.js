@@ -23,7 +23,8 @@ function SetState(onOff)
 function _posSteeringChanged(position)
 {
   if(!currentState){return;}
-  console.log("Controller Position:" + parseInt(position));
+  position = position.x;
+  console.log("Controller Position:" + position);
   var mapped = btzMath.MapVal(position,-1700,1700,config.range.min,config.range.max);
   console.log("Mapped Position:" + mapped);
   config.onChangedPos(mapped);
