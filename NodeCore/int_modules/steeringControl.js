@@ -6,7 +6,7 @@ the whole calculation is based on the absolut position of the encoder
 */
 var stepper =  require("./StepperDriverSoft");
 var encoderServer = require("./encoderClient");
-var ramp = ("./steeringRamps/defaultRamp.js");
+var ramp = require("./steeringRamps/defaultRamp.js");
 /*Buffer*/
 var stepBuffer = [];
 
