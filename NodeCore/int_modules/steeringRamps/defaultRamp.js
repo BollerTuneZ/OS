@@ -37,14 +37,18 @@ function Render(steps,dir)
   //First step
   if(stepsLeft < 5000)
   {
+    console.log("First");
     return firstRamp(steps,dir);
   }else if(steps < 10000)
   {
+    console.log("Second");
     return secondRamp(steps,dir);
   }else if(steps < 15000)
   {
+    console.log("third");
     return thirdRamp(steps,dir);
   }else {
+    console.log("Last");
     return maxRamp(steps,dir);
   }
 
