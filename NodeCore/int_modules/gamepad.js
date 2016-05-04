@@ -26,8 +26,8 @@ function _posSteeringChanged(position)
   position = position.x;
   console.log("Controller Position:" + position);
   var mapped = btzMath.MapVal(position,0,255,config.range.min,config.range.max);
-  console.log("Mapped Position:" + mapped);
-  //config.onChangedPos(mapped);
+  //console.log("Mapped Position:" + mapped);
+  config.onChangedPos(mapped);
 }
 
 var exports = module.exports;
