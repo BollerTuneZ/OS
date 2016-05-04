@@ -36,6 +36,7 @@ function startBtz()
 initializeStepperDriver();
 Xbox.on('left:release', function () {
   Run = false;
+  console.log('[LEFT] button release');
 });
 
 Xbox.on('left', function () {
@@ -46,6 +47,7 @@ Xbox.on('left', function () {
 });
 Xbox.on('right:release', function () {
   Run = false;
+  console.log('[Right] button release');
 });
 
 Xbox.on('right', function () {
