@@ -4,15 +4,15 @@ Default Stepper Position Ramp Algorythomen
 each Ramp has to implement this function
 [Tasks] Render(steps,dir);
 */
-var DEFAULT_FEEDRATE = 500;
-var MAX_FEEDRATE = 10000;
+var DEFAULT_FEEDRATE = 2000;
+var MAX_FEEDRATE = 20000;
 
 var raises =
 {
   first: {start:1000,end:2000},
-  second: {start:2000,end:4000},
-  third:{start:4000,end:6000},
-  end:{start:6000,end:MAX_FEEDRATE},
+  second: {start:3000,end:5000},
+  third:{start:5000,end:7000},
+  end:{start:7000,end:MAX_FEEDRATE},
 };
 
 function Render(steps,dir)
@@ -23,22 +23,22 @@ function Render(steps,dir)
   * if the path to step is to low,
   * the default task will be returned
   */
+  var defaultTask =
+  {
+    Steps:steps,
+    Dir:dir,
+    Feedrate:DEFAULT_FEEDRATE
+  };
   if(stepsLeft < 500)
   {
-    var defaultTask =
-    {
-      Steps:steps,
-      Dir:dir,
-      Feedrate:DEFAULT_FEEDRATE
-    };
+
     return [defaultTask];
   }
 
   //First step
   if(stepsLeft < 5000)
   {
-    console.log("First");
-    return firstRamp(steps,dir);
+    return [defaultTask];
   }else if(steps < 10000)
   {
     console.log("Second");
@@ -58,6 +58,7 @@ module.exports.Render = Render;
 
 function firstRamp(steps,dir)
 {
+
   //We ar going to raise 3/4 of the steps and than slow down again
   var raising = (steps * 0.75);
   var slowing = (steps * 0.25);
