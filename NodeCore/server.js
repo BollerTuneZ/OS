@@ -2,34 +2,69 @@ var test = require('./tests/softStepperTest');
 var ctrlTest = require('./tests/steeringCtrlTest');
 var strCtrl = require('./int_modules/steeringControl');
 var strCali = require('./int_modules/steeringCalibrate');
-/*
-console.log("MultiTest test");
-test.Initialize(startTesting);
+var stepper =  require("./int_modules/StepperDriverSoft");
+var xbox = require('xbox-controller-node');
 
 
-function startTesting(success)
+var StepperDriverInitialized = false;
+var run = false;
+var dir = 'L';
+var conInfo = "conInfoStepper": {
+      "baudrate": 115200,
+      "port": "/dev/ttyUSB1",
+      "eStopPin": 5
+    }
+
+
+function onStepperBusy()
 {
-  if(success)
-  {
-    console.log("Start testing");
-    //test.TestOne();
-    //secondTest();
-    //test.EmergencyStopTest();
-    test.DirectionTest();
-  }else {
-    console.log("Cant start testing error apeard");
-  }
+	if(run)
+	{
+		stepper.Drive(100,dir,1000);
+	}
+
 }
 
-function secondTest()
+function initializeStepperDriver()
 {
-  console.log("Second Test");
-  test.TestTwo(function(success)
+  stepper.Initialize(conInfo,function(result)
   {
-    console.log("Second Test ended:" + success);
-  });
+    if(result)
+    {
+      console.log("Stepper Driver initalized");
+    }else {
+      console.log("Could not Initialize Stepper driver");
+    }
+    StepperDriverInitialized = result;
+  },onStepperBusy);
 }
-*/
+
+function startBtz()
+{
+initializeStepperDriver();
+xbox.on('left:release', function () {
+  run = false;
+});
+
+xbox.on('left', function () {
+  run = true;
+  dir = 'L';
+  console.log('[LEFT] button press');
+
+});
+xbox.on('right:release', function () {
+  run = false;
+});
+
+xbox.on('right', function () {
+  run = true;
+  dir = 'R';
+  console.log('[Right] button press');
+
+});
+}
+
+
 
 var initCalObj =
 {
@@ -56,6 +91,9 @@ stdin.addListener("data", function(d) {
     {
       console.log("Init Calibration");
       strCali.Initialize(initCalObj);
+    }else if(input == "-btz")
+    {
+      startBtz();
     }else if(input == "-drive cali")
     {
       strCali.RefDrive(1,'L');
