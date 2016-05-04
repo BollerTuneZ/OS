@@ -74,6 +74,7 @@ function nextCalibrateStep()
     newSpS);
     currentSpP = newSpS;
     var refStepsToDrive = (currentSpP *refPos);
+    console.log("Ref steps:" + refStepsToDrive);
     RefDrive(refStepsToDrive,'L');
   }else {
     autoCalibrate = false;
@@ -116,7 +117,7 @@ function onBusyChanged(state)
     printDiff();
     if(autoCalibrate)
     {
-      nextCalibrateStep();
+      setTimeout(nextCalibrateStep,500);
     }
   }else {
     console.log("Stepping");
