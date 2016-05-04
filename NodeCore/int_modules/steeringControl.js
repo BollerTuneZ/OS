@@ -16,7 +16,7 @@ var _config;
 //TODO must be json and dynamic changeable
 var _configMotorRange =
 {
-  range:20000,
+  range:5000,
   midOffset:2
 };
 var states =

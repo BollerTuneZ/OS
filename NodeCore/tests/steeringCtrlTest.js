@@ -41,6 +41,9 @@ function onStdin(value)
   }else if(value == "cauto")
   {
     C_autoDrive();
+  }else if(value == "cc")
+  {
+    C_controller();
   }else {
     return -1;
   }
