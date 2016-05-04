@@ -56,6 +56,7 @@ function onData(data)
     //console.log(data.toString());
     tmpObj = JSON.parse(data);
   } catch (e) {
+    console.log(data.toString());
     console.log(e);
     return;
   }
