@@ -105,8 +105,8 @@ function printDiff()
     diffs.steering = diffs.steering * (-1);
   }
 
-  console.log("Steering diff:" + diffSteering);
-  console.log("Motor diff:" + diffMotor);
+  console.log("Steering diff:" + diffs.steering);
+  console.log("Motor diff:" + diffs.motor);
 }
 
 function onBusyChanged(state)
