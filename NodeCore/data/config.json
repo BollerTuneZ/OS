@@ -1,4 +1,8 @@
 {
+  "steering":{
+    "defaultSteps":100,
+    "defaultFeedrate":1000
+  },
     "conInfoStepper": {
       "baudrate": 115200,
       "port": "/dev/ttyUSB0",
