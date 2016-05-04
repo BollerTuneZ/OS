@@ -182,14 +182,8 @@ function AutoDrivePosition(position)
   }
   taskBuffer = tempBuffer;
   taskIndex = 0;
-  var firstTask = getNextTask();
-  if(firstTask.end)
-  {
-    console.log("Already end");
-    return;
-  }
   Positions.Target = position;
-  Drive(firstTask.task,true);
+  onReady();
 }
 
 /*private member*/
@@ -204,9 +198,10 @@ function getNextTask()
   if(taskIndex == taskBufSize)
   {
     taskIndex = 0;
-    console.log(Positions.Motor);
-    autoMotorIdle(Positions.Motor);
     return rtO;
+    console.log(Positions.Motor);
+    setTimeout(function(){autoMotorIdle(Positions.Motor);},2);
+
   }
   rtO["task"] = taskBuffer[taskIndex];
   if(rtO["task"] == undefined)
