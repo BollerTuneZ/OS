@@ -75,10 +75,12 @@ function _posSteeringChanged(position)
   {
     Run = true;
     Direction = 'R';
+    steer();
   }else if(position.x < 50)
   {
     Run = true;
     Direction = 'L';
+    steer();
   }else {
     Run = false;
   }
