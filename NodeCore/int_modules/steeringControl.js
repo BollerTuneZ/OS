@@ -16,7 +16,7 @@ var _config;
 //TODO must be json and dynamic changeable
 var _configMotorRange =
 {
-  range:100,
+  range:20000,
   midOffset:2
 };
 var states =
@@ -153,6 +153,7 @@ function AutoDrivePosition(position)
   {
     initializeAutoDrive();
   }
+  console.log("Target:" + Positions.target + " position:" + position)
   var tDiff = Positions.target - position;
   if(tDiff < 0)
   {
