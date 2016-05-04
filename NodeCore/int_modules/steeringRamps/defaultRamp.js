@@ -6,10 +6,7 @@ each Ramp has to implement this function
 */
 var DEFAULT_FEEDRATE = 500;
 var MAX_FEEDRATE = 10000;
-module.exports =
-{
-  Render:Render
-};
+
 var raises =
 {
   first: {start:1000,end:2000},
@@ -52,6 +49,8 @@ function Render(steps,dir)
   }
 
 }
+
+module.Render = Render;
 
 function firstRamp(steps,dir)
 {
