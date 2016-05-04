@@ -61,7 +61,7 @@ function firstRamp(steps,dir)
   //We ar going to raise 3/4 of the steps and than slow down again
   var raising = (steps * 0.75);
   var slowing = (steps * 0.25);
-
+  console.log(raising);
   var raisingRaw = raise(raises.first.start,raises.first.end,raising);
   var slowing = slow(raises.first.end,raises.first.start,slowing);
 
