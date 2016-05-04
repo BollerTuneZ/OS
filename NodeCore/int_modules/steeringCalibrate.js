@@ -9,6 +9,7 @@ var defaultFeedrate = 200;
 var currentSpP = 0;
 
 var lastSteeringPos,lastMotorPos;
+var verify = 0;
 
 var diffs =
 {
@@ -74,6 +75,7 @@ function nextCalibrateStep()
   }
   if(realDiff > 2)
   {
+    verify = 0;
     //recalculate
     var newSpS = btzMath.CalculateFeeds(refPos,currentSpP,diffs.motor);
     console.log("Recalibrated value from:" + currentSpP + " to:"+
@@ -83,8 +85,17 @@ function nextCalibrateStep()
     console.log("Ref steps:" + refStepsToDrive);
     RefDrive(refStepsToDrive,'L');
   }else {
-    autoCalibrate = false;
-    console.log("Done Calibration \n calculated SpP:" + currentSpP);
+    verify++;
+    if(verify >= 3)
+    {
+      autoCalibrate = false;
+      console.log("Done Calibration \n calculated SpP:" + currentSpP);
+    }else {
+      console.log("Verify:" + verify);
+      var refStepsToDrive = (currentSpP *refPos);
+      console.log("Ref steps:" + refStepsToDrive);
+      RefDrive(refStepsToDrive,'L');
+    }
   }
 }
 
