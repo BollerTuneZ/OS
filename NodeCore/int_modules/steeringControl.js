@@ -33,7 +33,7 @@ var onStepBufEmpty;
 var busyState = true;
 
 /*IMPORTEND Control variables*/
-var Positions ={Steering:0,Motor:0,target:0};
+var Positions ={Steering:0,Motor:0,Target:0};
 var onPositionEvents = {};
 var onBusy,onReady;
 var EncoderServerInitialized = false,
@@ -75,9 +75,9 @@ function initializeEncoder()
       EncoderServerInitialized = true;
       //Set positions of encoder calculating the middle for motor
       target = (_configMotorRange.range / 2) + (_configMotorRange.midOffset);
-      Positions.motor = target;
-      console.log("Set Motor position to middle:" + Positions.motor);
-      encoderServer.SetPosition("motor",Positions.motor);
+      Positions.Motor = target;
+      console.log("Set Motor position to middle:" + Positions.Motor);
+      encoderServer.SetPosition("motor",Positions.Motor);
     });
 }
 
@@ -153,8 +153,8 @@ function AutoDrivePosition(position)
   {
     initializeAutoDrive();
   }
-  console.log("Target:" + Positions.motor + " position:" + position)
-  var tDiff = Positions.motor - position;
+  console.log("Target:" + Positions.Motor + " position:" + position)
+  var tDiff = Positions.Motor - position;
   if(tDiff < 0)
   {
     tDiff = tDiff * (-1);
@@ -202,6 +202,7 @@ function AutoDrivePosition(position)
       console.log("Drive Error" + result);
     }
   };
+  Positions.Target = position;
   Drive(firstTask.task,true);
 }
 
@@ -217,6 +218,7 @@ function getNextTask()
   if(taskIndex == taskBufSize)
   {
     taskIndex = 0;
+    console.log(Positions.Motor);
     return rtO;
   }
   rtO["task"] = taskBuffer[taskIndex];
@@ -242,11 +244,11 @@ Executed when
 */
 function autoMotorIdle(value)
 {
- if(value != Positions.target)
+ if(value != Positions.Target)
  {
    //Motor position has changed, but he shouldn't
    console.log("Motor not on target");
-   AutoDrivePosition(target);
+   AutoDrivePosition(Positions.Target);
  }
 }
 function autoMotorDrive(value)
