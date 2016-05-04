@@ -18,7 +18,7 @@ function onStepperBusy()
 {
 	if(Run && StepperDriverInitialized)
 	{
-    console.log("Run");
+    //console.log("Run");
 		steer();
 	}
 }
@@ -56,6 +56,7 @@ function SetPower(value)
     var mappedVal = btzMath.MapVal(value,0, 100, 0, 125);
     Stepper.SetPower(mappedVal,'R');
   }else {
+    console.log("Run forward");
     var mappedVal = btzMath.MapVal(value,100, 255, 0, 255);
     Stepper.SetPower(mappedVal,'F');
   }
