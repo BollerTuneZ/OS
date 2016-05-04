@@ -43,7 +43,7 @@ function SetPosition(encoderType,position)
   {
     tmpObj.ECMODE = "ECM";
   }else {
-    console.log("Unkown encodertype:" + encodertype);
+    console.log("Unkown encodertype:" + encoderType);
     return;
   }
   client.write(JSON.stringify(tmpObj));

@@ -47,7 +47,7 @@ function onStdin(value)
 
 function onConfig(cfg)
 {
-  if(cfg == -1 || cfg == undefined)
+  if(cfg == -1)
   {
     console.log("Could not read Config:" + cfgName);
   }else {

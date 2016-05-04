@@ -77,7 +77,7 @@ function initializeEncoder()
       target = (_configMotorRange.range / 2) + (_configMotorRange.midOffset);
       Positions.motor = target;
       console.log("Set Motor position to middle:" + Positions.motor);
-      encoderServer.SetPosition("ECM",Positions.motor);
+      encoderServer.SetPosition("motor",Positions.motor);
     });
 }
 
