@@ -1,5 +1,7 @@
 var stpCtrl = require('./../int_modules/steeringControl');
 var cfgReader = require('./../int_modules/configReader');
+var xCtrl = require('./../int_modules/gamepad');
+
 
 var cfgName = "steeringCtrlTest",cfgDefaultDriveTask ="defaultDriveTask";
 var config = undefined,defaultDriveTask =undefined;
@@ -78,6 +80,16 @@ function C_autoDrive()
   stpCtrl.AutoDrivePosition(driveTo);
 }
 
+function C_controller()
+{
+  xCtrl.Initialize({
+    onChangedPos:function(pos)
+    {
+      stpCtrl.AutoDrivePosition(pos);
+    },
+    range:{min:0,max:5000}
+  });
+}
 
 var exports = module.exports;
 exports.Initialize = Initialize;
