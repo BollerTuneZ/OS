@@ -161,6 +161,7 @@ function AutoDrivePosition(position)
   if(tDiff < _config.StepperInfo.tolleranz)
   {
     //target is within tolleranz
+    console.log("Within tolleranz");
     return;
   }
 
