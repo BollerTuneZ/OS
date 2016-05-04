@@ -53,6 +53,7 @@ function onData(data)
 {
   var tmpObj;
   try {
+    //console.log(data.toString());
     tmpObj = JSON.parse(data);
   } catch (e) {
     console.log(e);
