@@ -52,6 +52,14 @@ function SetPosition(encoderType,position)
 function onData(data)
 {
   var tmpObj;
+  var splitValues = data.toString().split("}");
+  var length = splitValues.length;
+  if(length > 2)
+  {
+    //Get latest
+    var latest = splitValues[length -1] + "}";
+    data = latest;
+  }
   try {
     //console.log(data.toString());
     tmpObj = JSON.parse(data);
