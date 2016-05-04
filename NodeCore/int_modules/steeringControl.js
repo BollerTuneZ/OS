@@ -202,7 +202,6 @@ function getNextTask()
   if(taskIndex == taskBufSize)
   {
     taskIndex = 0;
-    autoMotorIdle(Positions.Target);
     return rtO;
   }
   rtO["task"] = taskBuffer[taskIndex];
@@ -241,7 +240,6 @@ Executed when
 */
 function autoMotorIdle(value)
 {
-  console.log("Current" + value + " Target:" + Positions.Target);
 
 }
 function autoMotorDrive(value)
@@ -301,11 +299,13 @@ function onStepperBusy(value)
     if(onReady != undefined)
     {
       onReady();
+      currentState == states.idle;
     }
   }else {
     if(onBusy != undefined)
     {
       onBusy();
+      currentState == states.drive;
     }
   }
 }
