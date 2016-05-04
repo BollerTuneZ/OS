@@ -56,8 +56,9 @@ function onData(data)
   var length = splitValues.length;
   if(length > 2)
   {
+    console.log(splitValues[0]);
     //Get latest
-    var latest = splitValues[length -1] + "}";
+    var latest = splitValues[length -2] + "}";
     data = latest;
   }
   try {
