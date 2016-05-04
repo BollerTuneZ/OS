@@ -84,8 +84,8 @@ function _posSteeringChanged(position)
 
 function initializeGamepad()
 {
-  xbox.on('leftstickMove', _posSteeringChanged);
-  xbox.on('rightstickMove', _posPowerChanged);
+  Xbox.on('leftstickMove', _posSteeringChanged);
+  Xbox.on('rightstickMove', _posPowerChanged);
   Xbox.on('left:release', function () {
     Run = false;
     console.log('[LEFT] button release');
