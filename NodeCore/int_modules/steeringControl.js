@@ -68,7 +68,7 @@ function initializeEncoder()
     EncoderServerInitialized= false;
     return;
   }
-  encoderServer.connect(_config.encServer.ip,
+  encoderServer.Connect(_config.encServer.ip,
     _config.encServer.port,
     [onSteeringChanged,onMotorChanged],
     function(){
