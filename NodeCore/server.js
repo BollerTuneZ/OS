@@ -46,6 +46,10 @@ function SetPower(value)
 {
   if(value < 100)
   {
+    console.log("Run forward");
+    var mappedVal = btzMath.MapVal(value,0, 100, 0, 255);
+    Stepper.SetPower(mappedVal,'F');
+  }else {
     //Reverse
     if(!states.reverseActive)
     {
@@ -53,12 +57,10 @@ function SetPower(value)
       return;
     }
     console.log("Run Reverse");
-    var mappedVal = btzMath.MapVal(value,0, 100, 0, 125);
+    var mappedVal = btzMath.MapVal(value,100, 255, 0, 125);
     Stepper.SetPower(mappedVal,'R');
-  }else {
-    console.log("Run forward");
-    var mappedVal = btzMath.MapVal(value,100, 255, 0, 255);
-    Stepper.SetPower(mappedVal,'F');
+
+
   }
 }
 
