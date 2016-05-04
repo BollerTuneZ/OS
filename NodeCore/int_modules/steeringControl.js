@@ -198,6 +198,7 @@ function getNextTask()
   if(taskIndex == taskBufSize)
   {
     taskIndex = 0;
+    autoMotorIdle(Positions.Target);
     return rtO;
   }
   rtO["task"] = taskBuffer[taskIndex];
