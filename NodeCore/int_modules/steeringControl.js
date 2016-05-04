@@ -169,7 +169,7 @@ function AutoDrivePosition(position)
 
   var stpInfo = calculateSteps(position);
   console.log("calculateSteps" + stpInfo.Steps);
-  
+
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
   taskBufSize = tempBuffer.length;
 
@@ -257,7 +257,7 @@ function autoMotorDrive(value)
 /*Algorythomen*/
 function calculateSteps(position)
 {
-  console.log("Calculating steps");
+  console.log("Calculating steps with position:" + position);
   var dir = 'N',diff=0;
   //Set offset
   position = position + (_configMotorRange.midOffset);
