@@ -241,13 +241,6 @@ Executed when
 */
 function autoMotorIdle(value)
 {
-  if(value < 0)
-  {
-    value = 0;
-  }else if(value > _configMotorRange.range)
-  {
-    //value = _configMotorRange.range;
-  }
  if(value != Positions.Target)
  {
    //Motor position has changed, but he shouldn't
@@ -343,6 +336,13 @@ function onSteeringChanged(value)
 }
 function onMotorChanged(value)
 {
+  if(value < 0)
+  {
+    value = 0;
+  }else if(value > _configMotorRange.range)
+  {
+    //value = _configMotorRange.range;
+  }
   Positions.Motor = value;
   if(currentState == states.idle)
   {
