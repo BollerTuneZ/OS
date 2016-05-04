@@ -64,16 +64,16 @@ function onData(data)
     console.log("Identity of Encoder is:" + EncoderIdentity);
     return;
   }
-  if(tmpObj.EncoderSteering != undefined)
+  if(tmpObj.steering != undefined)
   {
-    if(tmpObj.EncoderSteering != lastValues.steering)
+    if(tmpObj.steering != lastValues.steering)
     {
-      lastValues.steering = tmpObj.EncoderSteering;
+      lastValues.steering = tmpObj.steering;
       _callbacks[0](lastValues.steering);
     }
-    if(tmpObj.EncoderMotor != lastValues.motor)
+    if(tmpObj.motor != lastValues.motor)
     {
-      lastValues.motor = tmpObj.EncoderMotor;
+      lastValues.motor = tmpObj.motor;
       _callbacks[1](lastValues.motor);
     }
   }
