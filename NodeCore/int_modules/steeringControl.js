@@ -16,7 +16,7 @@ var _config;
 //TODO must be json and dynamic changeable
 var _configMotorRange =
 {
-  range:20000,
+  range:100,
   midOffset:2
 };
 var states =
@@ -161,15 +161,16 @@ function AutoDrivePosition(position)
   if(tDiff < _config.StepperInfo.tolleranz)
   {
     //target is within tolleranz
-    console.log("Within tolleranz");
+    console.log("Within the tolleranz");
     return;
   }
+  taskIndex = taskBufSize; //Set buffer to end
 
-  taskIndex = taskBufSize;
   var stpInfo = calculateSteps(position);
   console.log(ramp);
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
   taskBufSize = tempBuffer.length;
+
   if(taskBufSize < 1)
   {
     console.log("Not enough tasks")
