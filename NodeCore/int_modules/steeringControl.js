@@ -85,7 +85,7 @@ function initializeStepperDriver()
       console.log("Could not Initialize Stepper driver");
     }
     StepperDriverInitialized = result;
-  }onStepperBusy);
+  },onStepperBusy);
 }
 
 /*Drive tasks
@@ -201,7 +201,7 @@ function calculateSteps(position)
   /*Determine direction
   * dir: R=position>Motor;L=position<Motor
   */
-  if(position>Positions.Motor;)
+  if(position>Positions.Motor)
   {
     dir ='R';
     diff = position - Positions.Motor;

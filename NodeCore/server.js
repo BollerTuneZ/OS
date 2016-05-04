@@ -1,5 +1,7 @@
 var test = require('./tests/softStepperTest');
-
+var strCtrl = require('./int_modules/steeringControl');
+var strCali = require('./int_modules/steeringCalibrate');
+/*
 console.log("MultiTest test");
 test.Initialize(startTesting);
 
@@ -26,3 +28,27 @@ function secondTest()
     console.log("Second Test ended:" + success);
   });
 }
+*/
+
+var initCalObj =
+{
+  ip:"192.168.2.170",
+  port:1010,
+  connectionInfo:{baudrate:9600,port:"/dev/ttyUSB0",eStopPin:5}
+};
+var init_calibrate = false;
+var stdin = process.openStdin();
+
+stdin.addListener("data", function(d) {
+    var input = d.toString().trim()
+    if(input == "-init calibrate")
+    {
+      console.log("Init Calibration");
+      strCali.Initialize(initCalObj);
+    }else if(input == "-drive cali")
+    {
+      strCali.RefDrive(1,'L');
+    }else {
+      console.log("Could not understand:" + input);
+    }
+  });
