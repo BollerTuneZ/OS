@@ -160,12 +160,20 @@ function EmergencyStop()
 	triggerEStop();
 }
 
+function isInt(n) {
+   return n % 1 === 0;
+}
+
 /* Dir : 'L' || 'R'
 *
 */
 function Drive(steps,dir,feedrate,callback)
 {
 	if(!initialized){callback("not init");}
+	if(!isInt(steps))
+	{
+		steps = Math.round( steps );
+	}
 	var buffer = "";
 	if(dir != lastDirection)
 	{
