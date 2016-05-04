@@ -13,6 +13,7 @@ function onStepperBusy()
 {
 	if(Run && StepperDriverInitialized)
 	{
+    console.log("Run");
 		Stepper.Drive(100,dir,1000);
 	}
 }
