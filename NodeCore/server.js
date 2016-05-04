@@ -62,13 +62,6 @@ console.log("Server has been started, enter command");
 
 stdin.addListener("data", function(d) {
     var input = d.toString().trim();
-    if(stdInCallback != undefined)
-    {
-      if(stdInCallback(input) == 1)
-      {
-        return;
-      }
-    }
     if(input == "help")
     {
       console.log("type -btz");
