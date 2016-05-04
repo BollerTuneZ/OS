@@ -226,7 +226,7 @@ function SetPower(power,direction)
 		}
 		//console.log("Bytes written:" + b);
 	});
-	console.log(buffer);
+	//console.log(buffer);
 }
 
 var exports = module.exports;

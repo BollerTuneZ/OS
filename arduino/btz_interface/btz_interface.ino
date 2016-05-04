@@ -4,15 +4,15 @@
 #define BAUDRATE 115200
 #define COMMAND_BUF_SIZE 64
 
-#define DIR_PIN 4
-#define STP_PIN 5
+#define DIR_PIN 8
+#define STP_PIN 9
 #define ENABLE_PIN 6
 #define INT_PIN 2
 
 /*POWER*/
-#define FREQ_PIN 9
-#define DIR_R_PIN 10
-#define DIR_F_PIN 11
+#define FREQ_PIN 5
+#define DIR_R_PIN 6
+#define DIR_F_PIN 7
 
 /*GenicCommands*/
 #define GC_OK 0x10

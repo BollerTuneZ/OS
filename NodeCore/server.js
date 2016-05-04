@@ -73,7 +73,7 @@ function _posPowerChanged(position)
 function _posSteeringChanged(position)
 {
   if(isNaN(position.x) || position.x == 'NaN'|| position.x == 'none'){return;}
-  console.log(position.x);
+  //console.log(position.x);
   if(position.x > 200)
   {
     Run = true;
