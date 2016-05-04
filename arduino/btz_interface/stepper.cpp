@@ -8,10 +8,13 @@ BtzStepper::BtzStepper(int dir,int stp,int enable, int intPin)
   _intPin = intPin;
 }
 
-void BtzStepper::Step(char dir,int steps,int feedrate)
+void BtzStepper::Step(char dir,long steps,long feedrate)
 {
   int delayU = calculateFeedrate(feedrate);
-  
+  if(delayU <= 0)
+  {
+    delayU = 1;
+  }
   if(dir == DIR_LEFT)
   {
     digitalWrite(_dir,HIGH);
@@ -35,7 +38,7 @@ void BtzStepper::Step(char dir,int steps,int feedrate)
   }
 }
 
-int BtzStepper::calculateFeedrate(int feedrate)
+int BtzStepper::calculateFeedrate(long feedrate)
 {
-  return (1000000 / feedrate);
+  return (int)(1000000 / feedrate);
 }

@@ -50,12 +50,17 @@ StepperInfo:
   stpPI:{STEPPS_PER_I},
   tolleranz:4 //TODO implement
 encServer:{ip:IP,port:PORT}
+motorRange:range:0-X,midOffset
 */
 function Initialize(config)
 {
   _config = config;
-  console.log(_config);
+  //console.log(_config);
   console.log("Initializing Encoder");
+  if(config.motorRange != undefined)
+  {
+    _configMotorRange = config.motorRange;
+  }
   initializeEncoder();
   initializeStepperDriver();
 }
@@ -128,7 +133,6 @@ function Drive(task,force)
   _drive(task.Steps,task.Dir,task.Feedrate);
   return 1;
 }
-
 
 function SetAutoDrive(onOff)
 {

@@ -151,7 +151,10 @@ function GenReceive(data)
 function triggerEStop()
 {
 	gpio.write(eStopPin, 1, function(err) {
+				setTimeout(function()
+			{
 				gpio.write(eStopPin, 0,function(err){});
+			},10);
 		});
 }
 

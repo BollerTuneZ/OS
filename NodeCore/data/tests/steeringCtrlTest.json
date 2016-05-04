@@ -11,5 +11,9 @@
   "encServer": {
     "ip": "192.168.2.170",
     "port": 1010
+  },
+  "motorRange":{
+    "range":500,
+    "midOffset":0
   }
 }
