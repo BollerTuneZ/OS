@@ -213,8 +213,8 @@ function getNextTask()
     taskIndex = 0;
     return rtO;
   }
-  rt0["task"] = taskBuffer[taskIndex];
-  if(rt0["task"] == undefined)
+  rtO["task"] = taskBuffer[taskIndex];
+  if(rtO["task"] == undefined)
   {
     return rtO;
   }
