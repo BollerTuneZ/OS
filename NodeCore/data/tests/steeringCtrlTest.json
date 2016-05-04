@@ -1,7 +1,7 @@
 {
   "StepperInfo": {
     "conInfoStepper": {
-      "baudrate": 9600,
+      "baudrate": 115200,
       "port": "/dev/ttyUSB1",
       "eStopPin": 5
     },

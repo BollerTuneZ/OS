@@ -241,7 +241,7 @@ Executed when
 */
 function autoMotorIdle(value)
 {
-  console.log("Value:" + value + " target:" + Positions.Target);
+
  if(value != Positions.Target)
  {
    //Motor position has changed, but he shouldn't
@@ -257,7 +257,7 @@ function autoMotorDrive(value)
 /*Algorythomen*/
 function calculateSteps(position)
 {
-  console.log("Calculating steps with position:" + position);
+  //console.log("Calculating steps with position:" + position);
   var dir = 'N',diff=0;
   //Set offset
   position = position + (_configMotorRange.midOffset);

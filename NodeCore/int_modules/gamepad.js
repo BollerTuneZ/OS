@@ -15,10 +15,6 @@ function Initialize(initObj)
 {
   config = initObj;
   xbox.on('leftstickMove', _posSteeringChanged);
-  setInterval(function()
-  {
-    sendFlag = true;
-  },200);
 }
 
 function SetState(onOff)
@@ -42,10 +38,7 @@ function _posSteeringChanged(position)
   console.log("Controller Position:" + position);
   var mapped = btzMath.MapVal(position,0,255,config.range.min,config.range.max);
   //console.log("Mapped Position:" + mapped);
-  if(sendFlag)
-  {
     config.onChangedPos(mapped);
-  }
 }
 
 var exports = module.exports;
