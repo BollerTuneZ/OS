@@ -75,7 +75,6 @@ stdin.addListener("data", function(d) {
     }else if(input == "-btz")
     {
       startBtz();
-    }
     }else {
       console.log("Could not understand:" + input);
     }
