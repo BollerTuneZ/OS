@@ -168,6 +168,7 @@ function AutoDrivePosition(position)
   var stpInfo = calculateSteps(position);
   console.log(ramp);
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
+  console.log(JSON.parse(tempBuffer));
   taskBufSize = tempBuffer.length;
   if(taskBufSize < 1)
   {
@@ -216,9 +217,9 @@ function getNextTask()
   rtO["task"] = taskBuffer[taskIndex];
   if(rtO["task"] == undefined)
   {
-    taskIndex++;
     return rtO;
   }
+  taskIndex++;
   rtO.end = false;
   return rtO;
 }
@@ -239,6 +240,7 @@ function autoMotorIdle(value)
  if(value != Positions.target)
  {
    //Motor position has changed, but he shouldn't
+   console.log("Motor not on target");
    AutoDrivePosition(target);
  }
 }
