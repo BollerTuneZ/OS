@@ -120,7 +120,7 @@ function initializeGamepad()
 function startBtz()
 {
 initializeStepperDriver();
-
+initializeGamepad();
 }
 
 var stdin = process.openStdin();
