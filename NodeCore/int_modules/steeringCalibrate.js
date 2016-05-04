@@ -9,7 +9,7 @@ var defaultFeedrate = 200;
 var currentSpP = 0;
 
 var lastSteeringPos,lastMotorPos;
-var verify = 0;
+var verify = 0,verifyMin = 10;
 
 var diffs =
 {
@@ -86,7 +86,7 @@ function nextCalibrateStep()
     RefDrive(refStepsToDrive,'L');
   }else {
     verify++;
-    if(verify >= 3)
+    if(verify >= verifyMin)
     {
       autoCalibrate = false;
       console.log("Done Calibration \n calculated SpP:" + currentSpP);
