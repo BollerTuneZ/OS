@@ -241,7 +241,7 @@ Executed when
 */
 function autoMotorIdle(value)
 {
-  console.log(value);
+  console.log("Current" + value + Positions.Target);
  if(value != Positions.Target)
  {
    //Motor position has changed, but he shouldn't
