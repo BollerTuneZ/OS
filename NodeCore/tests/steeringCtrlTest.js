@@ -80,3 +80,4 @@ function C_autoDrive()
 
 
 var exports = module.exports;
+exports.Initialize = Initialize;

@@ -324,3 +324,9 @@ function onMotorChanged(value)
     }
   }
 }
+
+var exports = module.exports;
+exports.Initialize = Initialize;
+exports.Drive = Drive;
+exports.SetAutoDrive = SetAutoDrive;
+exports.AutoDrivePosition = AutoDrivePosition;
