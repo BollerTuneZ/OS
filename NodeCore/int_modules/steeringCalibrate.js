@@ -73,6 +73,7 @@ function nextCalibrateStep()
   {
     realDiff = realDiff * (-1);
   }
+  console.log("Realdiff:" + realDiff);
   if(realDiff > 10)
   {
     verify = 0;
