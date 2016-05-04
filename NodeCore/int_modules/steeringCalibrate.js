@@ -68,12 +68,12 @@ function AutoCalibrate(startSpP)
 function nextCalibrateStep()
 {
   //Tolerate +-2
-  var realDiff = refPos;// -diffs.motor;
+  var realDiff = refPos - diffs.motor;
   if(realDiff < 0)
   {
     realDiff = realDiff * (-1);
   }
-  if(realDiff > 3)
+  if(realDiff > 10)
   {
     verify = 0;
     //recalculate
