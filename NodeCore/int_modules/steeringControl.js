@@ -349,13 +349,13 @@ function onMotorChanged(value)
   {
     if(onPositionEvents["motorIdle"] != undefined)
     {
-      onPositionEvents["motorIdle"]();
+      onPositionEvents["motorIdle"](value);
     }
   }else if(currentState == states.drive)
   {
     if(onPositionEvents["motorDrive"] != undefined)
     {
-      onPositionEvents["motorDrive"]();
+      onPositionEvents["motorDrive"](value);
     }
   }
 }
