@@ -188,12 +188,12 @@ function Drive(steps,dir,feedrate,callback)
 		steps = Math.round( steps );
 	}
 	var buffer = buildBuffer(steps,dir,feedrate);
-	console.log(buffer);
+	//console.log(buffer);
 	port.write(buffer,function(e,b){
 		if (e) {
 			console.log('Error: ', e.message);
 		}
-		console.log("Bytes written:" + b);
+		//console.log("Bytes written:" + b);
 	});
 }
 

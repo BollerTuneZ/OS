@@ -83,7 +83,6 @@ function nextCalibrateStep()
     newSpS);
     currentSpP = newSpS;
     var refStepsToDrive = (currentSpP *refPos);
-    console.log("Ref steps:" + refStepsToDrive);
     RefDrive(refStepsToDrive,'L');
   }else {
     verify++;
