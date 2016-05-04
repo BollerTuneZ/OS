@@ -5,7 +5,6 @@ var strCali = require('./int_modules/steeringCalibrate');
 var stepper =  require("./int_modules/StepperDriverSoft");
 var xbox = require('xbox-controller-node');
 
-
 var StepperDriverInitialized = false;
 var run = false;
 var dir = 'L';
@@ -15,14 +14,12 @@ var conInfo = "conInfoStepper": {
       "eStopPin": 5
     }
 
-
 function onStepperBusy()
 {
 	if(run)
 	{
 		stepper.Drive(100,dir,1000);
 	}
-
 }
 
 function initializeStepperDriver()
@@ -87,25 +84,13 @@ stdin.addListener("data", function(d) {
         return;
       }
     }
-    if(input == "-init calibrate")
+    if(input == "help")
     {
-      console.log("Init Calibration");
-      strCali.Initialize(initCalObj);
+      console.log("type -btz");
     }else if(input == "-btz")
     {
       startBtz();
-    }else if(input == "-drive cali")
-    {
-      strCali.RefDrive(1,'L');
-    }else if(input == "-drive autocali")
-    {
-      strCali.AutoCalibrate(5);
-    }else if(input == "-init auto")
-    {
-      stdInCallback = ctrlTest.Initialize(function()
-      {
-        console.log("CTRLTest initialized");
-      });
+    }
     }else {
       console.log("Could not understand:" + input);
     }
