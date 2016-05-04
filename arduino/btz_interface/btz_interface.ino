@@ -1,7 +1,7 @@
 
 #include "stepper.h"
 #define COM_TIMEOUT 1000
-#define BAUDRATE 9600
+#define BAUDRATE 115200
 #define COMMAND_BUF_SIZE 64
 
 #define DIR_PIN 4
@@ -40,7 +40,7 @@ BtzStepper *_stepper;
 
 void setup()
 {
-   Serial.begin(BAUDRATE);
+   Serial.begin(115200);
    waitForInitialization();
 }
 
