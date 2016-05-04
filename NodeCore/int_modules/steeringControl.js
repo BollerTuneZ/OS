@@ -218,7 +218,7 @@ function getNextTask()
   {
     return rtO;
   }
-  rt0.end = false;
+  rtO.end = false;
   return rtO;
 }
 
