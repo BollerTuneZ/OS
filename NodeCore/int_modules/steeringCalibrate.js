@@ -67,7 +67,12 @@ function AutoCalibrate(startSpP)
 function nextCalibrateStep()
 {
   //Tolerate +-2
-  if(diffs.motor > 2)
+  var realDiff = refPos -diffs.motor;
+  if(realDiff < 0)
+  {
+    realDiff = realDiff * (-1);
+  }
+  if(realDiff > 2)
   {
     //recalculate
     var newSpS = btzMath.CalculateFeeds(refPos,currentSpP,diffs.motor);
