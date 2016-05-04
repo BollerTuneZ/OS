@@ -47,15 +47,15 @@ function onStdin(value)
 
 function onConfig(cfg)
 {
-  if(cfg == -1)
+  if(cfg == -1 || cfg == undefined)
   {
     console.log("Could not read Config:" + cfgName);
   }else {
+    config = cfg;
     if(!isInitialized)
     {
       driverInit();
     }
-    config = cfg;
   }
 }
 
