@@ -9,10 +9,16 @@
 #define ENABLE_PIN 6
 #define INT_PIN 2
 
+/*POWER*/
+#define FREQ_PIN 9
+#define DIR_R_PIN 10
+#define DIR_F_PIN 11
+
 /*GenicCommands*/
 #define GC_OK 0x10
 #define GC_FAULT 0x20
 #define GC_BUFF_OVERFLOW 0x21
+#define GC_POWER_SET 0x88
 
 const char GC_MOVE = 'M';
 const char GC_DIR = 'D';
@@ -20,6 +26,7 @@ const char GC_FEEDRATE = 'F';
 const char GC_READY = 'R';
 const char GC_BUSY = 'B';
 const char GC_E_STOP = 'S';
+const char GC_POWER = 'P';
 
 
 long comTimer;
@@ -64,6 +71,13 @@ void waitForInitialization()
      }
      
   }
+  /*#define FREQ_PIN 9
+#define DIR_R_PIN 10
+#define DIR_F_PIN 11*/
+  pinMode(FREQ_PIN,OUTPUT);
+  pinMode(DIR_R_PIN,OUTPUT);
+  pinMode(DIR_F_PIN,OUTPUT);
+
   pinMode(DIR_PIN,OUTPUT);
   pinMode(STP_PIN,OUTPUT);
   pinMode(ENABLE_PIN,OUTPUT);
@@ -190,6 +204,62 @@ void parseMoveCommand(char *buffer,int bufSize)
   Serial.println(GC_READY);
 }
 
+
+int SetDirection(char *direction)
+{
+  if(direction == 'F')
+  {
+    digitalWrite(DIR_R_PIN,LOW);
+    digitalWrite(DIR_F_PIN,HIGH);
+    
+    
+    return 1;
+  }else if(direction == 'R')
+  {
+    digitalWrite(DIR_F_PIN,LOW);
+    digitalWrite(DIR_R_PIN,HIGH);
+    return 1; 
+  }else if(direction == 'N')
+  {
+    digitalWrite(DIR_F_PIN,LOW);
+    digitalWrite(DIR_R_PIN,LOW);
+    return 0;
+  }else
+  {
+    digitalWrite(DIR_F_PIN,LOW);
+    digitalWrite(DIR_R_PIN,LOW);
+    return -1;
+  }
+}
+
+/*Power Commands have to look like this
+  GC_POWER {DIRECTION(R|F|N} {FREQ_VALUE)E
+  #define FREQ_PIN 9
+#define DIR_R_PIN 10
+#define DIR_F_PIN 11
+*/
+void parsePowerCommand(char *buffer,int bufSize)
+{
+  char direction = buffer[1];
+  int dummyPos;
+  int freq;
+  int result = conv2Int(buffer,bufSize,2,'E',&freq,&dummyPos);
+  if(result != 1)
+  {
+    Serial.println(GC_FAULT);
+    return;
+  }
+
+  result = SetDirection(direction);
+  if(result == -1)
+  {
+    Serial.println(GC_FAULT);
+    return;
+  }
+  analogWrite(FREQ_PIN,freq);
+  Serial.println(GC_POWER_SET);
+}
+
 /*GC_MOVE {VALUE} GC_DIR {VALUE} GC_FEEDRATE {VALUE} 'E'*/
 void ExecuteCommand(char *buffer,int bufSize)
 {
@@ -205,7 +275,11 @@ void ExecuteCommand(char *buffer,int bufSize)
     _stepper->Step(currentDir,steps,feedrate);  
     Serial.println(GC_READY);
     //Serial.print(GC_READY);*/
-  }else
+  }else if(buffer[0] == GC_POWER)
+  {
+    parsePowerCommand(buffer,bufSize);
+  }
+  else
   {
    Serial.println(GC_FAULT);
   }
