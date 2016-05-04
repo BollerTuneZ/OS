@@ -1,6 +1,7 @@
 var Stepper =  require("./int_modules/StepperDriverSoft");
 var Xbox = require('xbox-controller-node');
 var Config = require('./data/config.json');
+var btzMath = require('./int_modules/BTZ_Math');
 
 var StepperDriverInitialized = false,EncoderDriverInitialized=false;
 
@@ -69,6 +70,7 @@ function _posPowerChanged(position)
 function _posSteeringChanged(position)
 {
   if(isNaN(position.x) || position.x == 'NaN'|| position.x == 'none'){return;}
+  console.log(position.x);
   if(position.x > 200)
   {
     Run = true;
