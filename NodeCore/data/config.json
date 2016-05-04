@@ -1,0 +1,13 @@
+{
+    "conInfoStepper": {
+      "baudrate": 115200,
+      "port": "/dev/ttyUSB1",
+      "eStopPin": 5
+    },
+  "encServer": {
+    "use":false,
+    "ip": "192.168.2.170",
+    "port": 1010
+  }
+
+}

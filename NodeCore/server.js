@@ -1,30 +1,25 @@
-var test = require('./tests/softStepperTest');
-var ctrlTest = require('./tests/steeringCtrlTest');
-var strCtrl = require('./int_modules/steeringControl');
-var strCali = require('./int_modules/steeringCalibrate');
-var stepper =  require("./int_modules/StepperDriverSoft");
-var xbox = require('xbox-controller-node');
+var Stepper =  require("./int_modules/StepperDriverSoft");
+var Xbox = require('xbox-controller-node');
+var Config = require('./data/config.json');
 
-var StepperDriverInitialized = false;
-var run = false;
-var dir = 'L';
-var conInfo = "conInfoStepper": {
-      "baudrate": 115200,
-      "port": "/dev/ttyUSB1",
-      "eStopPin": 5
-    }
+var StepperDriverInitialized = false,EncoderDriverInitialized=false;
+
+
+
+var Run = false;
+var Direction = 'L';
 
 function onStepperBusy()
 {
-	if(run)
+	if(Run && StepperDriverInitialized)
 	{
-		stepper.Drive(100,dir,1000);
+		Stepper.Drive(100,dir,1000);
 	}
 }
 
 function initializeStepperDriver()
 {
-  stepper.Initialize(conInfo,function(result)
+  Stepper.Initialize(Config.conInfoStepper,function(result)
   {
     if(result)
     {
@@ -39,39 +34,29 @@ function initializeStepperDriver()
 function startBtz()
 {
 initializeStepperDriver();
-xbox.on('left:release', function () {
-  run = false;
+Xbox.on('left:release', function () {
+  Run = false;
 });
 
-xbox.on('left', function () {
-  run = true;
-  dir = 'L';
+Xbox.on('left', function () {
+  Run = true;
+  Direction = 'L';
   console.log('[LEFT] button press');
 
 });
-xbox.on('right:release', function () {
-  run = false;
+Xbox.on('right:release', function () {
+  Run = false;
 });
 
-xbox.on('right', function () {
-  run = true;
-  dir = 'R';
+Xbox.on('right', function () {
+  Run = true;
+  Direction = 'R';
   console.log('[Right] button press');
 
 });
 }
 
-
-
-var initCalObj =
-{
-  ip:"192.168.2.170",
-  port:1010,
-  connectionInfo:{baudrate:9600,port:"/dev/ttyUSB1",eStopPin:5}
-};
-var init_calibrate = false;
 var stdin = process.openStdin();
-var stdInCallback = undefined;
 
 console.log("Server has been started, enter command");
 
