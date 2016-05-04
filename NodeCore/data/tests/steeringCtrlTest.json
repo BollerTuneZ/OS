@@ -6,7 +6,7 @@
       "eStopPin": 5
     },
     "stpPI": 0.6909576840303374,
-    "tolleranz":4
+    "tolleranz":40
   },
   "encServer": {
     "ip": "192.168.2.170",
