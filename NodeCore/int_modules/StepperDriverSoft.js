@@ -165,47 +165,29 @@ function isInt(n) {
 }
 
 /* Dir : 'L' || 'R'
-*
+*GC_MOVE {VALUE} GC_DIR {VALUE} GC_FEEDRATE {VALUE} 'E'
 */
 function Drive(steps,dir,feedrate,callback)
 {
+
+	function buildBuffer(s,d,f)
+	{
+		var buf = "";
+		buf += gc.move;
+		buf += s;
+		buf += gc.dir;
+		buf += d;
+		buf += gc.feedrate;
+		buf += f + "E";
+		return buf;
+	}
+
 	if(!initialized){callback("not init");}
 	if(!isInt(steps))
 	{
 		steps = Math.round( steps );
 	}
-	var buffer = "";
-	if(dir != lastDirection)
-	{
-		console.dir("ajust direction");
-		buffer += gc.dir + dir + "E";
-
-		port.write(buffer,function(e,b){
-			if (e) {
-				console.log('Error: ', e.message);
-			}
-			console.log("Bytes written:" + b);
-		});
-		lastDirection = dir;
-	}
-
-	buffer = "";
-	if(feedrate != lastFeedrate)
-	{
-		console.dir("ajust feedrate");
-		buffer += gc.feedrate + feedrate + "E";
-		port.write(buffer,function(e,b){
-			if (e) {
-				console.log('Error: ', e.message);
-			}
-			console.log("Bytes written:" + b);
-		});
-		lastFeedrate = feedrate;
-	}
-
-	buffer = "";
-	buffer += gc.move + steps + "E";
-	console.log(buffer);
+	var buffer = buildBuffer(steps,dor,feedrate);
 	port.write(buffer,function(e,b){
 		if (e) {
 			console.log('Error: ', e.message);

@@ -126,55 +126,84 @@ int getNextBuffer(char *buffer,int bufSize)
 }
 
 
+int conv2Int(char *buffer,int bufSize,int start,char stopByte,int *outBuf,int *outPos)
+{
+  String strBuf = "";
+  bool found = false;
+  for(int i=start;i<bufSize;i++)
+  {
+    if(buffer[i] == stopByte)
+    {
+      found = true;
+      *outPos = i;
+      break;
+    }else
+    {
+      strBuf += buffer[i];
+    }
+  }
+  if(!found){return -1;}
+  *outBuf = strBuf.toInt();
+  return 1;
+}
+
+void parseMoveCommand(char *buffer,int bufSize)
+{
+  //We expect GC_move at 0
+  if(buffer[0] != GC_MOVE)
+  {
+    Serial.println(GC_FAULT);
+    return;
+  }
+  int currentPos = 0;
+  int stepsH =0;
+  int result = conv2Int(buffer,bufSize,1,GC_DIR,&stepsH,&currentPos);
+  if(result == -1){Serial.println(GC_FAULT);return;}
+  //Direction should be the next byte
+  currentPos++;
+  if(currentPos >= bufSize){Serial.println(GC_FAULT);return;}
+  char dir = buffer[currentPos];
+  if(dir == 'L')
+  {
+    //just check
+  }else if(dir == 'R')
+  {
+    //just check
+  }else
+  {
+    Serial.println(GC_FAULT);return;
+  }
+  //Next byte must be GC_FEEDRATE
+  currentPos++;
+  if(currentPos >= bufSize){Serial.println(GC_FAULT);return;}
+  if(buffer[currentPos] != GC_FEEDRATE)
+  {
+    Serial.println(GC_FAULT);return;
+  }
+  int feedrateH = 0;
+  result = conv2Int(buffer,bufSize,currentPos,'E',&feedrateH,&currentPos);
+  if(result == -1){Serial.println(GC_FAULT);return;}
+
+  Serial.println(GC_BUSY);
+  _stepper->Step(dir,stepsH,feedrate);  
+  Serial.println(GC_READY);
+}
+
+/*GC_MOVE {VALUE} GC_DIR {VALUE} GC_FEEDRATE {VALUE} 'E'*/
 void ExecuteCommand(char *buffer,int bufSize)
 {
   if(buffer[0] == GC_MOVE)
   {
-    int i;
-    for(i = 1;i<bufSize;i++){
-      if(buffer[i] == 'E')
-      {
-        break;
-      }
-    }
-    String sBuf = String(buffer);
-    String subString = sBuf.substring(1,i);
-    int steps = subString.toInt();
+    parseMoveCommand(buffer,bufSize);
     /*
     Serial.println(steps);
     Serial.println(currentDir);
     Serial.println(feedrate);*/
+    /*
     Serial.println(GC_BUSY);
     _stepper->Step(currentDir,steps,feedrate);  
     Serial.println(GC_READY);
-    //Serial.print(GC_READY);
-  }else if(buffer[0] == GC_DIR)
-  {
-    if(buffer[1] == DIR_LEFT)
-    {
-      currentDir = DIR_LEFT;
-      Serial.println(GC_OK);
-    }else if(buffer[1] == DIR_RIGHT)
-    {
-      currentDir = DIR_RIGHT;
-      Serial.println(GC_OK);
-    }else
-    {
-     Serial.println(GC_FAULT); 
-    }
-  }else if(buffer[0] == GC_FEEDRATE)
-  {
-    int i;
-    for(i = 1;i<bufSize;i++){
-      if(buffer[i] == 'E')
-      {
-        break;
-      }
-    }
-    String sBuf = String(buffer);
-    String subString = sBuf.substring(1,i);
-    feedrate = subString.toInt();
-    Serial.println(GC_OK);
+    //Serial.print(GC_READY);*/
   }else
   {
    Serial.println(GC_FAULT);
