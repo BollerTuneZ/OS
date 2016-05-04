@@ -230,7 +230,7 @@ in stpLength steps.
 */
 function raise(startF,endF,stpLength)
 {
-  var diff = end - start;
+  var diff = endF - startF;
   var factor = (stpLength /diff);
   var buf = [];
   var currentF = startF;
@@ -248,7 +248,7 @@ in stpLength steps.
 */
 function slow(startF,endF,stpLength)
 {
-  var diff = start - end ;
+  var diff = startF - endF ;
   var factor = (stpLength /diff);
   var buf = [];
   var currentF = startF;
