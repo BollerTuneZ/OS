@@ -134,6 +134,11 @@ void CommandSetEncoder(JsonObject& object)
 	}
 }
 
+const char* jsonStart = "{\"motor\":";
+const char* jsonMiddle = ",\"steering\":";
+const char* jsonTail = "}";
+
+
 void SendEncoderPositions()
 {
 
@@ -147,14 +152,8 @@ void SendEncoderPositions()
 	ltMotor = currentMotor;
 	ltSteering = currentSteering;
 
-	StaticJsonBuffer<100> jsonBufferAnswer;
-	JsonObject& root = jsonBufferAnswer.createObject();
-
-	root["steering"] = currentSteering;
-	root["motor"] = currentMotor;
-
-	char buffer[100];
-	root.printTo(buffer, 100);
+  String buffer = "";
+  buffer = jsonStart + String(currentMotor) + jsonMiddle + String(currentSteering) + jsonTail;
 
 	_client.print(buffer);
 }
