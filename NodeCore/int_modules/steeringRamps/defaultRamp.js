@@ -4,7 +4,7 @@ Default Stepper Position Ramp Algorythomen
 each Ramp has to implement this function
 [Tasks] Render(steps,dir);
 */
-var DEFAULT_FEEDRATE = 500;
+var DEFAULT_FEEDRATE = 1000;
 var MAX_FEEDRATE = 20000;
 
 var raises =
