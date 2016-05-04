@@ -142,7 +142,7 @@ function thirdRamp(steps,dir)
   var slowing = (steps * 0.25);
 
   var raisingRaw = raise(raises.third.start,raises.third.end,raising);
-  var slowing = slow(raises.third.end,raises.thid.start,slowing);
+  var slowing = slow(raises.third.end,raises.third.start,slowing);
 
   var tempItems = [];
   for(var i=0,j=raisingRaw.length;i<j;i++)
