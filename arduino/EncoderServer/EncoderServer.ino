@@ -138,13 +138,19 @@ const char* jsonStart = "{\"motor\":";
 const char* jsonMiddle = ",\"steering\":";
 const char* jsonTail = "}";
 
-
+long lastTime =0;
 void SendEncoderPositions()
 {
 
 	long currentMotor = _encoderMotor.read();
 	long currentSteering = _encoderSteering.read();
-
+  bool canSend = false;
+  if((millis() -lastTime) > 10)
+  {
+    canSend = true;
+    lastTime = millis();
+  }
+  
 	if (currentMotor == ltMotor && currentSteering == ltSteering)
 	{
 		return;
@@ -152,9 +158,10 @@ void SendEncoderPositions()
 	ltMotor = currentMotor;
 	ltSteering = currentSteering;
 
+  if(!canSend){return;}
   String buffer = "";
   buffer = jsonStart + String(currentMotor) + jsonMiddle + String(currentSteering) + jsonTail;
-
+  
 	_client.print(buffer);
 }
 
