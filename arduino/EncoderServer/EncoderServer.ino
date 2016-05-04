@@ -32,7 +32,7 @@ byte mac[] = {
 
 long ltMotor = 0;
 long ltSteering = 0;
-
+long motorMin,motorMax,steeringMin,steeringMax;
 
 void setup() {
 	Serial.begin(9600);
@@ -100,11 +100,43 @@ void GetCommands(EthernetClient *client)
 	else if (str == COMMAND_SET_ENCODER)
 	{
 		CommandSetEncoder(root);
-	}
+	}else if (str == COMMAND_SET_ENCODER_MIN_MAX)
+  {
+    CommandSetEncoderMinMax(root);
+  }
 	else
 	{
 		Serial.println("command was not expected:" + str);
 	}
+}
+
+void CommandSetEncoderMinMax(JsonObject& object)
+{
+  const char* mode = object["MODE"];
+  const char* type = object["type"];
+  
+  long value = object["VALUE"];
+  if(type == "steering")
+  {
+    if(mode == "min")
+    {
+      steeringMin = value;
+    }else
+    {
+      steeringMax = value;
+    }
+  }else if(type == "motor")
+  {
+    //motorMin,motorMax,steeringMin,steeringMax;
+    if(mode == "min")
+    {
+      motorMin = value;
+    }else
+    {
+      motorMax = value;
+    }  
+  }
+  Serial.println("Set encoder min_max mode:"+mode+"type:"+type+"Value:"+String(value);
 }
 
 /*
@@ -155,10 +187,25 @@ void SendEncoderPositions()
 	{
 		return;
 	}
+ /*
+  if(currentMotor < motorMin)
+  {
+    currentMotor = motorMin;
+  }else if(currentMotor < motorMax)
+  {
+    currentMotor = motorMax;
+  }
+  if(currentSteering < steeringMin)
+  {
+    currentSteering = steeringMin;
+  }else if(currentSteering > steeringMax)
+  {
+    currentSteering = steeringMax;
+  }*/
 	ltMotor = currentMotor;
 	ltSteering = currentSteering;
 
-  if(!canSend){return;}
+  //if(!canSend){return;}
   String buffer = "";
   buffer = jsonStart + String(currentMotor) + jsonMiddle + String(currentSteering) + jsonTail;
   
