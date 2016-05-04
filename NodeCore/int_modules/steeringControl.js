@@ -153,7 +153,7 @@ function AutoDrivePosition(position)
   {
     initializeAutoDrive();
   }
-  console.log("Target:" + Positions.Motor + " position:" + position)
+  console.log("Motor:" + Positions.Motor + " position:" + position)
   var tDiff = Positions.Motor - position;
   if(tDiff < 0)
   {
@@ -188,20 +188,6 @@ function AutoDrivePosition(position)
     console.log("Already end");
     return;
   }
-
-  onReady = function()
-  {
-    var result = getNextTask();
-    if(result.end == true)
-    {
-      return;
-    }
-    var result = Drive(result.task,true);
-    if(result != 1)
-    {
-      console.log("Drive Error" + result);
-    }
-  };
   Positions.Target = position;
   Drive(firstTask.task,true);
 }
@@ -238,6 +224,19 @@ function initializeAutoDrive()
   console.log("Initialize autodrive");
   AutoDriveInitialized = true;
   onPositionEvents["motorIdle"] = autoMotorIdle;
+  onReady = function()
+  {
+    var result = getNextTask();
+    if(result.end == true)
+    {
+      return;
+    }
+    var result = Drive(result.task,true);
+    if(result != 1)
+    {
+      console.log("Drive Error" + result);
+    }
+  };
 }
 
 /*
