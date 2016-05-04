@@ -168,7 +168,7 @@ function AutoDrivePosition(position)
   taskIndex = taskBufSize; //Set buffer to end
 
   var stpInfo = calculateSteps(position);
-  console.log(ramp);
+
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
   taskBufSize = tempBuffer.length;
 
@@ -176,6 +176,8 @@ function AutoDrivePosition(position)
   {
     console.log("Not enough tasks")
     return;
+  }else {
+    console.log(taskBufSize);
   }
   taskBuffer = tempBuffer;
   taskIndex = 0;
