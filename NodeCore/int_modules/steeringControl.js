@@ -228,7 +228,7 @@ function initializeAutoDrive()
     {
       return;
     }
-    var result = Drive(result.task);
+    var result = Drive(result.task,true);
     if(result != 1)
     {
       console.log("Drive Error" + result);
