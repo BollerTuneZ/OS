@@ -15,7 +15,8 @@ var gc =
 {
 	move:'M',
 	dir:'D',
-	feedrate:'F'
+	feedrate:'F',
+	power:'P'
 };
 var lastDirection = 'X';
 var lastFeedrate = 0;
@@ -25,6 +26,7 @@ var gc_status =
 	ok:16,
 	fault:32,
 	buf_overflow:33,
+	power_set:136,
 	ready : 'R',
 	busy : 'B',
 	eStop:'S'
@@ -143,6 +145,9 @@ function GenReceive(data)
 	}else if(data[0] == gc_status.eStop)
 	{
 		console.log("Interrupt has been triggered");
+	}else if(data[0] == gc_status.power_set)
+	{
+		console.log("Power has been set");
 	}else {
 		//console.log('Raw:' + data);
 	}
@@ -200,7 +205,26 @@ function Drive(steps,dir,feedrate,callback)
 	});
 }
 
+/*Sets the direction and freq. at the freq. inverter
+GC_POWER {DIRECTION(R|F|N} {FREQ_VALUE)E
+*/
+function SetPower(power,direction)
+{
+	var buffer = "";
+	buffer +=  gc.power;
+	buffer += direction;
+	buffer += power;
+	buffer += 'E';
+	port.write(buffer,function(e,b){
+		if (e) {
+			console.log('Error: ', e.message);
+		}
+		//console.log("Bytes written:" + b);
+	});
+}
+
 var exports = module.exports;
 exports.Initialize = Initialize;
 exports.Drive = Drive;
 exports.EmergencyStop = EmergencyStop;
+exports.SetPower = SetPower;
