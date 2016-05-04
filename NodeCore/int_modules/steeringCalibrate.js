@@ -5,7 +5,7 @@ var refPos = 50;
 
 var encoderConnected = false,autoCalibrate=false;
 var steeringPos = 0,motorPos=0;
-var defaultFeedrate = 10;
+var defaultFeedrate = 200;
 var currentSpP = 0;
 
 var lastSteeringPos,lastMotorPos;
