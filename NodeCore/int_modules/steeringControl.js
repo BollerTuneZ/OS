@@ -5,7 +5,7 @@ Position left should going decrease right increase
 the whole calculation is based on the absolut position of the encoder
 */
 var stepper =  require("./StepperDriverSoft");
-var encoderServer = require("./encoderServer");
+var encoderServer = require("./encoderClient");
 var ramp = ("./steeringRamps/defaultRamp.js");
 /*Buffer*/
 var stepBuffer = [];
