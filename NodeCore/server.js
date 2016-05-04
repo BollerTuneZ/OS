@@ -34,7 +34,7 @@ var initCalObj =
 {
   ip:"192.168.2.170",
   port:1010,
-  connectionInfo:{baudrate:9600,port:"/dev/ttyUSB0",eStopPin:5}
+  connectionInfo:{baudrate:9600,port:"/dev/ttyUSB1",eStopPin:5}
 };
 var init_calibrate = false;
 var stdin = process.openStdin();
