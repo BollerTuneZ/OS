@@ -148,6 +148,7 @@ function SetAutoDrive(onOff)
 */
 function AutoDrivePosition(position)
 {
+  console.log("Auto driving to:" + position);
   if(!EncoderServerInitialized){return -1;}
   if(!AutoDriveInitialized)
   {
@@ -188,6 +189,7 @@ function AutoDrivePosition(position)
 /*Returns next task out of buffer*/
 function getNextTask()
 {
+  console.log("Get next Task");
   var rtO =
   {
     end:true,
@@ -209,6 +211,7 @@ function getNextTask()
 /*Auto drive*/
 function initializeAutoDrive()
 {
+  console.log("Initialize autodrive");
   AutoDriveInitialized = true;
   onPositionEvents["motorIdle"] = autoMotorIdle;
 }
@@ -232,6 +235,7 @@ function autoMotorDrive(value)
 /*Algorythomen*/
 function calculateSteps(position)
 {
+  console.log("Calculating steps");
   var dir = 'N',diff=0;
   //Set offset
   position = position + (_configMotorRange.midOffset);
