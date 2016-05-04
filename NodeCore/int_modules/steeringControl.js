@@ -201,7 +201,6 @@ function getNextTask()
     return rtO;
     console.log(Positions.Motor);
     setTimeout(function(){autoMotorIdle(Positions.Motor);},2);
-
   }
   rtO["task"] = taskBuffer[taskIndex];
   if(rtO["task"] == undefined)
@@ -239,6 +238,7 @@ Executed when
 */
 function autoMotorIdle(value)
 {
+  console.log("Value:" + value + " target:" + Positions.Target);
  if(value != Positions.Target)
  {
    //Motor position has changed, but he shouldn't
