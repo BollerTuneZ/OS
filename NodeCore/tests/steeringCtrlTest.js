@@ -75,7 +75,7 @@ function C_manualDrive()
 function C_autoDrive()
 {
   console.log("Testing autodrive");
-  stpCtrl.Drive(driveTo);
+  stpCtrl.AutoDrivePosition(driveTo);
 }
 
 
