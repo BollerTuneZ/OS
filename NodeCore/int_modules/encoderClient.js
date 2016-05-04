@@ -14,7 +14,7 @@ function Connect(ip,port,callbacks,connectedCallback)
 {
   _callbacks = callbacks;
   client = new net.Socket();
-  client.connect(1010, '192.168.1.170', function() {
+  client.connect(port, ip, function() {
     console.log('Connected');
     client.write('{"Command":"SHOW_IDENTITY"}');
     if(connectedCallback != undefined)
