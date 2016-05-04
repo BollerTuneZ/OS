@@ -73,7 +73,7 @@ function nextCalibrateStep()
   {
     realDiff = realDiff * (-1);
   }
-  if(realDiff > 2)
+  if(realDiff > 3)
   {
     verify = 0;
     //recalculate
