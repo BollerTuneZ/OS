@@ -153,8 +153,8 @@ function AutoDrivePosition(position)
   {
     initializeAutoDrive();
   }
-  console.log("Target:" + Positions.target + " position:" + position)
-  var tDiff = Positions.target - position;
+  console.log("Target:" + Positions.motor + " position:" + position)
+  var tDiff = Positions.motor - position;
   if(tDiff < 0)
   {
     tDiff = tDiff * (-1);
