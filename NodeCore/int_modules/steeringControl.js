@@ -168,7 +168,8 @@ function AutoDrivePosition(position)
   taskIndex = taskBufSize; //Set buffer to end
 
   var stpInfo = calculateSteps(position);
-
+  console.log("calculateSteps" + stpInfo.Steps);
+  
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
   taskBufSize = tempBuffer.length;
 
