@@ -187,7 +187,7 @@ function Drive(steps,dir,feedrate,callback)
 	{
 		steps = Math.round( steps );
 	}
-	var buffer = buildBuffer(steps,dor,feedrate);
+	var buffer = buildBuffer(steps,dir,feedrate);
 	port.write(buffer,function(e,b){
 		if (e) {
 			console.log('Error: ', e.message);
