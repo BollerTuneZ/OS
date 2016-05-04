@@ -1,7 +1,7 @@
 
 #include "stepper.h"
 #define COM_TIMEOUT 1000
-#define BAUDRATE 9600
+#define BAUDRATE 115200
 #define COMMAND_BUF_SIZE 64
 
 #define DIR_PIN 4
@@ -211,8 +211,6 @@ int SetDirection(char *direction)
   {
     digitalWrite(DIR_R_PIN,LOW);
     digitalWrite(DIR_F_PIN,HIGH);
-    
-    
     return 1;
   }else if(*direction == 'R')
   {
@@ -246,7 +244,7 @@ void parsePowerCommand(char *buffer,int bufSize)
   int result = conv2Int(buffer,bufSize,2,'E',&freq,&dummyPos);
   if(result != 1)
   {
-    Serial.println(GC_FAULT);
+    Serial.println(GC_FAULT + 'F');
     return;
   }
 
