@@ -1,7 +1,7 @@
 
 #include "stepper.h"
 #define COM_TIMEOUT 1000
-#define BAUDRATE 115200
+#define BAUDRATE 9600
 #define COMMAND_BUF_SIZE 64
 
 #define DIR_PIN 4
@@ -40,7 +40,7 @@ BtzStepper *_stepper;
 
 void setup()
 {
-   Serial.begin(115200);
+   Serial.begin(BAUDRATE);
    waitForInitialization();
 }
 
@@ -207,19 +207,19 @@ void parseMoveCommand(char *buffer,int bufSize)
 
 int SetDirection(char *direction)
 {
-  if(direction == 'F')
+  if(*direction == 'F')
   {
     digitalWrite(DIR_R_PIN,LOW);
     digitalWrite(DIR_F_PIN,HIGH);
     
     
     return 1;
-  }else if(direction == 'R')
+  }else if(*direction == 'R')
   {
     digitalWrite(DIR_F_PIN,LOW);
     digitalWrite(DIR_R_PIN,HIGH);
     return 1; 
-  }else if(direction == 'N')
+  }else if(*direction == 'N')
   {
     digitalWrite(DIR_F_PIN,LOW);
     digitalWrite(DIR_R_PIN,LOW);
@@ -250,7 +250,7 @@ void parsePowerCommand(char *buffer,int bufSize)
     return;
   }
 
-  result = SetDirection(direction);
+  result = SetDirection(&direction);
   if(result == -1)
   {
     Serial.println(GC_FAULT);

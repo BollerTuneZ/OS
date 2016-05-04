@@ -7,7 +7,7 @@ var StepperDriverInitialized = false,EncoderDriverInitialized=false;
 
 var states =
 {
-  reverseActive:false
+  reverseActive:false,
 };
 
 
@@ -48,20 +48,19 @@ function SetPower(value)
   {
 
     var mappedVal = btzMath.MapVal(value,100, 0, 0, 255);
-    console.log("Run forward:" + mappedVal);
+    //console.log("Run forward:" + mappedVal);
     Stepper.SetPower(mappedVal,'F');
   }else {
     //Reverse
     if(!states.reverseActive)
     {
       console.log("Reverse is blocked");
+      Stepper.SetPower(0,'N');
       return;
     }
     console.log("Run Reverse");
     var mappedVal = btzMath.MapVal(value,100, 255, 0, 125);
     Stepper.SetPower(mappedVal,'R');
-
-
   }
 }
 
