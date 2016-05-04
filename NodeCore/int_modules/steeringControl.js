@@ -83,8 +83,8 @@ function initializeEncoder()
 
 function initializeStepperDriver()
 {
-  console.log(_config.StepperInfo.connectionInfo);
-  stepper.Initialize(_config.StepperInfo.connectionInfo,function(result)
+  console.log(_config.StepperInfo.conInfoStepper);
+  stepper.Initialize(_config.StepperInfo.conInfoStepper,function(result)
   {
     if(result)
     {
