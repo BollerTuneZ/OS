@@ -54,6 +54,7 @@ encServer:{ip:IP,port:PORT}
 function Initialize(config)
 {
   _config = config;
+  console.log(_config);
   console.log("Initializing Encoder");
   initializeEncoder();
   initializeStepperDriver();
