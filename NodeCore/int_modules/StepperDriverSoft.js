@@ -210,6 +210,11 @@ GC_POWER {DIRECTION(R|F|N} {FREQ_VALUE)E
 */
 function SetPower(power,direction)
 {
+	var power = Math.round( power );
+	if(power > 255)
+	{
+		power = 255;
+	}
 	var buffer = "";
 	buffer +=  gc.power;
 	buffer += direction;
