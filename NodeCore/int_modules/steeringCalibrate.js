@@ -5,7 +5,7 @@ var refPos = 500;
 
 var encoderConnected = false,autoCalibrate=false;
 var steeringPos = 0,motorPos=0;
-var defaultFeedrate = 200;
+var defaultFeedrate = 1000;
 var currentSpP = 0;
 
 var lastSteeringPos,lastMotorPos;
@@ -134,7 +134,7 @@ function onBusyChanged(state)
     printDiff();
     if(autoCalibrate)
     {
-      setTimeout(nextCalibrateStep,500);
+      setTimeout(nextCalibrateStep,50);
     }
   }else {
     console.log("Stepping");
