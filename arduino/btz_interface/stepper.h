@@ -12,11 +12,11 @@ class BtzStepper
   public:
     BtzStepper(int dir,int stp,int enable,int intPin);
     
-    void Step(char dir,long steps,long feedrate);
+    void Step(char dir,int steps,int feedrate);
     
   private:
   
     int _dir,_stp,_enable,_intPin;
-    int calculateFeedrate(long feedrate);  
+    int calculateFeedrate(int feedrate);  
 };
 #endif

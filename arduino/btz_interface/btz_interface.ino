@@ -180,6 +180,7 @@ void parseMoveCommand(char *buffer,int bufSize)
   {
     Serial.println(GC_FAULT);return;
   }
+  currentPos++;
   int feedrateH = 0;
   result = conv2Int(buffer,bufSize,currentPos,'E',&feedrateH,&currentPos);
   if(result == -1){Serial.println(GC_FAULT);return;}

@@ -8,10 +8,10 @@ BtzStepper::BtzStepper(int dir,int stp,int enable, int intPin)
   _intPin = intPin;
 }
 
-void BtzStepper::Step(char dir,long steps,long feedrate)
+void BtzStepper::Step(char dir,int steps,int feedrate)
 {
   int delayU = calculateFeedrate(feedrate);
-  if(delayU <= 0)
+  if(delayU < 1)
   {
     delayU = 1;
   }
@@ -38,7 +38,7 @@ void BtzStepper::Step(char dir,long steps,long feedrate)
   }
 }
 
-int BtzStepper::calculateFeedrate(long feedrate)
+int BtzStepper::calculateFeedrate(int feedrate)
 {
-  return (int)(1000000 / feedrate);
+  return (1000000 / feedrate);
 }
