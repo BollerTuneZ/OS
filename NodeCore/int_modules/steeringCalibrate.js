@@ -48,6 +48,7 @@ function RefDrive(steps,dir)
 {
   lastMotorPos = motorPos;
   lastSteeringPos = steeringPos;
+  console.log("Driving:" + steps);
   stpDriver.Drive(steps,dir,defaultFeedrate,function(value)
   {
     console.log("Stepping ended with:" + value);
