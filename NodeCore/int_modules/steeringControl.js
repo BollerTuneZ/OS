@@ -107,7 +107,7 @@ function initializeStepperDriver()
 */
 function Drive(task,force)
 {
-  if(fore == undefined){force = false;}
+  if(force == undefined){force = false;}
   if(!StepperDriverInitialized){return -1;}
   function _drive(s,d,f)
   {
