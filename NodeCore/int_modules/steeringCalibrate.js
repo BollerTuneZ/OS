@@ -9,7 +9,7 @@ var defaultFeedrate = 1000;
 var currentSpP = 0;
 
 var lastSteeringPos,lastMotorPos;
-var verify = 0,verifyMin = 10;
+var verify = 0,verifyMin = 5;
 
 var diffs =
 {
@@ -74,7 +74,7 @@ function nextCalibrateStep()
     realDiff = realDiff * (-1);
   }
   console.log("Realdiff:" + realDiff);
-  if(realDiff > 10)
+  if(realDiff > 25)
   {
     verify = 0;
     //recalculate
@@ -134,7 +134,7 @@ function onBusyChanged(state)
     printDiff();
     if(autoCalibrate)
     {
-      setTimeout(nextCalibrateStep,50);
+      setTimeout(nextCalibrateStep,100);
     }
   }else {
     console.log("Stepping");
