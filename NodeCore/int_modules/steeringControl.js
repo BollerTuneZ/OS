@@ -83,7 +83,6 @@ function initializeEncoder()
 
 function initializeStepperDriver()
 {
-  console.log(_config.StepperInfo.conInfoStepper);
   stepper.Initialize(_config.StepperInfo.conInfoStepper,function(result)
   {
     if(result)
@@ -170,7 +169,14 @@ function AutoDrivePosition(position)
   console.log(ramp);
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
   taskBufSize = tempBuffer.length;
+  if(taskBufSize < 1)
+  {
+    console.log("Not enough tasks")
+    return;
+  }
+  taskBuffer = tempBuffer;
   taskIndex = 0;
+  Drive(getNextTask(),true);
   onReady = function()
   {
     var result = getNextTask();
