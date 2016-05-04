@@ -41,6 +41,7 @@ var init_calibrate = false;
 var stdin = process.openStdin();
 var stdInCallback = undefined;
 
+console.log("Server has been started, enter command");
 
 stdin.addListener("data", function(d) {
     var input = d.toString().trim();
