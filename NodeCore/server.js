@@ -47,7 +47,7 @@ stdin.addListener("data", function(d) {
     var input = d.toString().trim();
     if(stdInCallback != undefined)
     {
-      if(callback(input) == 1)
+      if(stdInCallback(input) == 1)
       {
         return;
       }
