@@ -48,6 +48,9 @@ stdin.addListener("data", function(d) {
     }else if(input == "-drive cali")
     {
       strCali.RefDrive(100,'L');
+    }else if(input == "-drive autocali")
+    {
+      strCali.AutoCalibrate(5);
     }else {
       console.log("Could not understand:" + input);
     }

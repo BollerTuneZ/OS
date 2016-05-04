@@ -1,15 +1,25 @@
 var stpDriver = require('./StepperDriverSoft');
 var encClient = require('./encoderClient');
+var btzMath = require('./BTZ_Math');
+var refPos = 50;
 
-var encoderConnected = false;
+var encoderConnected = false,autoCalibrate=false;
 var steeringPos = 0,motorPos=0;
 var defaultFeedrate = 100;
+var currentSpP = 0;
 
 var lastSteeringPos,lastMotorPos;
+
+var diffs =
+{
+  motor:0,
+  steering:0
+}
 
 var exports = module.exports;
 exports.Initialize = Initialize;
 exports.RefDrive = RefDrive;
+exports.AutoCalibrate = AutoCalibrate;
 
 /*
 ip,
@@ -44,6 +54,33 @@ function RefDrive(steps,dir)
   });
 }
 
+function AutoCalibrate(startSpP)
+{
+  currentSpP = startSpP;
+  var refStepsToDrive = (currentSpP *refPos);
+  autoCalibrate = true;
+  console.log("Start autocalibration");
+  RefDrive(refStepsToDrive,'L');
+}
+
+function nextCalibrateStep()
+{
+  //Tolerate +-2
+  if(diffs.motor > 2)
+  {
+    //recalculate
+    var newSpS = btzMath.CalculateFeeds(refPos,currentSpP,diffs.motor);
+    console.log("Recalibrated value from:" + currentSpP + " to:"+
+    newSpS);
+    currentSpP = newSpS;
+    var refStepsToDrive = (currentSpP *refPos);
+    RefDrive(refStepsToDrive,'L');
+  }else {
+    autoCalibrate = false;
+    console.log("Done Calibration \n calculated SpP:" + currentSpP);
+  }
+}
+
 function onSteeringChanged(value)
 {
   steeringPos = value;
@@ -56,8 +93,18 @@ function onMotorChanged(value)
 
 function printDiff()
 {
-  var diffSteering = lastSteeringPos - steeringPos;
-  var diffMotor = lastMotorPos - motorPos;
+  diffs.steering = lastSteeringPos - steeringPos;
+  diffs.motor = lastMotorPos - motorPos;
+
+  if(diffs.motor < 0)
+  {
+    diffs.motor = diffs.motor * (-1);
+  }
+  if(diffs.steering < 0)
+  {
+    diffs.steering = diffs.steering * (-1);
+  }
+
   console.log("Steering diff:" + diffSteering);
   console.log("Motor diff:" + diffMotor);
 }
@@ -67,6 +114,10 @@ function onBusyChanged(state)
   if(state)
   {
     printDiff();
+    if(autoCalibrate)
+    {
+      nextCalibrateStep();
+    }
   }else {
     console.log("Stepping");
   }

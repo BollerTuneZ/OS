@@ -3,6 +3,10 @@
 algorithms
 */
 
+var exports = module.exports;
+exports.CalculateFeeds = calculateFeeds;
+exports.MapVal = mapVal;
+
 /*
 * s = the distance which should be traveled
 * cF = the currentFeeds
