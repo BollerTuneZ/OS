@@ -4,7 +4,7 @@ var cfgReader = require('./../int_modules/configReader');
 var cfgName = "steeringCtrlTest",cfgDefaultDriveTask ="defaultDriveTask";
 var config = undefined,defaultDriveTask =undefined;
 var isInitialized = false,initCallback;
-var driveTo = 20000;
+var driveTo = 0;
 
 /*Initializes Test and returns callback for stdin*/
 function Initialize(callback)
