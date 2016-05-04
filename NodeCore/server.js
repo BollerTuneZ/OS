@@ -107,11 +107,11 @@ function initializeGamepad()
     steer();
     console.log('[Right] button press');
   });
-  xbox.on('rightstickpress:none', function () {
+  Xbox.on('rightstickpress:none', function () {
   console.log("Reverse active");
   states.reverseActive = true;
   });
-  xbox.on('rightstickpress:release', function () {
+  Xbox.on('rightstickpress:release', function () {
   console.log("Reverse none active");
   states.reverseActive = false;
   });
