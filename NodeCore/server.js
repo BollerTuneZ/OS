@@ -14,8 +14,13 @@ function onStepperBusy()
 	if(Run && StepperDriverInitialized)
 	{
     console.log("Run");
-		Stepper.Drive(Config.steering.defaultSteps,dir,Config.steering.defaultFeedrate);
+		steer();
 	}
+}
+
+function steer()
+{
+  Stepper.Drive(Config.steering.defaultSteps,Direction,Config.steering.defaultFeedrate);
 }
 
 function initializeStepperDriver()
@@ -43,7 +48,7 @@ Xbox.on('left:release', function () {
 Xbox.on('left', function () {
   Run = true;
   Direction = 'L';
-  Stepper.Drive(Config.steering.defaultSteps,dir,Config.steering.defaultFeedrate);
+  steer();
   console.log('[LEFT] button press');
 
 });
@@ -55,7 +60,7 @@ Xbox.on('right:release', function () {
 Xbox.on('right', function () {
   Run = true;
   Direction = 'R';
-  Stepper.Drive(Config.steering.defaultSteps,dir,Config.steering.defaultFeedrate);
+  steer();
   console.log('[Right] button press');
 
 });
