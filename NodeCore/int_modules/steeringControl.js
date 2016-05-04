@@ -176,7 +176,13 @@ function AutoDrivePosition(position)
   }
   taskBuffer = tempBuffer;
   taskIndex = 0;
-  Drive(getNextTask(),true);
+  var firstTask = getNextTask();
+  if(firstTask.end)
+  {
+    console.log("Already end");
+    return;
+  }
+
   onReady = function()
   {
     var result = getNextTask();
@@ -190,6 +196,7 @@ function AutoDrivePosition(position)
       console.log("Drive Error" + result);
     }
   };
+  Drive(firstTask.task,true);
 }
 
 /*private member*/
