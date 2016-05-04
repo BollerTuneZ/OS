@@ -14,10 +14,10 @@ void BtzStepper::Step(char dir,int steps,int feedrate)
   
   if(dir == DIR_LEFT)
   {
-    digitalWrite(_dir,LOW);
+    digitalWrite(_dir,HIGH);
   }else if(dir == DIR_RIGHT)
   {
-    digitalWrite(_dir,HIGH);
+    digitalWrite(_dir,LOW);
   }else
   {
    return; 
