@@ -185,7 +185,7 @@ void parseMoveCommand(char *buffer,int bufSize)
   if(result == -1){Serial.println(GC_FAULT);return;}
 
   Serial.println(GC_BUSY);
-  _stepper->Step(dir,stepsH,feedrate);  
+  _stepper->Step(dir,stepsH,feedrateH);  
   Serial.println(GC_READY);
 }
 
