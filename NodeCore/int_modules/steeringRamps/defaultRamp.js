@@ -29,10 +29,15 @@ function Render(steps,dir)
     Dir:dir,
     Feedrate:DEFAULT_FEEDRATE
   };
+  if(steps > 5000)
+  {
+    defaultTask.Feedrate = 10000;
+  }
+  return [defaultTask];
   if(stepsLeft < 500)
   {
 
-    return [defaultTask];
+
   }
 
   //First step
