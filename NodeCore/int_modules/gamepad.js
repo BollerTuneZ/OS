@@ -31,7 +31,7 @@ function _posSteeringChanged(position)
   {
     diff = diff * (-1);
   }
-  if(diff < 10)
+  if(diff < 20)
   {
     return;
   }

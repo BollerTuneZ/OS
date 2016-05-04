@@ -31,7 +31,7 @@ function Render(steps,dir)
   };
   if(steps > 5000)
   {
-    defaultTask.Feedrate = 50;
+    defaultTask.Feedrate = 1000;
   }
   return [defaultTask];
   if(stepsLeft < 500)
