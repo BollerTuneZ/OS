@@ -13,11 +13,11 @@ var stepBuffer = [];
 /*config_parameter*/
 //SteeringMode (Controller||Manual)
 var _config;
+//TODO must be json and dynamic changeable
 var _configMotorRange =
 {
-  leftEnd:0,
-  middle:50,
-  rightEnd:100
+  range:100,
+  midOffset:2
 };
 var states =
 {
@@ -33,7 +33,7 @@ var onStepBufEmpty;
 var busyState = true;
 
 /*IMPORTEND Control variables*/
-var Positions ={Steering:0,Motor:0};
+var Positions ={Steering:0,Motor:0,target:0};
 var onPositionEvents = {};
 var onBusy,onReady;
 var EncoderServerInitialized = false,
@@ -47,7 +47,8 @@ var tasksBuffer = [],taskIndex,taskBufSize;
 Initialize object:
 StepperInfo:
   conInfoStepper:connectionInfo
-  stpPI:{STEPPS_PER_I}
+  stpPI:{STEPPS_PER_I},
+  tolleranz:4 //TODO implement
 encServer:{ip:IP,port:PORT}
 */
 function Initialize(config)
@@ -71,6 +72,11 @@ function initializeEncoder()
     [onSteeringChanged,onMotorChanged],
     function(){
       EncoderServerInitialized = true;
+      //Set positions of encoder calculating the middle for motor
+      target = (_configMotorRange.range / 2) + (_configMotorRange.midOffset);
+      Positions.motor = target;
+      console.log("Set Motor position to middle:" + Positions.motor);
+      encoderServer.SetPosition("ECM",Positions.motor);
     });
 }
 
@@ -99,6 +105,7 @@ function initializeStepperDriver()
 */
 function Drive(task,force)
 {
+  if(fore == undefined){force = false;}
   if(!StepperDriverInitialized){return -1;}
   function _drive(s,d,f)
   {
@@ -121,6 +128,18 @@ function Drive(task,force)
   return 1;
 }
 
+
+function SetAutoDrive(onOff)
+{
+  AutoDriveInitialized = onOff;
+  if(!AutoDriveInitialized)
+  {
+    //release event
+    onPositionEvents["motorIdle"] = undefined;
+  }else {
+    initializeAutoDrive();
+  }
+}
 /*
 * Auto drive calculates steps direction and ramps
 *always forces
@@ -128,6 +147,21 @@ function Drive(task,force)
 function AutoDrivePosition(position)
 {
   if(!EncoderServerInitialized){return -1;}
+  if(!AutoDriveInitialized)
+  {
+    initializeAutoDrive();
+  }
+  var tDiff = Positions.target - position;
+  if(tDiff < 0)
+  {
+    tDiff = tDiff * (-1);
+  }
+  if(tDiff < _config.StepperInfo.tolleranz)
+  {
+    //target is within tolleranz
+    return;
+  }
+
   taskIndex = taskBufSize;
   var stpInfo = calculateSteps(position);
   var tempBuffer = ramp.Render(stpInfo.Steps,stpInfo.Dir);
@@ -149,6 +183,7 @@ function AutoDrivePosition(position)
 }
 
 /*private member*/
+/*Returns next task out of buffer*/
 function getNextTask()
 {
   var rtO =
@@ -172,10 +207,8 @@ function getNextTask()
 /*Auto drive*/
 function initializeAutoDrive()
 {
-
-  onPositionEvents["motorIdle"] =
-
   AutoDriveInitialized = true;
+  onPositionEvents["motorIdle"] = autoMotorIdle;
 }
 
 /*
@@ -183,17 +216,23 @@ Executed when
 */
 function autoMotorIdle(value)
 {
-
+ if(value != Positions.target)
+ {
+   //Motor position has changed, but he shouldn't
+   AutoDrivePosition(target);
+ }
 }
 function autoMotorDrive(value)
 {
-
+  //TODO logic for finding failsures
 }
 
 /*Algorythomen*/
 function calculateSteps(position)
 {
   var dir = 'N',diff=0;
+  //Set offset
+  position = position + (_configMotorRange.midOffset);
   if(position == Positions.Motor)
   {
     return 0;

@@ -1,0 +1,15 @@
+{
+  "StepperInfo": {
+    "conInfoStepper": {
+      "baudrate": 9600,
+      "port": "/dev/ttyUSB1",
+      "eStopPin": 5
+    },
+    "stpPI": 0.64,
+    "tolleranz":4
+  },
+  "encServer": {
+    "ip": "192.168.2.170",
+    "port": 1010
+  }
+}

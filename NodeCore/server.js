@@ -1,4 +1,5 @@
 var test = require('./tests/softStepperTest');
+var ctrlTest = require('./tests/steeringCtrlTest');
 var strCtrl = require('./int_modules/steeringControl');
 var strCali = require('./int_modules/steeringCalibrate');
 /*
@@ -38,9 +39,18 @@ var initCalObj =
 };
 var init_calibrate = false;
 var stdin = process.openStdin();
+var stdInCallback = undefined;
+
 
 stdin.addListener("data", function(d) {
-    var input = d.toString().trim()
+    var input = d.toString().trim();
+    if(stdInCallback != undefined)
+    {
+      if(callback(input) == 1)
+      {
+        return;
+      }
+    }
     if(input == "-init calibrate")
     {
       console.log("Init Calibration");
@@ -51,6 +61,12 @@ stdin.addListener("data", function(d) {
     }else if(input == "-drive autocali")
     {
       strCali.AutoCalibrate(5);
+    }else if(input == "-init auto")
+    {
+      stdInCallback = ctrlTest.Initialize(function()
+      {
+        console.log("CTRLTest initialized");
+      });
     }else {
       console.log("Could not understand:" + input);
     }
