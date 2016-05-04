@@ -79,7 +79,7 @@ function initializeEncoder()
     function(){
       EncoderServerInitialized = true;
       //Set positions of encoder calculating the middle for motor
-      target = parseInt((_configMotorRange.range / 2) + (_configMotorRange.midOffset));
+      target = 0;//parseInt((_configMotorRange.range / 2) + (_configMotorRange.midOffset));
       Positions.Motor = target;
       console.log("Set Motor position to middle:" + Positions.Motor);
       encoderServer.SetPosition("motor",Positions.Motor);

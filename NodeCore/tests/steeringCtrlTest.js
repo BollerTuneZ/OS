@@ -90,7 +90,7 @@ function C_controller()
     {
       stpCtrl.AutoDrivePosition(pos);
     },
-    range:{min:0,max:200}
+    range:{min:-1024,max:1024}
   });
   xCtrl.SetState(true);
 }

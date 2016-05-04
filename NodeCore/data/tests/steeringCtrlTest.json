@@ -6,14 +6,14 @@
       "eStopPin": 5
     },
     "stpPI": 0.6909576840303374,
-    "tolleranz":40
+    "tolleranz":30
   },
   "encServer": {
     "ip": "192.168.2.170",
     "port": 1010
   },
   "motorRange":{
-    "range":255,
+    "range":1024,
     "midOffset":0
   }
 }
