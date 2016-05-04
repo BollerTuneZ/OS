@@ -5,7 +5,7 @@
       "port": "/dev/ttyUSB1",
       "eStopPin": 5
     },
-    "stpPI": 0.64,
+    "stpPI": 0.6909576840303374,
     "tolleranz":4
   },
   "encServer": {
