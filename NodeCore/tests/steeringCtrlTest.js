@@ -29,7 +29,7 @@ function driverInit()
   {
     isInitialized = true;
     initCallback();
-  },5000);
+  },1000);
 }
 
 
@@ -90,7 +90,7 @@ function C_controller()
     {
       stpCtrl.AutoDrivePosition(pos);
     },
-    range:{min:0,max:5000}
+    range:{min:0,max:200}
   });
   xCtrl.SetState(true);
 }
