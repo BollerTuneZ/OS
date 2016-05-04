@@ -219,6 +219,7 @@ function getNextTask()
   {
     taskIndex = 0;
     console.log(Positions.Motor);
+    autoMotorIdle(Positions.Motor);
     return rtO;
   }
   rtO["task"] = taskBuffer[taskIndex];
