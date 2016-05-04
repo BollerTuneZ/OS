@@ -47,7 +47,7 @@ stdin.addListener("data", function(d) {
       strCali.Initialize(initCalObj);
     }else if(input == "-drive cali")
     {
-      strCali.RefDrive(10,'L');
+      strCali.RefDrive(100,'L');
     }else {
       console.log("Could not understand:" + input);
     }
