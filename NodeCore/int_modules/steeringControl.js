@@ -203,7 +203,7 @@ function AutoDrivePosition(position)
 /*Returns next task out of buffer*/
 function getNextTask()
 {
-  console.log("Get next Task");
+  console.log("Get next Task:" + taskIndex);
   var rtO =
   {
     end:true,
@@ -216,6 +216,7 @@ function getNextTask()
   rtO["task"] = taskBuffer[taskIndex];
   if(rtO["task"] == undefined)
   {
+    taskIndex++;
     return rtO;
   }
   rtO.end = false;
