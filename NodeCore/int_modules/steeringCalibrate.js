@@ -19,6 +19,7 @@ connectionInfoStp
 function Initialize(initObj)
 {
   //encoder
+  console.log("Init Encoder");
   encClient.Connect(initObj.ip,initObj.port,[onSteeringChanged,onMotorChanged],
   function()
   {
@@ -26,9 +27,10 @@ function Initialize(initObj)
     encoderConnected = true;
   });
   //StepperDriver
+  console.log("Init stpDriver");
   stpDriver.Initialize(initObj.connectionInfo,function()
 {
-
+  console.log("Initialized");
 },onBusyChanged);
 }
 
