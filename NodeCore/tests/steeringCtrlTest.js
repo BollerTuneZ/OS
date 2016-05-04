@@ -92,6 +92,7 @@ function C_controller()
     },
     range:{min:0,max:5000}
   });
+  xCtrl.SetState(true);
 }
 
 var exports = module.exports;

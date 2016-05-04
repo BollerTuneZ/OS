@@ -27,3 +27,7 @@ function _posSteeringChanged(position)
 
   config.onChangedPos(mapped);
 }
+
+var exports = module.exports;
+exports.Initialize = Initialize;
+exports.SetState = SetState;
