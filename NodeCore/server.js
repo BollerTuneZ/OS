@@ -47,7 +47,7 @@ function SetPower(value)
   if(value < 100)
   {
 
-    var mappedVal = btzMath.MapVal(value,0, 100, 0, 255);
+    var mappedVal = btzMath.MapVal(value,100, 0, 0, 255);
     console.log("Run forward:" + mappedVal);
     Stepper.SetPower(mappedVal,'F');
   }else {
