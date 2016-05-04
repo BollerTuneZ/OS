@@ -242,12 +242,7 @@ Executed when
 function autoMotorIdle(value)
 {
   console.log("Current" + value + " Target:" + Positions.Target);
- if(value != Positions.Target)
- {
-   //Motor position has changed, but he shouldn't
-   console.log("Motor not on target");
-   AutoDrivePosition(Positions.Target);
- }
+
 }
 function autoMotorDrive(value)
 {
@@ -350,6 +345,12 @@ function onMotorChanged(value)
     if(onPositionEvents["motorIdle"] != undefined)
     {
       onPositionEvents["motorIdle"](value);
+      if(value != Positions.Target)
+      {
+        //Motor position has changed, but he shouldn't
+        console.log("Motor not on target");
+        AutoDrivePosition(Positions.Target);
+      }
     }
   }else if(currentState == states.drive)
   {
