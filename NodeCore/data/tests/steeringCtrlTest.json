@@ -13,7 +13,7 @@
     "port": 1010
   },
   "motorRange":{
-    "range":200,
+    "range":255,
     "midOffset":0
   }
 }
