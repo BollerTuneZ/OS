@@ -3,11 +3,14 @@ var Xbox = require('xbox-controller-node');
 var Config = require('./data/config.json');
 var btzMath = require('./int_modules/BTZ_Math');
 
+
+
 var StepperDriverInitialized = false,EncoderDriverInitialized=false;
 
 var states =
 {
   reverseActive:false,
+  cruseControl:false,
 };
 
 
@@ -67,6 +70,11 @@ function SetPower(value)
 function _posPowerChanged(position)
 {
   if(isNaN(position.y) || position.y == 'NaN'|| position.y == 'none'){return;}
+  if(states.cruseControl)
+  {
+    console.log("cruseControl is active");
+    return;
+  }
   SetPower(position.y);
 }
 
@@ -122,6 +130,15 @@ function initializeGamepad()
   console.log("Reverse none active");
   states.reverseActive = false;
   });
+  Xbox.on('xboxButton:none', function () {
+    if(states.cruseControl)
+    {
+      states.cruseControl = false;
+    }else {
+      states.cruseControl = true;
+    }
+  console.log('Set Crusecontrol to:' + states.cruseControl);
+});
 }
 
 function startBtz()
