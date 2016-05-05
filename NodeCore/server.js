@@ -131,8 +131,8 @@ function initializeGamepad()
   console.log("Reverse active");
   states.reverseActive = true;
   });
-  Xbox.on('rightstickpress:release', function () {
-  console.log("Reverse none active");
+  Xbox.on('rb:release', function () {
+  console.log("Reverse not active");
   states.reverseActive = false;
   });
   Xbox.on('xboxButton:release', function () {
