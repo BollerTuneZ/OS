@@ -130,7 +130,7 @@ function initializeGamepad()
   console.log("Reverse none active");
   states.reverseActive = false;
   });
-  Xbox.on('xboxButton:none', function () {
+  Xbox.on('xboxButton:release', function () {
     if(states.cruseControl)
     {
       states.cruseControl = false;
