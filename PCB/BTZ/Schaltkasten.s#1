@@ -1334,6 +1334,7 @@ Wenn Sie das ULP zur Brückenverwaltung verwenden, geschieht das automatisch.&lt
 <instance part="Q1" gate="G$2" x="38.1" y="-12.7"/>
 <instance part="M1" gate="G$1" x="63.5" y="48.26" rot="R180"/>
 <instance part="F1" gate="G$1" x="78.74" y="-27.94" rot="R180"/>
+<instance part="K2" gate="1" x="332.74" y="7.62"/>
 <instance part="K2" gate="G$1" x="327.66" y="27.94"/>
 <instance part="Q1.1" gate="G$1" x="182.88" y="-40.64" rot="R180"/>
 <instance part="Q1.2" gate="G$1" x="195.58" y="-40.64" rot="R180"/>
