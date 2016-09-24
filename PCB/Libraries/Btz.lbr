@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.5.0">
+<eagle version="7.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -329,38 +329,38 @@
 <pad name="G3" x="-29.337" y="9.652" drill="1.5748" diameter="2.1844" rot="R180"/>
 <hole x="26.67" y="5.08" drill="3.2512"/>
 <hole x="-26.543" y="5.08" drill="3.2512"/>
-<pad name="GND17" x="25.4" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="5V5" x="24.13" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND18" x="22.86" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="SCL5" x="21.59" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="SDA5" x="19.05" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="1-14" x="20.32" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="GND19" x="17.78" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="12V5" x="16.51" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="5V6" x="10.16" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND20" x="11.43" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="SCL6" x="7.62" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND21" x="8.89" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="SDA6" x="5.08" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND22" x="6.35" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="GND23" x="3.81" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="12V6" x="2.54" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND24" x="-2.54" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="5V7" x="-3.81" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND25" x="-5.08" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="SCL7" x="-6.35" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="SDA7" x="-8.89" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="12V7" x="-11.43" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND26" x="-7.62" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="GND27" x="-10.16" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="5V8" x="-17.78" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND28" x="-16.51" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="SCL8" x="-20.32" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND29" x="-19.05" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="SDA8" x="-22.86" y="-10.16" drill="0.889" rot="R180"/>
-<pad name="GND30" x="-21.59" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="GND31" x="-24.13" y="-7.62" drill="0.889" rot="R180"/>
-<pad name="12V8" x="-25.4" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="12V5" x="25.4" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_5" x="24.13" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SDA5" x="22.86" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_51" x="21.59" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="GND_52" x="19.05" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SCL5" x="20.32" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="5V5" x="17.78" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_53" x="16.51" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="GND_6" x="10.16" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="12V6" x="11.43" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_61" x="7.62" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SDA6" x="8.89" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_62" x="5.08" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SCL6" x="6.35" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="5V6" x="3.81" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_63" x="2.54" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="12V7" x="-2.54" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_7" x="-3.81" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SDA7" x="-5.08" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_71" x="-6.35" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="GND_72" x="-8.89" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="GND_73" x="-11.43" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SCL7" x="-7.62" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="5V7" x="-10.16" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_8" x="-17.78" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="12V8" x="-16.51" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_81" x="-20.32" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SDA8" x="-19.05" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_82" x="-22.86" y="-10.16" drill="0.889" rot="R180"/>
+<pad name="SCL8" x="-21.59" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="5V8" x="-24.13" y="-7.62" drill="0.889" rot="R180"/>
+<pad name="GND_83" x="-25.4" y="-10.16" drill="0.889" rot="R180"/>
 <pad name="G6" x="29.464" y="-4.318" drill="1.5748" diameter="2.1844" rot="R180"/>
 <pad name="G7" x="-29.337" y="-0.508" drill="1.5748" diameter="2.1844" rot="R180"/>
 <pad name="G8" x="-29.337" y="-6.858" drill="1.5748" diameter="2.1844" rot="R180"/>
@@ -920,11 +920,11 @@
 <devices>
 <device name="" package="JACK8">
 <connects>
-<connect gate="G$1" pin="12V" pad="12V1 12V2 12V3 12V4 12V5 12V6 12V7 12V8"/>
-<connect gate="G$1" pin="5V" pad="5V1 5V2 5V3 5V4 5V5 5V6 5V7 5V8"/>
-<connect gate="G$1" pin="GND" pad="1-14 G1 G3 G6 G7 G8 G9 GND1 GND2 GND3 GND4 GND5 GND6 GND7 GND8 GND9 GND10 GND11 GND12 GND13 GND14 GND15 GND16 GND17 GND18 GND19 GND20 GND21 GND22 GND23 GND24 GND25 GND26 GND27 GND28 GND29 GND30 GND31"/>
-<connect gate="G$1" pin="SCL" pad="SCL1 SCL2 SCL3 SCL4 SCL5 SCL6 SCL7 SCL8"/>
-<connect gate="G$1" pin="SDA" pad="SDA1 SDA2 SDA3 SDA4 SDA5 SDA6 SDA7 SDA8"/>
+<connect gate="G$1" pin="12V" pad="12V1 12V2 12V3 12V4 GND_53 GND_63 GND_73 GND_83"/>
+<connect gate="G$1" pin="5V" pad="5V1 5V2 5V3 5V4 GND_5 GND_6 GND_7 GND_8"/>
+<connect gate="G$1" pin="GND" pad="5V5 5V6 5V7 5V8 12V5 12V6 12V7 12V8 G1 G3 G6 G7 G8 G9 GND1 GND2 GND3 GND4 GND5 GND6 GND7 GND8 GND9 GND10 GND11 GND12 GND13 GND14 GND15 GND16 SCL5 SCL6 SCL7 SCL8 SDA5 SDA6 SDA7 SDA8"/>
+<connect gate="G$1" pin="SCL" pad="GND_51 GND_61 GND_71 GND_81 SCL1 SCL2 SCL3 SCL4"/>
+<connect gate="G$1" pin="SDA" pad="GND_52 GND_62 GND_72 GND_82 SDA1 SDA2 SDA3 SDA4"/>
 </connects>
 <technologies>
 <technology name=""/>
