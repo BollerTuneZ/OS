@@ -92,3 +92,7 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+PCB/.DS_Store
+
+PCB/.DS_Store
